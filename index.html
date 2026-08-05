@@ -35,7 +35,6 @@
             overflow-x: hidden;
         }
 
-        /* CORAZONES FLOTANTES DE FONDO */
         .heart-bg {
             position: fixed;
             color: rgba(231, 76, 60, 0.15);
@@ -51,7 +50,6 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* ACCESO BIENVENIDA */
         #welcome-screen {
             background: #ffffff;
             border-radius: 24px;
@@ -63,7 +61,6 @@
             width: 100%;
             max-width: 450px;
             z-index: 1;
-            position: relative;
         }
 
         #welcome-screen h2 {
@@ -79,13 +76,11 @@
             line-height: 1.4;
         }
 
-        /* CONTENIDO PRINCIPAL */
         #main-content {
             display: none;
             width: 100%;
             max-width: 450px;
             z-index: 1;
-            position: relative;
         }
 
         header {
@@ -107,7 +102,6 @@
             margin-bottom: 18px;
         }
 
-        /* BARRA DE PROGRESO BONITA */
         .progress-wrapper {
             background: #ffffff;
             border-radius: 16px;
@@ -136,12 +130,11 @@
         .progress-bar-fill {
             background: linear-gradient(90deg, #e74c3c, #ff7675);
             height: 100%;
-            width: 6.66%; /* 1 de 15 */
+            width: 6.66%;
             border-radius: 10px;
             transition: width 0.4s ease;
         }
 
-        /* TARJETAS */
         .card {
             background: var(--card-bg);
             border-radius: 22px;
@@ -149,7 +142,6 @@
             margin-bottom: 22px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.05);
             border: 1px solid #f0f0f0;
-            transition: transform 0.2s ease;
         }
 
         .card-header {
@@ -219,11 +211,6 @@
             text-align: center;
             font-size: 1rem;
             outline: none;
-            transition: border-color 0.2s;
-        }
-
-        input[type="text"]:focus {
-            border-color: var(--accent-color);
         }
 
         button {
@@ -237,19 +224,67 @@
             width: 100%;
             cursor: pointer;
             box-shadow: 0 4px 14px rgba(44, 62, 80, 0.15);
-            transition: background 0.2s;
         }
 
-        button:active {
-            transform: scale(0.98);
+        /* PUZLE DE MEMORIA */
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
         }
 
-        .error {
-            color: #e74c3c;
-            font-size: 0.85rem;
-            display: none;
-            margin-top: 8px;
-            font-weight: 500;
+        .memory-card {
+            background: #2c3e50;
+            color: white;
+            height: 70px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .memory-card.flipped {
+            background: #ffeaa7;
+            color: #d63031;
+        }
+
+        /* RASCA Y GANA */
+        .scratch-container {
+            position: relative;
+            width: 100%;
+            height: 100px;
+            margin: 15px 0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .scratch-secret {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ffeaa7;
+            color: #d63031;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 10px;
+        }
+
+        canvas.scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
         }
 
         footer {
@@ -262,19 +297,18 @@
 </head>
 <body>
 
-    <!-- FONDO DE CORAZONES -->
     <div class="heart-bg" style="left: 10%; animation-delay: 0s;">🤍</div>
     <div class="heart-bg" style="left: 30%; animation-delay: 2.5s;">✨</div>
     <div class="heart-bg" style="left: 60%; animation-delay: 5s;">🤍</div>
     <div class="heart-bg" style="left: 85%; animation-delay: 7.5s;">💖</div>
 
-    <!-- 1. PANTALLA DE ACCESO -->
+    <!-- 1. ACCESO -->
     <div id="welcome-screen">
         <h2>Hola mi amor 🤍</h2>
         <p>Introduce tu fecha de nacimiento para descubrir nuestras 15 razones.</p>
         <input type="text" id="birthdate-input" placeholder="DD/MM/AA (ej: 25/05/09)">
         <button onclick="checkBirthdate()">Entrar</button>
-        <p id="welcome-error" class="error">Mmm... esa no es tu fecha, piénsalo bien 😉</p>
+        <p id="welcome-error" style="color:#e74c3c; display:none; margin-top:8px;">Mmm... esa no es tu fecha 😉</p>
     </div>
 
     <!-- 2. CONTENIDO PRINCIPAL -->
@@ -284,7 +318,6 @@
             <p class="subtitle">Respondiendo a tus 15 vídeos de aquel fin de semana.</p>
         </header>
 
-        <!-- BARRA DE PROGRESO -->
         <div class="progress-wrapper">
             <div class="progress-info">
                 <span>Progreso de desbloqueo</span>
@@ -302,48 +335,90 @@
                 <span class="card-counter">1 de 15</span>
             </div>
             <h3>1. El primer paso</h3>
-            
             <div class="video-container">
-                <iframe 
-                    src="https://www.youtube.com/embed/Q0Vn2N--Uo0" 
-                    title="Vídeo #1" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
+                <iframe src="https://www.youtube.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe>
             </div>
-
             <div class="response-box">
                 <strong>Mi respuesta:</strong><br>
                 Aquí escribiremos tu respuesta a este primer vídeo...
             </div>
         </div>
 
-        <!-- TARJETA 2 (BLOQUEADA CON PREGUNTA) -->
+        <!-- TARJETA 2 (MÚSICA - MELENDI) -->
         <div class="card" id="card-2">
             <div id="lock-2" class="lock-box">
                 <div class="card-header">
-                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #2 🔒</span>
+                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #2 🎵</span>
                     <span class="card-counter">2 de 15</span>
                 </div>
-                <p style="margin: 15px 0 5px 0; font-weight: 600;">¿Dónde fue nuestra primera cita?</p>
-                <input type="text" id="input-2" placeholder="Escribe tu respuesta...">
-                <button onclick="unlock(2, 'playa')">Desbloquear Razón #2</button>
-                <p id="error-2" class="error">Respuesta incorrecta, prueba otra vez 😉</p>
+                <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción para desbloquear 🤍</p>
+                <iframe style="border-radius:12px; margin-bottom:12px;" src="https://open.spotify.com/embed/track/1P4311M9a45vWzT7mC1n3R?utm_source=generator" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                <button onclick="unlockDirect(2)">Desbloquear Razón #2</button>
             </div>
-
             <div id="content-2" style="display:none;">
                 <div class="card-header">
                     <span class="badge">Vídeo #2</span>
                     <span class="card-counter">2 de 15</span>
                 </div>
-                <h3>2. Segundo momento</h3>
-
-                <!-- AQUÍ IRÁ EL PRÓXIMO VÍDEO -->
-
+                <h3>2. La Promesa</h3>
                 <div class="response-box">
                     <strong>Mi respuesta:</strong><br>
-                    Aquí irá la respuesta al segundo vídeo...
+                    Aquí irá tu respuesta al segundo vídeo...
+                </div>
+            </div>
+        </div>
+
+        <!-- TARJETA 3 (PUZLE FECHAS) -->
+        <div class="card" id="card-3">
+            <div id="lock-3" class="lock-box">
+                <div class="card-header">
+                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #3 🧩</span>
+                    <span class="card-counter">3 de 15</span>
+                </div>
+                <p style="margin: 10px 0; font-weight: 600;">Encuentra las parejas de nuestras fechas especiales:</p>
+                <div class="memory-grid">
+                    <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
+                    <div class="memory-card" onclick="flipCard(this, '24/05')">❓</div>
+                    <div class="memory-card" onclick="flipCard(this, '24/05')">❓</div>
+                    <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
+                </div>
+            </div>
+            <div id="content-3" style="display:none;">
+                <div class="card-header">
+                    <span class="badge">Vídeo #3</span>
+                    <span class="card-counter">3 de 15</span>
+                </div>
+                <h3>3. Fechas Especiales</h3>
+                <div class="response-box">
+                    <strong>Mi respuesta:</strong><br>
+                    Aquí irá tu respuesta al tercer vídeo...
+                </div>
+            </div>
+        </div>
+
+        <!-- TARJETA 4 (RASCA Y GANA) -->
+        <div class="card" id="card-4">
+            <div id="lock-4" class="lock-box">
+                <div class="card-header">
+                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #4 🎫</span>
+                    <span class="card-counter">4 de 15</span>
+                </div>
+                <p style="margin: 10px 0; font-weight: 600;">Rasca con el dedo la casilla dorada:</p>
+                <div class="scratch-container">
+                    <div class="scratch-secret">Te amo bichito 🫶🏽🤍</div>
+                    <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
+                </div>
+                <button id="btn-scratch" style="display:none; margin-top:10px;" onclick="unlockDirect(4)">Desbloquear Razón #4</button>
+            </div>
+            <div id="content-4" style="display:none;">
+                <div class="card-header">
+                    <span class="badge">Vídeo #4</span>
+                    <span class="card-counter">4 de 15</span>
+                </div>
+                <h3>4. Mensaje Secreto</h3>
+                <div class="response-box">
+                    <strong>Mi respuesta:</strong><br>
+                    Aquí irá tu respuesta al cuarto vídeo...
                 </div>
             </div>
         </div>
@@ -367,22 +442,83 @@
             if (input === '14/10/08' || input === '14/10/2008') {
                 document.getElementById('welcome-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
+                initScratch();
                 updateProgress();
             } else {
                 document.getElementById('welcome-error').style.display = 'block';
             }
         }
 
-        function unlock(num, secret) {
-            var val = document.getElementById('input-' + num).value.trim().toLowerCase();
-            if (val === secret.toLowerCase()) {
-                document.getElementById('lock-' + num).style.display = 'none';
-                document.getElementById('content-' + num).style.display = 'block';
-                unlockedCount++;
-                updateProgress();
-            } else {
-                document.getElementById('error-' + num).style.display = 'block';
+        function unlockDirect(num) {
+            document.getElementById('lock-' + num).style.display = 'none';
+            document.getElementById('content-' + num).style.display = 'block';
+            unlockedCount++;
+            updateProgress();
+        }
+
+        // LÓGICA MEMORIA
+        var flippedCards = [];
+        var matchedPairs = 0;
+        function flipCard(card, val) {
+            if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
+                card.classList.add('flipped');
+                card.innerText = val;
+                flippedCards.push({element: card, value: val});
+
+                if (flippedCards.length === 2) {
+                    if (flippedCards[0].value === flippedCards[1].value) {
+                        matchedPairs++;
+                        flippedCards = [];
+                        if (matchedPairs === 2) {
+                            setTimeout(function() { unlockDirect(3); }, 500);
+                        }
+                    } else {
+                        setTimeout(function() {
+                            flippedCards[0].element.classList.remove('flipped');
+                            flippedCards[0].element.innerText = '❓';
+                            flippedCards[1].element.classList.remove('flipped');
+                            flippedCards[1].element.innerText = '❓';
+                            flippedCards = [];
+                        }, 800);
+                    }
+                }
             }
+        }
+
+        // LÓGICA RASCA
+        function initScratch() {
+            var canvas = document.getElementById('scratch-canvas');
+            if (!canvas) return;
+            var ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            canvas.height = canvas.offsetHeight;
+
+            ctx.fillStyle = '#b2bec3';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#636e72';
+            ctx.font = 'bold 16px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('✨ Rasca aquí ✨', canvas.width/2, canvas.height/2 + 5);
+
+            var isDrawing = false;
+            function scratch(e) {
+                if (!isDrawing) return;
+                var rect = canvas.getBoundingClientRect();
+                var x = (e.clientX || e.touches[0].clientX) - rect.left;
+                var y = (e.clientY || e.touches[0].clientY) - rect.top;
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 20, 0, Math.PI * 2);
+                ctx.fill();
+                document.getElementById('btn-scratch').style.display = 'block';
+            }
+
+            canvas.addEventListener('mousedown', function() { isDrawing = true; });
+            canvas.addEventListener('mouseup', function() { isDrawing = false; });
+            canvas.addEventListener('mousemove', scratch);
+            canvas.addEventListener('touchstart', function() { isDrawing = true; });
+            canvas.addEventListener('touchend', function() { isDrawing = false; });
+            canvas.addEventListener('touchmove', scratch);
         }
     </script>
 
