@@ -359,9 +359,9 @@
         <button class="icon-btn" onclick="toggleDarkMode()" title="Cambiar tema">🌙</button>
     </div>
 
-    <!-- AUDIO DE FONDO DIRECTO -->
+    <!-- AUDIO LOCAL EN MP3 -->
     <audio id="bg-music" loop preload="auto">
-        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
+        <source src="./musica.mp3" type="audio/mpeg">
     </audio>
 
     <div class="heart-bg" style="left: 10%; animation-delay: 0s;">🤍</div>
@@ -592,7 +592,6 @@
             var val = document.getElementById('input-' + num).value.trim().toLowerCase();
             if (val === secretAnswer.toLowerCase()) {
                 
-                // Si acierta la tarjeta 2, eliminamos por completo el reproductor de YouTube para apagar la música de inmediato
                 if (num === 2) {
                     var container = document.getElementById('challenge-player-container');
                     if (container) {
