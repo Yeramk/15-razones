@@ -359,9 +359,9 @@
         <button class="icon-btn" onclick="toggleDarkMode()" title="Cambiar tema">🌙</button>
     </div>
 
-    <!-- AUDIO MP3 LOCAL -->
+    <!-- AUDIO LOCAL EN FORMATO M4A -->
     <audio id="bg-music" loop preload="auto">
-        <source src="musica.mp3" type="audio/mpeg">
+        <source src="musica.m4a" type="audio/mp4">
     </audio>
 
     <div class="heart-bg" style="left: 10%; animation-delay: 0s;">🤍</div>
@@ -544,6 +544,27 @@
             }
         }
 
+        function checkBirthdate() {
+            var input = document.getElementById('birthdate-input').value.trim();
+            if (input === '14/10/08' || input === '14/10/2008') {
+                localStorage.setItem('authenticated', 'true');
+                document.getElementById('welcome-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                
+                // Reproduce el audio automáticamente al interactuar con el botón
+                var audio = document.getElementById('bg-music');
+                audio.play().then(function() {
+                    document.getElementById('music-toggle').innerText = '🔊';
+                }).catch(function(e) {
+                    console.log("Autoplay bloqueado por el navegador");
+                });
+
+                restoreProgress();
+            } else {
+                document.getElementById('welcome-error').style.display = 'block';
+            }
+        }
+
         function updateProgress() {
             var percent = (unlockedCount / 15) * 100;
             document.getElementById('progress-fill').style.width = percent + '%';
@@ -552,18 +573,6 @@
 
             if (unlockedCount >= 15) {
                 document.getElementById('card-bonus').style.display = 'block';
-            }
-        }
-
-        function checkBirthdate() {
-            var input = document.getElementById('birthdate-input').value.trim();
-            if (input === '14/10/08' || input === '14/10/2008') {
-                localStorage.setItem('authenticated', 'true');
-                document.getElementById('welcome-screen').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                restoreProgress();
-            } else {
-                document.getElementById('welcome-error').style.display = 'block';
             }
         }
 
