@@ -1,0 +1,459 @@
+import os
+
+# Create HTML content for the 14 Razones interactive web application with password/question unlock logic
+html_content = """<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>14 Razones | Para Ti ❤️</title>
+    <style>
+        :root {
+            --primary-pink: #ff6b81;
+            --soft-pink: #fff0f3;
+            --accent-rose: #ff4757;
+            --dark-text: #2f3542;
+            --muted-text: #747d8c;
+            --card-bg: #ffffff;
+            --border-color: #f1f2f6;
+            --success-green: #2ed573;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: #f7f1e3;
+            background-image: radial-gradient(#ff6b81 0.5px, transparent 0.5px), radial-gradient(#ff6b81 0.5px, #faf0ca 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: var(--dark-text);
+            padding: 24px 16px 60px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 24px;
+            max-width: 400px;
+        }
+
+        .header-tag {
+            background: #ffeaa7;
+            color: #d63031;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        header h1 {
+            color: var(--accent-rose);
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            font-size: 0.95rem;
+            color: var(--muted-text);
+            line-height: 1.4;
+        }
+
+        .progress-bar-container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            padding: 12px 16px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            backdrop-filter: blur(5px);
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 6px;
+        }
+
+        .progress-track {
+            height: 10px;
+            background: #dfe4ea;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 7.14%; /* 1 of 14 */
+            background: linear-gradient(90deg, var(--primary-pink), var(--accent-rose));
+            border-radius: 5px;
+            transition: width 0.4s ease;
+        }
+
+        .cards-list {
+            width: 100%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .card.locked {
+            opacity: 0.75;
+            background: #f8f9fa;
+            border: 2px dashed #ced6e0;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .badge {
+            background: var(--soft-pink);
+            color: var(--accent-rose);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 8px;
+        }
+
+        .video-meta {
+            font-size: 0.8rem;
+            color: var(--muted-text);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .content-box {
+            background: #fffafa;
+            border-left: 4px solid var(--accent-rose);
+            padding: 14px 16px;
+            border-radius: 0 12px 12px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .content-box strong {
+            display: block;
+            color: var(--accent-rose);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        /* Lock Screen inside Card */
+        .lock-container {
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .lock-icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dark-text);
+            margin-bottom: 14px;
+            line-height: 1.4;
+        }
+
+        .answer-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #dfe4ea;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+            text-align: center;
+        }
+
+        .answer-input:focus {
+            border-color: var(--primary-pink);
+        }
+
+        .unlock-btn {
+            background: var(--accent-rose);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+            transition: transform 0.1s, background 0.2s;
+        }
+
+        .unlock-btn:active {
+            transform: scale(0.97);
+        }
+
+        .error-msg {
+            color: #ff4757;
+            font-size: 0.8rem;
+            margin-top: 6px;
+            display: none;
+        }
+
+        .final-message {
+            display: none;
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 24px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(255, 117, 140, 0.4);
+            margin-top: 10px;
+        }
+
+        .final-message h2 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .final-message p {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            opacity: 0.95;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--muted-text);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <span class="header-tag">Respuesta Especial</span>
+        <h1>14 Razones ❤️</h1>
+        <p>Aquel fin de semana grabaste 14 vídeos. Hoy respondo a cada uno con la atención y el amor que merecen.</p>
+    </header>
+
+    <div class="progress-bar-container">
+        <div class="progress-text">
+            <span>Progreso de lectura</span>
+            <span id="progress-count">1 / 14</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+        </div>
+    </div>
+
+    <div class="cards-list" id="cards-container">
+        
+        <!-- TARJETA 1 (SIEMPRE DESBLOQUEADA) -->
+        <div class="card" id="card-1">
+            <div class="card-header">
+                <span class="badge">Vídeo #1</span>
+                <span style="color: var(--success-green); font-size: 0.85rem; font-weight:600;">Desbloqueado ✨</span>
+            </div>
+            <div class="card-title">Vídeo 1: El primer paso de aquel fin de semana</div>
+            <div class="video-meta">📹 Duración aproximada: 2 min | Abril</div>
+            <div class="content-box">
+                <strong>Mi Respuesta:</strong>
+                Aquí irán tus palabras para responder a su primer vídeo. Le recordarás cómo te sentiste al recibirlo y lo mucho que significa para ti volver a estos recuerdos juntos.
+            </div>
+        </div>
+
+        <!-- TARJETA 2 (BLOQUEADA INICIALMENTE) -->
+        <div class="card locked" id="card-2">
+            <div class="lock-container" id="lock-2">
+                <div class="lock-icon">🔒</div>
+                <div class="question-text">Pregunta #1 para desbloquear: <br><em>"¿Cuál es el lugar exacto de nuestra primera cita?"</em></div>
+                <div class="answer-form">
+                    <input type="text" class="answer-input" id="input-2" placeholder="Escribe tu respuesta aquí...">
+                    <button class="unlock-btn" onclick="checkAnswer(2, 'playa')">Desbloquear Respuesta #2</button>
+                    <div class="error-msg" id="error-2">¡Casi! Inténtalo de nuevo ❤️</div>
+                </div>
+            </div>
+            <div class="unlocked-content" id="content-2" style="display: none;">
+                <div class="card-header">
+                    <span class="badge">Vídeo #2</span>
+                    <span style="color: var(--success-green); font-size: 0.85rem; font-weight:600;">Desbloqueado ✨</span>
+                </div>
+                <div class="card-title">Vídeo 2: [Título del segundo vídeo]</div>
+                <div class="video-meta">📹 Duración aproximada: 1:30 min | Abril</div>
+                <div class="content-box">
+                    <strong>Mi Respuesta:</strong>
+                    Aquí pondremos tu respuesta al segundo vídeo...
+                </div>
+            </div>
+        </div>
+
+        <!-- TARJETA 3 -->
+        <div class="card locked" id="card-3">
+            <div class="lock-container" id="lock-3">
+                <div class="lock-icon">🔒</div>
+                <div class="question-text">Pregunta #2 para desbloquear: <br><em>"¿Cómo se llamaba la canción que escuchábamos siempre?"</em></div>
+                <div class="answer-form">
+                    <input type="text" class="answer-input" id="input-3" placeholder="Escribe tu respuesta aquí...">
+                    <button class="unlock-btn" onclick="checkAnswer(3, 'nuestra cancion')">Desbloquear Respuesta #3</button>
+                    <div class="error-msg" id="error-3">Respuesta incorrecta, piénsalo bien 😉</div>
+                </div>
+            </div>
+            <div class="unlocked-content" id="content-3" style="display: none;">
+                <div class="card-header">
+                    <span class="badge">Vídeo #3</span>
+                    <span style="color: var(--success-green); font-size: 0.85rem; font-weight:600;">Desbloqueado ✨</span>
+                </div>
+                <div class="card-title">Vídeo 3: [Título del tercer vídeo]</div>
+                <div class="video-meta">📹 Duración: Variable | Abril</div>
+                <div class="content-box">
+                    <strong>Mi Respuesta:</strong>
+                    Respuesta al tercer vídeo...
+                </div>
+            </div>
+        </div>
+
+        <!-- Las tarjetas 4 a 14 se estructurarán de la misma forma secuencial -->
+
+    </div>
+
+    <div class="final-message" id="final-card">
+        <h2>¡Has llegado al final! ❤️</h2>
+        <p>Gracias por dejarme esos 14 vídeos en su momento y por acompañarme hoy a recorrerlos de nuevo. Eres y serás siempre mi razón favorita.</p>
+    </div>
+
+    <footer>
+        Hecho con todo el amor | Creado exclusivamente para ti
+    </footer>
+
+    <script>
+        let unlockedCount = 1;
+        const totalCards = 14;
+
+        function checkAnswer(cardNumber, correctAnswer) {
+            const inputVal = document.getElementById(`input-${cardNumber}`).value.trim().toLowerCase();
+            const errorMsg = document.getElementById(`error-${cardNumber}`);
+            
+            // Normalize string comparison
+            if (inputVal === correctAnswer.toLowerCase() || inputVal.includes(correctAnswer.toLowerCase())) {
+                document.getElementById(`lock-${cardNumber}`).style.display = 'none';
+                document.getElementById(`content-${cardNumber}`).style.display = 'block';
+                
+                const cardElement = document.getElementById(`card-${cardNumber}`);
+                cardElement.classList.remove('locked');
+                
+                unlockedCount++;
+                updateProgress();
+
+                // Save progress
+                localStorage.setItem('razones_unlocked', unlockedCount);
+            } else {
+                errorMsg.style.display = 'block';
+            }
+        }
+
+        function updateProgress() {
+            document.getElementById('progress-count').innerText = `${unlockedCount} / ${totalCards}`;
+            const percentage = (unlockedCount / totalCards) * 100;
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+
+            if (unlockedCount === totalCards) {
+                document.getElementById('final-card').style.display = 'block';
+            }
+        }
+
+        // Restore saved progress if any
+        window.addEventListener('DOMContentLoaded', () => {
+            const saved = localStorage.getItem('razones_unlocked');
+            if (saved) {
+                const count = parseInt(saved);
+                for (let i = 2; i <= count; i++) {
+                    const lockEl = document.getElementById(`lock-${i}`);
+                    const contentEl = document.getElementById(`content-${i}`);
+                    const cardEl = document.getElementById(`card-${i}`);
+                    if (lockEl && contentEl && cardEl) {
+                        lockEl.style.display = 'none';
+                        contentEl.style.display = 'block';
+                        cardEl.classList.remove('locked');
+                    }
+                }
+                unlockedCount = count;
+                updateProgress();
+            }
+        });
+    </script>
+</body>
+</html>
+"""
+
+# Save to file
+output_path = "index.html"
+with open(output_path, "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print(f"Created HTML file: {output_path}")
+"""
+
+# Execute python script to generate HTML file
+import sys
+from io import StringIO
+
+# Execute the code logic directly in python execution environment
+with open("index.html", "w", encoding="utf-8") as f:
+    f.write(html_content)
+
+print("File index.html generated successfully.")
