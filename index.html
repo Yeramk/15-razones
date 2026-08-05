@@ -226,6 +226,22 @@
             box-shadow: 0 4px 14px rgba(44, 62, 80, 0.15);
         }
 
+        /* REPRODUCTOR DE MÚSICA DE YOUTUBE NATIVO */
+        .audio-player-box {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 10px;
+            margin: 12px 0;
+            border: 1px solid #e9ecef;
+        }
+
+        .audio-player-box iframe {
+            width: 100%;
+            height: 80px;
+            border-radius: 10px;
+            border: none;
+        }
+
         /* PUZLE DE MEMORIA */
         .memory-grid {
             display: grid;
@@ -328,8 +344,8 @@
             </div>
         </div>
 
-        <!-- TARJETA 1 -->
-        <div class="card">
+        <!-- TARJETA 1 (DESBLOQUEADA INICIALMENTE) -->
+        <div class="card" id="card-1">
             <div class="card-header">
                 <span class="badge">Vídeo #1</span>
                 <span class="card-counter">1 de 15</span>
@@ -344,23 +360,34 @@
             </div>
         </div>
 
-        <!-- TARJETA 2 (MÚSICA - MELENDI) -->
+        <!-- TARJETA 2 (CANCIÓN) -->
         <div class="card" id="card-2">
             <div id="lock-2" class="lock-box">
                 <div class="card-header">
                     <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #2 🎵</span>
                     <span class="card-counter">2 de 15</span>
                 </div>
-                <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción para desbloquear 🤍</p>
-                <iframe style="border-radius:12px; margin-bottom:12px;" src="https://open.spotify.com/embed/track/1P4311M9a45vWzT7mC1n3R?utm_source=generator" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-                <button onclick="unlockDirect(2)">Desbloquear Razón #2</button>
+                <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción y escribe quién la canta:</p>
+                
+                <!-- REPRODUCTOR YOUTUBE ADAPTADO A AUDIO (FUNCIONA EN IPAD Y MÓVIL) -->
+                <div class="audio-player-box">
+                    <iframe src="https://www.youtube.com/embed/a63X1864e48" title="La Promesa" allow="autoplay"></iframe>
+                </div>
+
+                <input type="text" id="input-2" placeholder="¿Quién la canta? (ej: Melendi)">
+                <button onclick="checkAnswer(2, 'melendi')">Desbloquear Razón #2</button>
+                <p id="error-2" style="color:#e74c3c; display:none; margin-top:8px;">Piénsalo bien, ¿quién canta esta canción? 😉</p>
             </div>
+
             <div id="content-2" style="display:none;">
                 <div class="card-header">
                     <span class="badge">Vídeo #2</span>
                     <span class="card-counter">2 de 15</span>
                 </div>
                 <h3>2. La Promesa</h3>
+
+                <!-- AQUÍ IRÁ EL SEGUNDO VÍDEO CUANDO LO TENGAS -->
+
                 <div class="response-box">
                     <strong>Mi respuesta:</strong><br>
                     Aquí irá tu respuesta al segundo vídeo...
@@ -368,8 +395,8 @@
             </div>
         </div>
 
-        <!-- TARJETA 3 (PUZLE FECHAS) -->
-        <div class="card" id="card-3">
+        <!-- TARJETA 3 (PUZLE FECHAS - OCULTA HASTA DESBLOQUEAR LA 2) -->
+        <div class="card" id="card-3" style="display:none;">
             <div id="lock-3" class="lock-box">
                 <div class="card-header">
                     <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #3 🧩</span>
@@ -383,6 +410,7 @@
                     <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
                 </div>
             </div>
+
             <div id="content-3" style="display:none;">
                 <div class="card-header">
                     <span class="badge">Vídeo #3</span>
@@ -396,20 +424,20 @@
             </div>
         </div>
 
-        <!-- TARJETA 4 (RASCA Y GANA) -->
-        <div class="card" id="card-4">
+        <!-- TARJETA 4 (RASCA Y GANA - OCULTA HASTA DESBLOQUEAR LA 3) -->
+        <div class="card" id="card-4" style="display:none;">
             <div id="lock-4" class="lock-box">
                 <div class="card-header">
                     <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #4 🎫</span>
                     <span class="card-counter">4 de 15</span>
                 </div>
-                <p style="margin: 10px 0; font-weight: 600;">Rasca con el dedo la casilla dorada:</p>
+                <p style="margin: 10px 0; font-weight: 600;">Rasca con el dedo o ratón para revelar el secreto:</p>
                 <div class="scratch-container">
                     <div class="scratch-secret">Te amo bichito 🫶🏽🤍</div>
                     <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
                 </div>
-                <button id="btn-scratch" style="display:none; margin-top:10px;" onclick="unlockDirect(4)">Desbloquear Razón #4</button>
             </div>
+
             <div id="content-4" style="display:none;">
                 <div class="card-header">
                     <span class="badge">Vídeo #4</span>
@@ -442,21 +470,40 @@
             if (input === '14/10/08' || input === '14/10/2008') {
                 document.getElementById('welcome-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
-                initScratch();
                 updateProgress();
             } else {
                 document.getElementById('welcome-error').style.display = 'block';
             }
         }
 
-        function unlockDirect(num) {
+        // VERIFICAR PREGUNTAS CON RESPUESTA OBLIGATORIA
+        function checkAnswer(num, secretAnswer) {
+            var val = document.getElementById('input-' + num).value.trim().toLowerCase();
+            if (val === secretAnswer.toLowerCase()) {
+                unlockNextCard(num);
+            } else {
+                document.getElementById('error-' + num).style.display = 'block';
+            }
+        }
+
+        // DESBLOQUEA LA TARJETA ACTUAL Y MUESTRA LA SIGUIENTE DE LA CADENA
+        function unlockNextCard(num) {
             document.getElementById('lock-' + num).style.display = 'none';
             document.getElementById('content-' + num).style.display = 'block';
             unlockedCount++;
             updateProgress();
+
+            // Muestra el candado de la siguiente tarjeta si existe
+            var nextCard = document.getElementById('card-' + (num + 1));
+            if (nextCard) {
+                nextCard.style.display = 'block';
+                if (num + 1 === 4) {
+                    initScratch(); // Inicializar el rasca si es la tarjeta 4
+                }
+            }
         }
 
-        // LÓGICA MEMORIA
+        // LÓGICA MEMORIA (#3)
         var flippedCards = [];
         var matchedPairs = 0;
         function flipCard(card, val) {
@@ -470,7 +517,9 @@
                         matchedPairs++;
                         flippedCards = [];
                         if (matchedPairs === 2) {
-                            setTimeout(function() { unlockDirect(3); }, 500);
+                            setTimeout(function() { 
+                                unlockNextCard(3); 
+                            }, 500);
                         }
                     } else {
                         setTimeout(function() {
@@ -485,7 +534,7 @@
             }
         }
 
-        // LÓGICA RASCA
+        // LÓGICA RASCA Y GANA (#4)
         function initScratch() {
             var canvas = document.getElementById('scratch-canvas');
             if (!canvas) return;
@@ -501,16 +550,27 @@
             ctx.fillText('✨ Rasca aquí ✨', canvas.width/2, canvas.height/2 + 5);
 
             var isDrawing = false;
+            var clearedPixels = 0;
+
             function scratch(e) {
                 if (!isDrawing) return;
                 var rect = canvas.getBoundingClientRect();
-                var x = (e.clientX || e.touches[0].clientX) - rect.left;
-                var y = (e.clientY || e.touches[0].clientY) - rect.top;
+                var x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+                var y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+                
                 ctx.globalCompositeOperation = 'destination-out';
                 ctx.beginPath();
-                ctx.arc(x, y, 20, 0, Math.PI * 2);
+                ctx.arc(x, y, 22, 0, Math.PI * 2);
                 ctx.fill();
-                document.getElementById('btn-scratch').style.display = 'block';
+
+                clearedPixels++;
+                // Desbloquear automáticamente tras rascar un porcentaje suficiente
+                if (clearedPixels > 40) {
+                    canvas.style.pointerEvents = 'none';
+                    setTimeout(function() {
+                        unlockNextCard(4);
+                    }, 1200);
+                }
             }
 
             canvas.addEventListener('mousedown', function() { isDrawing = true; });
