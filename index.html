@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BLOQUEO PARA BUSCADORES -->
     <meta name="robots" content="noindex, nofollow">
     <title>15 Razones 🤍</title>
     <style>
@@ -23,42 +22,60 @@
         }
 
         body {
-            /* FONDO CÁLIDO RESTAURADO */
             background-color: #f7f1e3;
             background-image: radial-gradient(#e0d6c3 0.8px, transparent 0.8px), radial-gradient(#e0d6c3 0.8px, #faf0ca 0.8px);
             background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
             color: var(--text-color);
             padding: 24px 16px 60px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* PANTALLA DE BIENVENIDA */
+        /* CORAZONES FLOTANTES DE FONDO */
+        .heart-bg {
+            position: fixed;
+            color: rgba(231, 76, 60, 0.15);
+            font-size: 20px;
+            user-select: none;
+            pointer-events: none;
+            animation: floatHearts 10s infinite linear;
+            z-index: 0;
+        }
+
+        @keyframes floatHearts {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* ACCESO BIENVENIDA */
         #welcome-screen {
             background: #ffffff;
-            border-radius: 20px;
-            padding: 30px 20px;
+            border-radius: 24px;
+            padding: 35px 25px;
             margin-top: 40px;
             text-align: center;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             border: 1px solid #eaeaea;
             width: 100%;
             max-width: 450px;
+            z-index: 1;
+            position: relative;
         }
 
         #welcome-screen h2 {
             color: var(--primary-color);
-            font-size: 1.6rem;
-            margin-bottom: 10px;
+            font-size: 1.7rem;
+            margin-bottom: 12px;
         }
 
         #welcome-screen p {
             color: var(--muted-text);
             font-size: 0.95rem;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
             line-height: 1.4;
         }
 
@@ -67,57 +84,106 @@
             display: none;
             width: 100%;
             max-width: 450px;
+            z-index: 1;
+            position: relative;
         }
 
         header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             margin-top: 10px;
         }
 
         h1 {
             color: var(--primary-color);
-            font-size: 2.1rem;
-            margin-bottom: 8px;
+            font-size: 2.2rem;
+            margin-bottom: 6px;
         }
 
         p.subtitle {
             color: var(--muted-text);
             font-size: 0.95rem;
             line-height: 1.4;
+            margin-bottom: 18px;
         }
 
+        /* BARRA DE PROGRESO BONITA */
+        .progress-wrapper {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 12px 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            border: 1px solid #eaeaea;
+            margin-bottom: 25px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+
+        .progress-bar-bg {
+            background: #f1f2f6;
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #e74c3c, #ff7675);
+            height: 100%;
+            width: 6.66%; /* 1 de 15 */
+            border-radius: 10px;
+            transition: width 0.4s ease;
+        }
+
+        /* TARJETAS */
         .card {
             background: var(--card-bg);
-            border-radius: 18px;
-            padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-            border: 1px solid #eaeaea;
+            border-radius: 22px;
+            padding: 22px;
+            margin-bottom: 22px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.2s ease;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
 
         .badge {
-            background: #f1f2f6;
-            color: var(--primary-color);
+            background: #ffeaa7;
+            color: #d63031;
             font-weight: bold;
-            padding: 4px 12px;
-            border-radius: 12px;
+            padding: 5px 12px;
+            border-radius: 20px;
             font-size: 0.8rem;
-            display: inline-block;
-            margin-bottom: 10px;
         }
 
-        /* CONTENEDOR PARA VÍDEOS VERTICALES (SHORTS) */
+        .card-counter {
+            font-size: 0.8rem;
+            color: var(--muted-text);
+            font-weight: 600;
+        }
+
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 177.78%; /* Proporción 9:16 vertical */
+            padding-bottom: 177.78%;
             height: 0;
-            border-radius: 14px;
+            border-radius: 16px;
             overflow: hidden;
-            margin: 12px 0;
+            margin: 14px 0;
             background: #000;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
         }
 
         .video-container iframe {
@@ -130,47 +196,52 @@
         }
 
         .response-box {
-            background: #fafafa;
-            border-left: 3px solid var(--primary-color);
-            padding: 12px 15px;
-            margin-top: 12px;
-            border-radius: 0 10px 10px 0;
+            background: #fff5f5;
+            border-left: 4px solid var(--accent-color);
+            padding: 14px 16px;
+            margin-top: 14px;
+            border-radius: 0 12px 12px 0;
             font-size: 0.95rem;
             line-height: 1.5;
         }
 
         .lock-box {
             text-align: center;
-            padding: 10px 0;
+            padding: 12px 0;
         }
 
         input[type="text"] {
             width: 100%;
             padding: 12px;
             margin: 12px 0;
-            border: 1px solid #ced6e0;
-            border-radius: 10px;
-            box-sizing: border-box;
+            border: 1px solid #dfe4ea;
+            border-radius: 12px;
             text-align: center;
             font-size: 1rem;
             outline: none;
+            transition: border-color 0.2s;
         }
 
         input[type="text"]:focus {
-            border-color: var(--primary-color);
+            border-color: var(--accent-color);
         }
 
         button {
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px 15px;
-            border-radius: 10px;
+            padding: 13px 16px;
+            border-radius: 12px;
             font-weight: bold;
             font-size: 1rem;
             width: 100%;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.15);
+            box-shadow: 0 4px 14px rgba(44, 62, 80, 0.15);
+            transition: background 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.98);
         }
 
         .error {
@@ -182,37 +253,56 @@
         }
 
         footer {
-            margin-top: 30px;
+            margin-top: 35px;
             text-align: center;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--muted-text);
         }
     </style>
 </head>
 <body>
 
+    <!-- FONDO DE CORAZONES -->
+    <div class="heart-bg" style="left: 10%; animation-delay: 0s;">🤍</div>
+    <div class="heart-bg" style="left: 30%; animation-delay: 2.5s;">✨</div>
+    <div class="heart-bg" style="left: 60%; animation-delay: 5s;">🤍</div>
+    <div class="heart-bg" style="left: 85%; animation-delay: 7.5s;">💖</div>
+
     <!-- 1. PANTALLA DE ACCESO -->
     <div id="welcome-screen">
         <h2>Hola mi amor 🤍</h2>
-        <p>Amor, introduce tu fecha de nacimiento para entrar.</p>
+        <p>Introduce tu fecha de nacimiento para descubrir nuestras 15 razones.</p>
         <input type="text" id="birthdate-input" placeholder="DD/MM/AA (ej: 25/05/09)">
         <button onclick="checkBirthdate()">Entrar</button>
         <p id="welcome-error" class="error">Mmm... esa no es tu fecha, piénsalo bien 😉</p>
     </div>
 
-    <!-- 2. CONTENIDO PROTEGIDO -->
+    <!-- 2. CONTENIDO PRINCIPAL -->
     <div id="main-content">
         <header>
             <h1>15 Razones 🤍</h1>
             <p class="subtitle">Respondiendo a tus 15 vídeos de aquel fin de semana.</p>
         </header>
 
+        <!-- BARRA DE PROGRESO -->
+        <div class="progress-wrapper">
+            <div class="progress-info">
+                <span>Progreso de desbloqueo</span>
+                <span id="progress-text">1 de 15</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+
         <!-- TARJETA 1 -->
         <div class="card">
-            <span class="badge">Vídeo #1</span>
+            <div class="card-header">
+                <span class="badge">Vídeo #1</span>
+                <span class="card-counter">1 de 15</span>
+            </div>
             <h3>1. El primer paso</h3>
             
-            <!-- VÍDEO 1 INCRUSTADO -->
             <div class="video-container">
                 <iframe 
                     src="https://www.youtube.com/embed/Q0Vn2N--Uo0" 
@@ -229,20 +319,27 @@
             </div>
         </div>
 
-        <!-- TARJETA 2 (EJEMPLO BLOQUEADA) -->
+        <!-- TARJETA 2 (BLOQUEADA CON PREGUNTA) -->
         <div class="card" id="card-2">
             <div id="lock-2" class="lock-box">
-                <span class="badge">Vídeo #2 - Bloqueado 🔒</span>
-                <p style="margin-top: 10px; font-weight: 500;">¿Lugar de nuestra primera cita?</p>
-                <input type="text" id="input-2" placeholder="Escribe la respuesta...">
-                <button onclick="unlock(2, 'playa')">Desbloquear</button>
-                <p id="error-2" class="error">Respuesta incorrecta, prueba otra vez.</p>
+                <div class="card-header">
+                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #2 🔒</span>
+                    <span class="card-counter">2 de 15</span>
+                </div>
+                <p style="margin: 15px 0 5px 0; font-weight: 600;">¿Dónde fue nuestra primera cita?</p>
+                <input type="text" id="input-2" placeholder="Escribe tu respuesta...">
+                <button onclick="unlock(2, 'playa')">Desbloquear Razón #2</button>
+                <p id="error-2" class="error">Respuesta incorrecta, prueba otra vez 😉</p>
             </div>
+
             <div id="content-2" style="display:none;">
-                <span class="badge">Vídeo #2</span>
+                <div class="card-header">
+                    <span class="badge">Vídeo #2</span>
+                    <span class="card-counter">2 de 15</span>
+                </div>
                 <h3>2. Segundo momento</h3>
 
-                <!-- ESPACIO PARA VÍDEO 2 -->
+                <!-- AQUÍ IRÁ EL PRÓXIMO VÍDEO -->
 
                 <div class="response-box">
                     <strong>Mi respuesta:</strong><br>
@@ -257,23 +354,32 @@
     </div>
 
     <script>
-        // Verificación de la fecha de nacimiento (14/10/08 o 14/10/2008)
+        var unlockedCount = 1;
+
+        function updateProgress() {
+            var percent = (unlockedCount / 15) * 100;
+            document.getElementById('progress-fill').style.width = percent + '%';
+            document.getElementById('progress-text').innerText = unlockedCount + ' de 15';
+        }
+
         function checkBirthdate() {
             var input = document.getElementById('birthdate-input').value.trim();
             if (input === '14/10/08' || input === '14/10/2008') {
                 document.getElementById('welcome-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
+                updateProgress();
             } else {
                 document.getElementById('welcome-error').style.display = 'block';
             }
         }
 
-        // Verificación de preguntas de las tarjetas
         function unlock(num, secret) {
             var val = document.getElementById('input-' + num).value.trim().toLowerCase();
             if (val === secret.toLowerCase()) {
                 document.getElementById('lock-' + num).style.display = 'none';
                 document.getElementById('content-' + num).style.display = 'block';
+                unlockedCount++;
+                updateProgress();
             } else {
                 document.getElementById('error-' + num).style.display = 'block';
             }
