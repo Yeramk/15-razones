@@ -90,6 +90,27 @@
             0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
+<!-- BANNER DE PRIVACIDAD CON CADUCIDAD A LOS 7 DÍAS -->
+<div id="privacy-modal" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); backdrop-filter: blur(6px); z-index: 9999; display: flex; align-items: center; justify-content: center; padding: 20px;">
+    <div style="background: var(--card-bg); border-radius: 24px; padding: 28px 22px; max-width: 420px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.2); border: 1px solid var(--border-color);">
+        <div style="text-align: center; margin-bottom: 15px;">
+            <span style="font-size: 2.2rem;">🔒</span>
+            <h3 style="color: var(--primary-color); margin-top: 5px;">Aviso de Privacidad y Seguridad</h3>
+        </div>
+        
+        <p style="font-size: 0.85rem; color: var(--muted-text); margin-bottom: 14px; line-height: 1.4;">
+            Para tu total tranquilidad antes de ver tus recuerdos, por favor confirma las siguientes cláusulas de protección:
+        </p>
+
+        <ul style="font-size: 0.85rem; color: var(--text-color); margin-left: 18px; margin-bottom: 20px; line-height: 1.5;">
+            <li style="margin-bottom: 8px;"><strong>Vídeos 100% Ocultos:</strong> Ningún vídeo es público ni puede ser encontrado en búsquedas de YouTube.</li>
+            <li style="margin-bottom: 8px;"><strong>Cero Indexación:</strong> La web cuenta con protección <code>noindex</code> activa en Google y otros buscadores.</li>
+            <li style="margin-bottom: 8px;"><strong>Acceso Exclusivo:</strong> Tu contenido está protegido por clave y reservado únicamente para ti.</li>
+        </ul>
+
+        <button class="action-btn" onclick="acceptPrivacy()" style="background: #27ae60;">Aceptar y Continuar 🤍</button>
+    </div>
+</div>
 
         #welcome-screen {
             background: var(--card-bg);
