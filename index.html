@@ -359,9 +359,9 @@
         <button class="icon-btn" onclick="toggleDarkMode()" title="Cambiar tema">🌙</button>
     </div>
 
-    <!-- AUDIO LOCAL EN FORMATO M4A -->
+    <!-- AUDIO DE FONDO DIRECTO -->
     <audio id="bg-music" loop preload="auto">
-        <source src="musica.m4a" type="audio/mp4">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" type="audio/mpeg">
     </audio>
 
     <div class="heart-bg" style="left: 10%; animation-delay: 0s;">🤍</div>
@@ -403,7 +403,7 @@
             </div>
             <h3>1. El primer paso</h3>
             <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">
                 <strong>Mi respuesta:</strong><br>
@@ -411,7 +411,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 2 (MÚSICA) -->
+        <!-- TARJETA 2 (RETOS / MÚSICA) -->
         <div class="card" id="card-2">
             <div id="lock-2" class="lock-box">
                 <div class="card-header">
@@ -420,8 +420,8 @@
                 </div>
                 <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción y escribe el nombre del artista:</p>
                 
-                <div class="audio-player-box">
-                    <iframe src="https://www.youtube.com/embed/7XPmRUp_Yf4" title="Nuestra Canción" allowfullscreen></iframe>
+                <div class="audio-player-box" id="challenge-player-container">
+                    <iframe id="challenge-iframe" src="https://www.youtube-nocookie.com/embed/7XPmRUp_Yf4?enablejsapi=1" title="Nuestra Canción" allow="autoplay" allowfullscreen></iframe>
                 </div>
 
                 <input type="text" id="input-2" placeholder="Escribe el artista aquí...">
@@ -551,7 +551,6 @@
                 document.getElementById('welcome-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 
-                // Reproduce el audio automáticamente al interactuar con el botón
                 var audio = document.getElementById('bg-music');
                 audio.play().then(function() {
                     document.getElementById('music-toggle').innerText = '🔊';
@@ -592,6 +591,15 @@
         function checkAnswer(num, secretAnswer) {
             var val = document.getElementById('input-' + num).value.trim().toLowerCase();
             if (val === secretAnswer.toLowerCase()) {
+                
+                // Si acierta la tarjeta 2, eliminamos por completo el reproductor de YouTube para apagar la música de inmediato
+                if (num === 2) {
+                    var container = document.getElementById('challenge-player-container');
+                    if (container) {
+                        container.innerHTML = ''; 
+                    }
+                }
+                
                 unlockNextCard(num);
             } else {
                 document.getElementById('error-' + num).style.display = 'block';
