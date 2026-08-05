@@ -432,92 +432,114 @@
             </div>
         </div>
 
-        <!-- TARJETA 2 (RETOS / MÚSICA) -->
-        <div class="card" id="card-2">
-            <div id="lock-2" class="lock-box">
-                <div class="card-header">
-                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #2 🎵</span>
-                    <span class="card-counter">2 de 15</span>
-                </div>
-                <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción y escribe el nombre del artista:</p>
-                
-                <div class="audio-player-box" id="challenge-player-container">
-                    <iframe id="challenge-iframe" src="https://www.youtube-nocookie.com/embed/7XPmRUp_Yf4?enablejsapi=1" title="Nuestra Canción" allow="autoplay" allowfullscreen></iframe>
-                </div>
-
-                <input type="text" id="input-2" placeholder="Escribe el artista aquí...">
-                <button class="action-btn" onclick="checkAnswer(2, 'melendi')">Desbloquear Razón #2</button>
-                <p id="error-2" style="color:#e74c3c; display:none; margin-top:8px;">Respuesta incorrecta, piénsalo bien 😉</p>
-            </div>
-
-            <div id="content-2" style="display:none;">
-                <div class="card-header">
-                    <span class="badge">Vídeo #2</span>
-                    <span class="card-counter">2 de 15</span>
-                </div>
-                <h3>2. La Promesa</h3>
-                <div class="response-box">
-                    <strong>Mi respuesta:</strong><br>
-                    Aquí irá tu respuesta al segundo vídeo...
-                </div>
-            </div>
+      <!-- TARJETA 2 -->
+<div class="card" id="card-2">
+    <div id="lock-2" class="lock-box">
+        <div class="card-header">
+            <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #2 🎵</span>
+            <span class="card-counter">2 de 15</span>
+        </div>
+        <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción y escribe el nombre del artista:</p>
+        
+        <div class="audio-player-box" id="challenge-player-container">
+            <iframe id="challenge-iframe" src="https://www.youtube-nocookie.com/embed/7XPmRUp_Yf4?enablejsapi=1" title="Nuestra Canción" allow="autoplay" allowfullscreen></iframe>
         </div>
 
-        <!-- TARJETA 3 (PUZLE FECHAS) -->
-        <div class="card" id="card-3" style="display:none;">
-            <div id="lock-3" class="lock-box">
-                <div class="card-header">
-                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #3 🧩</span>
-                    <span class="card-counter">3 de 15</span>
-                </div>
-                <p style="margin: 10px 0; font-weight: 600;">Encuentra las parejas de nuestras fechas especiales:</p>
-                <div class="memory-grid">
-                    <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
-                    <div class="memory-card" onclick="flipCard(this, '24/05')">❓</div>
-                    <div class="memory-card" onclick="flipCard(this, '24/05')">❓</div>
-                    <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
-                </div>
-            </div>
+        <input type="text" id="input-2" placeholder="Escribe el artista aquí...">
+        <button class="action-btn" onclick="checkAnswer(2, 'melendi')">Desbloquear Razón #2</button>
+        <p id="error-2" style="color:#e74c3c; display:none; margin-top:8px;">Respuesta incorrecta, piénsalo bien 😉</p>
+    </div>
 
-            <div id="content-3" style="display:none;">
-                <div class="card-header">
-                    <span class="badge">Vídeo #3</span>
-                    <span class="card-counter">3 de 15</span>
-                </div>
-                <h3>3. Fechas Especiales</h3>
-                <div class="response-box">
-                    <strong>Mi respuesta:</strong><br>
-                    Aquí irá tu respuesta al tercer vídeo...
-                </div>
-            </div>
+    <div id="content-2" style="display:none;">
+        <div class="card-header">
+            <span class="badge">Vídeo #2</span>
+            <span class="card-counter">2 de 15</span>
         </div>
-
-        <!-- TARJETA 4 (RASCA Y GANA) -->
-        <div class="card" id="card-4" style="display:none;">
-            <div id="lock-4" class="lock-box">
-                <div class="card-header">
-                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #4 🎫</span>
-                    <span class="card-counter">4 de 15</span>
-                </div>
-                <p style="margin: 10px 0; font-weight: 600;">Rasca con el dedo o ratón para revelar el secreto:</p>
-                <div class="scratch-container">
-                    <div class="scratch-secret">Te amo bichito 🫶🏽🤍</div>
-                    <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
-                </div>
-            </div>
-
-            <div id="content-4" style="display:none;">
-                <div class="card-header">
-                    <span class="badge">Vídeo #4</span>
-                    <span class="card-counter">4 de 15</span>
-                </div>
-                <h3>4. Mensaje Secreto</h3>
-                <div class="response-box">
-                    <strong>Mi respuesta:</strong><br>
-                    Aquí irá tu respuesta al cuarto vídeo...
-                </div>
-            </div>
+        <h3>2. Título Razón #2</h3>
+        <div class="video-container">
+            <iframe src="https://www.youtube-nocookie.com/embed/LE5CXRw888o" frameborder="0" allowfullscreen></iframe>
         </div>
+        <div class="response-box">
+            [Pendiente de texto...]
+        </div>
+    </div>
+</div>
+
+<!-- TARJETA 3 -->
+<div class="card" id="card-3" style="display:none;">
+    <div id="lock-3" class="lock-box">
+        <div class="card-header">
+            <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #3 🧩</span>
+            <span class="card-counter">3 de 15</span>
+        </div>
+        <p style="margin: 10px 0; font-weight: 600;">Encuentra las parejas de nuestras fechas especiales:</p>
+        <div class="memory-grid">
+            <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
+            <div class="memory-card" onclick="flipCard(this, '24/05')">❓</div>
+            <div class="memory-card" onclick="flipCard(this, '24/05')">❓</div>
+            <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
+        </div>
+    </div>
+
+    <div id="content-3" style="display:none;">
+        <div class="card-header">
+            <span class="badge">Vídeo #3</span>
+            <span class="card-counter">3 de 15</span>
+        </div>
+        <h3>3. Título Razón #3</h3>
+        <div class="video-container">
+            <iframe src="https://www.youtube-nocookie.com/embed/MqOJod3MZFY" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="response-box">
+            [Pendiente de texto...]
+        </div>
+    </div>
+</div>
+
+<!-- TARJETA 4 -->
+<div class="card" id="card-4" style="display:none;">
+    <div id="lock-4" class="lock-box">
+        <div class="card-header">
+            <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #4 🎫</span>
+            <span class="card-counter">4 de 15</span>
+        </div>
+        <p style="margin: 10px 0; font-weight: 600;">Rasca con el dedo o ratón para revelar el secreto:</p>
+        <div class="scratch-container">
+            <div class="scratch-secret">Te amo bichito 🫶🏽🤍</div>
+            <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
+        </div>
+    </div>
+
+    <div id="content-4" style="display:none;">
+        <div class="card-header">
+            <span class="badge">Vídeo #4</span>
+            <span class="card-counter">4 de 15</span>
+        </div>
+        <h3>4. Título Razón #4</h3>
+        <div class="video-container">
+            <iframe src="https://www.youtube-nocookie.com/embed/bXwrEjvnX1M" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="response-box">
+            [Pendiente de texto...]
+        </div>
+    </div>
+</div>
+
+<!-- TARJETA 5 -->
+<div class="card" id="card-5" style="display:none;">
+    <div class="card-header">
+        <span class="badge">Vídeo #5</span>
+        <span class="card-counter">5 de 15</span>
+    </div>
+    <h3>5. Título Razón #5</h3>
+    <div class="video-container">
+        <iframe src="https://www.youtube-nocookie.com/embed/Oqtvt7pDs6g" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <div class="response-box">
+        [Pendiente de texto...]
+    </div>
+</div>
+
 
         <!-- CARTA BONUS ESPECIAL (#16) -->
         <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, #ffeaa7, #fab1a0); border: 2px solid #fdcb6e;">
