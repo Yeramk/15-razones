@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- BLOQUEO PARA BUSCADORES (Google no la indexará) -->
+    <meta name="robots" content="noindex, nofollow">
     <title>14 Razones ❤️</title>
     <style>
         body {
@@ -13,19 +15,52 @@
             max-width: 450px;
             margin: 0 auto;
         }
+
+        /* PANTALLA DE BIENVENIDA / CANDADO INICIAL */
+        #welcome-screen {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 30px 20px;
+            margin-top: 40px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border: 1px solid #eaeaea;
+        }
+
+        #welcome-screen h2 {
+            color: #e74c3c;
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        #welcome-screen p {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* CONTENIDO PRINCIPAL (Oculto hasta acertar la fecha) */
+        #main-content {
+            display: none;
+        }
+
         header {
             text-align: center;
             margin-bottom: 25px;
         }
+
         h1 {
             color: #e74c3c;
             font-size: 2rem;
             margin-bottom: 8px;
         }
+
         p.subtitle {
             color: #7f8c8d;
             font-size: 0.95rem;
         }
+
         .card {
             background: #ffffff;
             border-radius: 15px;
@@ -34,6 +69,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             border: 1px solid #eaeaea;
         }
+
         .badge {
             background: #ffeae8;
             color: #e74c3c;
@@ -44,6 +80,7 @@
             display: inline-block;
             margin-bottom: 10px;
         }
+
         .response-box {
             background: #fdf6f6;
             border-left: 3px solid #e74c3c;
@@ -53,74 +90,112 @@
             font-size: 0.95rem;
             line-height: 1.5;
         }
+
         .lock-box {
             text-align: center;
             padding: 10px 0;
         }
+
         input[type="text"] {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
             border: 1px solid #ccc;
-            border-radius: 8px;
+            border-radius: 10px;
             box-sizing: border-box;
             text-align: center;
+            font-size: 1rem;
+            outline: none;
         }
+
+        input[type="text"]:focus {
+            border-color: #e74c3c;
+        }
+
         button {
             background: #e74c3c;
             color: white;
             border: none;
-            padding: 10px 15px;
-            border-radius: 8px;
+            padding: 12px 15px;
+            border-radius: 10px;
             font-weight: bold;
+            font-size: 1rem;
             width: 100%;
             cursor: pointer;
+            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2);
         }
+
         .error {
             color: #c0392b;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             display: none;
-            margin-top: 5px;
+            margin-top: 8px;
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>14 Razones ❤️</h1>
-        <p class="subtitle">Respondiendo a tus 14 vídeos de aquel fin de semana.</p>
-    </header>
-
-    <!-- TARJETA 1 -->
-    <div class="card">
-        <span class="badge">Vídeo #1</span>
-        <h3>1. El primer paso</h3>
-        <div class="response-box">
-            <strong>Mi respuesta:</strong><br>
-            Aquí empezaremos a escribir la respuesta para su primer vídeo...
-        </div>
+    <!-- 1. PANTALLA DE ACCESO -->
+    <div id="welcome-screen">
+        <h2>Hola mi amor ❤️</h2>
+        <p>Amor, introduce tu fecha de nacimiento para entrar.</p>
+        <input type="text" id="birthdate-input" placeholder="DD/MM/AA (ej: 14/10/08)">
+        <button onclick="checkBirthdate()">Entrar</button>
+        <p id="welcome-error" class="error">Mmm... esa no es tu fecha, piénsalo bien 😉</p>
     </div>
 
-    <!-- TARJETA 2 -->
-    <div class="card" id="card-2">
-        <div id="lock-2" class="lock-box">
-            <span class="badge">Vídeo #2 - Bloqueado 🔒</span>
-            <p style="margin-top: 10px; font-weight: 500;">¿Lugar de nuestra primera cita?</p>
-            <input type="text" id="input-2" placeholder="Escribe la respuesta...">
-            <button onclick="unlock(2, 'playa')">Desbloquear</button>
-            <p id="error-2" class="error">Respuesta incorrecta, prueba otra vez.</p>
-        </div>
-        <div id="content-2" style="display:none;">
-            <span class="badge">Vídeo #2</span>
-            <h3>2. Segundo momento</h3>
+    <!-- 2. CONTENIDO PROTEGIDO -->
+    <div id="main-content">
+        <header>
+            <h1>14 Razones ❤️</h1>
+            <p class="subtitle">Respondiendo a tus 14 vídeos de aquel fin de semana.</p>
+        </header>
+
+        <!-- TARJETA 1 -->
+        <div class="card">
+            <span class="badge">Vídeo #1</span>
+            <h3>1. El primer paso</h3>
             <div class="response-box">
                 <strong>Mi respuesta:</strong><br>
-                Aquí irá la respuesta al segundo vídeo...
+                Aquí empezaremos a escribir la respuesta para su primer vídeo...
+            </div>
+        </div>
+
+        <!-- TARJETA 2 -->
+        <div class="card" id="card-2">
+            <div id="lock-2" class="lock-box">
+                <span class="badge">Vídeo #2 - Bloqueado 🔒</span>
+                <p style="margin-top: 10px; font-weight: 500;">¿Lugar de nuestra primera cita?</p>
+                <input type="text" id="input-2" placeholder="Escribe la respuesta...">
+                <button onclick="unlock(2, 'playa')">Desbloquear</button>
+                <p id="error-2" class="error">Respuesta incorrecta, prueba otra vez.</p>
+            </div>
+            <div id="content-2" style="display:none;">
+                <span class="badge">Vídeo #2</span>
+                <h3>2. Segundo momento</h3>
+                <div class="response-box">
+                    <strong>Mi respuesta:</strong><br>
+                    Aquí irá la respuesta al segundo vídeo...
+                </div>
             </div>
         </div>
     </div>
 
     <script>
+        // Verificación de la fecha de nacimiento
+        function checkBirthdate() {
+            var input = document.getElementById('birthdate-input').value.trim();
+            // Acepta 14/10/08 o 14/10/2008
+            if (input === '14/10/08' || input === '14/10/2008') {
+                document.getElementById('welcome-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+            } else {
+                document.getElementById('welcome-error').style.display = 'block';
+            }
+        }
+
+        // Verificación de preguntas de las tarjetas
         function unlock(num, secret) {
             var val = document.getElementById('input-' + num).value.trim().toLowerCase();
             if (val === secret.toLowerCase()) {
