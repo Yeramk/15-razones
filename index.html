@@ -52,7 +52,6 @@
             overflow-x: hidden;
         }
 
-        /* BOTONES FLOTANTES TOP/BOTTOM */
         .top-controls {
             position: fixed;
             top: 15px;
@@ -270,7 +269,6 @@
             box-shadow: 0 4px 14px rgba(44, 62, 80, 0.15);
         }
 
-        /* REPRODUCTOR MÚSICA */
         .audio-player-box {
             background: rgba(0,0,0,0.03);
             border-radius: 16px;
@@ -286,7 +284,6 @@
             border: none;
         }
 
-        /* PUZLE MEMORIA */
         .memory-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -313,7 +310,6 @@
             color: #d63031;
         }
 
-        /* RASCA Y GANA */
         .scratch-container {
             position: relative;
             width: 100%;
@@ -347,17 +343,6 @@
             cursor: pointer;
         }
 
-        /* OCULTAR REPRODUCTOR DE FONDO */
-        #bg-music-container {
-            position: fixed;
-            bottom: -200px;
-            left: -200px;
-            width: 1px;
-            height: 1px;
-            opacity: 0;
-            pointer-events: none;
-        }
-
         footer {
             margin-top: 35px;
             text-align: center;
@@ -368,16 +353,16 @@
 </head>
 <body>
 
-    <!-- CONTROLES SUPERIORES (MODO NOCHE & MÚSICA FONDO) -->
+    <!-- CONTROLES SUPERIORES -->
     <div class="top-controls">
         <button class="icon-btn" id="music-toggle" onclick="toggleBgMusic()" title="Música de fondo">🎵</button>
         <button class="icon-btn" onclick="toggleDarkMode()" title="Cambiar tema">🌙</button>
     </div>
 
-    <!-- REPRODUCTOR MÚSICA FONDO (ANOTHER LOVE PIANO) -->
-    <div id="bg-music-container">
-        <iframe id="bg-music-iframe" src="https://www.youtube.com/embed/ZuLbiwhehTo?enablejsapi=1&loop=1&playlist=ZuLbiwhehTo" allow="autoplay"></iframe>
-    </div>
+    <!-- AUDIO MP3 LOCAL -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
 
     <div class="heart-bg" style="left: 10%; animation-delay: 0s;">🤍</div>
     <div class="heart-bg" style="left: 30%; animation-delay: 2.5s;">✨</div>
@@ -513,7 +498,7 @@
             </div>
         </div>
 
-        <!-- CARTA BONUS ESPECIAL (#16 - OCULTA HASTA COMPLETAR LAS 15) -->
+        <!-- CARTA BONUS ESPECIAL (#16) -->
         <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, #ffeaa7, #fab1a0); border: 2px solid #fdcb6e;">
             <div class="card-header">
                 <span class="badge" style="background:#d63031; color:white;">🎁 Sorpresa Final</span>
@@ -533,10 +518,8 @@
 
     <script>
         var unlockedCount = parseInt(localStorage.getItem('unlockedCount')) || 1;
-        var musicPlaying = false;
 
         window.onload = function() {
-            // Comprobar si ya había iniciado sesión previa
             if (localStorage.getItem('authenticated') === 'true') {
                 document.getElementById('welcome-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
@@ -549,16 +532,15 @@
         }
 
         function toggleBgMusic() {
-            var iframe = document.getElementById('bg-music-iframe');
+            var audio = document.getElementById('bg-music');
             var btn = document.getElementById('music-toggle');
-            if (!musicPlaying) {
-                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            
+            if (audio.paused) {
+                audio.play();
                 btn.innerText = '🔊';
-                musicPlaying = true;
             } else {
-                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                audio.pause();
                 btn.innerText = '🎵';
-                musicPlaying = false;
             }
         }
 
@@ -624,7 +606,6 @@
             }
         }
 
-        // LÓGICA MEMORIA (#3)
         var flippedCards = [];
         var matchedPairs = 0;
         function flipCard(card, val) {
@@ -655,7 +636,6 @@
             }
         }
 
-        // LÓGICA RASCA Y GANA (#4)
         function initScratch() {
             var canvas = document.getElementById('scratch-canvas');
             if (!canvas) return;
