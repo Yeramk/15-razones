@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- BLOQUEO PARA BUSCADORES -->
     <meta name="robots" content="noindex, nofollow">
-    <title>14 Razones 🤍</title>
+    <title>15 Razones 🤍</title>
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -107,11 +107,26 @@
             margin-bottom: 10px;
         }
 
-        video {
+        /* CONTENEDOR PARA VÍDEOS VERTICALES (SHORTS) */
+        .video-container {
+            position: relative;
             width: 100%;
-            border-radius: 12px;
-            margin: 10px 0;
+            padding-bottom: 177.78%; /* Proporción 9:16 vertical */
+            height: 0;
+            border-radius: 14px;
+            overflow: hidden;
+            margin: 12px 0;
             background: #000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
         .response-box {
@@ -188,8 +203,8 @@
     <!-- 2. CONTENIDO PROTEGIDO -->
     <div id="main-content">
         <header>
-            <h1>14 Razones 🤍</h1>
-            <p class="subtitle">Respondiendo a tus 14 vídeos de aquel fin de semana.</p>
+            <h1>15 Razones 🤍</h1>
+            <p class="subtitle">Respondiendo a tus 15 vídeos de aquel fin de semana.</p>
         </header>
 
         <!-- TARJETA 1 -->
@@ -197,19 +212,24 @@
             <span class="badge">Vídeo #1</span>
             <h3>1. El primer paso</h3>
             
-            <!-- VÍDEO 1 -->
-            <video controls>
-                <source src="video1.mp4" type="video/mp4">
-                Tu navegador no soporta el reproductor de vídeo.
-            </video>
+            <!-- VÍDEO 1 INCRUSTADO -->
+            <div class="video-container">
+                <iframe 
+                    src="https://www.youtube.com/embed/Q0Vn2N--Uo0" 
+                    title="Vídeo #1" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            </div>
 
             <div class="response-box">
                 <strong>Mi respuesta:</strong><br>
-                Aquí escribiremos tu respuesta a su primer vídeo...
+                Aquí escribiremos tu respuesta a este primer vídeo...
             </div>
         </div>
 
-        <!-- TARJETA 2 -->
+        <!-- TARJETA 2 (EJEMPLO BLOQUEADA) -->
         <div class="card" id="card-2">
             <div id="lock-2" class="lock-box">
                 <span class="badge">Vídeo #2 - Bloqueado 🔒</span>
@@ -222,15 +242,11 @@
                 <span class="badge">Vídeo #2</span>
                 <h3>2. Segundo momento</h3>
 
-                <!-- VÍDEO 2 -->
-                <video controls>
-                    <source src="video2.mp4" type="video/mp4">
-                    Tu navegador no soporta el reproductor de vídeo.
-                </video>
+                <!-- ESPACIO PARA VÍDEO 2 -->
 
                 <div class="response-box">
                     <strong>Mi respuesta:</strong><br>
-                    Aquí escribiremos tu respuesta al segundo vídeo...
+                    Aquí irá la respuesta al segundo vídeo...
                 </div>
             </div>
         </div>
