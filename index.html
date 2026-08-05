@@ -7,11 +7,27 @@
     <title>15 Razones 🤍</title>
     <style>
         :root {
+            --bg-color: #f7f1e3;
+            --bg-pattern: #e0d6c3;
+            --bg-pattern-alt: #faf0ca;
             --primary-color: #2c3e50;
             --accent-color: #e74c3c;
             --card-bg: #ffffff;
             --text-color: #2c3e50;
             --muted-text: #7f8c8d;
+            --border-color: #f0f0f0;
+        }
+
+        body.dark-mode {
+            --bg-color: #1a1a2e;
+            --bg-pattern: #16213e;
+            --bg-pattern-alt: #0f3460;
+            --primary-color: #e94560;
+            --accent-color: #ff6b6b;
+            --card-bg: #16213e;
+            --text-color: #f1f2f6;
+            --muted-text: #a4b0be;
+            --border-color: #0f3460;
         }
 
         * {
@@ -19,20 +35,46 @@
             margin: 0;
             padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         body {
-            background-color: #f7f1e3;
-            background-image: radial-gradient(#e0d6c3 0.8px, transparent 0.8px), radial-gradient(#e0d6c3 0.8px, #faf0ca 0.8px);
+            background-color: var(--bg-color);
+            background-image: radial-gradient(var(--bg-pattern) 0.8px, transparent 0.8px), radial-gradient(var(--bg-pattern) 0.8px, var(--bg-pattern-alt) 0.8px);
             background-size: 20px 20px;
             color: var(--text-color);
-            padding: 24px 16px 60px 16px;
+            padding: 24px 16px 80px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+        }
+
+        /* BOTONES FLOTANTES TOP/BOTTOM */
+        .top-controls {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .icon-btn {
+            background: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .heart-bg {
@@ -51,13 +93,13 @@
         }
 
         #welcome-screen {
-            background: #ffffff;
+            background: var(--card-bg);
             border-radius: 24px;
             padding: 35px 25px;
             margin-top: 40px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            border: 1px solid #eaeaea;
+            border: 1px solid var(--border-color);
             width: 100%;
             max-width: 450px;
             z-index: 1;
@@ -103,11 +145,11 @@
         }
 
         .progress-wrapper {
-            background: #ffffff;
+            background: var(--card-bg);
             border-radius: 16px;
             padding: 12px 16px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-            border: 1px solid #eaeaea;
+            border: 1px solid var(--border-color);
             margin-bottom: 25px;
         }
 
@@ -141,7 +183,7 @@
             padding: 22px;
             margin-bottom: 22px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.05);
-            border: 1px solid #f0f0f0;
+            border: 1px solid var(--border-color);
         }
 
         .card-header {
@@ -188,7 +230,7 @@
         }
 
         .response-box {
-            background: #fff5f5;
+            background: rgba(231, 76, 60, 0.08);
             border-left: 4px solid var(--accent-color);
             padding: 14px 16px;
             margin-top: 14px;
@@ -206,14 +248,16 @@
             width: 100%;
             padding: 12px;
             margin: 12px 0;
-            border: 1px solid #dfe4ea;
+            border: 1px solid var(--border-color);
+            background: var(--card-bg);
+            color: var(--text-color);
             border-radius: 12px;
             text-align: center;
             font-size: 1rem;
             outline: none;
         }
 
-        button {
+        button.action-btn {
             background: var(--primary-color);
             color: white;
             border: none;
@@ -226,23 +270,23 @@
             box-shadow: 0 4px 14px rgba(44, 62, 80, 0.15);
         }
 
-        /* REPRODUCTOR DE MÚSICA */
+        /* REPRODUCTOR MÚSICA */
         .audio-player-box {
-            background: #f8f9fa;
+            background: rgba(0,0,0,0.03);
             border-radius: 16px;
             padding: 10px;
             margin: 12px 0;
-            border: 1px solid #e9ecef;
+            border: 1px solid var(--border-color);
         }
 
         .audio-player-box iframe {
             width: 100%;
-            height: 200px;
+            height: 180px;
             border-radius: 10px;
             border: none;
         }
 
-        /* PUZLE DE MEMORIA */
+        /* PUZLE MEMORIA */
         .memory-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -251,7 +295,7 @@
         }
 
         .memory-card {
-            background: #2c3e50;
+            background: var(--primary-color);
             color: white;
             height: 70px;
             border-radius: 12px;
@@ -303,6 +347,17 @@
             cursor: pointer;
         }
 
+        /* OCULTAR REPRODUCTOR DE FONDO */
+        #bg-music-container {
+            position: fixed;
+            bottom: -200px;
+            left: -200px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
         footer {
             margin-top: 35px;
             text-align: center;
@@ -312,6 +367,17 @@
     </style>
 </head>
 <body>
+
+    <!-- CONTROLES SUPERIORES (MODO NOCHE & MÚSICA FONDO) -->
+    <div class="top-controls">
+        <button class="icon-btn" id="music-toggle" onclick="toggleBgMusic()" title="Música de fondo">🎵</button>
+        <button class="icon-btn" onclick="toggleDarkMode()" title="Cambiar tema">🌙</button>
+    </div>
+
+    <!-- REPRODUCTOR MÚSICA FONDO (ANOTHER LOVE PIANO) -->
+    <div id="bg-music-container">
+        <iframe id="bg-music-iframe" src="https://www.youtube.com/embed/ZuLbiwhehTo?enablejsapi=1&loop=1&playlist=ZuLbiwhehTo" allow="autoplay"></iframe>
+    </div>
 
     <div class="heart-bg" style="left: 10%; animation-delay: 0s;">🤍</div>
     <div class="heart-bg" style="left: 30%; animation-delay: 2.5s;">✨</div>
@@ -323,7 +389,7 @@
         <h2>Hola mi amor 🤍</h2>
         <p>Introduce tu fecha de nacimiento para descubrir nuestras 15 razones.</p>
         <input type="text" id="birthdate-input" placeholder="DD/MM/AA">
-        <button onclick="checkBirthdate()">Entrar</button>
+        <button class="action-btn" onclick="checkBirthdate()">Entrar</button>
         <p id="welcome-error" style="color:#e74c3c; display:none; margin-top:8px;">Mmm... esa no es tu fecha 😉</p>
     </div>
 
@@ -370,11 +436,11 @@
                 <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción y escribe el nombre del artista:</p>
                 
                 <div class="audio-player-box">
-                    <iframe src="https://www.youtube.com/embed/7XPmRUp_Yf4" title="Nuestra Canción" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe src="https://www.youtube.com/embed/7XPmRUp_Yf4" title="Nuestra Canción" allowfullscreen></iframe>
                 </div>
 
                 <input type="text" id="input-2" placeholder="Escribe el artista aquí...">
-                <button onclick="checkAnswer(2, 'melendi')">Desbloquear Razón #2</button>
+                <button class="action-btn" onclick="checkAnswer(2, 'melendi')">Desbloquear Razón #2</button>
                 <p id="error-2" style="color:#e74c3c; display:none; margin-top:8px;">Respuesta incorrecta, piénsalo bien 😉</p>
             </div>
 
@@ -447,29 +513,89 @@
             </div>
         </div>
 
+        <!-- CARTA BONUS ESPECIAL (#16 - OCULTA HASTA COMPLETAR LAS 15) -->
+        <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, #ffeaa7, #fab1a0); border: 2px solid #fdcb6e;">
+            <div class="card-header">
+                <span class="badge" style="background:#d63031; color:white;">🎁 Sorpresa Final</span>
+                <span class="card-counter">✨ Razón Bonus</span>
+            </div>
+            <h2 style="color:#d63031; text-align:center; margin: 10px 0;">Para ti, mi niña 🤍</h2>
+            <div class="response-box" style="background: rgba(255,255,255,0.85); color: #2d3436;">
+                <strong>Carta final:</strong><br>
+                ¡Has completado las 15 razones! Gracias por cada momento juntos. Esta pequeña página es solo una muestra de todo lo que significas para mí...
+            </div>
+        </div>
+
         <footer>
             Hecho con todo el amor del mundo 🤍
         </footer>
     </div>
 
     <script>
-        var unlockedCount = 1;
+        var unlockedCount = parseInt(localStorage.getItem('unlockedCount')) || 1;
+        var musicPlaying = false;
+
+        window.onload = function() {
+            // Comprobar si ya había iniciado sesión previa
+            if (localStorage.getItem('authenticated') === 'true') {
+                document.getElementById('welcome-screen').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                restoreProgress();
+            }
+        };
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function toggleBgMusic() {
+            var iframe = document.getElementById('bg-music-iframe');
+            var btn = document.getElementById('music-toggle');
+            if (!musicPlaying) {
+                iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+                btn.innerText = '🔊';
+                musicPlaying = true;
+            } else {
+                iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+                btn.innerText = '🎵';
+                musicPlaying = false;
+            }
+        }
 
         function updateProgress() {
             var percent = (unlockedCount / 15) * 100;
             document.getElementById('progress-fill').style.width = percent + '%';
-            document.getElementById('progress-text').innerText = unlockedCount + ' de 15';
+            document.getElementById('progress-text').innerText = Math.min(unlockedCount, 15) + ' de 15';
+            localStorage.setItem('unlockedCount', unlockedCount);
+
+            if (unlockedCount >= 15) {
+                document.getElementById('card-bonus').style.display = 'block';
+            }
         }
 
         function checkBirthdate() {
             var input = document.getElementById('birthdate-input').value.trim();
             if (input === '14/10/08' || input === '14/10/2008') {
+                localStorage.setItem('authenticated', 'true');
                 document.getElementById('welcome-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
-                updateProgress();
+                restoreProgress();
             } else {
                 document.getElementById('welcome-error').style.display = 'block';
             }
+        }
+
+        function restoreProgress() {
+            for (var i = 2; i <= unlockedCount; i++) {
+                var lockBox = document.getElementById('lock-' + i);
+                var contentBox = document.getElementById('content-' + i);
+                var cardBox = document.getElementById('card-' + i);
+
+                if (cardBox) cardBox.style.display = 'block';
+                if (lockBox) lockBox.style.display = 'none';
+                if (contentBox) contentBox.style.display = 'block';
+            }
+            updateProgress();
         }
 
         function checkAnswer(num, secretAnswer) {
@@ -484,7 +610,9 @@
         function unlockNextCard(num) {
             document.getElementById('lock-' + num).style.display = 'none';
             document.getElementById('content-' + num).style.display = 'block';
-            unlockedCount++;
+            if (unlockedCount <= num) {
+                unlockedCount = num + 1;
+            }
             updateProgress();
 
             var nextCard = document.getElementById('card-' + (num + 1));
