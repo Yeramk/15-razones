@@ -251,7 +251,7 @@
             padding: 12px 0;
         }
 
-        input[type="text"] {
+        input[type="text"], input[type="number"] {
             width: 100%;
             padding: 12px;
             margin: 12px 0;
@@ -427,19 +427,32 @@
 
         <!-- TARJETA 1 -->
         <div class="card" id="card-1">
-            <div class="card-header">
-                <span class="badge">Vídeo #1</span>
-                <span class="card-counter">1 de 15</span>
+            <div id="lock-1" class="lock-box">
+                <div class="card-header">
+                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #1 🔐</span>
+                    <span class="card-counter">1 de 15</span>
+                </div>
+                <p style="margin: 10px 0; font-weight: 600;">Introduce el PIN para abrir el primer recuerdo:<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">(Pista: el día y mes de nuestro aniversario, ej: 1410)</span></p>
+                <input type="number" id="input-1" placeholder="****">
+                <!-- Puedes cambiar el '1410' de aquí abajo por el PIN que quieras -->
+                <button class="action-btn" onclick="checkAnswer(1, '1410')">Desbloquear</button>
+                <p id="error-1" style="color:#e74c3c; display:none; margin-top:8px;">PIN incorrecto 😉</p>
             </div>
-            <h3>1. El primer paso</h3>
-            <div class="video-container">
-                <iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe>
+
+            <div id="content-1" style="display:none;">
+                <div class="card-header">
+                    <span class="badge">Vídeo #1</span>
+                    <span class="card-counter">1 de 15</span>
+                </div>
+                <h3>1. El primer paso</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="response-box">
+                    <strong>Mi respuesta:</strong><br>
+                    Aquí escribiremos tu respuesta a este primer vídeo...
+                </div>
             </div>
-            <div class="response-box">
-                <strong>Mi respuesta:</strong><br>
-                Aquí escribiremos tu respuesta a este primer vídeo...
-            </div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(1)">Desbloquear Razón #2</button>
         </div>
 
         <!-- TARJETA 2 -->
@@ -456,7 +469,7 @@
                 </div>
 
                 <input type="text" id="input-2" placeholder="Escribe el artista aquí...">
-                <button class="action-btn" onclick="checkAnswer(2, 'melendi')">Desbloquear Razón #2</button>
+                <button class="action-btn" onclick="checkAnswer(2, 'melendi')">Desbloquear</button>
                 <p id="error-2" style="color:#e74c3c; display:none; margin-top:8px;">Respuesta incorrecta, piénsalo bien 😉</p>
             </div>
 
@@ -472,7 +485,6 @@
                 <div class="response-box">
                     [Pendiente de texto...]
                 </div>
-                <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(2)">Desbloquear Razón #3</button>
             </div>
         </div>
 
@@ -504,7 +516,6 @@
                 <div class="response-box">
                     [Pendiente de texto...]
                 </div>
-                <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(3)">Desbloquear Razón #4</button>
             </div>
         </div>
 
@@ -534,7 +545,6 @@
                 <div class="response-box">
                     [Pendiente de texto...]
                 </div>
-                <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(4)">Desbloquear Razón #5</button>
             </div>
         </div>
 
@@ -547,7 +557,9 @@
                 </div>
                 <p style="margin: 10px 0; font-weight: 600;">¡Atrapa el botón si puedes para continuar!</p>
                 <div style="position: relative; height: 100px; overflow: hidden; border: 1px dashed var(--border-color); border-radius: 12px; margin: 15px 0;">
-                    <button id="tricky-btn" class="action-btn" style="position: absolute; width: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 20px; font-size: 0.9rem;" onmouseover="moveButton()" onclick="unlockNextCard(5)">¡Atrápame!</button>
+                    <button id="tricky-btn" class="action-btn" style="position: absolute; width: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 20px; font-size: 0.9rem;" 
+                    onmouseover="handleTrickyButton(event)" 
+                    ontouchstart="handleTrickyButton(event)">¡Atrápame!</button>
                 </div>
             </div>
 
@@ -563,12 +575,10 @@
                 <div class="response-box">
                     [Pendiente de texto...]
                 </div>
-                <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(5)">Desbloquear Razón #6</button>
             </div>
         </div>
 
-        <!-- TARJETAS 6 A 15 -->
-        <!-- Tarjeta 6 -->
+        <!-- TARJETAS 6 A 15 (Sin candados, requieren botón para avanzar) -->
         <div class="card" id="card-6" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #6</span>
@@ -579,10 +589,9 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(6)">Desbloquear Razón #7</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(6)">Desbloquear Razón #7</button>
         </div>
 
-        <!-- Tarjeta 7 -->
         <div class="card" id="card-7" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #7</span>
@@ -593,10 +602,9 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/LE5CXRw888o" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(7)">Desbloquear Razón #8</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(7)">Desbloquear Razón #8</button>
         </div>
 
-        <!-- Tarjeta 8 -->
         <div class="card" id="card-8" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #8</span>
@@ -607,10 +615,9 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/MqOJod3MZFY" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(8)">Desbloquear Razón #9</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(8)">Desbloquear Razón #9</button>
         </div>
 
-        <!-- Tarjeta 9 -->
         <div class="card" id="card-9" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #9</span>
@@ -621,10 +628,9 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/bXwrEjvnX1M" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(9)">Desbloquear Razón #10</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(9)">Desbloquear Razón #10</button>
         </div>
 
-        <!-- Tarjeta 10 -->
         <div class="card" id="card-10" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #10</span>
@@ -635,10 +641,9 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/Oqtvt7pDs6g" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(10)">Desbloquear Razón #11</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(10)">Desbloquear Razón #11</button>
         </div>
 
-        <!-- Tarjeta 11 -->
         <div class="card" id="card-11" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #11</span>
@@ -649,10 +654,9 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(11)">Desbloquear Razón #12</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(11)">Desbloquear Razón #12</button>
         </div>
 
-        <!-- Tarjeta 12 -->
         <div class="card" id="card-12" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #12</span>
@@ -663,10 +667,9 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/LE5CXRw888o" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(12)">Desbloquear Razón #13</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(12)">Desbloquear Razón #13</button>
         </div>
 
-        <!-- Tarjeta 13 -->
         <div class="card" id="card-13" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #13</span>
@@ -677,10 +680,9 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/MqOJod3MZFY" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(13)">Desbloquear Razón #14</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(13)">Desbloquear Razón #14</button>
         </div>
 
-        <!-- Tarjeta 14 -->
         <div class="card" id="card-14" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #14</span>
@@ -691,10 +693,9 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/bXwrEjvnX1M" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(14)">Desbloquear Razón #15</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(14)">Desbloquear Razón #15</button>
         </div>
 
-        <!-- Tarjeta 15 -->
         <div class="card" id="card-15" style="display:none;">
             <div class="card-header">
                 <span class="badge">Vídeo #15</span>
@@ -705,7 +706,7 @@
                 <iframe src="https://www.youtube-nocookie.com/embed/Oqtvt7pDs6g" frameborder="0" allowfullscreen></iframe>
             </div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextCard(15)">Finalizar y ver Sorpresa ✨</button>
+            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(15)">Finalizar y ver Sorpresa ✨</button>
         </div>
 
         <!-- CARTA BONUS ESPECIAL -->
@@ -727,21 +728,18 @@
     </div>
 
     <script>
-        var unlockedCount = parseInt(localStorage.getItem('unlockedCount')) || 1;
+        var unlockedCount = parseInt(localStorage.getItem('unlockedCount')) || 0;
 
         window.onload = function() {
-            // Lógica Aviso Privacidad
             var modal = document.getElementById('privacy-modal');
             var last = localStorage.getItem('privacyAcceptedDate');
             var now = new Date().getTime();
             
-            // Mostrar modal de privacidad solo si no estamos logueados y no lo hemos aceptado recientemente
             if (localStorage.getItem('authenticated') !== 'true') {
                 if(!last || (now - parseInt(last)) > 604800000) {
                     modal.style.display = 'flex';
                 }
             } else {
-                // Si ya estamos autenticados, saltamos directo al contenido
                 document.getElementById('welcome-wrapper').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 restoreProgress();
@@ -784,6 +782,7 @@
                     console.log("Autoplay bloqueado por el navegador");
                 });
 
+                if(unlockedCount === 0) unlockedCount = 1;
                 restoreProgress();
             } else {
                 document.getElementById('welcome-error').style.display = 'block';
@@ -791,49 +790,47 @@
         }
 
         function updateProgress() {
-            var percent = (unlockedCount / 15) * 100;
+            var displayCount = Math.max(1, unlockedCount);
+            var percent = (displayCount / 15) * 100;
             document.getElementById('progress-fill').style.width = percent + '%';
-            document.getElementById('progress-text').innerText = Math.min(unlockedCount, 15) + ' de 15';
+            document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15';
             localStorage.setItem('unlockedCount', unlockedCount);
-
-            if (unlockedCount >= 16) {
-                document.getElementById('card-bonus').style.display = 'block';
-            }
         }
 
         function restoreProgress() {
-            // Mostrar siempre la tarjeta 1
-            var btn1 = document.querySelector('#card-1 .action-btn');
-            if(unlockedCount > 1 && btn1) btn1.style.display = 'none';
+            if(unlockedCount === 0) unlockedCount = 1;
 
-            for (var i = 2; i <= 15; i++) {
+            for (var i = 1; i <= 15; i++) {
                 var cardBox = document.getElementById('card-' + i);
                 var lockBox = document.getElementById('lock-' + i);
                 var contentBox = document.getElementById('content-' + i);
                 var btn = cardBox ? cardBox.querySelector('.action-btn:last-of-type') : null;
 
-                if (i <= unlockedCount) {
-                    // Esta tarjeta está desbloqueada y su contenido visible
+                if (i < unlockedCount) {
+                    // Tarjetas superadas totalmente
                     if (cardBox) cardBox.style.display = 'block';
                     if (lockBox) lockBox.style.display = 'none';
                     if (contentBox) contentBox.style.display = 'block';
-                    // Ocultar el botón de "Desbloquear siguiente" si ya hemos avanzado más allá de ella
-                    if (i < unlockedCount && btn && (!lockBox || lockBox.style.display === 'none')) {
-                        btn.style.display = 'none';
-                    }
-                } else if (i === unlockedCount + 1) {
-                    // Esta es la siguiente tarjeta a desbloquear, mostramos su candado (o su botón)
+                    // Si es tarjeta de las 6-15, esconder su botón de avanzar
+                    if (i >= 6 && btn) btn.style.display = 'none';
+                } 
+                else if (i === unlockedCount) {
+                    // Tarjeta actual en juego
                     if (cardBox) {
                         cardBox.style.display = 'block';
-                        if(lockBox) lockBox.style.display = 'block';
-                        if(contentBox) contentBox.style.display = 'none';
+                        // Si tiene candado, se muestra el candado. Si no (6 a 15), se muestra entera.
+                        if(lockBox) {
+                            lockBox.style.display = 'block';
+                            if(contentBox) contentBox.style.display = 'none';
+                        }
                     }
-                } else {
+                } 
+                else {
                     // Tarjetas futuras ocultas
                     if (cardBox) cardBox.style.display = 'none';
                 }
             }
-            if (unlockedCount >= 16) {
+            if (unlockedCount > 15) {
                 var bonus = document.getElementById('card-bonus');
                 if (bonus) bonus.style.display = 'block';
             }
@@ -843,44 +840,41 @@
         function checkAnswer(num, secretAnswer) {
             var val = document.getElementById('input-' + num).value.trim().toLowerCase();
             if (val === secretAnswer.toLowerCase()) {
-                
                 if (num === 2) {
                     var container = document.getElementById('challenge-player-container');
-                    if (container) {
-                        container.innerHTML = ''; 
-                    }
+                    if (container) container.innerHTML = ''; 
                 }
-                
-                unlockContentOnly(num);
+                unlockMinigame(num);
             } else {
                 document.getElementById('error-' + num).style.display = 'block';
             }
         }
 
-        function unlockContentOnly(num) {
-            // Quita el candado y muestra el video
+        // Lógica limpia: Al desbloquear minijuego (1 al 5), se abre el vídeo y aparece automáticamente la tarjeta de abajo.
+        function unlockMinigame(num) {
             var lockBox = document.getElementById('lock-' + num);
             var contentBox = document.getElementById('content-' + num);
             if (lockBox) lockBox.style.display = 'none';
             if (contentBox) contentBox.style.display = 'block';
             
-            // Actualizamos el contador principal a este número si no estábamos más adelante
-            if (unlockedCount < num) {
-                unlockedCount = num;
+            var nextNum = num + 1;
+            if (unlockedCount < nextNum) {
+                unlockedCount = nextNum;
+            }
+            updateProgress();
+
+            var nextCard = document.getElementById('card-' + nextNum);
+            if (nextCard) {
+                nextCard.style.display = 'block';
+                if (nextNum === 4) initScratch();
             }
         }
 
-        function unlockNextCard(currentNum) {
-            // Oculta el botón que acabamos de pulsar
+        // Lógica para tarjetas 6 a 15 (sin minijuego, usan botón para avanzar)
+        function unlockNextBasicCard(currentNum) {
             var currentCard = document.getElementById('card-' + currentNum);
             var btn = currentCard ? currentCard.querySelector('.action-btn:last-of-type') : null;
-            
-            // Cuidado con el botón del minijuego 5 que está dentro del candado
-            if(currentNum === 5) {
-               unlockContentOnly(5); 
-            } else if (btn) {
-                btn.style.display = 'none';
-            }
+            if (btn) btn.style.display = 'none';
 
             var nextNum = currentNum + 1;
             if (unlockedCount < nextNum) {
@@ -891,14 +885,12 @@
             var nextCard = document.getElementById('card-' + nextNum);
             if (nextCard) {
                 nextCard.style.display = 'block';
-                if (nextNum === 4) {
-                    initScratch();
-                }
             } else if (nextNum > 15) {
                 document.getElementById('card-bonus').style.display = 'block';
             }
         }
 
+        // Minijuego Cartas (Razón 3)
         var flippedCards = [];
         var matchedPairs = 0;
         function flipCard(card, val) {
@@ -913,7 +905,7 @@
                         flippedCards = [];
                         if (matchedPairs === 2) {
                             setTimeout(function() { 
-                                unlockContentOnly(3); 
+                                unlockMinigame(3); 
                             }, 500);
                         }
                     } else {
@@ -929,6 +921,7 @@
             }
         }
 
+        // Minijuego Rasca (Razón 4)
         function initScratch() {
             var canvas = document.getElementById('scratch-canvas');
             if (!canvas) return;
@@ -961,7 +954,7 @@
                 if (clearedPixels > 40) {
                     canvas.style.pointerEvents = 'none';
                     setTimeout(function() {
-                        unlockContentOnly(4);
+                        unlockMinigame(4);
                     }, 1200);
                 }
             }
@@ -969,24 +962,41 @@
             canvas.addEventListener('mousedown', function() { isDrawing = true; });
             canvas.addEventListener('mouseup', function() { isDrawing = false; });
             canvas.addEventListener('mousemove', scratch);
-            canvas.addEventListener('touchstart', function() { isDrawing = true; });
+            canvas.addEventListener('touchstart', function(e) { isDrawing = true; if(e.cancelable) e.preventDefault(); }, {passive:false});
             canvas.addEventListener('touchend', function() { isDrawing = false; });
-            canvas.addEventListener('touchmove', scratch);
+            canvas.addEventListener('touchmove', scratch, {passive:false});
         }
 
-        function moveButton() {
-            var btn = document.getElementById('tricky-btn');
-            var container = btn.parentElement;
-            
-            var maxLeft = container.offsetWidth - btn.offsetWidth;
-            var maxTop = container.offsetHeight - btn.offsetHeight;
-            
-            var newLeft = Math.floor(Math.random() * maxLeft);
-            var newTop = Math.floor(Math.random() * maxTop);
-            
-            btn.style.transform = 'translate(0, 0)'; 
-            btn.style.left = newLeft + 'px';
-            btn.style.top = newTop + 'px';
+        // Minijuego Botón Escurridizo (Razón 5) adaptado para iPad
+        var jumps = 0;
+        function handleTrickyButton(e) {
+            if (jumps < 5) {
+                // Prevenimos el click si es en táctil para que obligue a jugar
+                if (e.type === 'touchstart' && e.cancelable) e.preventDefault();
+                
+                var btn = document.getElementById('tricky-btn');
+                var container = btn.parentElement;
+                
+                // Calculamos nueva posición aleatoria
+                var maxLeft = container.offsetWidth - btn.offsetWidth;
+                var maxTop = container.offsetHeight - btn.offsetHeight;
+                var newLeft = Math.floor(Math.random() * maxLeft);
+                var newTop = Math.floor(Math.random() * maxTop);
+                
+                btn.style.transform = 'translate(0, 0)'; 
+                btn.style.left = newLeft + 'px';
+                btn.style.top = newTop + 'px';
+                
+                jumps++;
+                
+                if (jumps >= 5) {
+                    btn.innerText = "¡Me rindo! Ábrelo 🤍";
+                    btn.style.background = "#27ae60"; // Se pone verde para indicar que ya se puede
+                }
+            } else {
+                // A partir del salto 5, ya dejamos que la función desbloquee
+                unlockMinigame(5);
+            }
         }
     </script>
 </body>
