@@ -3,90 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BLOQUEO PARA BUSCADORES (Google no la indexará) -->
+    <!-- BLOQUEO PARA BUSCADORES -->
     <meta name="robots" content="noindex, nofollow">
-    <title>14 Razones ❤️</title>
+    <title>14 Razones 🤍</title>
     <style>
-        body {
-            background-color: #fcf8f2;
-            color: #2c3e50;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            padding: 20px;
-            max-width: 450px;
-            margin: 0 auto;
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --muted-text: #7f8c8d;
         }
 
-        /* PANTALLA DE BIENVENIDA / CANDADO INICIAL */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            /* FONDO CÁLIDO RESTAURADO */
+            background-color: #f7f1e3;
+            background-image: radial-gradient(#e0d6c3 0.8px, transparent 0.8px), radial-gradient(#e0d6c3 0.8px, #faf0ca 0.8px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            color: var(--text-color);
+            padding: 24px 16px 60px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* PANTALLA DE BIENVENIDA */
         #welcome-screen {
             background: #ffffff;
             border-radius: 20px;
             padding: 30px 20px;
             margin-top: 40px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
             border: 1px solid #eaeaea;
+            width: 100%;
+            max-width: 450px;
         }
 
         #welcome-screen h2 {
-            color: #e74c3c;
+            color: var(--primary-color);
             font-size: 1.6rem;
             margin-bottom: 10px;
         }
 
         #welcome-screen p {
-            color: #7f8c8d;
+            color: var(--muted-text);
             font-size: 0.95rem;
             margin-bottom: 20px;
             line-height: 1.4;
         }
 
-        /* CONTENIDO PRINCIPAL (Oculto hasta acertar la fecha) */
+        /* CONTENIDO PRINCIPAL */
         #main-content {
             display: none;
+            width: 100%;
+            max-width: 450px;
         }
 
         header {
             text-align: center;
             margin-bottom: 25px;
+            margin-top: 10px;
         }
 
         h1 {
-            color: #e74c3c;
-            font-size: 2rem;
+            color: var(--primary-color);
+            font-size: 2.1rem;
             margin-bottom: 8px;
         }
 
         p.subtitle {
-            color: #7f8c8d;
+            color: var(--muted-text);
             font-size: 0.95rem;
+            line-height: 1.4;
         }
 
         .card {
-            background: #ffffff;
-            border-radius: 15px;
+            background: var(--card-bg);
+            border-radius: 18px;
             padding: 20px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
             border: 1px solid #eaeaea;
         }
 
         .badge {
-            background: #ffeae8;
-            color: #e74c3c;
+            background: #f1f2f6;
+            color: var(--primary-color);
             font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 10px;
+            padding: 4px 12px;
+            border-radius: 12px;
             font-size: 0.8rem;
             display: inline-block;
             margin-bottom: 10px;
         }
 
+        video {
+            width: 100%;
+            border-radius: 12px;
+            margin: 10px 0;
+            background: #000;
+        }
+
         .response-box {
-            background: #fdf6f6;
-            border-left: 3px solid #e74c3c;
-            padding: 12px;
-            margin-top: 10px;
-            border-radius: 0 8px 8px 0;
+            background: #fafafa;
+            border-left: 3px solid var(--primary-color);
+            padding: 12px 15px;
+            margin-top: 12px;
+            border-radius: 0 10px 10px 0;
             font-size: 0.95rem;
             line-height: 1.5;
         }
@@ -99,8 +132,8 @@
         input[type="text"] {
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
+            margin: 12px 0;
+            border: 1px solid #ced6e0;
             border-radius: 10px;
             box-sizing: border-box;
             text-align: center;
@@ -109,11 +142,11 @@
         }
 
         input[type="text"]:focus {
-            border-color: #e74c3c;
+            border-color: var(--primary-color);
         }
 
         button {
-            background: #e74c3c;
+            background: var(--primary-color);
             color: white;
             border: none;
             padding: 12px 15px;
@@ -122,15 +155,22 @@
             font-size: 1rem;
             width: 100%;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(231, 76, 60, 0.2);
+            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.15);
         }
 
         .error {
-            color: #c0392b;
+            color: #e74c3c;
             font-size: 0.85rem;
             display: none;
             margin-top: 8px;
             font-weight: 500;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--muted-text);
         }
     </style>
 </head>
@@ -138,9 +178,9 @@
 
     <!-- 1. PANTALLA DE ACCESO -->
     <div id="welcome-screen">
-        <h2>Hola mi amor ❤️</h2>
+        <h2>Hola mi amor 🤍</h2>
         <p>Amor, introduce tu fecha de nacimiento para entrar.</p>
-        <input type="text" id="birthdate-input" placeholder="DD/MM/AA (ej: 14/10/08)">
+        <input type="text" id="birthdate-input" placeholder="DD/MM/AA (ej: 25/05/09)">
         <button onclick="checkBirthdate()">Entrar</button>
         <p id="welcome-error" class="error">Mmm... esa no es tu fecha, piénsalo bien 😉</p>
     </div>
@@ -148,7 +188,7 @@
     <!-- 2. CONTENIDO PROTEGIDO -->
     <div id="main-content">
         <header>
-            <h1>14 Razones ❤️</h1>
+            <h1>14 Razones 🤍</h1>
             <p class="subtitle">Respondiendo a tus 14 vídeos de aquel fin de semana.</p>
         </header>
 
@@ -156,9 +196,16 @@
         <div class="card">
             <span class="badge">Vídeo #1</span>
             <h3>1. El primer paso</h3>
+            
+            <!-- VÍDEO 1 -->
+            <video controls>
+                <source src="video1.mp4" type="video/mp4">
+                Tu navegador no soporta el reproductor de vídeo.
+            </video>
+
             <div class="response-box">
                 <strong>Mi respuesta:</strong><br>
-                Aquí empezaremos a escribir la respuesta para su primer vídeo...
+                Aquí escribiremos tu respuesta a su primer vídeo...
             </div>
         </div>
 
@@ -174,19 +221,29 @@
             <div id="content-2" style="display:none;">
                 <span class="badge">Vídeo #2</span>
                 <h3>2. Segundo momento</h3>
+
+                <!-- VÍDEO 2 -->
+                <video controls>
+                    <source src="video2.mp4" type="video/mp4">
+                    Tu navegador no soporta el reproductor de vídeo.
+                </video>
+
                 <div class="response-box">
                     <strong>Mi respuesta:</strong><br>
-                    Aquí irá la respuesta al segundo vídeo...
+                    Aquí escribiremos tu respuesta al segundo vídeo...
                 </div>
             </div>
         </div>
+
+        <footer>
+            Hecho con todo el amor del mundo 🤍
+        </footer>
     </div>
 
     <script>
-        // Verificación de la fecha de nacimiento
+        // Verificación de la fecha de nacimiento (14/10/08 o 14/10/2008)
         function checkBirthdate() {
             var input = document.getElementById('birthdate-input').value.trim();
-            // Acepta 14/10/08 o 14/10/2008
             if (input === '14/10/08' || input === '14/10/2008') {
                 document.getElementById('welcome-screen').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
