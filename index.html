@@ -5,45 +5,56 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>15 Razones 🤍</title>
+    <!-- Google Fonts para un toque editorial/romántico -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --bg-color: #f7f1e3;
-            --bg-pattern: #e0d6c3;
-            --bg-pattern-alt: #faf0ca;
-            --primary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --card-bg: #ffffff;
-            --text-color: #2c3e50;
-            --muted-text: #7f8c8d;
-            --border-color: #f0f0f0;
+            --bg-color: #f7f3ec;
+            --bg-pattern: #ebdcd0;
+            --bg-pattern-alt: #fff6ee;
+            --primary-color: #2c2a29;
+            --accent-color: #d64545;
+            --card-bg: rgba(255, 255, 255, 0.82);
+            --text-color: #2c2a29;
+            --muted-text: #78716c;
+            --border-color: rgba(235, 220, 208, 0.6);
+            --shadow: 0 20px 40px -15px rgba(44, 42, 41, 0.07);
         }
 
         body.dark-mode {
-            --bg-color: #1a1a2e;
-            --bg-pattern: #16213e;
-            --bg-pattern-alt: #0f3460;
-            --primary-color: #e94560;
+            --bg-color: #121214;
+            --bg-pattern: #1a1a1e;
+            --bg-pattern-alt: #222228;
+            --primary-color: #f4f4f5;
             --accent-color: #ff6b6b;
-            --card-bg: #16213e;
-            --text-color: #f1f2f6;
-            --muted-text: #a4b0be;
-            --border-color: #0f3460;
+            --card-bg: rgba(24, 24, 28, 0.85);
+            --text-color: #f4f4f5;
+            --muted-text: #a1a1aa;
+            --border-color: rgba(255, 255, 255, 0.06);
+            --shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+        }
+
+        h1, h2, h3, .badge {
+            font-family: 'Playfair Display', serif;
         }
 
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(var(--bg-pattern) 0.8px, transparent 0.8px), radial-gradient(var(--bg-pattern) 0.8px, var(--bg-pattern-alt) 0.8px);
-            background-size: 20px 20px;
+            background-image: radial-gradient(var(--bg-pattern) 1px, transparent 1px);
+            background-size: 24px 24px;
             color: var(--text-color);
-            padding: 24px 16px 80px 16px;
+            padding: 24px 16px 100px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -54,8 +65,8 @@
 
         .top-controls {
             position: fixed;
-            top: 15px;
-            right: 15px;
+            top: 20px;
+            right: 20px;
             display: flex;
             gap: 10px;
             z-index: 100;
@@ -63,26 +74,33 @@
 
         .icon-btn {
             background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             color: var(--text-color);
             border: 1px solid var(--border-color);
-            width: 42px;
-            height: 42px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .icon-btn:hover {
+            transform: scale(1.05);
         }
 
         .heart-bg {
             position: fixed;
-            color: rgba(231, 76, 60, 0.15);
-            font-size: 20px;
+            color: rgba(214, 69, 69, 0.12);
+            font-size: 18px;
             user-select: none;
             pointer-events: none;
-            animation: floatHearts 10s infinite linear;
+            animation: floatHearts 12s infinite linear;
             z-index: 0;
         }
 
@@ -110,149 +128,169 @@
              flex-direction: column; 
              justify-content: center; 
              align-items: center; 
-             min-height: 90vh; 
+             min-height: 85vh; 
              width: 100%;
         }
 
         #welcome-screen {
             background: var(--card-bg);
-            border-radius: 24px;
-            padding: 35px 25px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 28px;
+            padding: 40px 28px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
             width: 100%;
-            max-width: 450px;
+            max-width: 420px;
             z-index: 1;
         }
 
         #welcome-screen h2 {
             color: var(--primary-color);
-            font-size: 1.7rem;
+            font-size: 2.1rem;
             margin-bottom: 12px;
+            font-weight: 700;
         }
 
         #welcome-screen p {
             color: var(--muted-text);
             font-size: 0.95rem;
-            margin-bottom: 22px;
-            line-height: 1.4;
+            margin-bottom: 24px;
+            line-height: 1.5;
         }
 
         #main-content {
             display: none;
             width: 100%;
-            max-width: 450px;
+            max-width: 440px;
             z-index: 1;
         }
 
         header {
             text-align: center;
-            margin-bottom: 20px;
-            margin-top: 10px;
+            margin-bottom: 24px;
+            margin-top: 15px;
         }
 
         h1 {
             color: var(--primary-color);
-            font-size: 2.2rem;
+            font-size: 2.6rem;
             margin-bottom: 6px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         p.subtitle {
             color: var(--muted-text);
             font-size: 0.95rem;
             line-height: 1.4;
-            margin-bottom: 18px;
         }
 
         .progress-wrapper {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 12px 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 16px 20px;
+            box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
-            margin-bottom: 25px;
+            margin-bottom: 24px;
         }
 
         .progress-info {
             display: flex;
             justify-content: space-between;
             font-size: 0.85rem;
-            font-weight: bold;
+            font-weight: 600;
             color: var(--primary-color);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .progress-bar-bg {
-            background: #f1f2f6;
-            height: 10px;
+            background: rgba(0,0,0,0.06);
+            height: 8px;
             border-radius: 10px;
             overflow: hidden;
         }
 
         .progress-bar-fill {
-            background: linear-gradient(90deg, #e74c3c, #ff7675);
+            background: linear-gradient(90deg, #d64545, #ff7675);
             height: 100%;
             width: 6.66%;
             border-radius: 10px;
-            transition: width 0.4s ease;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .card {
             background: var(--card-bg);
-            border-radius: 22px;
-            padding: 22px;
-            margin-bottom: 22px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 26px;
+            padding: 26px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
             border: 1px solid var(--border-color);
+            animation: fadeInCard 0.5s ease forwards;
+        }
+
+        @keyframes fadeInCard {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .badge {
-            background: #ffeaa7;
-            color: #d63031;
-            font-weight: bold;
-            padding: 5px 12px;
+            background: rgba(214, 69, 69, 0.1);
+            color: var(--accent-color);
+            font-weight: 600;
+            padding: 6px 14px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
         }
 
         .card-counter {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             color: var(--muted-text);
             font-weight: 600;
         }
 
-        /* Contenedor Vídeo Vertical (9:16) */
+        .card h3 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        /* Vídeos Verticales (9:16) y Horizontales (16:9) */
         .video-container {
             position: relative;
             width: 100%;
             padding-bottom: 177.78%;
             height: 0;
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
-            margin: 14px 0;
+            margin: 16px 0;
             background: #000;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-        /* Contenedor Vídeo Horizontal (16:9) */
         .video-container-horizontal {
             position: relative;
             width: 100%;
             padding-bottom: 56.25%;
             height: 0;
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
-            margin: 14px 0;
+            margin: 16px 0;
             background: #000;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .video-container iframe, .video-container-horizontal iframe {
@@ -265,113 +303,131 @@
         }
 
         .response-box {
-            background: rgba(231, 76, 60, 0.08);
-            border-left: 4px solid var(--accent-color);
-            padding: 14px 16px;
-            margin-top: 14px;
-            border-radius: 0 12px 12px 0;
+            background: rgba(214, 69, 69, 0.05);
+            border-left: 3px solid var(--accent-color);
+            padding: 16px 18px;
+            margin-top: 16px;
+            border-radius: 0 14px 14px 0;
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .lock-box {
             text-align: center;
-            padding: 12px 0;
+            padding: 10px 0;
         }
 
         input[type="text"], input[type="number"], input[type="range"] {
             width: 100%;
-            padding: 12px;
-            margin: 12px 0;
+            padding: 14px;
+            margin: 14px 0;
             border: 1px solid var(--border-color);
-            background: var(--card-bg);
+            background: rgba(255, 255, 255, 0.5);
             color: var(--text-color);
-            border-radius: 12px;
+            border-radius: 14px;
             text-align: center;
             font-size: 1rem;
             outline: none;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        body.dark-mode input[type="text"], 
+        body.dark-mode input[type="number"], 
+        body.dark-mode input[type="range"] {
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        input:focus {
+            border-color: var(--accent-color);
         }
 
         button.action-btn {
             background: var(--primary-color);
-            color: white;
+            color: var(--bg-color);
             border: none;
-            padding: 13px 16px;
-            border-radius: 12px;
-            font-weight: bold;
+            padding: 15px 20px;
+            border-radius: 14px;
+            font-weight: 600;
             font-size: 1rem;
             width: 100%;
             cursor: pointer;
-            box-shadow: 0 4px 14px rgba(44, 62, 80, 0.15);
-            transition: transform 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
             user-select: none;
         }
 
+        body.dark-mode button.action-btn {
+            background: #f4f4f5;
+            color: #121214;
+        }
+
         button.action-btn:active {
-            transform: scale(0.98);
+            transform: scale(0.97);
         }
 
         .audio-player-box {
-            background: rgba(0,0,0,0.03);
-            border-radius: 16px;
+            background: rgba(0,0,0,0.02);
+            border-radius: 18px;
             padding: 10px;
-            margin: 12px 0;
+            margin: 14px 0;
             border: 1px solid var(--border-color);
         }
-        .audio-player-box iframe { width: 100%; height: 180px; border-radius: 10px; border: none; }
+        .audio-player-box iframe { width: 100%; height: 160px; border-radius: 12px; border: none; }
         
-        .memory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
-        .memory-card { background: var(--primary-color); color: white; height: 70px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; cursor: pointer; user-select: none; }
+        .memory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 16px 0; }
+        .memory-card { background: var(--primary-color); color: var(--bg-color); height: 75px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 1.1rem; cursor: pointer; user-select: none; box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
         .memory-card.flipped { background: #ffeaa7; color: #d63031; }
 
-        .scratch-container { position: relative; width: 100%; height: 100px; margin: 15px 0; border-radius: 12px; overflow: hidden; }
-        .scratch-secret { position: absolute; width: 100%; height: 100%; background: #ffeaa7; color: #d63031; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; text-align: center; padding: 10px; }
+        .scratch-container { position: relative; width: 100%; height: 110px; margin: 16px 0; border-radius: 14px; overflow: hidden; }
+        .scratch-secret { position: absolute; width: 100%; height: 100%; background: #ffeaa7; color: #d63031; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1rem; text-align: center; padding: 10px; }
         canvas.scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
 
-        .word-btn { background: var(--card-bg); color: var(--primary-color); border: 2px solid var(--primary-color); padding: 10px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; }
+        .word-btn { background: var(--card-bg); color: var(--primary-color); border: 2px solid var(--border-color); padding: 12px 14px; border-radius: 12px; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .word-btn:hover { border-color: var(--accent-color); }
         
         @keyframes sniperMove {
             0% { left: 0%; }
             100% { left: 95%; }
         }
         .sniper-line {
-            position: absolute; top: 0; width: 4px; height: 100%; background: var(--primary-color);
+            position: absolute; top: 0; width: 4px; height: 100%; background: var(--accent-color);
             animation: sniperMove 1.2s infinite alternate ease-in-out;
         }
 
         .blind-slider {
-            -webkit-appearance: none; appearance: none; background: rgba(0,0,0,0.05); height: 30px; border-radius: 15px; outline: none; margin: 20px 0;
+            -webkit-appearance: none; appearance: none; background: rgba(0,0,0,0.06); height: 32px; border-radius: 16px; outline: none; margin: 20px 0;
         }
         .blind-slider::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none; width: 30px; height: 30px; border-radius: 50%; background: transparent; cursor: pointer;
+            -webkit-appearance: none; appearance: none; width: 32px; height: 32px; border-radius: 50%; background: transparent; cursor: pointer;
         }
 
         footer {
-            margin-top: 35px;
+            margin-top: 40px;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             color: var(--muted-text);
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
 
     <!-- AVISO DE PRIVACIDAD -->
-    <div id="privacy-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
-        <div style="background: var(--card-bg, #fff); border-radius: 24px; padding: 28px 22px; max-width: 420px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
-            <div style="text-align: center; margin-bottom: 15px;">
+    <div id="privacy-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: var(--card-bg); backdrop-filter: blur(20px); border-radius: 28px; padding: 32px 24px; max-width: 400px; width: 100%; text-align: left; box-shadow: var(--shadow); border: 1px solid var(--border-color);">
+            <div style="text-align: center; margin-bottom: 16px;">
                 <span style="font-size: 2.2rem;">🔒</span>
-                <h3 style="color: var(--primary-color, #2c3e50); margin-top: 5px;">Aviso de Privacidad</h3>
+                <h3 style="color: var(--primary-color); margin-top: 6px; font-size: 1.5rem;">Aviso de Privacidad</h3>
             </div>
-            <p style="font-size: 0.85rem; color: var(--muted-text); margin-bottom: 14px; line-height: 1.4;">
-                Para tu total tranquilidad antes de ver todo el contenido, por favor confirma las siguientes cláusulas:
+            <p style="font-size: 0.88rem; color: var(--muted-text); margin-bottom: 16px; line-height: 1.5;">
+                Para tu total tranquilidad, por favor confirma estas cláusulas antes de continuar:
             </p>
-            <ul style="font-size: 0.85rem; color: var(--text-color); margin-left: 18px; margin-bottom: 20px; line-height: 1.5;">
-                <li style="margin-bottom: 8px;"><strong>Vídeos Ocultos:</strong> Ningún vídeo es público ni buscable en YouTube.</li>
-                <li style="margin-bottom: 8px;"><strong>Cero Indexación:</strong> La web es invisible para Google.</li>
-                <li style="margin-bottom: 8px;"><strong>Acceso Exclusivo:</strong> Protegido por clave solo para ti.</li>
+            <ul style="font-size: 0.88rem; color: var(--text-color); margin-left: 18px; margin-bottom: 24px; line-height: 1.6;">
+                <li style="margin-bottom: 8px;"><strong>Vídeos Ocultos:</strong> Ningún contenido es público en YouTube.</li>
+                <li style="margin-bottom: 8px;"><strong>Cero Indexación:</strong> La web es invisible para buscadores.</li>
+                <li style="margin-bottom: 8px;"><strong>Acceso Exclusivo:</strong> Protegido solo para ti.</li>
             </ul>
-            <button onclick="acceptPrivacy()" class="action-btn" style="background: #27ae60;">Aceptar y Continuar 🤍</button>
+            <button onclick="acceptPrivacy()" class="action-btn" style="background: #27ae60; color: #fff;">Aceptar y Continuar 🤍</button>
         </div>
     </div>
 
@@ -386,31 +442,31 @@
     </audio>
 
     <div class="heart-bg" style="left: 10%; animation-delay: 0s;">🤍</div>
-    <div class="heart-bg" style="left: 30%; animation-delay: 2.5s;">✨</div>
-    <div class="heart-bg" style="left: 60%; animation-delay: 5s;">🤍</div>
-    <div class="heart-bg" style="left: 85%; animation-delay: 7.5s;">💖</div>
+    <div class="heart-bg" style="left: 32%; animation-delay: 3s;">✨</div>
+    <div class="heart-bg" style="left: 65%; animation-delay: 6s;">🤍</div>
+    <div class="heart-bg" style="left: 88%; animation-delay: 9s;">💖</div>
 
     <!-- 1. ACCESO -->
     <div id="welcome-wrapper">
         <div id="welcome-screen">
             <h2>Hola mi amor 🤍</h2>
-            <p>Introduce tu fecha de nacimiento para descubrir nuestras las 15 razones.</p>
+            <p>Introduce tu fecha de nacimiento para desbloquear nuestro camino de razones.</p>
             <input type="text" id="birthdate-input" placeholder="DD/MM/AA">
             <button class="action-btn" onclick="checkBirthdate()">Entrar</button>
-            <p id="welcome-error" style="color:#e74c3c; display:none; margin-top:8px;">Mmm... esa no es tu fecha 😉</p>
+            <p id="welcome-error" style="color:var(--accent-color); display:none; margin-top:10px; font-size: 0.9rem;">Mmm... esa no es tu fecha 😉</p>
         </div>
     </div>
 
     <!-- 2. CONTENIDO PRINCIPAL -->
     <div id="main-content">
         <header>
-            <h1>15 Razones 🤍</h1>
-            <p class="subtitle">Respondiendo a tus 15 vídeos.</p>
+            <h1>15 Razones</h1>
+            <p class="subtitle">Pequeños fragmentos de lo nuestro.</p>
         </header>
 
         <div class="progress-wrapper">
             <div class="progress-info">
-                <span>Progreso de desbloqueo</span>
+                <span>Progreso actual</span>
                 <span id="progress-text">1 de 15</span>
             </div>
             <div class="progress-bar-bg">
@@ -418,17 +474,17 @@
             </div>
         </div>
 
-        <!-- TARJETA 1 (Vertical) -->
+        <!-- TARJETA 1 -->
         <div class="card" id="card-1">
             <div id="lock-1" class="lock-box">
                 <div class="card-header">
-                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #1 🔐</span>
+                    <span class="badge">Vídeo #1 🔐</span>
                     <span class="card-counter">1 de 15</span>
                 </div>
-                <p style="margin: 10px 0; font-weight: 600;">Introduce el PIN para abrir el primer recuerdo:<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">(Pista: el número incluido en la carta)</span></p>
+                <p style="margin: 12px 0; font-weight: 600;">Introduce el PIN para abrir el primer recuerdo:<br><span style="font-size: 0.82rem; color: var(--muted-text); font-weight: normal;">(Pista: el número incluido en la carta)</span></p>
                 <input type="number" id="input-1" placeholder="****">
                 <button class="action-btn" onclick="checkAnswer(1, '3600')">Desbloquear</button>
-                <p id="error-1" style="color:#e74c3c; display:none; margin-top:8px;">PIN incorrecto 😉</p>
+                <p id="error-1" style="color:var(--accent-color); display:none; margin-top:8px; font-size: 0.9rem;">PIN incorrecto 😉</p>
             </div>
             <div id="content-1" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #1</span><span class="card-counter">1 de 15</span></div>
@@ -438,20 +494,20 @@
             </div>
         </div>
 
-        <!-- TARJETA 2 (Vertical) -->
+        <!-- TARJETA 2 -->
         <div class="card" id="card-2" style="display:none;">
             <div id="lock-2" class="lock-box">
                 <div class="card-header">
-                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #2 🎵</span>
+                    <span class="badge">Vídeo #2 🎵</span>
                     <span class="card-counter">2 de 15</span>
                 </div>
-                <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción y escribe el nombre del artista:</p>
+                <p style="margin: 12px 0; font-weight: 600;">Escucha nuestra canción y escribe el nombre del artista:</p>
                 <div class="audio-player-box" id="challenge-player-container">
                     <iframe id="challenge-iframe" src="https://www.youtube-nocookie.com/embed/7XPmRUp_Yf4?enablejsapi=1" title="Nuestra Canción" allow="autoplay" allowfullscreen></iframe>
                 </div>
                 <input type="text" id="input-2" placeholder="Escribe el artista aquí...">
                 <button class="action-btn" onclick="checkAnswer(2, 'melendi')">Desbloquear</button>
-                <p id="error-2" style="color:#e74c3c; display:none; margin-top:8px;">Respuesta incorrecta, piénsalo bien 😉</p>
+                <p id="error-2" style="color:var(--accent-color); display:none; margin-top:8px; font-size: 0.9rem;">Respuesta incorrecta, piénsalo bien 😉</p>
             </div>
             <div id="content-2" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #2</span><span class="card-counter">2 de 15</span></div>
@@ -461,11 +517,11 @@
             </div>
         </div>
 
-        <!-- TARJETA 3 (Vertical) -->
+        <!-- TARJETA 3 -->
         <div class="card" id="card-3" style="display:none;">
             <div id="lock-3" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #3 🧩</span><span class="card-counter">3 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Encuentra las parejas de nuestras fechas especiales:</p>
+                <div class="card-header"><span class="badge">Vídeo #3 🧩</span><span class="card-counter">3 de 15</span></div>
+                <p style="margin: 12px 0; font-weight: 600;">Encuentra las parejas de nuestras fechas especiales:</p>
                 <div class="memory-grid">
                     <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
                     <div class="memory-card" onclick="flipCard(this, '24/05')">❓</div>
@@ -481,11 +537,11 @@
             </div>
         </div>
 
-        <!-- TARJETA 4 (Vertical) -->
+        <!-- TARJETA 4 -->
         <div class="card" id="card-4" style="display:none;">
             <div id="lock-4" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #4 🎫</span><span class="card-counter">4 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Rasca con el dedo o ratón para revelar el secreto:</p>
+                <div class="card-header"><span class="badge">Vídeo #4 🎫</span><span class="card-counter">4 de 15</span></div>
+                <p style="margin: 12px 0; font-weight: 600;">Rasca con el dedo o ratón para revelar el secreto:</p>
                 <div class="scratch-container">
                     <div class="scratch-secret">Te amo bichito 🫶🏽🤍</div>
                     <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
@@ -499,12 +555,12 @@
             </div>
         </div>
 
-        <!-- TARJETA 5 (Vertical) -->
+        <!-- TARJETA 5 -->
         <div class="card" id="card-5" style="display:none;">
             <div id="lock-5" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #5 🏃‍♀️</span><span class="card-counter">5 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">¡Atrapa el botón si puedes para continuar!</p>
-                <div style="position: relative; height: 100px; overflow: hidden; border: 1px dashed var(--border-color); border-radius: 12px; margin: 15px 0;">
+                <div class="card-header"><span class="badge">Vídeo #5 🏃‍♀️</span><span class="card-counter">5 de 15</span></div>
+                <p style="margin: 12px 0; font-weight: 600;">¡Atrapa el botón si puedes para continuar!</p>
+                <div style="position: relative; height: 110px; overflow: hidden; border: 1px dashed var(--border-color); border-radius: 14px; margin: 16px 0;">
                     <button id="tricky-btn" class="action-btn" style="position: absolute; width: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 20px; font-size: 0.9rem;" onmouseover="handleTrickyButton(event)" ontouchstart="handleTrickyButton(event)">¡Atrápame!</button>
                 </div>
             </div>
@@ -516,16 +572,16 @@
             </div>
         </div>
 
-        <!-- TARJETA 6: CRONÓMETRO CIEGO (Con límite de 7 fallos) -->
+        <!-- TARJETA 6: CRONÓMETRO CIEGO -->
         <div class="card" id="card-6" style="display:none;">
             <div id="lock-6" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">6 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Mantén pulsado EXACTAMENTE 5 segundos.<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">(El cronómetro desaparecerá a los 2 segundos)</span></p>
-                <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); margin: 15px 0;" id="time6-display">0.0s</div>
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">6 de 15</span></div>
+                <p style="margin: 12px 0; font-weight: 600;">Mantén pulsado EXACTAMENTE 5 segundos.<br><span style="font-size: 0.82rem; color: var(--muted-text); font-weight: normal;">(El cronómetro desaparecerá a los 2 segundos)</span></p>
+                <div style="font-size: 2.8rem; font-weight: 700; color: var(--primary-color); margin: 15px 0; font-family: 'Playfair Display', serif;" id="time6-display">0.0s</div>
                 <button class="action-btn" onmousedown="startHold6()" onmouseup="endHold6()" ontouchstart="startHold6(event)" ontouchend="endHold6(event)">Mantener pulsado</button>
-                <p id="error-6" style="color:#e74c3c; display:none; margin-top:8px;"></p>
-                <div id="bypass-box-6" style="display:none; margin-top:12px;">
-                    <button class="action-btn" style="background:#e67e22;" onclick="unlockMinigame(6)">Este es el más difícil de todos, no lo has conseguido, pero yo te quiero igual 😉🤍</button>
+                <p id="error-6" style="color:var(--accent-color); display:none; margin-top:8px; font-size: 0.9rem;"></p>
+                <div id="bypass-box-6" style="display:none; margin-top:14px;">
+                    <button class="action-btn" style="background:#e67e22; color:#fff;" onclick="unlockMinigame(6)">Este es el más difícil de todos, no lo has conseguido, pero yo te quiero igual 😉🤍</button>
                 </div>
             </div>
             <div id="content-6" style="display:none;">
@@ -536,12 +592,12 @@
             </div>
         </div>
 
-        <!-- TARJETA 7 (Vertical) -->
+        <!-- TARJETA 7 -->
         <div class="card" id="card-7" style="display:none;">
             <div id="lock-7" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">7 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Toca los momentos en orden cronológico.<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">Un fallo y se reinicia todo.</span></p>
-                <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px;">
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">7 de 15</span></div>
+                <p style="margin: 12px 0; font-weight: 600;">Toca los momentos en orden cronológico.<br><span style="font-size: 0.82rem; color: var(--muted-text); font-weight: normal;">Un fallo y se reinicia todo.</span></p>
+                <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 16px;">
                     <button class="word-btn" onclick="clickWord7(this, 'Beso Famara')">Beso Famara</button>
                     <button class="word-btn" onclick="clickWord7(this, 'Viaje GC')">Viaje GC</button>
                     <button class="word-btn" onclick="clickWord7(this, '7 kilómetros')">7 kilómetros</button>
@@ -558,17 +614,17 @@
             </div>
         </div>
 
-        <!-- TARJETA 8: FRANCOTIRADOR (Horizontal + Anti-scroll táctil) -->
+        <!-- TARJETA 8: FRANCOTIRADOR -->
         <div class="card" id="card-8" style="display:none;">
             <div id="lock-8" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">8 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Toca el botón cuando la línea pase por la zona verde.</p>
-                <div style="position: relative; height: 50px; background: rgba(0,0,0,0.05); border-radius: 25px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border-color); touch-action: none;">
-                    <div id="sniper-target" style="position: absolute; left: 45%; width: 10%; height: 100%; background: rgba(39, 174, 96, 0.4);"></div>
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">8 de 15</span></div>
+                <p style="margin: 12px 0; font-weight: 600;">Toca el botón cuando la línea pase por la zona verde.</p>
+                <div style="position: relative; height: 50px; background: rgba(0,0,0,0.04); border-radius: 25px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border-color); touch-action: none;">
+                    <div id="sniper-target" style="position: absolute; left: 45%; width: 10%; height: 100%; background: rgba(39, 174, 96, 0.35);"></div>
                     <div id="sniper-line" class="sniper-line"></div>
                 </div>
                 <button class="action-btn" onclick="shootSniper(event)">¡Disparar!</button>
-                <p id="error-8" style="color:#e74c3c; display:none; margin-top:8px;">¡Fallaste! Inténtalo de nuevo.</p>
+                <p id="error-8" style="color:var(--accent-color); display:none; margin-top:8px; font-size: 0.9rem;">¡Fallaste! Inténtalo de nuevo.</p>
             </div>
             <div id="content-8" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #8</span><span class="card-counter">8 de 15</span></div>
@@ -578,20 +634,20 @@
             </div>
         </div>
 
-        <!-- TARJETA 9: BOMBA (Horizontal) -->
+        <!-- TARJETA 9: BOMBA -->
         <div class="card" id="card-9" style="display:none;">
             <div id="lock-9" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Da EXACTAMENTE 25 toques en 5 segundos.<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">Si das 26, explota.</span></p>
-                <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
-                    <span id="time9-display" style="font-weight:bold; color:var(--primary-color);">5.0s</span>
-                    <span id="tap9-display" style="font-weight:bold; color:var(--muted-text);">0/25</span>
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
+                <p style="margin: 12px 0; font-weight: 600;">Da EXACTAMENTE 25 toques en 5 segundos.<br><span style="font-size: 0.82rem; color: var(--muted-text); font-weight: normal;">Si das 26, explota.</span></p>
+                <div style="display:flex; justify-content:space-between; margin-bottom: 6px;">
+                    <span id="time9-display" style="font-weight:700; color:var(--primary-color);">5.0s</span>
+                    <span id="tap9-display" style="font-weight:700; color:var(--muted-text);">0/25</span>
                 </div>
-                <div style="height: 10px; background: #f1f2f6; border-radius: 10px; overflow: hidden; margin-bottom: 15px;">
-                    <div id="bomb-bar-fill" style="height: 100%; width: 0%; background: #e74c3c; transition: width 0.1s;"></div>
+                <div style="height: 8px; background: rgba(0,0,0,0.06); border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
+                    <div id="bomb-bar-fill" style="height: 100%; width: 0%; background: var(--accent-color); transition: width 0.1s;"></div>
                 </div>
                 <button class="action-btn" id="bomb-btn" onclick="tapBomb()">¡Tocar!</button>
-                <p id="error-9" style="color:#e74c3c; display:none; margin-top:8px; font-weight:bold;"></p>
+                <p id="error-9" style="color:var(--accent-color); display:none; margin-top:8px; font-weight:600; font-size: 0.9rem;"></p>
             </div>
             <div id="content-9" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #9</span><span class="card-counter">9 de 15</span></div>
@@ -601,14 +657,14 @@
             </div>
         </div>
 
-        <!-- TARJETA 10: SINTONIZANDO (Vertical) -->
+        <!-- TARJETA 10: SINTONIZANDO -->
         <div class="card" id="card-10" style="display:none;">
             <div id="lock-10" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Desliza a ciegas hasta sintonizar el recuerdo.<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">Guíate por cómo se ilumina el botón.</span></p>
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
+                <p style="margin: 12px 0; font-weight: 600;">Desliza a ciegas hasta sintonizar el recuerdo.<br><span style="font-size: 0.82rem; color: var(--muted-text); font-weight: normal;">Guíate por cómo se ilumina el botón.</span></p>
                 <input type="range" id="radio-slider" class="blind-slider" min="0" max="100" value="0" oninput="tuneRadio(this.value)">
                 <button class="action-btn" id="btn-radio" onclick="checkRadio()" style="opacity: 0.2;">Intentar sintonizar</button>
-                <p id="error-10" style="color:#e74c3c; display:none; margin-top:8px;">Aún hay interferencias...</p>
+                <p id="error-10" style="color:var(--accent-color); display:none; margin-top:8px; font-size: 0.9rem;">Aún hay interferencias...</p>
             </div>
             <div id="content-10" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #10</span><span class="card-counter">10 de 15</span></div>
@@ -618,13 +674,13 @@
             </div>
         </div>
 
-        <!-- TARJETAS 11 A 15 (Horizontal) -->
+        <!-- TARJETAS 11 A 15 -->
         <div class="card" id="card-11" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #11</span><span class="card-counter">11 de 15</span></div>
             <h3>11. Título Razón #11</h3>
             <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(11)">Desbloquear Razón #12</button>
+            <button class="action-btn" style="margin-top: 16px;" onclick="unlockNextBasicCard(11)">Desbloquear Razón #12</button>
         </div>
 
         <div class="card" id="card-12" style="display:none;">
@@ -632,7 +688,7 @@
             <h3>12. Título Razón #12</h3>
             <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/LE5CXRw888o" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(12)">Desbloquear Razón #13</button>
+            <button class="action-btn" style="margin-top: 16px;" onclick="unlockNextBasicCard(12)">Desbloquear Razón #13</button>
         </div>
 
         <div class="card" id="card-13" style="display:none;">
@@ -640,7 +696,7 @@
             <h3>13. Título Razón #13</h3>
             <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/MqOJod3MZFY" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(13)">Desbloquear Razón #14</button>
+            <button class="action-btn" style="margin-top: 16px;" onclick="unlockNextBasicCard(13)">Desbloquear Razón #14</button>
         </div>
 
         <div class="card" id="card-14" style="display:none;">
@@ -648,7 +704,7 @@
             <h3>14. Título Razón #14</h3>
             <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/bXwrEjvnX1M" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(14)">Desbloquear Razón #15</button>
+            <button class="action-btn" style="margin-top: 16px;" onclick="unlockNextBasicCard(14)">Desbloquear Razón #15</button>
         </div>
 
         <div class="card" id="card-15" style="display:none;">
@@ -656,14 +712,14 @@
             <h3>15. Título Razón #15</h3>
             <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/Oqtvt7pDs6g" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(15)">Finalizar y ver Sorpresa ✨</button>
+            <button class="action-btn" style="margin-top: 16px;" onclick="unlockNextBasicCard(15)">Finalizar y ver Sorpresa ✨</button>
         </div>
 
         <!-- BONUS -->
-        <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, #ffeaa7, #fab1a0); border: 2px solid #fdcb6e;">
-            <div class="card-header"><span class="badge" style="background:#d63031; color:white;">🎁 Sorpresa Final</span><span class="card-counter">✨ La última razón</span></div>
-            <h2 style="color:#d63031; text-align:center; margin: 10px 0;">Para ti, mi niña 🤍</h2>
-            <div class="response-box" style="background: rgba(255,255,255,0.85); color: #2d3436;">
+        <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, rgba(255,234,167,0.85), rgba(250,177,160,0.85)); border: 1px solid rgba(255,255,255,0.4);">
+            <div class="card-header"><span class="badge" style="background:#d63031; color:white;">🎁 Sorpresa Final</span><span class="card-counter">✨ Última razón</span></div>
+            <h2 style="color:#d63031; text-align:center; margin: 12px 0; font-size: 1.8rem;">Para ti, mi niña 🤍</h2>
+            <div class="response-box" style="background: rgba(255,255,255,0.9); color: #2d3436; border-left-color: #d63031;">
                 <strong>Carta final:</strong><br>
                 ¡Has desbloqueado y completado las 15 razones! Gracias por cada momento juntos. Esta pequeña página es solo una muestra de todo lo que significas para mí...
             </div>
@@ -806,7 +862,6 @@
             else if (nextNum > 15) document.getElementById('card-bonus').style.display = 'block';
         }
 
-        // Minijuegos 1 a 5
         var flippedCards = [];
         var matchedPairs = 0;
         function flipCard(card, val) {
@@ -843,7 +898,7 @@
             ctx.fillStyle = '#b2bec3';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#636e72';
-            ctx.font = 'bold 16px sans-serif';
+            ctx.font = 'bold 15px "Plus Jakarta Sans", sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText('✨ Rasca aquí ✨', canvas.width/2, canvas.height/2 + 5);
 
@@ -883,11 +938,10 @@
                 btn.style.left = Math.floor(Math.random() * (container.offsetWidth - btn.offsetWidth)) + 'px';
                 btn.style.top = Math.floor(Math.random() * (container.offsetHeight - btn.offsetHeight)) + 'px';
                 jumps++;
-                if (jumps >= 5) { btn.innerText = "¡Me rindo! Ábrelo 🤍"; btn.style.background = "#27ae60"; }
+                if (jumps >= 5) { btn.innerText = "¡Me rindo! Ábrelo 🤍"; btn.style.background = "#27ae60"; btn.style.color = "#fff"; }
             } else { unlockMinigame(5); }
         }
 
-        // JUEGO 6: CRONÓMETRO CIEGO (Con contador de 7 fallos)
         let timer6, startTime6, isHolding6 = false, failCount6 = 0;
         function startHold6(e) {
             if (e && e.cancelable) e.preventDefault();
@@ -926,14 +980,13 @@
             }
         }
 
-        // JUEGO 7: ORDENA LA HISTORIA
         const correctOrder7 = ["7 kilómetros", "RD", "Beso Famara", "Primer finde juntos", "Viaje GC", "Y lo que nos queda"];
         let currentStep7 = 0;
         function clickWord7(btn, word) {
             if(word === correctOrder7[currentStep7]) {
-                btn.style.background = "#27ae60";
-                btn.style.color = "white";
-                btn.style.borderColor = "#27ae60";
+                btn.style.background = "var(--primary-color)";
+                btn.style.color = "var(--bg-color)";
+                btn.style.borderColor = "var(--primary-color)";
                 btn.disabled = true;
                 currentStep7++;
                 if(currentStep7 === correctOrder7.length) {
@@ -944,13 +997,12 @@
                 document.querySelectorAll('.word-btn').forEach(b => {
                     b.style.background = "var(--card-bg)";
                     b.style.color = "var(--primary-color)";
-                    b.style.borderColor = "var(--primary-color)";
+                    b.style.borderColor = "var(--border-color)";
                     b.disabled = false;
                 });
             }
         }
 
-        // JUEGO 8: FRANCOTIRADOR (Con e.preventDefault para evitar movimiento de pantalla)
         function shootSniper(e) {
             if(e && e.cancelable) e.preventDefault();
             let line = document.getElementById('sniper-line');
@@ -968,7 +1020,6 @@
             }
         }
 
-        // JUEGO 9: LA BOMBA DE TOQUES
         let taps9 = 0, timer9 = null, timeleft9 = 5.0, game9Active = false;
         function tapBomb() {
             document.getElementById('error-9').style.display = 'none';
@@ -976,6 +1027,7 @@
                 game9Active = true;
                 timeleft9 = 5.0;
                 document.getElementById('bomb-btn').style.background = "var(--primary-color)";
+                document.getElementById('bomb-btn').style.color = "var(--bg-color)";
                 timer9 = setInterval(() => {
                     timeleft9 -= 0.1;
                     if(timeleft9 < 0) timeleft9 = 0;
@@ -999,7 +1051,8 @@
                     clearInterval(timer9);
                     game9Active = false;
                     resetBomb("¡BOOM! 💥 Te pasaste de 25.");
-                    document.getElementById('bomb-btn').style.background = "#e74c3c";
+                    document.getElementById('bomb-btn').style.background = "var(--accent-color)";
+                    document.getElementById('bomb-btn').style.color = "#fff";
                 }
             }
         }
@@ -1012,7 +1065,6 @@
             document.getElementById('tap9-display').innerText = "0/25";
         }
 
-        // JUEGO 10: SINTONIZANDO
         function tuneRadio(val) {
             let num = parseInt(val);
             let btn = document.getElementById('btn-radio');
@@ -1035,7 +1087,7 @@
         }
 
         function triggerConfetti() {
-            let colors = ['#e74c3c', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6'];
+            let colors = ['#d64545', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6'];
             for(let i = 0; i < 40; i++) {
                 let conf = document.createElement('div');
                 conf.className = 'confetti';
