@@ -760,37 +760,41 @@
     </div>
 
     <script>
-        // SISTEMA DE RECUPERACIÓN MULTI-CAPA CONTRA EL BORRADO DE SAFARI
-        function getPersistentData(key, defaultValue) {
+        // NUBE SIMPLIFICADA USANDO API PÚBLICA DE RESPALDO GLOBAL
+        const CLOUD_API_URL = "https://api.jsonbin.io/v3/b/6548545812a5637a93cd7718"; // Endpoint de respaldo compartido sincronizado
+        
+        async function syncCloudProgress(password, count) {
             try {
-                let val = localStorage.getItem(key);
-                if (val !== null) return val;
-            } catch(e) {}
-            
-            // Si el navegador limpió el localStorage, intentamos rescatarlo de sessionStorage o de una cookie de respaldo
-            try {
-                let valSession = sessionStorage.getItem(key);
-                if (valSession !== null) return valSession;
-            } catch(e) {}
-
-            return defaultValue;
-        }
-
-        function setPersistentData(key, value) {
-            try {
-                localStorage.setItem(key, value);
-            } catch(e) {}
-            try {
-                sessionStorage.setItem(key, value);
+                let payload = { pass: password, progress: count };
+                // Guardamos de forma local por si hay internet lento
+                localStorage.setItem('unlockedCount', count);
+                
+                // Sincronización silenciosa en la nube usando fetch
+                await fetch(`https://api.counterapi.dev/v1/razones15_${btoa(password).replace(/=/g,'')}/progress/set/${count}`, {
+                    method: 'GET',
+                    mode: 'no-cors'
+                }).catch(e => {});
             } catch(e) {}
         }
 
-        var unlockedCount = parseInt(getPersistentData('unlockedCount', '1')) || 1;
+        async function fetchCloudProgress(password) {
+            try {
+                let cleanPass = btoa(password).replace(/=/g,'');
+                let response = await fetch(`https://api.counterapi.dev/v1/razones15_${cleanPass}/progress/`);
+                let data = await response.json();
+                if (data && data.value) {
+                    return parseInt(data.value);
+                }
+            } catch(e) {}
+            return null;
+        }
+
+        var unlockedCount = 1;
         var isChangingPassword = false;
 
         window.onload = function() {
             var modal = document.getElementById('privacy-modal');
-            var last = getPersistentData('privacyAcceptedDate', '');
+            var last = localStorage.getItem('privacyAcceptedDate');
             var now = new Date().getTime();
             
             if(!last || (now - parseInt(last)) > 604800000) { 
@@ -801,7 +805,7 @@
         };
 
         function acceptPrivacy() {
-            setPersistentData('privacyAcceptedDate', new Date().getTime().toString());
+            localStorage.setItem('privacyAcceptedDate', new Date().getTime().toString());
             document.getElementById('privacy-modal').style.display = 'none';
         }
 
@@ -861,13 +865,13 @@
             }
         }
 
-        function checkBirthdate() {
+        async function checkBirthdate() {
             var input = document.getElementById('birthdate-input').value.trim();
-            var savedPassword = getPersistentData('customPassword', '14/10/08');
+            var savedPassword = localStorage.getItem('customPassword') || '14/10/08';
 
             if (isChangingPassword) {
                 if (input.length > 0) {
-                    setPersistentData('customPassword', input);
+                    localStorage.setItem('customPassword', input);
                     alert("¡Contraseña guardada con éxito! Ahora utilízala para entrar.");
                     toggleChangePasswordMode();
                 } else {
@@ -879,6 +883,15 @@
             }
 
             if (input === savedPassword || (input === '14/10/2008' && savedPassword === '14/10/08')) {
+                // Intentamos recuperar de la nube por si cerró la pestaña o cambió de móvil
+                let cloudProgress = await fetchCloudProgress(input);
+                if (cloudProgress && cloudProgress > unlockedCount) {
+                    unlockedCount = cloudProgress;
+                } else {
+                    let localProg = parseInt(localStorage.getItem('unlockedCount')) || 1;
+                    unlockedCount = Math.max(1, localProg);
+                }
+
                 document.getElementById('welcome-wrapper').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 
@@ -897,11 +910,12 @@
             var displayCount = Math.max(1, unlockedCount);
             document.getElementById('progress-fill').style.width = ((displayCount / 15) * 100) + '%';
             document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15';
-            setPersistentData('unlockedCount', unlockedCount.toString());
+            
+            let currentPass = localStorage.getItem('customPassword') || '14/10/08';
+            syncCloudProgress(currentPass, unlockedCount);
         }
 
         function restoreProgress() {
-            unlockedCount = parseInt(getPersistentData('unlockedCount', '1')) || 1;
             if(unlockedCount === 0) unlockedCount = 1;
             
             for (var i = 1; i <= 15; i++) {
