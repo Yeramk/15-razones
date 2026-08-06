@@ -91,7 +91,6 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Confeti Animation */
         @keyframes confettiFall {
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
@@ -230,6 +229,7 @@
             font-weight: 600;
         }
 
+        /* Contenedor Vídeo Vertical (9:16) */
         .video-container {
             position: relative;
             width: 100%;
@@ -242,7 +242,20 @@
             box-shadow: 0 6px 16px rgba(0,0,0,0.12);
         }
 
-        .video-container iframe {
+        /* Contenedor Vídeo Horizontal (16:9) */
+        .video-container-horizontal {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            margin: 14px 0;
+            background: #000;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        }
+
+        .video-container iframe, .video-container-horizontal iframe {
             position: absolute;
             top: 0;
             left: 0;
@@ -298,7 +311,6 @@
             transform: scale(0.98);
         }
 
-        /* Estilos específicos Minijuegos */
         .audio-player-box {
             background: rgba(0,0,0,0.03);
             border-radius: 16px;
@@ -318,7 +330,6 @@
 
         .word-btn { background: var(--card-bg); color: var(--primary-color); border: 2px solid var(--primary-color); padding: 10px; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 0.9rem; transition: all 0.2s ease; }
         
-        /* Animación Francotirador */
         @keyframes sniperMove {
             0% { left: 0%; }
             100% { left: 95%; }
@@ -328,7 +339,6 @@
             animation: sniperMove 1.2s infinite alternate ease-in-out;
         }
 
-        /* Estilo Slider Invisible */
         .blind-slider {
             -webkit-appearance: none; appearance: none; background: rgba(0,0,0,0.05); height: 30px; border-radius: 15px; outline: none; margin: 20px 0;
         }
@@ -346,7 +356,7 @@
 </head>
 <body>
 
-    <!-- AVISO DE PRIVACIDAD INDEPENDIENTE -->
+    <!-- AVISO DE PRIVACIDAD -->
     <div id="privacy-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
         <div style="background: var(--card-bg, #fff); border-radius: 24px; padding: 28px 22px; max-width: 420px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
             <div style="text-align: center; margin-bottom: 15px;">
@@ -371,7 +381,6 @@
         <button class="icon-btn" onclick="toggleDarkMode()" title="Cambiar tema">🌙</button>
     </div>
 
-    <!-- AUDIO LOCAL EN MP3 -->
     <audio id="bg-music" loop preload="auto">
         <source src="./musica.mp3" type="audio/mpeg">
     </audio>
@@ -409,7 +418,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 1 -->
+        <!-- TARJETA 1 (Vertical) -->
         <div class="card" id="card-1">
             <div id="lock-1" class="lock-box">
                 <div class="card-header">
@@ -421,24 +430,15 @@
                 <button class="action-btn" onclick="checkAnswer(1, '3600')">Desbloquear</button>
                 <p id="error-1" style="color:#e74c3c; display:none; margin-top:8px;">PIN incorrecto 😉</p>
             </div>
-
             <div id="content-1" style="display:none;">
-                <div class="card-header">
-                    <span class="badge">Vídeo #1</span>
-                    <span class="card-counter">1 de 15</span>
-                </div>
+                <div class="card-header"><span class="badge">Vídeo #1</span><span class="card-counter">1 de 15</span></div>
                 <h3>1. Tu fuerza</h3>
-                <div class="video-container">
-                    <iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe>
-                </div>
-                <div class="response-box">
-                    <strong>Primera razón:</strong><br>
-                    [Pendiente de texto...]
-                </div>
+                <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe></div>
+                <div class="response-box"><strong>Primera razón:</strong><br>[Pendiente de texto...]</div>
             </div>
         </div>
 
-        <!-- TARJETA 2 -->
+        <!-- TARJETA 2 (Vertical) -->
         <div class="card" id="card-2" style="display:none;">
             <div id="lock-2" class="lock-box">
                 <div class="card-header">
@@ -461,13 +461,10 @@
             </div>
         </div>
 
-        <!-- TARJETA 3 -->
+        <!-- TARJETA 3 (Vertical) -->
         <div class="card" id="card-3" style="display:none;">
             <div id="lock-3" class="lock-box">
-                <div class="card-header">
-                    <span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #3 🧩</span>
-                    <span class="card-counter">3 de 15</span>
-                </div>
+                <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #3 🧩</span><span class="card-counter">3 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Encuentra las parejas de nuestras fechas especiales:</p>
                 <div class="memory-grid">
                     <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
@@ -484,7 +481,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 4 -->
+        <!-- TARJETA 4 (Vertical) -->
         <div class="card" id="card-4" style="display:none;">
             <div id="lock-4" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #4 🎫</span><span class="card-counter">4 de 15</span></div>
@@ -502,7 +499,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 5 -->
+        <!-- TARJETA 5 (Vertical) -->
         <div class="card" id="card-5" style="display:none;">
             <div id="lock-5" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #5 🏃‍♀️</span><span class="card-counter">5 de 15</span></div>
@@ -519,7 +516,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 6: CRONÓMETRO CIEGO -->
+        <!-- TARJETA 6: CRONÓMETRO CIEGO (Con límite de 7 fallos) -->
         <div class="card" id="card-6" style="display:none;">
             <div id="lock-6" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">6 de 15</span></div>
@@ -527,6 +524,9 @@
                 <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary-color); margin: 15px 0;" id="time6-display">0.0s</div>
                 <button class="action-btn" onmousedown="startHold6()" onmouseup="endHold6()" ontouchstart="startHold6(event)" ontouchend="endHold6(event)">Mantener pulsado</button>
                 <p id="error-6" style="color:#e74c3c; display:none; margin-top:8px;"></p>
+                <div id="bypass-box-6" style="display:none; margin-top:12px;">
+                    <button class="action-btn" style="background:#e67e22;" onclick="unlockMinigame(6)">Este es el más difícil de todos, no lo has conseguido, pero yo te quiero igual 😉🤍</button>
+                </div>
             </div>
             <div id="content-6" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #6</span><span class="card-counter">6 de 15</span></div>
@@ -536,7 +536,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 7: ORDENA NUESTRA HISTORIA -->
+        <!-- TARJETA 7 (Vertical) -->
         <div class="card" id="card-7" style="display:none;">
             <div id="lock-7" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">7 de 15</span></div>
@@ -558,27 +558,27 @@
             </div>
         </div>
 
-        <!-- TARJETA 8: REFLEJOS DE FRANCOTIRADOR -->
+        <!-- TARJETA 8: FRANCOTIRADOR (Horizontal + Anti-scroll táctil) -->
         <div class="card" id="card-8" style="display:none;">
             <div id="lock-8" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">8 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Toca el botón cuando la línea pase por la zona verde.</p>
-                <div style="position: relative; height: 50px; background: rgba(0,0,0,0.05); border-radius: 25px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border-color);">
+                <div style="position: relative; height: 50px; background: rgba(0,0,0,0.05); border-radius: 25px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border-color); touch-action: none;">
                     <div id="sniper-target" style="position: absolute; left: 45%; width: 10%; height: 100%; background: rgba(39, 174, 96, 0.4);"></div>
                     <div id="sniper-line" class="sniper-line"></div>
                 </div>
-                <button class="action-btn" onclick="shootSniper()">¡Disparar!</button>
+                <button class="action-btn" onclick="shootSniper(event)">¡Disparar!</button>
                 <p id="error-8" style="color:#e74c3c; display:none; margin-top:8px;">¡Fallaste! Inténtalo de nuevo.</p>
             </div>
             <div id="content-8" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #8</span><span class="card-counter">8 de 15</span></div>
                 <h3>8. Título Razón #8</h3>
-                <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/z34dLRgQTmE" frameborder="0" allowfullscreen></iframe></div>
+                <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/z34dLRgQTmE" frameborder="0" allowfullscreen></iframe></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
 
-        <!-- TARJETA 9: LA BOMBA DE TOQUES -->
+        <!-- TARJETA 9: BOMBA (Horizontal) -->
         <div class="card" id="card-9" style="display:none;">
             <div id="lock-9" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
@@ -596,19 +596,17 @@
             <div id="content-9" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #9</span><span class="card-counter">9 de 15</span></div>
                 <h3>9. Título Razón #9</h3>
-                <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/2YUXajHgD4g" frameborder="0" allowfullscreen></iframe></div>
+                <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/2YUXajHgD4g" frameborder="0" allowfullscreen></iframe></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
 
-        <!-- TARJETA 10: SINTONIZANDO -->
+        <!-- TARJETA 10: SINTONIZANDO (Vertical) -->
         <div class="card" id="card-10" style="display:none;">
             <div id="lock-10" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Desliza a ciegas hasta sintonizar el recuerdo.<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">Guíate por cómo se ilumina el botón.</span></p>
-                
                 <input type="range" id="radio-slider" class="blind-slider" min="0" max="100" value="0" oninput="tuneRadio(this.value)">
-                
                 <button class="action-btn" id="btn-radio" onclick="checkRadio()" style="opacity: 0.2;">Intentar sintonizar</button>
                 <p id="error-10" style="color:#e74c3c; display:none; margin-top:8px;">Aún hay interferencias...</p>
             </div>
@@ -620,11 +618,11 @@
             </div>
         </div>
 
-        <!-- TARJETAS 11 A 15 (Normales, con botón para avanzar) -->
+        <!-- TARJETAS 11 A 15 (Horizontal) -->
         <div class="card" id="card-11" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #11</span><span class="card-counter">11 de 15</span></div>
             <h3>11. Título Razón #11</h3>
-            <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe></div>
+            <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/Q0Vn2N--Uo0" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(11)">Desbloquear Razón #12</button>
         </div>
@@ -632,7 +630,7 @@
         <div class="card" id="card-12" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #12</span><span class="card-counter">12 de 15</span></div>
             <h3>12. Título Razón #12</h3>
-            <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/LE5CXRw888o" frameborder="0" allowfullscreen></iframe></div>
+            <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/LE5CXRw888o" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(12)">Desbloquear Razón #13</button>
         </div>
@@ -640,7 +638,7 @@
         <div class="card" id="card-13" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #13</span><span class="card-counter">13 de 15</span></div>
             <h3>13. Título Razón #13</h3>
-            <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/MqOJod3MZFY" frameborder="0" allowfullscreen></iframe></div>
+            <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/MqOJod3MZFY" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(13)">Desbloquear Razón #14</button>
         </div>
@@ -648,7 +646,7 @@
         <div class="card" id="card-14" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #14</span><span class="card-counter">14 de 15</span></div>
             <h3>14. Título Razón #14</h3>
-            <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/bXwrEjvnX1M" frameborder="0" allowfullscreen></iframe></div>
+            <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/bXwrEjvnX1M" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(14)">Desbloquear Razón #15</button>
         </div>
@@ -656,12 +654,12 @@
         <div class="card" id="card-15" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #15</span><span class="card-counter">15 de 15</span></div>
             <h3>15. Título Razón #15</h3>
-            <div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/Oqtvt7pDs6g" frameborder="0" allowfullscreen></iframe></div>
+            <div class="video-container-horizontal"><iframe src="https://www.youtube-nocookie.com/embed/Oqtvt7pDs6g" frameborder="0" allowfullscreen></iframe></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(15)">Finalizar y ver Sorpresa ✨</button>
         </div>
 
-        <!-- CARTA BONUS ESPECIAL -->
+        <!-- BONUS -->
         <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, #ffeaa7, #fab1a0); border: 2px solid #fdcb6e;">
             <div class="card-header"><span class="badge" style="background:#d63031; color:white;">🎁 Sorpresa Final</span><span class="card-counter">✨ La última razón</span></div>
             <h2 style="color:#d63031; text-align:center; margin: 10px 0;">Para ti, mi niña 🤍</h2>
@@ -740,7 +738,7 @@
                     if (cardBox) cardBox.style.display = 'block';
                     if (lockBox) lockBox.style.display = 'none';
                     if (contentBox) contentBox.style.display = 'block';
-                    if (i >= 11 && btn) btn.style.display = 'none'; // Botones normales de 11 a 15
+                    if (i >= 11 && btn) btn.style.display = 'none';
                 } 
                 else if (i === unlockedCount) {
                     if (cardBox) {
@@ -781,7 +779,6 @@
             if (lockBox) lockBox.style.display = 'none';
             if (contentBox) contentBox.style.display = 'block';
             
-            // Lanzar confeti en el hito de la tarjeta 10
             if (num === 10) triggerConfetti();
 
             var nextNum = num + 1;
@@ -809,7 +806,7 @@
             else if (nextNum > 15) document.getElementById('card-bonus').style.display = 'block';
         }
 
-        // ====== MINIJUEGOS 1 AL 5 ======
+        // Minijuegos 1 a 5
         var flippedCards = [];
         var matchedPairs = 0;
         function flipCard(card, val) {
@@ -890,12 +887,10 @@
             } else { unlockMinigame(5); }
         }
 
-        // ====== MINIJUEGOS DIFÍCILES (6 A 10) ======
-
-        // JUEGO 6: CRONÓMETRO CIEGO
-        let timer6, startTime6, isHolding6 = false;
+        // JUEGO 6: CRONÓMETRO CIEGO (Con contador de 7 fallos)
+        let timer6, startTime6, isHolding6 = false, failCount6 = 0;
         function startHold6(e) {
-            if (e && e.cancelable) e.preventDefault(); // Evita scroll o zoom en táctil
+            if (e && e.cancelable) e.preventDefault();
             isHolding6 = true;
             startTime6 = Date.now();
             document.getElementById('error-6').style.display = 'none';
@@ -919,9 +914,15 @@
                 document.getElementById('time6-display').innerText = elapsed.toFixed(2) + "s";
                 setTimeout(() => unlockMinigame(6), 500);
             } else {
-                document.getElementById('error-6').style.display = 'block';
-                document.getElementById('error-6').innerText = `Hiciste ${elapsed.toFixed(2)}s. ¡Inténtalo de nuevo!`;
+                failCount6++;
+                let errEl = document.getElementById('error-6');
+                errEl.style.display = 'block';
+                errEl.innerText = `Hiciste ${elapsed.toFixed(2)}s. Intentos fallidos: ${failCount6}/7`;
                 document.getElementById('time6-display').innerText = "0.0s";
+                
+                if (failCount6 >= 7) {
+                    document.getElementById('bypass-box-6').style.display = 'block';
+                }
             }
         }
 
@@ -949,14 +950,14 @@
             }
         }
 
-        // JUEGO 8: FRANCOTIRADOR
-        function shootSniper() {
+        // JUEGO 8: FRANCOTIRADOR (Con e.preventDefault para evitar movimiento de pantalla)
+        function shootSniper(e) {
+            if(e && e.cancelable) e.preventDefault();
             let line = document.getElementById('sniper-line');
             let target = document.getElementById('sniper-target');
             let lRect = line.getBoundingClientRect();
             let tRect = target.getBoundingClientRect();
             
-            // Si el centro de la línea está dentro del rectángulo verde
             let lineCenter = lRect.left + (lRect.width / 2);
             if (lineCenter >= tRect.left && lineCenter <= tRect.right) {
                 line.style.animationPlayState = 'paused';
@@ -1015,10 +1016,8 @@
         function tuneRadio(val) {
             let num = parseInt(val);
             let btn = document.getElementById('btn-radio');
-            // El objetivo oculto es 78. Opacidad según cercanía.
             let dist = Math.abs(num - 78);
             let op = 1 - (dist / 100); 
-            // Para que sea difícil, solo se ilumina bien muy cerca
             if (dist < 10) op = 0.8 + (10 - dist) * 0.02; 
             else op = Math.max(0.2, op - 0.3);
 
@@ -1035,7 +1034,6 @@
             }
         }
 
-        // SISTEMA DE CONFETI PARA CELEBRAR
         function triggerConfetti() {
             let colors = ['#e74c3c', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6'];
             for(let i = 0; i < 40; i++) {
