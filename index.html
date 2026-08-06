@@ -38,7 +38,6 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* EVITA EL PARPADEO INICIAL OCULTANDO TODO HASTA QUE JS DECIDA */
         body {
             background-color: var(--bg-color);
             background-image: radial-gradient(var(--bg-pattern) 0.8px, transparent 0.8px), radial-gradient(var(--bg-pattern) 0.8px, var(--bg-pattern-alt) 0.8px);
@@ -51,7 +50,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            opacity: 0; /* Se revelará mediante JS */
+            opacity: 0;
             transition: opacity 0.2s ease-in;
         }
 
@@ -353,7 +352,6 @@
             padding: 12px 0;
         }
 
-        /* INPUTS EN TAMAÑO NORMAL Y CÓMODO */
         input[type="text"], input[type="password"], input[type="number"], input[type="range"] {
             width: 100%;
             padding: 14px 16px;
@@ -431,7 +429,6 @@
 </head>
 <body>
 
-    <!-- POLÍTICAS DE PRIVACIDAD Y AMOR -->
     <div id="privacy-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
         <div style="background: var(--card-bg, #fff); border-radius: 24px; padding: 28px 22px; max-width: 420px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
             <div style="text-align: center; margin-bottom: 15px;">
@@ -450,7 +447,6 @@
         </div>
     </div>
 
-    <!-- CONTROLES SUPERIORES (MENÚ AJUSTES REDISEÑADO) -->
     <div class="top-controls">
         <div class="dropdown">
             <button class="icon-btn" onclick="toggleMenu()" title="Ajustes">⚙️</button>
@@ -478,7 +474,6 @@
     <div class="heart-bg" style="left: 60%; animation-delay: 5s;">🤍</div>
     <div class="heart-bg" style="left: 85%; animation-delay: 7.5s;">💖</div>
 
-    <!-- 1. ACCESO Y CAMBIO DE CONTRASEÑA -->
     <div id="welcome-wrapper">
         <div id="welcome-screen">
             <h2 id="welcome-title">Hola mi amor 🤍</h2>
@@ -495,7 +490,6 @@
         </div>
     </div>
 
-    <!-- 2. CONTENIDO PRINCIPAL -->
     <div id="main-content">
         <header>
             <h1>15 Razones 🤍</h1>
@@ -512,7 +506,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 1 (Vertical) -->
+        <!-- TARJETA 1 -->
         <div class="card" id="card-1">
             <div id="lock-1" class="lock-box">
                 <div class="card-header">
@@ -532,7 +526,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 2 (Vertical) -->
+        <!-- TARJETA 2 -->
         <div class="card" id="card-2" style="display:none;">
             <div id="lock-2" class="lock-box">
                 <div class="card-header">
@@ -555,7 +549,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 3 (Vertical) -->
+        <!-- TARJETA 3 -->
         <div class="card" id="card-3" style="display:none;">
             <div id="lock-3" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #3 🧩</span><span class="card-counter">3 de 15</span></div>
@@ -575,7 +569,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 4 (Vertical) -->
+        <!-- TARJETA 4 -->
         <div class="card" id="card-4" style="display:none;">
             <div id="lock-4" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #4 🎫</span><span class="card-counter">4 de 15</span></div>
@@ -593,7 +587,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 5 (Vertical) -->
+        <!-- TARJETA 5 -->
         <div class="card" id="card-5" style="display:none;">
             <div id="lock-5" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #5 🏃‍♀️</span><span class="card-counter">5 de 15</span></div>
@@ -610,7 +604,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 6: CRONÓMETRO CIEGO -->
+        <!-- TARJETA 6 -->
         <div class="card" id="card-6" style="display:none;">
             <div id="lock-6" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">6 de 15</span></div>
@@ -630,7 +624,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 7 (Vertical) -->
+        <!-- TARJETA 7 -->
         <div class="card" id="card-7" style="display:none;">
             <div id="lock-7" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">7 de 15</span></div>
@@ -652,7 +646,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 8: FRANCOTIRADOR -->
+        <!-- TARJETA 8 -->
         <div class="card" id="card-8" style="display:none;">
             <div id="lock-8" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">8 de 15</span></div>
@@ -672,7 +666,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 9: BOMBA -->
+        <!-- TARJETA 9 -->
         <div class="card" id="card-9" style="display:none;">
             <div id="lock-9" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
@@ -695,7 +689,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 10: SINTONIZANDO -->
+        <!-- TARJETA 10 -->
         <div class="card" id="card-10" style="display:none;">
             <div id="lock-10" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
@@ -753,7 +747,6 @@
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(15)">Finalizar y ver Sorpresa ✨</button>
         </div>
 
-        <!-- BONUS -->
         <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, #ffeaa7, #fab1a0); border: 2px solid #fdcb6e;">
             <div class="card-header"><span class="badge" style="background:#d63031; color:white;">🎁 Sorpresa Final</span><span class="card-counter">✨ La última razón</span></div>
             <h2 style="color:#d63031; text-align:center; margin: 10px 0;">Para ti, mi niña 🤍</h2>
@@ -767,12 +760,37 @@
     </div>
 
     <script>
-        var unlockedCount = parseInt(localStorage.getItem('unlockedCount')) || 1;
+        // SISTEMA DE RECUPERACIÓN MULTI-CAPA CONTRA EL BORRADO DE SAFARI
+        function getPersistentData(key, defaultValue) {
+            try {
+                let val = localStorage.getItem(key);
+                if (val !== null) return val;
+            } catch(e) {}
+            
+            // Si el navegador limpió el localStorage, intentamos rescatarlo de sessionStorage o de una cookie de respaldo
+            try {
+                let valSession = sessionStorage.getItem(key);
+                if (valSession !== null) return valSession;
+            } catch(e) {}
+
+            return defaultValue;
+        }
+
+        function setPersistentData(key, value) {
+            try {
+                localStorage.setItem(key, value);
+            } catch(e) {}
+            try {
+                sessionStorage.setItem(key, value);
+            } catch(e) {}
+        }
+
+        var unlockedCount = parseInt(getPersistentData('unlockedCount', '1')) || 1;
         var isChangingPassword = false;
 
         window.onload = function() {
             var modal = document.getElementById('privacy-modal');
-            var last = localStorage.getItem('privacyAcceptedDate');
+            var last = getPersistentData('privacyAcceptedDate', '');
             var now = new Date().getTime();
             
             if(!last || (now - parseInt(last)) > 604800000) { 
@@ -783,7 +801,7 @@
         };
 
         function acceptPrivacy() {
-            localStorage.setItem('privacyAcceptedDate', new Date().getTime().toString());
+            setPersistentData('privacyAcceptedDate', new Date().getTime().toString());
             document.getElementById('privacy-modal').style.display = 'none';
         }
 
@@ -845,12 +863,11 @@
 
         function checkBirthdate() {
             var input = document.getElementById('birthdate-input').value.trim();
-            // Lógica de persistencia absoluta: si nunca se guardó una contraseña personalizada, por defecto arranca con 14/10/08
-            var savedPassword = localStorage.getItem('customPassword') || '14/10/08';
+            var savedPassword = getPersistentData('customPassword', '14/10/08');
 
             if (isChangingPassword) {
                 if (input.length > 0) {
-                    localStorage.setItem('customPassword', input);
+                    setPersistentData('customPassword', input);
                     alert("¡Contraseña guardada con éxito! Ahora utilízala para entrar.");
                     toggleChangePasswordMode();
                 } else {
@@ -880,11 +897,13 @@
             var displayCount = Math.max(1, unlockedCount);
             document.getElementById('progress-fill').style.width = ((displayCount / 15) * 100) + '%';
             document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15';
-            localStorage.setItem('unlockedCount', unlockedCount);
+            setPersistentData('unlockedCount', unlockedCount.toString());
         }
 
         function restoreProgress() {
+            unlockedCount = parseInt(getPersistentData('unlockedCount', '1')) || 1;
             if(unlockedCount === 0) unlockedCount = 1;
+            
             for (var i = 1; i <= 15; i++) {
                 var cardBox = document.getElementById('card-' + i);
                 var lockBox = document.getElementById('lock-' + i);
