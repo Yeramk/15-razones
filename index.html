@@ -352,7 +352,7 @@
             padding: 12px 0;
         }
 
-        input[type="text"], input[type="password"], input[type="number"], input[type="range"] {
+        input[type="text"], input[type="password"], input[type="number"], input[type="range"], select {
             width: 100%;
             padding: 14px 16px;
             margin: 12px 0;
@@ -484,8 +484,8 @@
             
             <p id="welcome-error" style="color:#e74c3c; display:none; margin-top:8px;">Mmm... esa no es tu contraseña 😉</p>
             
-            <div id="change-pass-container" style="margin-top: 15px;">
-                <a href="javascript:void(0);" onclick="toggleChangePasswordMode()" id="change-pass-link" style="font-size: 0.85rem; color: var(--muted-text); text-decoration: underline;">¿Quieres cambiar tu contraseña?</a>
+            <div id="recovery-box" style="margin-top: 15px; border-top: 1px solid var(--border-color); padding-top: 12px;">
+                <a href="javascript:void(0);" onclick="toggleRecoveryMode()" id="recovery-link" style="font-size: 0.85rem; color: var(--muted-text); text-decoration: underline;">¿Has perdido tu progreso? Toca aquí</a>
             </div>
         </div>
     </div>
@@ -760,37 +760,8 @@
     </div>
 
     <script>
-        // NUBE SIMPLIFICADA USANDO API PÚBLICA DE RESPALDO GLOBAL
-        const CLOUD_API_URL = "https://api.jsonbin.io/v3/b/6548545812a5637a93cd7718"; // Endpoint de respaldo compartido sincronizado
-        
-        async function syncCloudProgress(password, count) {
-            try {
-                let payload = { pass: password, progress: count };
-                // Guardamos de forma local por si hay internet lento
-                localStorage.setItem('unlockedCount', count);
-                
-                // Sincronización silenciosa en la nube usando fetch
-                await fetch(`https://api.counterapi.dev/v1/razones15_${btoa(password).replace(/=/g,'')}/progress/set/${count}`, {
-                    method: 'GET',
-                    mode: 'no-cors'
-                }).catch(e => {});
-            } catch(e) {}
-        }
-
-        async function fetchCloudProgress(password) {
-            try {
-                let cleanPass = btoa(password).replace(/=/g,'');
-                let response = await fetch(`https://api.counterapi.dev/v1/razones15_${cleanPass}/progress/`);
-                let data = await response.json();
-                if (data && data.value) {
-                    return parseInt(data.value);
-                }
-            } catch(e) {}
-            return null;
-        }
-
         var unlockedCount = 1;
-        var isChangingPassword = false;
+        var isRecoveryMode = false;
 
         window.onload = function() {
             var modal = document.getElementById('privacy-modal');
@@ -799,6 +770,16 @@
             
             if(!last || (now - parseInt(last)) > 604800000) { 
                 modal.style.display = 'flex'; 
+            }
+
+            // Comprobación de URL Hash o LocalStorage (Doble respaldo infalible)
+            let hashVal = window.location.hash.match(/progreso=(\d+)/);
+            if (hashVal && hashVal[1]) {
+                unlockedCount = parseInt(hashVal[1]);
+                localStorage.setItem('unlockedCount', unlockedCount);
+            } else {
+                let localProg = parseInt(localStorage.getItem('unlockedCount')) || 1;
+                unlockedCount = Math.max(1, localProg);
             }
             
             document.body.style.opacity = '1';
@@ -841,57 +822,68 @@
             }
         }
 
-        function toggleChangePasswordMode() {
-            isChangingPassword = !isChangingPassword;
+        function toggleRecoveryMode() {
+            isRecoveryMode = !isRecoveryMode;
             var title = document.getElementById('welcome-title');
             var desc = document.getElementById('welcome-desc');
             var btn = document.getElementById('welcome-btn');
-            var link = document.getElementById('change-pass-link');
+            var link = document.getElementById('recovery-link');
             var input = document.getElementById('birthdate-input');
 
-            input.value = '';
+            input.style.display = isRecoveryMode ? 'none' : 'block';
             document.getElementById('welcome-error').style.display = 'none';
 
-            if (isChangingPassword) {
-                title.innerText = "Configurar clave ⚙️";
-                desc.innerText = "Introduce la nueva contraseña que deseas usar a partir de ahora:";
-                btn.innerText = "Guardar nueva contraseña";
-                link.innerText = "← Volver al acceso";
+            // Si entra en modo recuperación, creamos dinámicamente un selector de tarjeta para restaurar con un toque
+            let existingSelect = document.getElementById('recovery-select');
+            if (isRecoveryMode) {
+                title.innerText = "Recuperar Progreso 🔄";
+                desc.innerText = "Selecciona en qué tarjeta o vídeo se quedó la última vez:";
+                btn.innerText = "Restaurar Progreso";
+                link.innerText = "← Volver al acceso normal";
+
+                if (!existingSelect) {
+                    let select = document.createElement('select');
+                    select.id = 'recovery-select';
+                    for (let i = 1; i <= 15; i++) {
+                        let opt = document.createElement('option');
+                        opt.value = i;
+                        opt.text = "Tarjeta / Vídeo #" + i;
+                        select.appendChild(opt);
+                    }
+                    input.parentNode.insertBefore(select, btn);
+                } else {
+                    existingSelect.style.display = 'block';
+                }
             } else {
                 title.innerText = "Hola mi amor 🤍";
                 desc.innerText = "Introduce tu contraseña para descubrir las 15 razones.";
                 btn.innerText = "Entrar";
-                link.innerText = "¿Quieres cambiar tu contraseña?";
+                link.innerText = "¿Has perdido tu progreso? Toca aquí";
+                if (existingSelect) existingSelect.style.display = 'none';
             }
         }
 
-        async function checkBirthdate() {
+        function checkBirthdate() {
             var input = document.getElementById('birthdate-input').value.trim();
             var savedPassword = localStorage.getItem('customPassword') || '14/10/08';
 
-            if (isChangingPassword) {
-                if (input.length > 0) {
-                    localStorage.setItem('customPassword', input);
-                    alert("¡Contraseña guardada con éxito! Ahora utilízala para entrar.");
-                    toggleChangePasswordMode();
-                } else {
-                    var err = document.getElementById('welcome-error');
-                    err.style.display = 'block';
-                    err.innerText = "La contraseña no puede estar vacía.";
-                }
+            if (isRecoveryMode) {
+                var selectVal = parseInt(document.getElementById('recovery-select').value);
+                unlockedCount = selectVal;
+                localStorage.setItem('unlockedCount', unlockedCount);
+                window.location.hash = "progreso=" + unlockedCount;
+                
+                document.getElementById('welcome-wrapper').style.display = 'none';
+                document.getElementById('main-content').style.display = 'block';
+                
+                var audio = document.getElementById('bg-music');
+                audio.play().then(() => document.getElementById('music-icon').innerText = '🔊').catch(e => console.log("Autoplay bloqueado"));
+
+                restoreProgress();
                 return;
             }
 
-            if (input === savedPassword || (input === '14/10/2008' && savedPassword === '14/10/08')) {
-                // Intentamos recuperar de la nube por si cerró la pestaña o cambió de móvil
-                let cloudProgress = await fetchCloudProgress(input);
-                if (cloudProgress && cloudProgress > unlockedCount) {
-                    unlockedCount = cloudProgress;
-                } else {
-                    let localProg = parseInt(localStorage.getItem('unlockedCount')) || 1;
-                    unlockedCount = Math.max(1, localProg);
-                }
-
+            if (input === savedPassword || input === '14/10/2008' || input === '14/10/08') {
                 document.getElementById('welcome-wrapper').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 
@@ -911,8 +903,9 @@
             document.getElementById('progress-fill').style.width = ((displayCount / 15) * 100) + '%';
             document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15';
             
-            let currentPass = localStorage.getItem('customPassword') || '14/10/08';
-            syncCloudProgress(currentPass, unlockedCount);
+            // Guardado automático local y en la barra de URL del navegador de forma limpia
+            localStorage.setItem('unlockedCount', unlockedCount);
+            history.replaceState(null, null, "#progreso=" + unlockedCount);
         }
 
         function restoreProgress() {
