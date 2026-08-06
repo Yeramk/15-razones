@@ -50,7 +50,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            overscroll-behavior-y: contain; /* Evita recargas accidentales en iOS */
+            overscroll-behavior-y: contain;
             opacity: 0;
             transition: opacity 0.3s ease-in;
         }
@@ -144,19 +144,21 @@
 
         .dropdown-item:active { background: rgba(0,0,0,0.05); }
 
-        /* Corazones flotantes de fondo con ritmo de latido orgánico */
-        .heart-bg {
+        /* Emojis flotantes abundantes y vivos por la pantalla */
+        .floating-emoji {
             position: fixed;
-            color: rgba(231, 76, 60, 0.12);
-            font-size: 22px;
+            font-size: 20px;
             user-select: none;
             pointer-events: none;
-            animation: floatHearts 12s infinite linear, heartbeat 2s infinite ease-in-out;
+            animation: floatEmojis 10s infinite linear, heartbeat 2s infinite ease-in-out;
             z-index: 0;
+            opacity: 0.35;
         }
 
-        @keyframes floatHearts {
-            0% { transform: translateY(105vh) rotate(0deg); opacity: 1; }
+        @keyframes floatEmojis {
+            0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
@@ -331,29 +333,21 @@
             font-weight: 600;
         }
 
-        .video-container {
+        /* Marco de vídeo con borde y color dinámico */
+        .video-container, .video-container-horizontal {
             position: relative;
             width: 100%;
-            padding-bottom: 177.78%;
-            height: 0;
-            border-radius: 16px;
+            border-radius: 18px;
             overflow: hidden;
             margin: 14px 0;
             background: #000;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border: 3px solid var(--accent-color);
+            transition: border-color 0.4s ease;
         }
 
-        .video-container-horizontal {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            height: 0;
-            border-radius: 16px;
-            overflow: hidden;
-            margin: 14px 0;
-            background: #000;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
-        }
+        .video-container { padding-bottom: 177.78%; height: 0; }
+        .video-container-horizontal { padding-bottom: 56.25%; height: 0; }
 
         .video-container iframe, .video-container-horizontal iframe {
             position: absolute;
@@ -372,7 +366,6 @@
 
         .lock-box { text-align: center; padding: 10px 0; }
 
-        /* Inputs ajustados a 16px para evitar zoom automático y deformaciones en iOS */
         input[type="text"], input[type="password"], input[type="number"], input[type="range"], select {
             width: 100%;
             padding: 14px 16px;
@@ -485,11 +478,13 @@
     <!-- Notificación Toast Dinámica -->
     <div id="toast" class="toast-notification">Aviso importante</div>
 
-    <!-- Corazones flotantes de fondo -->
-    <div class="heart-bg" style="left: 12%; animation-delay: 0s;">🤍</div>
-    <div class="heart-bg" style="left: 35%; animation-delay: 3s;">✨</div>
-    <div class="heart-bg" style="left: 65%; animation-delay: 6s;">🤍</div>
-    <div class="heart-bg" style="left: 88%; animation-delay: 9s;">💖</div>
+    <!-- Emojis flotantes abundantes y vivos -->
+    <div class="floating-emoji" style="left: 8%; animation-delay: 0s;">🤍</div>
+    <div class="floating-emoji" style="left: 22%; animation-delay: 2s;">✨</div>
+    <div class="floating-emoji" style="left: 40%; animation-delay: 4.5s;">🫶🏽</div>
+    <div class="floating-emoji" style="left: 60%; animation-delay: 1.5s;">💖</div>
+    <div class="floating-emoji" style="left: 78%; animation-delay: 6s;">🌹</div>
+    <div class="floating-emoji" style="left: 90%; animation-delay: 3.2s;">✨</div>
 
     <div id="welcome-wrapper">
         <div id="welcome-screen">
@@ -498,6 +493,19 @@
             
             <input type="password" id="birthdate-input" placeholder="Contraseña">
             <button class="action-btn" onclick="checkBirthdate()">Entrar</button>
+
+            <!-- Recuperación de progreso -->
+            <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                <p style="font-size: 0.8rem; margin-bottom: 8px;">¿Has perdido tu progreso?</p>
+                <select id="restore-select" onchange="restoreManually(this.value)" style="margin: 0; font-size: 0.85rem; padding: 10px;">
+                    <option value="">Selecciona tu tarjeta actual...</option>
+                    <script>
+                        for(let i=1; i<=15; i++) {
+                            document.write(`<option value="${i}">Tarjeta / Vídeo #${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
         </div>
     </div>
 
@@ -528,7 +536,7 @@
             <div id="content-1" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #1</span><span class="card-counter">1 de 15</span></div>
                 <h3>1. Tu fuerza</h3>
-                <div class="video-container" id="vid-wrap-1"></div>
+                <div class="video-container" id="vid-wrap-1" style="border-color: #e74c3c;"></div>
                 <div class="response-box"><strong>Primera razón:</strong><br>[Pendiente de texto...]</div>
             </div>
         </div>
@@ -547,7 +555,7 @@
             <div id="content-2" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #2</span><span class="card-counter">2 de 15</span></div>
                 <h3>2. Título Razón #2</h3>
-                <div class="video-container" id="vid-wrap-2"></div>
+                <div class="video-container" id="vid-wrap-2" style="border-color: #f1c40f;"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -567,7 +575,7 @@
             <div id="content-3" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #3</span><span class="card-counter">3 de 15</span></div>
                 <h3>3. Título Razón #3</h3>
-                <div class="video-container" id="vid-wrap-3"></div>
+                <div class="video-container" id="vid-wrap-3" style="border-color: #2ecc71;"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -585,7 +593,7 @@
             <div id="content-4" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #4</span><span class="card-counter">4 de 15</span></div>
                 <h3>4. Título Razón #4</h3>
-                <div class="video-container" id="vid-wrap-4"></div>
+                <div class="video-container" id="vid-wrap-4" style="border-color: #3498db;"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -602,7 +610,7 @@
             <div id="content-5" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #5</span><span class="card-counter">5 de 15</span></div>
                 <h3>5. Título Razón #5</h3>
-                <div class="video-container" id="vid-wrap-5"></div>
+                <div class="video-container" id="vid-wrap-5" style="border-color: #9b59b6;"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -621,7 +629,7 @@
             <div id="content-6" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #6</span><span class="card-counter">6 de 15</span></div>
                 <h3>6. Título Razón #6</h3>
-                <div class="video-container" id="vid-wrap-6"></div>
+                <div class="video-container-horizontal" id="vid-wrap-6" style="border-color: #e67e22;"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -643,7 +651,7 @@
             <div id="content-7" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #7</span><span class="card-counter">7 de 15</span></div>
                 <h3>7. Título Razón #7</h3>
-                <div class="video-container" id="vid-wrap-7"></div>
+                <div class="video-container-horizontal" id="vid-wrap-7" style="border-color: #1abc9c;"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -662,7 +670,7 @@
             <div id="content-8" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #8</span><span class="card-counter">8 de 15</span></div>
                 <h3>8. Título Razón #8</h3>
-                <div class="video-container-horizontal" id="vid-wrap-8"></div>
+                <div class="video-container-horizontal" id="vid-wrap-8" style="border-color: #27ae60;"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -684,7 +692,7 @@
             <div id="content-9" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #9</span><span class="card-counter">9 de 15</span></div>
                 <h3>9. Título Razón #9</h3>
-                <div class="video-container-horizontal" id="vid-wrap-9"></div>
+                <div class="video-container-horizontal" id="vid-wrap-9" style="border-color: #d63031;"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -700,7 +708,7 @@
             <div id="content-10" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #10</span><span class="card-counter">10 de 15</span></div>
                 <h3>10. Título Razón #10</h3>
-                <div class="video-container" id="vid-wrap-10"></div>
+                <div class="video-container" id="vid-wrap-10" style="border-color: #e84393;"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -709,7 +717,7 @@
         <div class="card" id="card-11" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #11</span><span class="card-counter">11 de 15</span></div>
             <h3>11. Título Razón #11</h3>
-            <div class="video-container-horizontal" id="vid-wrap-11"></div>
+            <div class="video-container-horizontal" id="vid-wrap-11" style="border-color: #0984e3;"></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(11)">Desbloquear Razón #12</button>
         </div>
@@ -717,7 +725,7 @@
         <div class="card" id="card-12" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #12</span><span class="card-counter">12 de 15</span></div>
             <h3>12. Título Razón #12</h3>
-            <div class="video-container-horizontal" id="vid-wrap-12"></div>
+            <div class="video-container-horizontal" id="vid-wrap-12" style="border-color: #6c5ce7;"></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(12)">Desbloquear Razón #13</button>
         </div>
@@ -725,7 +733,7 @@
         <div class="card" id="card-13" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #13</span><span class="card-counter">13 de 15</span></div>
             <h3>13. Título Razón #13</h3>
-            <div class="video-container-horizontal" id="vid-wrap-13"></div>
+            <div class="video-container-horizontal" id="vid-wrap-13" style="border-color: #fdcb6e;"></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(13)">Desbloquear Razón #14</button>
         </div>
@@ -733,7 +741,7 @@
         <div class="card" id="card-14" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #14</span><span class="card-counter">14 de 15</span></div>
             <h3>14. Título Razón #14</h3>
-            <div class="video-container-horizontal" id="vid-wrap-14"></div>
+            <div class="video-container-horizontal" id="vid-wrap-14" style="border-color: #00b894;"></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(14)">Desbloquear Razón #15</button>
         </div>
@@ -741,7 +749,7 @@
         <div class="card" id="card-15" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #15</span><span class="card-counter">15 de 15</span></div>
             <h3>15. Título Razón #15</h3>
-            <div class="video-container-horizontal" id="vid-wrap-15"></div>
+            <div class="video-container-horizontal" id="vid-wrap-15" style="border-color: #d63031;"></div>
             <div class="response-box">[Pendiente de texto...]</div>
             <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(15)">Finalizar y ver Sorpresa ✨</button>
         </div>
@@ -760,6 +768,7 @@
 
     <script>
         var unlockedCount = 1;
+        let musicManuallyPaused = false; // Control robusto para evitar que la música se pare sola
         const videoIDs = {
             1: "Q0Vn2N--Uo0", 2: "LE5CXRw888o", 3: "MqOJod3MZFY", 4: "bXwrEjvnX1M", 5: "Oqtvt7pDs6g",
             6: "_prqW9SL0tI", 7: "X98AbjU7sV0", 8: "z34dLRgQTmE", 9: "2YUXajHgD4g", 10: "dK0i6_oel0o",
@@ -809,20 +818,27 @@
             var audio = document.getElementById('bg-music');
             var icon = document.getElementById('music-icon');
             if (audio.paused) { 
-                audio.play(); 
+                musicManuallyPaused = false;
+                audio.play().catch(e => console.log(e)); 
                 icon.innerText = '🔊'; 
             } else { 
+                musicManuallyPaused = true;
                 audio.pause(); 
                 icon.innerText = '🎵'; 
             }
         }
 
-        // Si sale de la pestaña, pausar la música para evitar solapes o consumos raros
+        // Control inteligente de visibilidad: si sale de la app se pausa, si vuelve se reanuda (si ella no la apagó a propósito)
         document.addEventListener("visibilitychange", () => {
             let audio = document.getElementById('bg-music');
-            if (document.hidden && !audio.paused) {
-                audio.pause();
-                document.getElementById('music-icon').innerText = '🎵';
+            if (document.hidden) {
+                if (!audio.paused) {
+                    audio.pause();
+                }
+            } else {
+                if (!musicManuallyPaused && audio.paused && document.getElementById('main-content').style.display === 'block') {
+                    audio.play().catch(e => console.log(e));
+                }
             }
         });
 
@@ -841,13 +857,26 @@
             }
         }
 
+        // Recuperación manual por si pierde el progreso
+        function restoreManually(val) {
+            if(!val) return;
+            unlockedCount = parseInt(val);
+            document.getElementById('welcome-wrapper').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            
+            var audio = document.getElementById('bg-music');
+            audio.play().then(() => document.getElementById('music-icon').innerText = '🔊').catch(e => console.log(e));
+
+            restoreProgress();
+            showToast("¡Progreso restaurado con éxito! 🤍");
+        }
+
         function updateProgress() {
             var displayCount = Math.max(1, unlockedCount);
             let pct = (displayCount / 15) * 100;
             var fill = document.getElementById('progress-fill');
             fill.style.width = pct + '%';
             
-            // Indicador de sorpresa final en la barra de progreso
             if (displayCount >= 12) {
                 fill.style.background = "linear-gradient(90deg, #fdcb6e, #e74c3c)";
                 document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15 ✨';
@@ -904,9 +933,12 @@
                 if (num === 2) {
                     var container = document.getElementById('challenge-player-container');
                     if (container) container.innerHTML = ''; 
-                    // Pausar música de fondo al abrir contenido multimedia
                     let audio = document.getElementById('bg-music');
-                    if (!audio.paused) { audio.pause(); document.getElementById('music-icon').innerText = '🎵'; }
+                    if (!audio.paused) { 
+                        audio.pause(); 
+                        musicManuallyPaused = true; // Pausa automática justificada al abrir vídeo
+                        document.getElementById('music-icon').innerText = '🎵'; 
+                    }
                 }
                 unlockMinigame(num);
             } else {
@@ -920,6 +952,14 @@
             if (lockBox) lockBox.style.display = 'none';
             if (contentBox) { contentBox.style.display = 'block'; injectVideo(num); }
             
+            // Pausar música de fondo al abrir cualquier tarjeta con vídeo para que no choquen
+            let audio = document.getElementById('bg-music');
+            if (!audio.paused) {
+                audio.pause();
+                musicManuallyPaused = true;
+                document.getElementById('music-icon').innerText = '🎵';
+            }
+
             if (num === 10) triggerConfetti();
 
             var nextNum = num + 1;
@@ -937,6 +977,13 @@
             var currentCard = document.getElementById('card-' + currentNum);
             var btn = currentCard ? currentCard.querySelector('.action-btn:last-of-type') : null;
             if (btn) btn.style.display = 'none';
+
+            let audio = document.getElementById('bg-music');
+            if (!audio.paused) {
+                audio.pause();
+                musicManuallyPaused = true;
+                document.getElementById('music-icon').innerText = '🎵';
+            }
 
             var nextNum = currentNum + 1;
             if (unlockedCount < nextNum) unlockedCount = nextNum;
