@@ -50,7 +50,7 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            overscroll-behavior-y: contain;
+            overscroll-behavior-y: none;
             opacity: 0;
             transition: opacity 0.3s ease-in;
         }
@@ -148,7 +148,7 @@
             font-size: 20px;
             user-select: none;
             pointer-events: none;
-            animation: floatEmojis 10s infinite linear, heartbeat 2s infinite ease-in-out;
+            animation: floatEmojis 10s infinite linear;
             z-index: 0;
             opacity: 0.35;
         }
@@ -158,14 +158,6 @@
             10% { opacity: 0.4; }
             90% { opacity: 0.4; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            15% { transform: scale(1.18); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.12); }
-            60% { transform: scale(1); }
         }
 
         @keyframes confettiFall {
@@ -462,6 +454,9 @@
                 <button class="dropdown-item" onclick="toggleDarkMode()">
                     <span style="width: 20px; text-align: center;">🌙</span> Tema
                 </button>
+                <button class="dropdown-item" style="opacity: 0.5; cursor: default;">
+                    <span style="width: 20px; text-align: center;">✨</span> Próximamente
+                </button>
             </div>
         </div>
     </div>
@@ -622,7 +617,7 @@
             <div id="content-6" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #6</span><span class="card-counter">6 de 15</span></div>
                 <h3>6. Título Razón #6</h3>
-                <div class="video-container-horizontal" id="vid-wrap-6"></div>
+                <div class="video-container" id="vid-wrap-6"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -644,7 +639,7 @@
             <div id="content-7" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #7</span><span class="card-counter">7 de 15</span></div>
                 <h3>7. Título Razón #7</h3>
-                <div class="video-container-horizontal" id="vid-wrap-7"></div>
+                <div class="video-container" id="vid-wrap-7"></div>
                 <div class="response-box">[Pendiente de texto...]</div>
             </div>
         </div>
@@ -821,6 +816,15 @@
             }
         }
 
+        // Truco definitivo para forzar la reactivación de la música tras salir de un iframe de YouTube
+        document.addEventListener("click", () => {
+            let audio = document.getElementById('bg-music');
+            if (!musicManuallyPaused && audio.paused && document.getElementById('main-content').style.display === 'block') {
+                audio.play().catch(e => console.log(e));
+                document.getElementById('music-icon').innerText = '🔊';
+            }
+        });
+
         document.addEventListener("visibilitychange", () => {
             let audio = document.getElementById('bg-music');
             if (document.hidden) {
@@ -828,6 +832,7 @@
             } else {
                 if (!musicManuallyPaused && audio.paused && document.getElementById('main-content').style.display === 'block') {
                     audio.play().catch(e => console.log(e));
+                    document.getElementById('music-icon').innerText = '🔊';
                 }
             }
         });
@@ -1004,6 +1009,7 @@
             var isDrawing = false, clearedPixels = 0;
             function scratch(e) {
                 if (!isDrawing) return;
+                if (e.cancelable) e.preventDefault();
                 var rect = canvas.getBoundingClientRect();
                 var x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
                 var y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
@@ -1029,8 +1035,8 @@
 
         var jumps = 0;
         function handleTrickyButton(e) {
+            if (e && e.cancelable) e.preventDefault();
             if (jumps < 4) {
-                if (e.type === 'touchstart' && e.cancelable) e.preventDefault();
                 var btn = document.getElementById('tricky-btn');
                 var container = btn.parentElement;
                 btn.style.transform = 'translate(0, 0)'; 
@@ -1058,6 +1064,7 @@
             }, 100);
         }
         function endHold6(e) {
+            if (e && e.cancelable) e.preventDefault();
             if(!isHolding6) return;
             isHolding6 = false;
             clearInterval(timer6);
@@ -1112,7 +1119,8 @@
         }
 
         let taps9 = 0, timer9 = null, timeleft9 = 5.0, game9Active = false;
-        function tapBomb() {
+        function tapBomb(e) {
+            if(e && e.cancelable) e.preventDefault();
             if(!game9Active && taps9 === 0) {
                 game9Active = true;
                 timeleft9 = 5.0;
