@@ -55,7 +55,6 @@
             transition: opacity 0.3s ease-in;
         }
 
-        /* Textura sutil de papel / grano de algodón */
         body::after {
             content: "";
             position: fixed;
@@ -144,7 +143,6 @@
 
         .dropdown-item:active { background: rgba(0,0,0,0.05); }
 
-        /* Emojis flotantes abundantes y vivos por la pantalla */
         .floating-emoji {
             position: fixed;
             font-size: 20px;
@@ -184,7 +182,6 @@
             pointer-events: none;
         }
 
-        /* Notificaciones flotantes tipo Toast con Blur */
         .toast-notification {
             position: fixed;
             bottom: 30px;
@@ -333,7 +330,6 @@
             font-weight: 600;
         }
 
-        /* Marco de vídeo con borde y color dinámico */
         .video-container, .video-container-horizontal {
             position: relative;
             width: 100%;
@@ -475,10 +471,8 @@
         <source src="./musica.mp3" type="audio/mpeg">
     </audio>
 
-    <!-- Notificación Toast Dinámica -->
     <div id="toast" class="toast-notification">Aviso importante</div>
 
-    <!-- Emojis flotantes abundantes y vivos -->
     <div class="floating-emoji" style="left: 8%; animation-delay: 0s;">🤍</div>
     <div class="floating-emoji" style="left: 22%; animation-delay: 2s;">✨</div>
     <div class="floating-emoji" style="left: 40%; animation-delay: 4.5s;">🫶🏽</div>
@@ -494,7 +488,6 @@
             <input type="password" id="birthdate-input" placeholder="Contraseña">
             <button class="action-btn" onclick="checkBirthdate()">Entrar</button>
 
-            <!-- Recuperación de progreso -->
             <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
                 <p style="font-size: 0.8rem; margin-bottom: 8px;">¿Has perdido tu progreso?</p>
                 <select id="restore-select" onchange="restoreManually(this.value)" style="margin: 0; font-size: 0.85rem; padding: 10px;">
@@ -768,7 +761,7 @@
 
     <script>
         var unlockedCount = 1;
-        let musicManuallyPaused = false; // Control robusto para evitar que la música se pare sola
+        let musicManuallyPaused = false; 
         const videoIDs = {
             1: "Q0Vn2N--Uo0", 2: "LE5CXRw888o", 3: "MqOJod3MZFY", 4: "bXwrEjvnX1M", 5: "Oqtvt7pDs6g",
             6: "_prqW9SL0tI", 7: "X98AbjU7sV0", 8: "z34dLRgQTmE", 9: "2YUXajHgD4g", 10: "dK0i6_oel0o",
@@ -828,13 +821,10 @@
             }
         }
 
-        // Control inteligente de visibilidad: si sale de la app se pausa, si vuelve se reanuda (si ella no la apagó a propósito)
         document.addEventListener("visibilitychange", () => {
             let audio = document.getElementById('bg-music');
             if (document.hidden) {
-                if (!audio.paused) {
-                    audio.pause();
-                }
+                if (!audio.paused) audio.pause();
             } else {
                 if (!musicManuallyPaused && audio.paused && document.getElementById('main-content').style.display === 'block') {
                     audio.play().catch(e => console.log(e));
@@ -857,7 +847,6 @@
             }
         }
 
-        // Recuperación manual por si pierde el progreso
         function restoreManually(val) {
             if(!val) return;
             unlockedCount = parseInt(val);
@@ -889,11 +878,11 @@
             history.replaceState(null, null, "#progreso=" + unlockedCount);
         }
 
+        // SOLUCIÓN CLAVE: Inyectamos el vídeo pero ELIMINAMOS cualquier interferencia con la música en la carga.
         function injectVideo(num) {
-            let wrapId = num <= 5 || num === 10 ? 'vid-wrap-' + num : 'vid-wrap-' + num;
-            let container = document.getElementById(wrapId);
+            let container = document.getElementById('vid-wrap-' + num);
             if (container && container.innerHTML.trim() === '') {
-                container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoIDs[num]}" frameborder="0" allowfullscreen></iframe>`;
+                container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoIDs[num]}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
             }
         }
 
@@ -933,12 +922,6 @@
                 if (num === 2) {
                     var container = document.getElementById('challenge-player-container');
                     if (container) container.innerHTML = ''; 
-                    let audio = document.getElementById('bg-music');
-                    if (!audio.paused) { 
-                        audio.pause(); 
-                        musicManuallyPaused = true; // Pausa automática justificada al abrir vídeo
-                        document.getElementById('music-icon').innerText = '🎵'; 
-                    }
                 }
                 unlockMinigame(num);
             } else {
@@ -952,13 +935,7 @@
             if (lockBox) lockBox.style.display = 'none';
             if (contentBox) { contentBox.style.display = 'block'; injectVideo(num); }
             
-            // Pausar música de fondo al abrir cualquier tarjeta con vídeo para que no choquen
-            let audio = document.getElementById('bg-music');
-            if (!audio.paused) {
-                audio.pause();
-                musicManuallyPaused = true;
-                document.getElementById('music-icon').innerText = '🎵';
-            }
+            // Ya no forzamos la parada de la música aquí al desbloquear, solo cargamos el vídeo sin alterar el audio.
 
             if (num === 10) triggerConfetti();
 
@@ -977,13 +954,6 @@
             var currentCard = document.getElementById('card-' + currentNum);
             var btn = currentCard ? currentCard.querySelector('.action-btn:last-of-type') : null;
             if (btn) btn.style.display = 'none';
-
-            let audio = document.getElementById('bg-music');
-            if (!audio.paused) {
-                audio.pause();
-                musicManuallyPaused = true;
-                document.getElementById('music-icon').innerText = '🎵';
-            }
 
             var nextNum = currentNum + 1;
             if (unlockedCount < nextNum) unlockedCount = nextNum;
