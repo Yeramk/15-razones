@@ -90,7 +90,7 @@
             border: 1px solid var(--border-color);
             border-radius: 16px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            min-width: 140px;
+            min-width: 160px;
             flex-direction: column;
             overflow: hidden;
             z-index: 101;
@@ -106,6 +106,20 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .dropdown-header {
+            padding: 10px 16px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+            background: rgba(0,0,0,0.03);
+            font-weight: bold;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        body.dark-mode .dropdown-header {
+            background: rgba(255,255,255,0.05);
+        }
+
         .dropdown-item {
             background: none;
             border: none;
@@ -119,6 +133,7 @@
             gap: 12px;
             transition: background 0.2s ease;
             font-weight: 500;
+            width: 100%;
         }
 
         .dropdown-item:hover {
@@ -127,6 +142,14 @@
 
         body.dark-mode .dropdown-item:hover {
             background: rgba(255,255,255,0.05);
+        }
+
+        .dropdown-item.soon {
+            color: var(--muted-text);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            justify-content: center;
+            background: rgba(0,0,0,0.01);
         }
 
         .heart-bg {
@@ -330,9 +353,10 @@
             padding: 12px 0;
         }
 
-        input[type="text"], input[type="number"], input[type="range"] {
+        /* INPUTS EN TAMAÑO NORMAL Y CÓMODO */
+        input[type="text"], input[type="password"], input[type="number"], input[type="range"] {
             width: 100%;
-            padding: 12px;
+            padding: 14px 16px;
             margin: 12px 0;
             border: 1px solid var(--border-color);
             background: var(--card-bg);
@@ -426,19 +450,20 @@
         </div>
     </div>
 
-    <!-- CONTROLES SUPERIORES (MENÚ DESPLEGABLE) -->
+    <!-- CONTROLES SUPERIORES (MENÚ AJUSTES REDISEÑADO) -->
     <div class="top-controls">
         <div class="dropdown">
-            <button class="icon-btn" onclick="toggleMenu()" title="Configuración">⚙️</button>
+            <button class="icon-btn" onclick="toggleMenu()" title="Ajustes">⚙️</button>
             <div id="settings-menu" class="dropdown-menu">
-                <div style="padding: 10px; text-align: center; font-size: 0.75rem; color: var(--muted-text); background: rgba(0,0,0,0.03); font-weight: bold; border-bottom: 1px solid var(--border-color);">
-                    Próximamente 🛠️
-                </div>
+                <div class="dropdown-header">Ajustes</div>
                 <button class="dropdown-item" onclick="toggleBgMusic()">
                     <span id="music-icon" style="width: 20px; text-align: center;">🎵</span> Música
                 </button>
                 <button class="dropdown-item" onclick="toggleDarkMode()">
                     <span style="width: 20px; text-align: center;">🌙</span> Tema
+                </button>
+                <button class="dropdown-item soon" disabled>
+                    Próximamente 🛠️
                 </button>
             </div>
         </div>
@@ -464,7 +489,6 @@
             
             <p id="welcome-error" style="color:#e74c3c; display:none; margin-top:8px;">Mmm... esa no es tu contraseña 😉</p>
             
-            <!-- Opción para cambiar contraseña -->
             <div id="change-pass-container" style="margin-top: 15px;">
                 <a href="javascript:void(0);" onclick="toggleChangePasswordMode()" id="change-pass-link" style="font-size: 0.85rem; color: var(--muted-text); text-decoration: underline;">¿Quieres cambiar tu contraseña?</a>
             </div>
@@ -751,12 +775,10 @@
             var last = localStorage.getItem('privacyAcceptedDate');
             var now = new Date().getTime();
             
-            // Mostrar modal de privacidad si hace más de 7 días o nunca se aceptó
             if(!last || (now - parseInt(last)) > 604800000) { 
                 modal.style.display = 'flex'; 
             }
             
-            // Revelar la página suavemente evitando el parpadeo
             document.body.style.opacity = '1';
         };
 
@@ -823,6 +845,7 @@
 
         function checkBirthdate() {
             var input = document.getElementById('birthdate-input').value.trim();
+            // Lógica de persistencia absoluta: si nunca se guardó una contraseña personalizada, por defecto arranca con 14/10/08
             var savedPassword = localStorage.getItem('customPassword') || '14/10/08';
 
             if (isChangingPassword) {
@@ -838,7 +861,6 @@
                 return;
             }
 
-            // Validar acceso (permite por defecto la fecha inicial o la nueva guardada)
             if (input === savedPassword || (input === '14/10/2008' && savedPassword === '14/10/08')) {
                 document.getElementById('welcome-wrapper').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
