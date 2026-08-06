@@ -38,6 +38,7 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
+        /* EVITA EL PARPADEO INICIAL OCULTANDO TODO HASTA QUE JS DECIDA */
         body {
             background-color: var(--bg-color);
             background-image: radial-gradient(var(--bg-pattern) 0.8px, transparent 0.8px), radial-gradient(var(--bg-pattern) 0.8px, var(--bg-pattern-alt) 0.8px);
@@ -50,9 +51,10 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            opacity: 0; /* Se revelará mediante JS */
+            transition: opacity 0.2s ease-in;
         }
 
-        /* --- NUEVOS ESTILOS PARA EL MENÚ DESPLEGABLE --- */
         .top-controls {
             position: fixed;
             top: 15px;
@@ -126,7 +128,6 @@
         body.dark-mode .dropdown-item:hover {
             background: rgba(255,255,255,0.05);
         }
-        /* ----------------------------------------------- */
 
         .heart-bg {
             position: fixed;
@@ -281,7 +282,6 @@
             font-weight: 600;
         }
 
-        /* Contenedor Vídeo Vertical (9:16) */
         .video-container {
             position: relative;
             width: 100%;
@@ -294,7 +294,6 @@
             box-shadow: 0 6px 16px rgba(0,0,0,0.12);
         }
 
-        /* Contenedor Vídeo Horizontal (16:9) */
         .video-container-horizontal {
             position: relative;
             width: 100%;
@@ -408,12 +407,12 @@
 </head>
 <body>
 
-    <!-- AVISO DE PRIVACIDAD -->
+    <!-- POLÍTICAS DE PRIVACIDAD Y AMOR -->
     <div id="privacy-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
         <div style="background: var(--card-bg, #fff); border-radius: 24px; padding: 28px 22px; max-width: 420px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
             <div style="text-align: center; margin-bottom: 15px;">
                 <span style="font-size: 2.2rem;">🔒</span>
-                <h3 style="color: var(--primary-color, #2c3e50); margin-top: 5px;">Aviso de Privacidad</h3>
+                <h3 style="color: var(--primary-color, #2c3e50); margin-top: 5px;">Políticas de Privacidad y Amor</h3>
             </div>
             <p style="font-size: 0.85rem; color: var(--muted-text); margin-bottom: 14px; line-height: 1.4;">
                 Para tu total tranquilidad antes de ver todo el contenido, por favor confirma las siguientes cláusulas:
@@ -421,7 +420,7 @@
             <ul style="font-size: 0.85rem; color: var(--text-color); margin-left: 18px; margin-bottom: 20px; line-height: 1.5;">
                 <li style="margin-bottom: 8px;"><strong>Vídeos Ocultos:</strong> Ningún vídeo es público ni buscable en YouTube.</li>
                 <li style="margin-bottom: 8px;"><strong>Cero Indexación:</strong> La web es invisible para Google.</li>
-                <li style="margin-bottom: 8px;"><strong>Acceso Exclusivo:</strong> Protegido por clave solo para ti.</li>
+                <li style="margin-bottom: 8px;"><strong>Acceso Exclusivo:</strong> Protegido por contraseña solo para ti.</li>
             </ul>
             <button onclick="acceptPrivacy()" class="action-btn" style="background: #27ae60;">Aceptar y Continuar 🤍</button>
         </div>
@@ -432,11 +431,9 @@
         <div class="dropdown">
             <button class="icon-btn" onclick="toggleMenu()" title="Configuración">⚙️</button>
             <div id="settings-menu" class="dropdown-menu">
-                <!-- Indicador de "Mantenimiento" -->
                 <div style="padding: 10px; text-align: center; font-size: 0.75rem; color: var(--muted-text); background: rgba(0,0,0,0.03); font-weight: bold; border-bottom: 1px solid var(--border-color);">
                     Próximamente 🛠️
                 </div>
-                <!-- Opciones -->
                 <button class="dropdown-item" onclick="toggleBgMusic()">
                     <span id="music-icon" style="width: 20px; text-align: center;">🎵</span> Música
                 </button>
@@ -456,14 +453,21 @@
     <div class="heart-bg" style="left: 60%; animation-delay: 5s;">🤍</div>
     <div class="heart-bg" style="left: 85%; animation-delay: 7.5s;">💖</div>
 
-    <!-- 1. ACCESO -->
+    <!-- 1. ACCESO Y CAMBIO DE CONTRASEÑA -->
     <div id="welcome-wrapper">
         <div id="welcome-screen">
-            <h2>Hola mi amor 🤍</h2>
-            <p>Introduce tu fecha de nacimiento para descubrir nuestras las 15 razones.</p>
-            <input type="text" id="birthdate-input" placeholder="DD/MM/AA">
-            <button class="action-btn" onclick="checkBirthdate()">Entrar</button>
-            <p id="welcome-error" style="color:#e74c3c; display:none; margin-top:8px;">Mmm... esa no es tu fecha 😉</p>
+            <h2 id="welcome-title">Hola mi amor 🤍</h2>
+            <p id="welcome-desc">Introduce tu contraseña para descubrir las 15 razones.</p>
+            
+            <input type="password" id="birthdate-input" placeholder="Contraseña">
+            <button class="action-btn" id="welcome-btn" onclick="checkBirthdate()">Entrar</button>
+            
+            <p id="welcome-error" style="color:#e74c3c; display:none; margin-top:8px;">Mmm... esa no es tu contraseña 😉</p>
+            
+            <!-- Opción para cambiar contraseña -->
+            <div id="change-pass-container" style="margin-top: 15px;">
+                <a href="javascript:void(0);" onclick="toggleChangePasswordMode()" id="change-pass-link" style="font-size: 0.85rem; color: var(--muted-text); text-decoration: underline;">¿Quieres cambiar tu contraseña?</a>
+            </div>
         </div>
     </div>
 
@@ -582,7 +586,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 6: CRONÓMETRO CIEGO (Con límite de 7 fallos) -->
+        <!-- TARJETA 6: CRONÓMETRO CIEGO -->
         <div class="card" id="card-6" style="display:none;">
             <div id="lock-6" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">6 de 15</span></div>
@@ -624,7 +628,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 8: FRANCOTIRADOR (Horizontal + Anti-scroll táctil) -->
+        <!-- TARJETA 8: FRANCOTIRADOR -->
         <div class="card" id="card-8" style="display:none;">
             <div id="lock-8" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">8 de 15</span></div>
@@ -644,7 +648,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 9: BOMBA (Horizontal) -->
+        <!-- TARJETA 9: BOMBA -->
         <div class="card" id="card-9" style="display:none;">
             <div id="lock-9" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
@@ -667,7 +671,7 @@
             </div>
         </div>
 
-        <!-- TARJETA 10: SINTONIZANDO (Vertical) -->
+        <!-- TARJETA 10: SINTONIZANDO -->
         <div class="card" id="card-10" style="display:none;">
             <div id="lock-10" class="lock-box">
                 <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
@@ -684,7 +688,7 @@
             </div>
         </div>
 
-        <!-- TARJETAS 11 A 15 (Horizontal) -->
+        <!-- TARJETAS 11 A 15 -->
         <div class="card" id="card-11" style="display:none;">
             <div class="card-header"><span class="badge">Vídeo #11</span><span class="card-counter">11 de 15</span></div>
             <h3>11. Título Razón #11</h3>
@@ -739,20 +743,21 @@
     </div>
 
     <script>
-        var unlockedCount = parseInt(localStorage.getItem('unlockedCount')) || 0;
+        var unlockedCount = parseInt(localStorage.getItem('unlockedCount')) || 1;
+        var isChangingPassword = false;
 
         window.onload = function() {
             var modal = document.getElementById('privacy-modal');
             var last = localStorage.getItem('privacyAcceptedDate');
             var now = new Date().getTime();
             
-            if (localStorage.getItem('authenticated') !== 'true') {
-                if(!last || (now - parseInt(last)) > 604800000) { modal.style.display = 'flex'; }
-            } else {
-                document.getElementById('welcome-wrapper').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                restoreProgress();
+            // Mostrar modal de privacidad si hace más de 7 días o nunca se aceptó
+            if(!last || (now - parseInt(last)) > 604800000) { 
+                modal.style.display = 'flex'; 
             }
+            
+            // Revelar la página suavemente evitando el parpadeo
+            document.body.style.opacity = '1';
         };
 
         function acceptPrivacy() {
@@ -760,12 +765,10 @@
             document.getElementById('privacy-modal').style.display = 'none';
         }
 
-        /* --- LOGICA DEL MENÚ DESPLEGABLE --- */
         function toggleMenu() {
             document.getElementById('settings-menu').classList.toggle('show');
         }
 
-        // Cierra el menú si haces clic fuera de él
         window.onclick = function(event) {
             if (!event.target.closest('.dropdown')) {
                 var dropdowns = document.getElementsByClassName("dropdown-menu");
@@ -777,7 +780,6 @@
                 }
             }
         }
-        /* ------------------------------------ */
 
         function toggleDarkMode() { 
             document.body.classList.toggle('dark-mode'); 
@@ -795,20 +797,60 @@
             }
         }
 
+        function toggleChangePasswordMode() {
+            isChangingPassword = !isChangingPassword;
+            var title = document.getElementById('welcome-title');
+            var desc = document.getElementById('welcome-desc');
+            var btn = document.getElementById('welcome-btn');
+            var link = document.getElementById('change-pass-link');
+            var input = document.getElementById('birthdate-input');
+
+            input.value = '';
+            document.getElementById('welcome-error').style.display = 'none';
+
+            if (isChangingPassword) {
+                title.innerText = "Configurar clave ⚙️";
+                desc.innerText = "Introduce la nueva contraseña que deseas usar a partir de ahora:";
+                btn.innerText = "Guardar nueva contraseña";
+                link.innerText = "← Volver al acceso";
+            } else {
+                title.innerText = "Hola mi amor 🤍";
+                desc.innerText = "Introduce tu contraseña para descubrir las 15 razones.";
+                btn.innerText = "Entrar";
+                link.innerText = "¿Quieres cambiar tu contraseña?";
+            }
+        }
+
         function checkBirthdate() {
             var input = document.getElementById('birthdate-input').value.trim();
-            if (input === '14/10/08' || input === '14/10/2008') {
-                localStorage.setItem('authenticated', 'true');
+            var savedPassword = localStorage.getItem('customPassword') || '14/10/08';
+
+            if (isChangingPassword) {
+                if (input.length > 0) {
+                    localStorage.setItem('customPassword', input);
+                    alert("¡Contraseña guardada con éxito! Ahora utilízala para entrar.");
+                    toggleChangePasswordMode();
+                } else {
+                    var err = document.getElementById('welcome-error');
+                    err.style.display = 'block';
+                    err.innerText = "La contraseña no puede estar vacía.";
+                }
+                return;
+            }
+
+            // Validar acceso (permite por defecto la fecha inicial o la nueva guardada)
+            if (input === savedPassword || (input === '14/10/2008' && savedPassword === '14/10/08')) {
                 document.getElementById('welcome-wrapper').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 
                 var audio = document.getElementById('bg-music');
                 audio.play().then(() => document.getElementById('music-icon').innerText = '🔊').catch(e => console.log("Autoplay bloqueado"));
 
-                if(unlockedCount === 0) unlockedCount = 1;
                 restoreProgress();
             } else {
-                document.getElementById('welcome-error').style.display = 'block';
+                var err = document.getElementById('welcome-error');
+                err.style.display = 'block';
+                err.innerText = "Mmm... esa no es tu contraseña 😉";
             }
         }
 
@@ -899,7 +941,6 @@
             else if (nextNum > 15) document.getElementById('card-bonus').style.display = 'block';
         }
 
-        // Minijuegos 1 a 5
         var flippedCards = [];
         var matchedPairs = 0;
         function flipCard(card, val) {
@@ -980,7 +1021,6 @@
             } else { unlockMinigame(5); }
         }
 
-        // JUEGO 6: CRONÓMETRO CIEGO
         let timer6, startTime6, isHolding6 = false, failCount6 = 0;
         function startHold6(e) {
             if (e && e.cancelable) e.preventDefault();
@@ -1019,7 +1059,6 @@
             }
         }
 
-        // JUEGO 7: ORDENA LA HISTORIA
         const correctOrder7 = ["7 kilómetros", "RD", "Beso Famara", "Primer finde juntos", "Viaje GC", "Y lo que nos queda"];
         let currentStep7 = 0;
         function clickWord7(btn, word) {
@@ -1043,7 +1082,6 @@
             }
         }
 
-        // JUEGO 8: FRANCOTIRADOR
         function shootSniper(e) {
             if(e && e.cancelable) e.preventDefault();
             let line = document.getElementById('sniper-line');
@@ -1061,7 +1099,6 @@
             }
         }
 
-        // JUEGO 9: LA BOMBA DE TOQUES
         let taps9 = 0, timer9 = null, timeleft9 = 5.0, game9Active = false;
         function tapBomb() {
             document.getElementById('error-9').style.display = 'none';
@@ -1105,7 +1142,6 @@
             document.getElementById('tap9-display').innerText = "0/25";
         }
 
-        // JUEGO 10: SINTONIZANDO
         function tuneRadio(val) {
             let num = parseInt(val);
             let btn = document.getElementById('btn-radio');
