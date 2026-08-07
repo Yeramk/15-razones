@@ -166,6 +166,7 @@
             0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
+
         .confetti {
             position: fixed;
             top: -20px;
@@ -196,6 +197,7 @@
             text-align: center;
             max-width: 90vw;
         }
+
         .toast-notification.show {
             transform: translateX(-50%) translateY(0);
         }
@@ -398,32 +400,147 @@
             margin: 12px 0;
             border: 1px solid var(--border-color);
         }
-        .audio-player-box iframe { width: 100%; height: 160px; border-radius: 10px; border: none; }
-        
-        .memory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
-        .memory-card { background: rgba(255, 107, 181, 0.2); color: white; height: 75px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; cursor: pointer; border: 1px solid var(--border-color); }
-        .memory-card.flipped { background: #ff7eb9; color: #140420; }
 
-        .scratch-container { position: relative; width: 100%; height: 110px; margin: 15px 0; border-radius: 14px; overflow: hidden; background: #fff; }
-        .scratch-secret { position: absolute; width: 100%; height: 100%; background: #fff; color: #140420; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; text-align: center; padding: 10px; }
-        canvas.scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
-
-        .word-btn { background: rgba(20, 4, 32, 0.6); color: var(--text-color); border: 2px solid var(--primary-color); padding: 10px 14px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
+        .audio-player-box iframe {
+            width: 100%;
+            height: 160px;
+            border-radius: 10px;
+            border: none;
+        }
         
-        @keyframes sniperMove { 0% { left: 0%; } 100% { left: 92%; } }
+        .memory-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .memory-card {
+            background: rgba(255, 107, 181, 0.2);
+            color: white;
+            height: 75px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .memory-card.flipped {
+            background: #ff7eb9;
+            color: #140420;
+        }
+
+        .scratch-container {
+            position: relative;
+            width: 100%;
+            height: 110px;
+            margin: 15px 0;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .scratch-secret {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            color: #140420;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+            padding: 10px;
+        }
+
+        canvas.scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .word-btn {
+            background: rgba(20, 4, 32, 0.6);
+            color: var(--text-color);
+            border: 2px solid var(--primary-color);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        @keyframes sniperMove {
+            0% { left: 0%; }
+            100% { left: 92%; }
+        }
+
         .sniper-line {
-            position: absolute; top: 0; width: 4px; height: 100%; background: var(--primary-color);
+            position: absolute;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--primary-color);
             animation: sniperMove 1.1s infinite alternate ease-in-out;
         }
 
         .blind-slider {
-            -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1); height: 32px; border-radius: 16px; outline: none; margin: 20px 0;
-        }
-        .blind-slider::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none; width: 32px; height: 32px; border-radius: 50%; background: transparent; cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255,255,255,0.1);
+            height: 32px;
+            border-radius: 16px;
+            outline: none;
+            margin: 20px 0;
         }
 
-        .no-move { touch-action: none; user-select: none; }
+        .blind-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .no-move {
+            touch-action: none;
+            user-select: none;
+        }
+
+        /* Controles de juegos táctiles: bloquear gestos del navegador solo aquí. */
+        #brickCanvas, #sliderGrid, #labCanvas, #scratch-canvas, #tricky-container, #catch-field, #lock-13, #lock-14, #lock-15 {
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #brickCanvas, #labCanvas, #scratch-canvas {
+            touch-action: none;
+            -webkit-touch-callout: none;
+        }
+
+        #sliderGrid {
+            touch-action: manipulation;
+        }
+
+        .brick-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        .brick-controls .action-btn {
+            flex: 1;
+        }
         
         .catch-playfield {
             position: relative;
@@ -434,6 +551,7 @@
             margin: 15px 0;
             overflow: hidden;
         }
+
         .falling-heart {
             position: absolute;
             font-size: 1.8rem;
@@ -441,10 +559,19 @@
             user-select: none;
             animation: fallItem 2s linear forwards;
         }
+
         @keyframes fallItem {
-            0% { transform: translateY(-30px) scale(0.8); opacity: 0; }
-            20% { opacity: 1; }
-            100% { transform: translateY(140px) scale(1.1); opacity: 0.9; }
+            0% {
+                transform: translateY(-30px) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(140px) scale(1.1);
+                opacity: 0.9;
+            }
         }
 
         .balance-track {
@@ -456,15 +583,17 @@
             overflow: hidden;
             border: 1px solid var(--border-color);
         }
+
         .balance-zone {
             position: absolute;
             left: 35%;
             width: 30%;
-            height: 100%;
+            height 100%;
             background: rgba(46, 204, 113, 0.3);
             border-left: 2px dashed #2ecc71;
             border-right: 2px dashed #2ecc71;
         }
+
         .balance-indicator {
             position: absolute;
             top: 4px;
@@ -474,18 +603,7 @@
             border-radius: 50%;
             transition: left 0.05s linear;
         }
-
-        /* Estilos Slider Puzzle (Juego 14) */
-        .slider-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            max-width: 240px;
-            margin: 15px auto;
-            background: rgba(0,0,0,0.3);
-            padding: 10px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+                    border: 1px solid var(--border-color);
         }
         .slider-tile {
             height: 65px;
@@ -827,8 +945,8 @@
             <div id="lock-13" class="lock-box">
                 <div class="card-header"><span class="badge">Nivel Arcade 🔥</span><span class="card-counter">13 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Rompe todos los bloques con la pelota:</p>
-                <canvas id="brickCanvas" width="280" height="200" style="background: #111; border-radius: 10px; display: block; margin: 0 auto 10px auto; border: 1px solid var(--border-color);"></canvas>
-                <div style="display: flex; gap: 10px;">
+                <canvas id="brickCanvas" width="280" height="200" style="background: #111; border-radius: 10px; display: block; margin: 0 auto 10px auto; border: 1px solid var(--border-color); touch-action: none;"></canvas>
+                <div class="brick-controls">
                     <button class="action-btn" style="padding: 10px;" onclick="movePaddle('left')">⬅️ Izquierda</button>
                     <button class="action-btn" style="padding: 10px;" onclick="movePaddle('right')">Derecha ➡️</button>
                 </div>
@@ -908,10 +1026,11 @@
     <script>
         var unlockedCount = 1;
         let musicManuallyPaused = false; 
+        const TOTAL_CARDS = 15;
         const videoIDs = {
             1: "Q0Vn2N--Uo0", 2: "LE5CXRw888o", 3: "MqOJod3MZFY", 4: "bXwrEjvnX1M", 5: "Oqtvt7pDs6g",
             6: "_prqW9SL0tI", 7: "X98AbjU7sV0", 8: "z34dLRgQTmE", 9: "2YUXajHgD4g", 10: "dK0i6_oel0o",
-            11: "Q0Vn2N--Uo0", 12: "LE5CXRw888o", 13: "MqOJod3MZFY", 14: "bXwrEjvnX1M", 15: "Oqtvt7pDs6g"
+            11: "6yEs_6gdjUU", 12: "xFM9FogoQtY", 13: "-jcAgsE_2Hc", 14: "E6DXN53nx54", 15: "rAJdP6-A7eI"
         };
 
         window.onload = function() {
@@ -920,10 +1039,11 @@
             var now = new Date().getTime();
             if(!last || (now - parseInt(last)) > 604800000) { modal.style.display = 'flex'; }
 
-            let localProg = parseInt(localStorage.getItem('unlockedCount')) || 1;
+            let localProg = parseInt(localStorage.getItem('unlockedCount'), 10) || 1;
+            localProg = Math.min(TOTAL_CARDS + 1, Math.max(1, localProg));
             let hashVal = window.location.hash.match(/progreso=(\d+)/);
             if (hashVal && hashVal[1]) {
-                unlockedCount = Math.max(parseInt(hashVal[1]), localProg);
+                unlockedCount = Math.min(TOTAL_CARDS + 1, Math.max(parseInt(hashVal[1], 10), localProg));
             } else {
                 unlockedCount = Math.max(1, localProg);
             }
@@ -983,480 +1103,7 @@
                 if (!musicManuallyPaused && audio.paused && document.getElementById('main-content').style.display === 'block') {
                     audio.play().catch(e => console.log(e));
                     document.getElementById('music-icon').innerText = '🔊';
-                }
-            }
-        });
-
-        function checkBirthdate() {
-            var input = document.getElementById('birthdate-input').value.trim();
-            if (input === '14/10/2008' || input === '14/10/08') {
-                document.getElementById('welcome-wrapper').style.display = 'none';
-                document.getElementById('main-content').style.display = 'block';
-                
-                var audio = document.getElementById('bg-music');
-                audio.play().then(() => document.getElementById('music-icon').innerText = '🔊').catch(e => console.log("Autoplay bloqueado"));
-
-                restoreProgress();
-            } else {
-                showToast("Mmm... esa no es tu contraseña 😉");
-            }
-        }
-
-        function restoreManually(val) {
-            if(!val) return;
-            unlockedCount = parseInt(val);
-            document.getElementById('welcome-wrapper').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            
-            var audio = document.getElementById('bg-music');
-            audio.play().then(() => document.getElementById('music-icon').innerText = '🔊').catch(e => console.log(e));
-
-            restoreProgress();
-            showToast("¡Progreso restaurado con éxito! 🤍");
-        }
-
-        function updateProgress() {
-            var displayCount = Math.max(1, unlockedCount);
-            let pct = (displayCount / 15) * 100;
-            var fill = document.getElementById('progress-fill');
-            fill.style.width = pct + '%';
-            
-            if (displayCount >= 12) {
-                fill.style.background = "linear-gradient(90deg, #ff7eb9, #ff4785)";
-                document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15 ✨';
-            } else {
-                fill.style.background = "linear-gradient(90deg, #ff4785, #ff7eb9)";
-                document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15';
-            }
-
-            localStorage.setItem('unlockedCount', unlockedCount);
-            history.replaceState(null, null, "#progreso=" + unlockedCount);
-        }
-
-        function injectVideo(num) {
-            let container = document.getElementById('vid-wrap-' + num);
-            if (container && container.innerHTML.trim() === '') {
-                container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoIDs[num]}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-            }
-        }
-
-        function restoreProgress() {
-            for (var i = 1; i <= 15; i++) {
-                var cardBox = document.getElementById('card-' + i);
-                var lockBox = document.getElementById('lock-' + i);
-                var contentBox = document.getElementById('content-' + i);
-
-                if (i < unlockedCount) {
-                    if (cardBox) cardBox.style.display = 'block';
-                    if (lockBox) lockBox.style.display = 'none';
-                    if (contentBox) { contentBox.style.display = 'block'; injectVideo(i); }
-                } 
-                else if (i === unlockedCount) {
-                    if (cardBox) {
-                        cardBox.style.display = 'block';
-                        if(lockBox) { lockBox.style.display = 'block'; if(contentBox) contentBox.style.display = 'none'; }
-                        setTimeout(() => {
-                            if (i === 4) initScratch();
-                            if (i === 13) initBrickGame();
-                            if (i === 14) initSliderGame();
-                            if (i === 15) drawLab();
-                        }, 100);
-                    }
-                } 
-                else {
-                    if (cardBox) cardBox.style.display = 'none';
-                }
-            }
-            if (unlockedCount > 15) {
-                var bonus = document.getElementById('card-bonus');
-                if (bonus) bonus.style.display = 'block';
-            }
-            updateProgress();
-        }
-
-        function checkAnswer(num, secretAnswer) {
-            var val = document.getElementById('input-' + num).value.trim().toLowerCase();
-            if (val === secretAnswer.toLowerCase()) {
-                if (num === 2) {
-                    var container = document.getElementById('challenge-player-container');
-                    if (container) container.innerHTML = ''; 
-                }
-                unlockMinigame(num);
-            } else {
-                showToast("PIN o respuesta incorrecta 😉");
-            }
-        }
-
-        function unlockMinigame(num) {
-            var lockBox = document.getElementById('lock-' + num);
-            var contentBox = document.getElementById('content-' + num);
-            if (lockBox) lockBox.style.display = 'none';
-            if (contentBox) { contentBox.style.display = 'block'; injectVideo(num); }
-            
-            if (num === 10 || num === 13 || num === 14) triggerConfetti();
-
-            var nextNum = num + 1;
-            if (unlockedCount < nextNum) unlockedCount = nextNum;
-            updateProgress();
-
-            var nextCard = document.getElementById('card-' + nextNum);
-            if (nextCard) {
-                nextCard.style.display = 'block';
-                setTimeout(() => {
-                    if (nextNum === 4) initScratch();
-                    if (nextNum === 13) initBrickGame();
-                    if (nextNum === 14) initSliderGame();
-                    if (nextNum === 15) drawLab();
-                }, 100);
-            } else if (nextNum > 15) {
-                var bonus = document.getElementById('card-bonus');
-                if (bonus) bonus.style.display = 'block';
-            }
-        }
-
-        var flippedCards = [];
-        var matchedPairs = 0;
-        function flipCard(card, val) {
-            if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
-                card.classList.add('flipped');
-                card.innerText = val;
-                flippedCards.push({element: card, value: val});
-
-                if (flippedCards.length === 2) {
-                    if (flippedCards[0].value === flippedCards[1].value) {
-                        matchedPairs++;
-                        flippedCards = [];
-                        if (matchedPairs === 2) setTimeout(() => unlockMinigame(3), 500);
-                    } else {
-                        setTimeout(() => {
-                            flippedCards[0].element.classList.remove('flipped');
-                            flippedCards[0].element.innerText = '❓';
-                            flippedCards[1].element.classList.remove('flipped');
-                            flippedCards[1].element.innerText = '❓';
-                            flippedCards = [];
-                        }, 700);
-                    }
-                }
-            }
-        }
-
-        function initScratch() {
-            var canvas = document.getElementById('scratch-canvas');
-            if (!canvas) return;
-            
-            setTimeout(() => {
-                var ctx = canvas.getContext('2d');
-                var rect = canvas.parentElement.getBoundingClientRect();
-                canvas.width = rect.width || 300;
-                canvas.height = rect.height || 110;
-
-                ctx.fillStyle = '#ff4785';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 16px sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('✨ Rasca aquí ✨', canvas.width/2, canvas.height/2 + 5);
-
-                var isDrawing = false, clearedPixels = 0;
-                
-                function getMousePos(evt) {
-                    var rect = canvas.getBoundingClientRect();
-                    var clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
-                    var clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
-                    return { x: clientX - rect.left, y: clientY - rect.top };
-                }
-
-                function scratch(e) {
-                    if (!isDrawing) return;
-                    if (e.cancelable) e.preventDefault();
-                    var pos = getMousePos(e);
-                    ctx.globalCompositeOperation = 'destination-out';
-                    ctx.beginPath();
-                    ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    clearedPixels++;
-                    if (clearedPixels > 40) {
-                        isDrawing = false;
-                        canvas.style.pointerEvents = 'none';
-                        canvas.style.transition = 'opacity 0.6s ease';
-                        canvas.style.opacity = '0';
-                        setTimeout(() => unlockMinigame(4), 700);
-                    }
-                }
-                
-                canvas.addEventListener('mousedown', () => isDrawing = true);
-                canvas.addEventListener('mouseup', () => isDrawing = false);
-                canvas.addEventListener('mouseleave', () => isDrawing = false);
-                canvas.addEventListener('mousemove', scratch);
-                canvas.addEventListener('touchstart', e => { isDrawing = true; scratch(e); }, {passive:false});
-                canvas.addEventListener('touchend', () => isDrawing = false);
-                canvas.addEventListener('touchcancel', () => isDrawing = false);
-                canvas.addEventListener('touchmove', scratch, {passive:false});
-            }, 100);
-        }
-
-        var jumps = 0;
-        function handleTrickyButton(e) {
-            if (e && e.cancelable) e.preventDefault();
-            if (jumps < 8) {
-                var btn = document.getElementById('tricky-btn');
-                var container = btn.parentElement;
-                btn.style.transform = 'none'; 
-                var maxW = container.offsetWidth - btn.offsetWidth - 12;
-                var maxH = container.offsetHeight - btn.offsetHeight - 12;
-                var randomX = Math.floor(Math.random() * Math.max(10, maxW)) + 6;
-                var randomY = Math.floor(Math.random() * Math.max(10, maxH)) + 6;
-                btn.style.left = randomX + 'px';
-                btn.style.top = randomY + 'px';
-                jumps++;
-                if (jumps >= 8) { btn.innerText = "¡Me rindo! Ábrelo 🤍"; btn.style.background = "#27ae60"; }
-            } else { unlockMinigame(5); }
-        }
-
-        let timer6, startTime6, isHolding6 = false, failCount6 = 0;
-        function startHold6(e) {
-            if (e && e.cancelable) e.preventDefault();
-            isHolding6 = true;
-            startTime6 = Date.now();
-            document.getElementById('time6-display').innerText = "0.0s";
-            timer6 = setInterval(() => {
-                let elapsed = (Date.now() - startTime6)/1000;
-                if (elapsed <= 2.0) {
-                    document.getElementById('time6-display').innerText = elapsed.toFixed(1) + "s";
-                } else {
-                    document.getElementById('time6-display').innerText = "???";
-                }
-            }, 100);
-        }
-        function endHold6(e) {
-            if (e && e.cancelable) e.preventDefault();
-            if(!isHolding6) return;
-            isHolding6 = false;
-            clearInterval(timer6);
-            let elapsed = (Date.now() - startTime6)/1000;
-            if(elapsed >= 4.7 && elapsed <= 5.3) {
-                document.getElementById('time6-display').innerText = elapsed.toFixed(2) + "s";
-                setTimeout(() => unlockMinigame(6), 500);
-            } else {
-                failCount6++;
-                showToast(`Casi! Hiciste ${elapsed.toFixed(2)}s`);
-                document.getElementById('time6-display').innerText = "0.0s";
-                if (failCount6 >= 5) document.getElementById('bypass-box-6').style.display = 'block';
-            }
-        }
-
-        const correctOrder7 = ["7 kilómetros", "RD", "Beso Famara", "Primer finde juntos", "Viaje GC", "Y lo que nos queda"];
-        let currentStep7 = 0;
-        function clickWord7(btn, word) {
-            if(word === correctOrder7[currentStep7]) {
-                btn.style.background = "var(--primary-color)";
-                btn.style.color = "#140420";
-                btn.disabled = true;
-                currentStep7++;
-                if(currentStep7 === correctOrder7.length) setTimeout(() => unlockMinigame(7), 400);
-            } else {
-                currentStep7 = 0;
-                document.querySelectorAll('#card-7 .word-btn').forEach(b => {
-                    b.style.background = "rgba(20, 4, 32, 0.6)";
-                    b.style.color = "var(--text-color)";
-                    b.disabled = false;
-                });
-                showToast("¡Ups! Orden incorrecto, se reinicia.");
-            }
-        }
-
-        function shootSniper(e) {
-            if(e && e.cancelable) e.preventDefault();
-            let line = document.getElementById('sniper-line');
-            let target = document.getElementById('sniper-target');
-            let lRect = line.getBoundingClientRect();
-            let tRect = target.getBoundingClientRect();
-            let lineCenter = lRect.left + (lRect.width / 2);
-            if (lineCenter >= tRect.left && lineCenter <= tRect.right) {
-                line.style.animationPlayState = 'paused';
-                setTimeout(() => unlockMinigame(8), 400);
-            } else {
-                showToast("¡Fallaste! Inténtalo de nuevo.");
-            }
-        }
-
-        let taps9 = 0, timer9 = null, timeleft9 = 5.0, game9Active = false;
-        function tapBomb(e) {
-            if(e && e.cancelable) e.preventDefault();
-            if(!game9Active && taps9 === 0) {
-                game9Active = true;
-                timeleft9 = 5.0;
-                timer9 = setInterval(() => {
-                    timeleft9 -= 0.1;
-                    if(timeleft9 < 0) timeleft9 = 0;
-                    document.getElementById('time9-display').innerText = timeleft9.toFixed(1) + "s";
-                    if(timeleft9 <= 0) {
-                        clearInterval(timer9);
-                        game9Active = false;
-                        if(taps9 === 25) { unlockMinigame(9); } 
-                        else { resetBomb("¡Tiempo! Te quedaste en " + taps9); }
-                    }
-                }, 100);
-            }
-            if(game9Active) {
-                taps9++;
-                document.getElementById('tap9-display').innerText = taps9 + "/25";
-                document.getElementById('bomb-bar-fill').style.width = (taps9 * 4) + '%';
-                if(taps9 === 26) {
-                    clearInterval(timer9);
-                    game9Active = false;
-                    resetBomb("¡BOOM! 💥 Te pasaste.");
-                }
-            }
-        }
-        function resetBomb(msg) {
-            taps9 = 0;
-            showToast(msg);
-            document.getElementById('bomb-bar-fill').style.width = '0%';
-            document.getElementById('time9-display').innerText = "5.0s";
-            document.getElementById('tap9-display').innerText = "0/25";
-        }
-
-        function tuneRadio(val) {
-            let num = parseInt(val);
-            let btn = document.getElementById('btn-radio');
-            let dist = Math.abs(num - 78);
-            let op = 1 - (dist / 100); 
-            if (dist < 10) op = 0.8 + (10 - dist) * 0.02; 
-            else op = Math.max(0.2, op - 0.3);
-            btn.style.opacity = op;
-        }
-        function checkRadio() {
-            let val = parseInt(document.getElementById('radio-slider').value);
-            if(val >= 76 && val <= 80) {
-                document.getElementById('btn-radio').style.opacity = "1";
-                unlockMinigame(10);
-            } else {
-                showToast("Aún hay interferencias...");
-            }
-        }
-
-        let score11 = 0, time11 = 10.0, timer11 = null, spawner11 = null, game11Active = false;
-        function startCatchGame() {
-            if(game11Active) return;
-            game11Active = true;
-            score11 = 0;
-            time11 = 10.0;
-            document.getElementById('score11-display').innerText = "0/8";
-            document.getElementById('start11-btn').style.display = 'none';
-            let field = document.getElementById('catch-field');
-            field.innerHTML = '';
-
-            timer11 = setInterval(() => {
-                time11 -= 0.1;
-                if(time11 < 0) time11 = 0;
-                document.getElementById('time11-display').innerText = time11.toFixed(1) + "s";
-                if(time11 <= 0) { stopCatchGame(false); }
-            }, 100);
-
-            spawner11 = setInterval(() => {
-                if(!game11Active) return;
-                let heart = document.createElement('div');
-                heart.className = 'falling-heart';
-                heart.innerHTML = Math.random() > 0.2 ? '🤍' : '💣';
-                heart.style.left = Math.floor(Math.random() * (field.offsetWidth - 40)) + 'px';
-                heart.onclick = (e) => handleHeartClick(e, heart);
-                heart.ontouchstart = (e) => handleHeartClick(e, heart);
-                field.appendChild(heart);
-                setTimeout(() => { if(heart.parentElement) heart.remove(); }, 2000);
-            }, 600);
-        }
-        function handleHeartClick(e, el) {
-            if(e && e.cancelable) e.preventDefault();
-            if(!game11Active) return;
-            if(el.innerHTML === '💣') {
-                score11 = Math.max(0, score11 - 2);
-                showToast("¡Ay, una bomba! -2 puntos");
-            } else {
-                score11++;
-            }
-            document.getElementById('score11-display').innerText = score11 + "/8";
-            el.remove();
-            if(score11 >= 8) { stopCatchGame(true); }
-        }
-        function stopCatchGame(success) {
-            game11Active = false;
-            clearInterval(timer11);
-            clearInterval(spawner11);
-            document.getElementById('catch-field').innerHTML = '';
-            document.getElementById('start11-btn').style.display = 'block';
-            if(success) { unlockMinigame(11); } 
-            else { showToast("¡Tiempo agotado! Inténtalo de nuevo."); }
-        }
-
-        let balancePos = 0, balanceDir = 2, balanceSec = 0, balanceTimer = null, balanceActive = false;
-        function pushBalance(e) {
-            if(e && e.cancelable) e.preventDefault();
-            balancePos = Math.max(0, balancePos - 12);
-            updateBalanceUI();
-            if(!balanceActive) startBalanceLoop();
-        }
-        function startBalanceLoop() {
-            balanceActive = true;
-            balanceSec = 0;
-            balanceDir = 2.5;
-            balanceTimer = setInterval(() => {
-                balancePos += balanceDir;
-                if(balancePos > 85) balancePos = 85;
-                if(balancePos < 0) balancePos = 0;
-                
-                if(balancePos >= 30 && balancePos <= 60) {
-                    balanceSec += 0.1;
-                } else {
-                    balanceSec = Math.max(0, balanceSec - 0.15);
-                }
-
-                document.getElementById('time12-display').innerText = balanceSec.toFixed(1) + "s / 4.0s";
-                document.getElementById('balance-ind').style.left = balancePos + '%';
-
-                if(Math.random() < 0.15) balanceDir = (Math.random() - 0.5) * 6;
-
-                if(balanceSec >= 4.0) {
-                    clearInterval(balanceTimer);
-                    balanceActive = false;
-                    unlockMinigame(12);
-                }
-            }, 100);
-        }
-        function updateBalanceUI() {
-            document.getElementById('balance-ind').style.left = balancePos + '%';
-        }
-
-        // --- JUEGO 13: BRICK BREAKER ---
-        const brickCanvas = document.getElementById('brickCanvas');
-        const bCtx = brickCanvas ? brickCanvas.getContext('2d') : null;
-        let bX = 140, bY = 150, bDx = 2, bDy = -2, pX = 100;
-        const pWidth = 75, pHeight = 10, bRadius = 6;
-        let bricks = [];
-        const bRows = 3, bCols = 5, bWidth = 46, bHeight = 14, bPadding = 6, bOffsetTop = 15, bOffsetLeft = 14;
-        let brickGameRunning = false, brickInterval = null;
-
-        function initBrickGame() {
-            if(!bCtx) return;
-            bricks = [];
-            for(let c=0; c<bCols; c++) {
-                bricks[c] = [];
-                for(let r=0; r<bRows; r++) {
-                    bricks[c][r] = { x: 0, y: 0, status: 1 };
-                }
-            }
-            bX = 140; bY = 150; pX = 100;
-            drawBrickScene();
-        }
-
-        function drawBrickScene() {
-            if(!bCtx) return;
-            bCtx.clearRect(0, 0, brickCanvas.width, brickCanvas.height);
-            
-            for(let c=0; c<bCols; c++) {
-                for(let r=0; r<bRows; r++) {
-                    if(bricks[c][r].status == 1) {
+                                        if(bricks[c][r].status == 1) {
                         let brickX = (c*(bWidth+bPadding))+bOffsetLeft;
                         let brickY = (r*(bHeight+bPadding))+bOffsetTop;
                         bricks[c][r].x = brickX;
@@ -1466,8 +1113,10 @@
                     }
                 }
             }
+
             bCtx.fillStyle = '#fff';
-            bCtx.fillRect(pX, brickCanvas.height - 15, pWidth, pHeight);
+            bCtx.fillRect(pX, paddleY, pWidth, pHeight);
+
             bCtx.beginPath();
             bCtx.arc(bX, bY, bRadius, 0, Math.PI*2);
             bCtx.fillStyle = '#ff7eb9';
@@ -1476,191 +1125,736 @@
         }
 
         function startBrickGame() {
-            if(brickGameRunning) return;
-            brickGameRunning = true;
-            document.getElementById('startBrickBtn').style.display = 'none';
-            
-            brickInterval = setInterval(() => {
-                bX += bDx;
-                bY += bDy;
+            if(brickGameRunning || !bCtx) return;
 
-                if(bX + bDx > brickCanvas.width - bRadius || bX + bDx < bRadius) bDx = -bDx;
-                if(bY + bDy < bRadius) {
-                    bDy = -bDy;
-                } else if(bY + bDy > brickCanvas.height - bRadius - 15) {
-                    if(bX > pX && bX < pX + pWidth) {
-                        bDy = -bDy;
-                    } else if(bY > brickCanvas.height) {
-                        brickGameRunning = false;
-                        clearInterval(brickInterval);
-                        showToast("¡Vaya! Inténtalo de nuevo.");
-                        document.getElementById('startBrickBtn').style.display = 'block';
-                        initBrickGame();
-                        return;
-                    }
+            brickGameRunning = true;
+
+            const startBtn = document.getElementById('startBrickBtn');
+            if (startBtn) startBtn.style.display = 'none';
+
+            bX = brickCanvas.width / 2;
+            bY = paddleY - bRadius - 1;
+
+            if (bDx === 0) bDx = 2.2;
+            if (bDy === 0) bDy = -2.2;
+
+            brickInterval = setInterval(() => {
+                if (!brickGameRunning) return;
+
+                const prevX = bX;
+                const prevY = bY;
+
+                let nextX = bX + bDx;
+                let nextY = bY + bDy;
+
+                /*
+                 * Paredes laterales.
+                 * Se comprueba la posición futura teniendo en cuenta
+                 * el radio de la pelota para evitar que atraviese el borde.
+                 */
+                if (nextX + bRadius >= brickCanvas.width) {
+                    nextX = brickCanvas.width - bRadius;
+                    bDx = -Math.abs(bDx);
+                } else if (nextX - bRadius <= 0) {
+                    nextX = bRadius;
+                    bDx = Math.abs(bDx);
                 }
 
-                let won = true;
-                for(let c=0; c<bCols; c++) {
-                    for(let r=0; r<bRows; r++) {
-                        let b = bricks[c][r];
-                        if(b.status == 1) {
-                            won = false;
-                            if(bX > b.x && bX < b.x + bWidth && bY > b.y && bY < b.y + bHeight) {
-                                bDy = -bDy;
-                                b.status = 0;
-                            }
+                /*
+                 * Techo.
+                 */
+                if (nextY - bRadius <= 0) {
+                    nextY = bRadius;
+                    bDy = Math.abs(bDy);
+                }
+
+                /*
+                 * Colisión con la paleta.
+                 *
+                 * Solo puede producirse cuando la pelota está descendiendo
+                 * y cruza la parte superior de la paleta. Se tiene en cuenta
+                 * tanto el radio de la pelota como el ancho real de la paleta.
+                 */
+                if (
+                    bDy > 0 &&
+                    prevY + bRadius <= paddleY &&
+                    nextY + bRadius >= paddleY
+                ) {
+                    const horizontalOverlap =
+                        nextX + bRadius >= pX &&
+                        nextX - bRadius <= pX + pWidth;
+
+                    if (horizontalOverlap) {
+                        nextY = paddleY - bRadius - 0.5;
+                        bDy = -Math.abs(bDy);
+
+                        /*
+                         * Cambiamos ligeramente la dirección horizontal
+                         * según el punto de impacto para que el rebote
+                         * no sea siempre vertical.
+                         */
+                        const paddleCenter = pX + (pWidth / 2);
+                        const hitOffset = (nextX - paddleCenter) / (pWidth / 2);
+
+                        bDx = hitOffset * 3.2;
+
+                        if (Math.abs(bDx) < 0.8) {
+                            bDx = bDx < 0 ? -0.8 : 0.8;
                         }
                     }
                 }
 
-                if(won) {
+                /*
+                 * Si la pelota cae por debajo de la zona de juego,
+                 * se pierde la partida.
+                 */
+                if (nextY - bRadius > brickCanvas.height) {
                     brickGameRunning = false;
                     clearInterval(brickInterval);
-                    unlockMinigame(13);
+                    brickInterval = null;
+
+                    showToast("¡Vaya! Inténtalo de nuevo.");
+
+                    if (startBtn) startBtn.style.display = 'block';
+
+                    initBrickGame();
                     return;
                 }
 
+                /*
+                 * Colisiones con bloques.
+                 *
+                 * Se comprueba la posición futura de la pelota respecto
+                 * al rectángulo de cada bloque, teniendo en cuenta el radio.
+                 */
+                let hitBrick = false;
+
+                for(let c = 0; c < bCols && !hitBrick; c++) {
+                    for(let r = 0; r < bRows && !hitBrick; r++) {
+                        let b = bricks[c][r];
+
+                        if (b.status !== 1) continue;
+
+                        const closestX = Math.max(
+                            b.x,
+                            Math.min(nextX, b.x + bWidth)
+                        );
+
+                        const closestY = Math.max(
+                            b.y,
+                            Math.min(nextY, b.y + bHeight)
+                        );
+
+                        const dx = nextX - closestX;
+                        const dy = nextY - closestY;
+
+                        if ((dx * dx) + (dy * dy) <= bRadius * bRadius) {
+                            b.status = 0;
+                            hitBrick = true;
+
+                            /*
+                             * Determinamos si el impacto viene principalmente
+                             * por arriba/abajo o por uno de los laterales.
+                             */
+                            const prevClosestX = Math.max(
+                                b.x,
+                                Math.min(prevX, b.x + bWidth)
+                            );
+
+                            const prevClosestY = Math.max(
+                                b.y,
+                                Math.min(prevY, b.y + bHeight)
+                            );
+
+                            const prevDx = prevX - prevClosestX;
+                            const prevDy = prevY - prevClosestY;
+
+                            if (Math.abs(prevDx) > Math.abs(prevDy)) {
+                                bDx = -bDx;
+                            } else {
+                                bDy = -bDy;
+                            }
+
+                            /*
+                             * Empujamos la pelota ligeramente fuera del bloque
+                             * para evitar que quede atrapada dentro.
+                             */
+                            nextX = prevX + bDx;
+                            nextY = prevY + bDy;
+                        }
+                    }
+                }
+
+                /*
+                 * Comprobar victoria.
+                 */
+                let remainingBricks = 0;
+
+                for(let c = 0; c < bCols; c++) {
+                    for(let r = 0; r < bRows; r++) {
+                        if(bricks[c][r].status === 1) {
+                            remainingBricks++;
+                        }
+                    }
+                }
+
+                if (remainingBricks === 0) {
+                    brickGameRunning = false;
+                    clearInterval(brickInterval);
+                    brickInterval = null;
+
+                    bX = nextX;
+                    bY = nextY;
+                    drawBrickScene();
+
+                    setTimeout(() => unlockMinigame(13), 400);
+                    return;
+                }
+
+                bX = nextX;
+                bY = nextY;
+
                 drawBrickScene();
+
             }, 15);
         }
 
         function movePaddle(dir) {
+            if (!brickCanvas) return;
+
             if(dir === 'left') {
                 pX = Math.max(0, pX - 25);
-            } else {
+            } else if(dir === 'right') {
                 pX = Math.min(brickCanvas.width - pWidth, pX + 25);
             }
+
             drawBrickScene();
+        }
+
+        function setPaddleFromClientX(clientX) {
+            if (!brickCanvas) return;
+
+            const rect = brickCanvas.getBoundingClientRect();
+
+            if (!rect.width) return;
+
+            const scaleX = brickCanvas.width / rect.width;
+            const canvasX = (clientX - rect.left) * scaleX;
+
+            pX = canvasX - (pWidth / 2);
+
+            pX = Math.max(
+                0,
+                Math.min(brickCanvas.width - pWidth, pX)
+            );
+
+            drawBrickScene();
+        }
+
+        function bindBrickControls() {
+            if (!brickCanvas) return;
+
+            if (!brickTouchBound) {
+                brickTouchBound = true;
+
+                brickCanvas.addEventListener('touchstart', (e) => {
+                    if (e.cancelable) e.preventDefault();
+
+                    if (e.touches && e.touches.length > 0) {
+                        setPaddleFromClientX(e.touches[0].clientX);
+                    }
+                }, { passive: false });
+
+                brickCanvas.addEventListener('touchmove', (e) => {
+                    if (e.cancelable) e.preventDefault();
+
+                    if (e.touches && e.touches.length > 0) {
+                        setPaddleFromClientX(e.touches[0].clientX);
+                    }
+                }, { passive: false });
+
+                brickCanvas.addEventListener('touchend', (e) => {
+                    if (e.cancelable) e.preventDefault();
+                }, { passive: false });
+
+                brickCanvas.addEventListener('touchcancel', (e) => {
+                    if (e.cancelable) e.preventDefault();
+                }, { passive: false });
+            }
+
+            if (!brickMouseBound) {
+                brickMouseBound = true;
+
+                brickCanvas.addEventListener('mousedown', (e) => {
+                    setPaddleFromClientX(e.clientX);
+
+                    const handleMouseMove = (moveEvent) => {
+                        setPaddleFromClientX(moveEvent.clientX);
+                    };
+
+                    const stopMouseMove = () => {
+                        document.removeEventListener('mousemove', handleMouseMove);
+                        document.removeEventListener('mouseup', stopMouseMove);
+                    };
+
+                    document.addEventListener('mousemove', handleMouseMove);
+                    document.addEventListener('mouseup', stopMouseMove);
+                });
+            }
         }
 
 
         // --- JUEGO 14: SLIDER PUZZLE NUMÉRICO ---
+
         let sliderTiles = [1, 2, 3, 4, 5, 6, 7, 8, ""];
-        
+        let sliderMoving = false;
+
         function initSliderGame() {
+            sliderMoving = false;
+            sliderTiles = [1, 2, 3, 4, 5, 6, 7, 8, ""];
             shuffleSlider();
         }
 
+        function getSliderValidMoves(emptyIdx) {
+            const moves = [];
+
+            const row = Math.floor(emptyIdx / 3);
+            const col = emptyIdx % 3;
+
+            if (row > 0) moves.push(emptyIdx - 3);
+            if (row < 2) moves.push(emptyIdx + 3);
+            if (col > 0) moves.push(emptyIdx - 1);
+            if (col < 2) moves.push(emptyIdx + 1);
+
+            return moves;
+        }
+
         function shuffleSlider() {
-            for (let i = sliderTiles.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [sliderTiles[i], sliderTiles[j]] = [sliderTiles[j], sliderTiles[i]];
+            if (sliderMoving) return;
+
+            /*
+             * Siempre empezamos desde el estado resuelto.
+             * Nunca hacemos una permutación aleatoria directa.
+             */
+            sliderTiles = [1, 2, 3, 4, 5, 6, 7, 8, ""];
+
+            let emptyIdx = 8;
+            let previousIdx = -1;
+
+            /*
+             * Una secuencia suficientemente larga de movimientos válidos
+             * garantiza que el estado resultante sea alcanzable.
+             */
+            const shuffleMoves = 80 + Math.floor(Math.random() * 21);
+
+            for (let i = 0; i < shuffleMoves; i++) {
+                const validMoves = getSliderValidMoves(emptyIdx);
+
+                /*
+                 * Evitamos deshacer inmediatamente el movimiento anterior
+                 * cuando existe otra alternativa.
+                 */
+                let candidates = validMoves.filter(idx => idx !== previousIdx);
+
+                if (candidates.length === 0) {
+                    candidates = validMoves;
+                }
+
+                const chosenIdx =
+                    candidates[Math.floor(Math.random() * candidates.length)];
+
+                sliderTiles[emptyIdx] = sliderTiles[chosenIdx];
+                sliderTiles[chosenIdx] = "";
+
+                previousIdx = emptyIdx;
+                emptyIdx = chosenIdx;
             }
+
+            /*
+             * Evitamos que, por casualidad, el tablero vuelva al estado
+             * resuelto después de mezclar.
+             */
+            if (sliderTiles.every((val, i) =>
+                val === [1, 2, 3, 4, 5, 6, 7, 8, ""][i]
+            )) {
+                shuffleSlider();
+                return;
+            }
+
             renderSlider();
         }
 
         function renderSlider() {
             let grid = document.getElementById('sliderGrid');
+
             if(!grid) return;
+
             grid.innerHTML = '';
+
             sliderTiles.forEach((val, idx) => {
                 let tile = document.createElement('div');
-                tile.className = 'slider-tile' + (val === "" ? 'empty' : '');
+
+                tile.className =
+                    'slider-tile' +
+                    (val === "" ? ' empty' : '');
+
                 tile.innerText = val;
-                tile.onclick = () => moveSliderTile(idx);
+
+                if (val !== "") {
+                    tile.onclick = () => moveSliderTile(idx);
+                }
+
                 grid.appendChild(tile);
             });
         }
 
         function moveSliderTile(idx) {
-            let emptyIdx = sliderTiles.indexOf("");
-            let validMoves = [emptyIdx - 1, emptyIdx + 1, emptyIdx - 3, emptyIdx + 3];
-            
-            if (emptyIdx % 3 === 0 && idx === emptyIdx - 1) validMoves = [];
-            if (emptyIdx % 3 === 2 && idx === emptyIdx + 1) validMoves = [];
+            if (sliderMoving) return;
 
-            if (validMoves.includes(idx)) {
-                sliderTiles[emptyIdx] = sliderTiles[idx];
-                sliderTiles[idx] = "";
-                renderSlider();
-                checkSliderWin();
-            }
+            const emptyIdx = sliderTiles.indexOf("");
+
+            if (emptyIdx === -1) return;
+
+            const validMoves = getSliderValidMoves(emptyIdx);
+
+            if (!validMoves.includes(idx)) return;
+
+            sliderMoving = true;
+
+            sliderTiles[emptyIdx] = sliderTiles[idx];
+            sliderTiles[idx] = "";
+
+            renderSlider();
+
+            checkSliderWin();
+
+            setTimeout(() => {
+                sliderMoving = false;
+            }, 60);
         }
 
         function checkSliderWin() {
-            let winningState = [1, 2, 3, 4, 5, 6, 7, 8, ""];
-            let isWon = sliderTiles.every((val, i) => val === winningState[i]);
+            const winningState = [
+                1, 2, 3,
+                4, 5, 6,
+                7, 8, ""
+            ];
+
+            const isWon = sliderTiles.every(
+                (val, i) => val === winningState[i]
+            );
+
             if (isWon) {
-                setTimeout(() => unlockMinigame(14), 400);
+                sliderMoving = true;
+
+                setTimeout(() => {
+                    unlockMinigame(14);
+                    sliderMoving = false;
+                }, 400);
             }
         }
 
 
         // --- JUEGO 15: LABERINTO RADIOACTIVO ---
+
         const labCanvas = document.getElementById('labCanvas');
         const lCtx = labCanvas ? labCanvas.getContext('2d') : null;
 
-        let player = { x: 15, y: 15, size: 10, speed: 6 };
-        const goal = { x: 215, y: 215, size: 30 };
+        let player = {
+            x: 15,
+            y: 15,
+            size: 10,
+            speed: 6
+        };
+
+        const goal = {
+            x: 225,
+            y: 225,
+            size: 20
+        };
+
+        /*
+         * Laberinto diseñado manualmente.
+         *
+         * La estructura obliga al jugador a realizar varios giros.
+         * Las paredes crean:
+         * - pasillos estrechos;
+         * - rutas falsas;
+         * - callejones sin salida;
+         * - giros de 90 grados;
+         * - una ruta correcta hasta la meta.
+         */
         const walls = [
-            { x: 0, y: 50, w: 200, h: 10 },
-            { x: 60, y: 110, w: 200, h: 10 },
-            { x: 0, y: 170, w: 180, h: 10 },
-            { x: 80, y: 220, w: 120, h: 10 }
+            // Zona superior
+            { x: 0,   y: 45,  w: 205, h: 10 },
+            { x: 55,  y: 45,  w: 10,  h: 65 },
+
+            // Primer giro / corredor central
+            { x: 55,  y: 105, w: 155, h: 10 },
+            { x: 200, y: 55,  w: 10,  h: 60 },
+
+            // Callejón superior derecho
+            { x: 145, y: 55,  w: 10,  h: 35 },
+            { x: 145, y: 85,  w: 55,  h: 10 },
+
+            // Segundo sector
+            { x: 20,  y: 145, w: 190, h: 10 },
+            { x: 20,  y: 105, w: 10,  h: 50 },
+
+            // Callejón falso izquierdo
+            { x: 30,  y: 115, w: 70, h: 10 },
+            { x: 90,  y: 115, w: 10,  h: 30 },
+
+            // Corredor derecho
+            { x: 220, y: 95,  w: 10, h: 95 },
+            { x: 160, y: 185, w: 70, h: 10 },
+
+            // Tercer giro
+            { x: 75,  y: 175, w: 10, h: 70 },
+            { x: 85,  y: 175, w: 75, h: 10 },
+
+            // Callejón inferior izquierdo
+            { x: 20,  y: 195, w: 55, h: 10 },
+            { x: 20,  y: 195, w: 10, h: 45 },
+
+            // Zona final
+            { x: 100,  y: 225, w: 60, h: 10 },
+            { x: 160,  y: 195, w: 10, h: 40 }
         ];
+
+        function resetLabPlayer() {
+            player.x = 15;
+            player.y = 15;
+        }
 
         function drawLab() {
             if(!lCtx) return;
-            lCtx.clearRect(0, 0, labCanvas.width, labCanvas.height);
-            
-            lCtx.fillStyle = '#2ecc71';
-            lCtx.fillRect(goal.x, goal.y, goal.size, goal.size);
 
+            lCtx.clearRect(
+                0,
+                0,
+                labCanvas.width,
+                labCanvas.height
+            );
+
+            /*
+             * Meta verde.
+             */
+            lCtx.fillStyle = '#2ecc71';
+            lCtx.shadowColor = '#2ecc71';
+            lCtx.shadowBlur = 10;
+            lCtx.fillRect(
+                goal.x,
+                goal.y,
+                goal.size,
+                goal.size
+            );
+            lCtx.shadowBlur = 0;
+
+            /*
+             * Paredes radioactivas.
+             */
             lCtx.fillStyle = '#FF0000';
             lCtx.shadowColor = '#FF0000';
             lCtx.shadowBlur = 8;
-            walls.forEach(w => lCtx.fillRect(w.x, w.y, w.w, w.h));
+
+            walls.forEach(w => {
+                lCtx.fillRect(
+                    w.x,
+                    w.y,
+                    w.w,
+                    w.h
+                );
+            });
+
             lCtx.shadowBlur = 0;
 
+            /*
+             * Jugador.
+             */
             lCtx.fillStyle = '#ff4785';
-            lCtx.fillRect(player.x, player.y, player.size, player.size);
+            lCtx.shadowColor = '#ff4785';
+            lCtx.shadowBlur = 8;
+
+            lCtx.fillRect(
+                player.x,
+                player.y,
+                player.size,
+                player.size
+            );
+
+            lCtx.shadowBlur = 0;
         }
 
         function checkCollision(nx, ny) {
+            /*
+             * Límites exteriores.
+             */
+            if (
+                nx < 0 ||
+                ny < 0 ||
+                nx + player.size > labCanvas.width ||
+                ny + player.size > labCanvas.height
+            ) {
+                return true;
+            }
+
+            /*
+             * Colisión precisa jugador/pared.
+             */
             for (let w of walls) {
-                if (nx < w.x + w.w && nx + player.size > w.x && ny < w.y + w.h && ny + player.size > w.y) {
+                if (
+                    nx < w.x + w.w &&
+                    nx + player.size > w.x &&
+                    ny < w.y + w.h &&
+                    ny + player.size > w.y
+                ) {
                     return true;
                 }
             }
-            return nx < 0 || nx + player.size > labCanvas.width || ny < 0 || ny + player.size > labCanvas.height;
+
+            return false;
+        }
+
+        function checkGoal() {
+            return (
+                player.x < goal.x + goal.size &&
+                player.x + player.size > goal.x &&
+                player.y < goal.y + goal.size &&
+                player.y + player.size > goal.y
+            );
         }
 
         function movePlayer(direction) {
+            if (!labCanvas || !lCtx) return;
+
             let nx = player.x;
             let ny = player.y;
-            if (direction === 'ArrowUp') ny -= player.speed;
-            if (direction === 'ArrowDown') ny += player.speed;
-            if (direction === 'ArrowLeft') nx -= player.speed;
-            if (direction === 'ArrowRight') nx += player.speed;
 
+            if (direction === 'ArrowUp') {
+                ny -= player.speed;
+            }
+
+            if (direction === 'ArrowDown') {
+                ny += player.speed;
+            }
+
+            if (direction === 'ArrowLeft') {
+                nx -= player.speed;
+            }
+
+            if (direction === 'ArrowRight') {
+                nx += player.speed;
+            }
+
+            /*
+             * Comprobamos la nueva posición antes de aplicarla.
+             */
             if (checkCollision(nx, ny)) {
-                player.x = 15;
-                player.y = 15;
-                showToast("¡Te has rozado con la radiación! 💥 Vuelves al inicio.");
+                resetLabPlayer();
+
+                showToast(
+                    "¡Te has rozado con la radiación! 💥 Vuelves al inicio."
+                );
+
                 drawLab();
                 return;
             }
 
             player.x = nx;
             player.y = ny;
+
             drawLab();
 
-            if (player.x < goal.x + goal.size && player.x + player.size > goal.x &&
-                player.y < goal.y + goal.size && player.y + player.size > goal.y) {
+            if (checkGoal()) {
                 showToast('¡Laberinto superado!');
-                setTimeout(() => unlockMinigame(15), 600);
+
+                setTimeout(() => {
+                    unlockMinigame(15);
+                }, 600);
             }
         }
 
         window.addEventListener('keydown', (e) => {
-            if(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key) && unlockedCount === 15) {
+            if (
+                ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key) &&
+                unlockedCount === 15
+            ) {
                 e.preventDefault();
                 movePlayer(e.key);
             }
         });
 
         function tryUnlock() {
+            const code =
+                document.getElementById('safeCode').value;
+
+            const msg =
+                document.getElementById('safeMsg');
+
+            if (code === '190826') {
+                msg.style.color = '#2ecc71';
+                msg.innerText =
+                    '¡Correcto! Abriendo carta final...';
+
+                setTimeout(() => {
+                    document.getElementById(
+                        'safe-lock-container'
+                    ).style.display = 'none';
+
+                    document.getElementById(
+                        'safe-content-container'
+                    ).style.display = 'block';
+
+                    triggerConfetti();
+                }, 800);
+
+            } else {
+                msg.style.color = '#ff4785';
+                msg.innerText =
+                    'Código incorrecto. Pista: La fecha del reencuentro.';
+            }
+        }
+
+        function triggerConfetti() {
+            let colors = [
+                '#ff4785',
+                '#ff7eb9',
+                '#ff6bb5',
+                '#ffffff',
+                '#e74c3c'
+            ];
+
+            for(let i = 0; i < 35; i++) {
+                let conf = document.createElement('div');
+
+                conf.className = 'confetti';
+
+                conf.style.left =
+                    (Math.random() * 100) + 'vw';
+
+                conf.style.backgroundColor =
+                    colors[
+                        Math.floor(
+                            Math.random() * colors.length
+                        )
+                    ];
+
+                conf.style.animationDuration =
+                    (Math.random() * 2 + 2) + 's';
+
+                conf.style.animationDelay =
+                    (Math.random() * 0.4) + 's';
+
+                document.body.appendChild(conf);
+
+                setTimeout(
+                    () => conf.remove(),
+                    4500
+                );
+            }
+        }
+                function tryUnlock() {
             const code = document.getElementById('safeCode').value;
             const msg = document.getElementById('safeMsg');
             
