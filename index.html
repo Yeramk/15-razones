@@ -1055,10 +1055,12 @@
                     if (cardBox) {
                         cardBox.style.display = 'block';
                         if(lockBox) { lockBox.style.display = 'block'; if(contentBox) contentBox.style.display = 'none'; }
-                        if (i === 4) initScratch();
-                        if (i === 13) initBrickGame();
-                        if (i === 14) initSliderGame();
-                        if (i === 15) drawLab();
+                        setTimeout(() => {
+                            if (i === 4) initScratch();
+                            if (i === 13) initBrickGame();
+                            if (i === 14) initSliderGame();
+                            if (i === 15) drawLab();
+                        }, 100);
                     }
                 } 
                 else {
@@ -1100,10 +1102,12 @@
             var nextCard = document.getElementById('card-' + nextNum);
             if (nextCard) {
                 nextCard.style.display = 'block';
-                if (nextNum === 4) initScratch();
-                if (nextNum === 13) initBrickGame();
-                if (nextNum === 14) initSliderGame();
-                if (nextNum === 15) drawLab();
+                setTimeout(() => {
+                    if (nextNum === 4) initScratch();
+                    if (nextNum === 13) initBrickGame();
+                    if (nextNum === 14) initSliderGame();
+                    if (nextNum === 15) drawLab();
+                }, 100);
             } else if (nextNum > 15) {
                 var bonus = document.getElementById('card-bonus');
                 if (bonus) bonus.style.display = 'block';
@@ -1450,7 +1454,6 @@
             if(!bCtx) return;
             bCtx.clearRect(0, 0, brickCanvas.width, brickCanvas.height);
             
-            // Dibujar bloques
             for(let c=0; c<bCols; c++) {
                 for(let r=0; r<bRows; r++) {
                     if(bricks[c][r].status == 1) {
@@ -1463,10 +1466,8 @@
                     }
                 }
             }
-            // Dibujar paleta
             bCtx.fillStyle = '#fff';
             bCtx.fillRect(pX, brickCanvas.height - 15, pWidth, pHeight);
-            // Dibujar bola
             bCtx.beginPath();
             bCtx.arc(bX, bY, bRadius, 0, Math.PI*2);
             bCtx.fillStyle = '#ff7eb9';
@@ -1483,7 +1484,6 @@
                 bX += bDx;
                 bY += bDy;
 
-                // Rebote paredes
                 if(bX + bDx > brickCanvas.width - bRadius || bX + bDx < bRadius) bDx = -bDx;
                 if(bY + bDy < bRadius) {
                     bDy = -bDy;
@@ -1491,7 +1491,6 @@
                     if(bX > pX && bX < pX + pWidth) {
                         bDy = -bDy;
                     } else if(bY > brickCanvas.height) {
-                        // Pierde
                         brickGameRunning = false;
                         clearInterval(brickInterval);
                         showToast("¡Vaya! Inténtalo de nuevo.");
@@ -1501,7 +1500,6 @@
                     }
                 }
 
-                // Colisión bloques
                 let won = true;
                 for(let c=0; c<bCols; c++) {
                     for(let r=0; r<bRows; r++) {
@@ -1545,7 +1543,6 @@
         }
 
         function shuffleSlider() {
-            // Mezclar asegurando que tenga solución o simplemente barajar aleatorio simple
             for (let i = sliderTiles.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
                 [sliderTiles[i], sliderTiles[j]] = [sliderTiles[j], sliderTiles[i]];
@@ -1570,7 +1567,6 @@
             let emptyIdx = sliderTiles.indexOf("");
             let validMoves = [emptyIdx - 1, emptyIdx + 1, emptyIdx - 3, emptyIdx + 3];
             
-            // Corrección de saltos de línea laterales en cuadrícula 3x3
             if (emptyIdx % 3 === 0 && idx === emptyIdx - 1) validMoves = [];
             if (emptyIdx % 3 === 2 && idx === emptyIdx + 1) validMoves = [];
 
@@ -1608,18 +1604,15 @@
             if(!lCtx) return;
             lCtx.clearRect(0, 0, labCanvas.width, labCanvas.height);
             
-            // Meta verde
             lCtx.fillStyle = '#2ecc71';
             lCtx.fillRect(goal.x, goal.y, goal.size, goal.size);
 
-            // Paredes Rojo Radioactivo con brillo neón
             lCtx.fillStyle = '#FF0000';
             lCtx.shadowColor = '#FF0000';
             lCtx.shadowBlur = 8;
             walls.forEach(w => lCtx.fillRect(w.x, w.y, w.w, w.h));
-            lCtx.shadowBlur = 0; // Reset sombra
+            lCtx.shadowBlur = 0;
 
-            // Avatar
             lCtx.fillStyle = '#ff4785';
             lCtx.fillRect(player.x, player.y, player.size, player.size);
         }
@@ -1627,7 +1620,7 @@
         function checkCollision(nx, ny) {
             for (let w of walls) {
                 if (nx < w.x + w.w && nx + player.size > w.x && ny < w.y + w.h && ny + player.size > w.y) {
-                    return true; // Tocó pared
+                    return true;
                 }
             }
             return nx < 0 || nx + player.size > labCanvas.width || ny < 0 || ny + player.size > labCanvas.height;
@@ -1642,7 +1635,6 @@
             if (direction === 'ArrowRight') nx += player.speed;
 
             if (checkCollision(nx, ny)) {
-                // ¡Tocó pared radioactiva! Devuelve al inicio con destello
                 player.x = 15;
                 player.y = 15;
                 showToast("¡Te has rozado con la radiación! 💥 Vuelves al inicio.");
@@ -1668,7 +1660,6 @@
             }
         });
 
-        // Lógica de la Caja Fuerte Final
         function tryUnlock() {
             const code = document.getElementById('safeCode').value;
             const msg = document.getElementById('safeMsg');
