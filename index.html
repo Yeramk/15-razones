@@ -7,27 +7,27 @@
     <title>15 Razones 🤍</title>
     <style>
         :root {
-            --bg-color: #f7f1e3;
-            --bg-pattern-1: #e0d6c3;
-            --bg-pattern-2: #faf0ca;
-            --primary-color: #2c3e50;
-            --accent-color: #e74c3c;
-            --card-bg: #ffffff;
-            --text-color: #2c3e50;
-            --muted-text: #7f8c8d;
-            --border-color: #f0f0f0;
+            --bg-color: #240a38;
+            --bg-pattern-1: #3b1454;
+            --bg-pattern-2: #1b052b;
+            --primary-color: #ff6bb5;
+            --accent-color: #ff4785;
+            --card-bg: rgba(36, 12, 56, 0.85);
+            --text-color: #f1f2f6;
+            --muted-text: #d1b3e0;
+            --border-color: rgba(255, 107, 181, 0.2);
         }
 
         body.dark-mode {
-            --bg-color: #1a1a2e;
-            --bg-pattern-1: #16213e;
-            --bg-pattern-2: #0f3460;
-            --primary-color: #e94560;
-            --accent-color: #ff6b6b;
-            --card-bg: #16213e;
+            --bg-color: #140420;
+            --bg-pattern-1: #240a38;
+            --bg-pattern-2: #0d0214;
+            --primary-color: #ff7eb9;
+            --accent-color: #ff4785;
+            --card-bg: rgba(20, 4, 32, 0.9);
             --text-color: #f1f2f6;
-            --muted-text: #a4b0be;
-            --border-color: #0f3460;
+            --muted-text: #c29bc9;
+            --border-color: rgba(255, 126, 185, 0.2);
         }
 
         * {
@@ -40,8 +40,11 @@
 
         body {
             background-color: var(--bg-color);
-            background-image: radial-gradient(var(--bg-pattern-1) 0.8px, transparent 0.8px), radial-gradient(var(--bg-pattern-1) 0.8px, var(--bg-pattern-2) 0.8px);
-            background-size: 24px 24px;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(142, 36, 115, 0.35) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(94, 23, 104, 0.4) 0%, transparent 50%),
+                radial-gradient(var(--bg-pattern-1) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 24px 24px;
             color: var(--text-color);
             padding: 24px 16px 90px 16px;
             display: flex;
@@ -76,6 +79,7 @@
 
         .icon-btn {
             background: var(--card-bg);
+            backdrop-filter: blur(10px);
             color: var(--text-color);
             border: 1px solid var(--border-color);
             width: 44px;
@@ -86,7 +90,7 @@
             justify-content: center;
             font-size: 1.2rem;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .dropdown-menu {
@@ -94,10 +98,11 @@
             position: absolute;
             top: 52px;
             right: 0;
-            background: var(--card-bg);
+            background: rgba(27, 5, 43, 0.95);
+            backdrop-filter: blur(15px);
             border: 1px solid var(--border-color);
             border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
             min-width: 170px;
             flex-direction: column;
             overflow: hidden;
@@ -117,14 +122,12 @@
             text-align: center;
             font-size: 0.75rem;
             color: var(--primary-color);
-            background: rgba(0,0,0,0.03);
+            background: rgba(255,255,255,0.05);
             font-weight: bold;
             border-bottom: 1px solid var(--border-color);
             letter-spacing: 0.5px;
             text-transform: uppercase;
         }
-
-        body.dark-mode .dropdown-header { background: rgba(255,255,255,0.05); }
 
         .dropdown-item {
             background: none;
@@ -141,22 +144,22 @@
             width: 100%;
         }
 
-        .dropdown-item:active { background: rgba(0,0,0,0.05); }
+        .dropdown-item:active { background: rgba(255,255,255,0.1); }
 
         .floating-emoji {
             position: fixed;
-            font-size: 20px;
+            font-size: 24px;
             user-select: none;
             pointer-events: none;
             animation: floatEmojis 10s infinite linear;
             z-index: 0;
-            opacity: 0.35;
+            opacity: 0.45;
         }
 
         @keyframes floatEmojis {
             0% { transform: translateY(105vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.4; }
-            90% { opacity: 0.4; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
@@ -179,14 +182,15 @@
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: rgba(44, 62, 80, 0.9);
+            background: rgba(20, 4, 32, 0.95);
             backdrop-filter: blur(12px);
             color: #fff;
             padding: 12px 22px;
             border-radius: 30px;
             font-size: 0.9rem;
             font-weight: 500;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
             z-index: 99999;
             transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             pointer-events: none;
@@ -208,10 +212,11 @@
 
         #welcome-screen {
             background: var(--card-bg);
+            backdrop-filter: blur(16px);
             border-radius: 28px;
             padding: 38px 24px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             border: 1px solid var(--border-color);
             width: 100%;
             max-width: 420px;
@@ -250,6 +255,7 @@
             font-size: 2.2rem;
             margin-bottom: 6px;
             letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(255, 107, 181, 0.3);
         }
 
         p.subtitle {
@@ -260,9 +266,10 @@
 
         .progress-wrapper {
             background: var(--card-bg);
+            backdrop-filter: blur(16px);
             border-radius: 18px;
             padding: 14px 18px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.03);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
             border: 1px solid var(--border-color);
             margin-bottom: 24px;
         }
@@ -277,14 +284,14 @@
         }
 
         .progress-bar-bg {
-            background: rgba(0,0,0,0.05);
+            background: rgba(255,255,255,0.1);
             height: 10px;
             border-radius: 10px;
             overflow: hidden;
         }
 
         .progress-bar-fill {
-            background: linear-gradient(90deg, #e74c3c, #ff7675);
+            background: linear-gradient(90deg, #ff4785, #ff7eb9);
             height: 100%;
             width: 6.66%;
             border-radius: 10px;
@@ -293,10 +300,11 @@
 
         .card {
             background: var(--card-bg);
+            backdrop-filter: blur(16px);
             border-radius: 24px;
             padding: 24px;
             margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
             border: 1px solid var(--border-color);
         }
 
@@ -308,12 +316,13 @@
         }
 
         .badge {
-            background: #ffeaa7;
-            color: #d63031;
+            background: rgba(255, 126, 185, 0.15);
+            color: var(--primary-color);
             font-weight: bold;
             padding: 5px 12px;
             border-radius: 20px;
             font-size: 0.8rem;
+            border: 1px solid var(--border-color);
         }
 
         .card-counter {
@@ -329,8 +338,8 @@
             overflow: hidden;
             margin: 14px 0;
             background: #000;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-            border: 3px solid #e74c3c;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            border: 3px solid var(--primary-color);
             transition: border-color 0.4s ease;
         }
 
@@ -343,7 +352,7 @@
         }
 
         .response-box {
-            background: rgba(231, 76, 60, 0.06);
+            background: rgba(255, 71, 133, 0.08);
             border-left: 4px solid var(--accent-color);
             padding: 14px 16px;
             margin-top: 14px;
@@ -359,7 +368,7 @@
             padding: 14px 16px;
             margin: 12px 0;
             border: 1px solid var(--border-color);
-            background: var(--card-bg);
+            background: rgba(20, 4, 32, 0.6);
             color: var(--text-color);
             border-radius: 14px;
             text-align: center;
@@ -368,7 +377,7 @@
         }
 
         button.action-btn {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, #ff4785, #ff6bb5);
             color: white;
             border: none;
             padding: 14px 16px;
@@ -377,14 +386,14 @@
             font-size: 1rem;
             width: 100%;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(44, 62, 80, 0.12);
+            box-shadow: 0 4px 15px rgba(255, 71, 133, 0.3);
             transition: transform 0.15s ease;
         }
 
         button.action-btn:active { transform: scale(0.97); }
 
         .audio-player-box {
-            background: rgba(0,0,0,0.03);
+            background: rgba(0,0,0,0.2);
             border-radius: 16px;
             padding: 10px;
             margin: 12px 0;
@@ -393,14 +402,14 @@
         .audio-player-box iframe { width: 100%; height: 160px; border-radius: 10px; border: none; }
         
         .memory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
-        .memory-card { background: var(--primary-color); color: white; height: 75px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; cursor: pointer; }
-        .memory-card.flipped { background: #ffeaa7; color: #d63031; }
+        .memory-card { background: rgba(255, 107, 181, 0.2); color: white; height: 75px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; cursor: pointer; border: 1px solid var(--border-color); }
+        .memory-card.flipped { background: #ff7eb9; color: #140420; }
 
         .scratch-container { position: relative; width: 100%; height: 110px; margin: 15px 0; border-radius: 14px; overflow: hidden; }
-        .scratch-secret { position: absolute; width: 100%; height: 100%; background: #ffeaa7; color: #d63031; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; text-align: center; padding: 10px; }
+        .scratch-secret { position: absolute; width: 100%; height: 100%; background: #ff7eb9; color: #140420; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; text-align: center; padding: 10px; }
         canvas.scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
 
-        .word-btn { background: var(--card-bg); color: var(--primary-color); border: 2px solid var(--primary-color); padding: 10px 14px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
+        .word-btn { background: rgba(20, 4, 32, 0.6); color: var(--text-color); border: 2px solid var(--primary-color); padding: 10px 14px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
         
         @keyframes sniperMove { 0% { left: 0%; } 100% { left: 92%; } }
         .sniper-line {
@@ -409,10 +418,108 @@
         }
 
         .blind-slider {
-            -webkit-appearance: none; appearance: none; background: rgba(0,0,0,0.05); height: 32px; border-radius: 16px; outline: none; margin: 20px 0;
+            -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1); height: 32px; border-radius: 16px; outline: none; margin: 20px 0;
         }
         .blind-slider::-webkit-slider-thumb {
             -webkit-appearance: none; appearance: none; width: 32px; height: 32px; border-radius: 50%; background: transparent; cursor: pointer;
+        }
+
+        /* Estilos específicos para los nuevos minijuegos (11 al 15) */
+        .no-move { touch-action: none; user-select: none; }
+        
+        .catch-playfield {
+            position: relative;
+            height: 140px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 14px;
+            border: 1px dashed var(--border-color);
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        .falling-heart {
+            position: absolute;
+            font-size: 1.8rem;
+            cursor: pointer;
+            user-select: none;
+            animation: fallItem 2s linear forwards;
+        }
+        @keyframes fallItem {
+            0% { transform: translateY(-30px) scale(0.8); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(140px) scale(1.1); opacity: 0.9; }
+        }
+
+        .balance-track {
+            position: relative;
+            height: 40px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 20px;
+            margin: 15px 0;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .balance-zone {
+            position: absolute;
+            left: 35%;
+            width: 30%;
+            height: 100%;
+            background: rgba(46, 204, 113, 0.3);
+            border-left: 2px dashed #2ecc71;
+            border-right: 2px dashed #2ecc71;
+        }
+        .balance-indicator {
+            position: absolute;
+            top: 4px;
+            width: 32px;
+            height: 32px;
+            background: #ff4785;
+            border-radius: 50%;
+            transition: left 0.05s linear;
+        }
+
+        .pattern-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            max-width: 220px;
+            margin: 15px auto;
+        }
+        .pattern-dot {
+            width: 55px;
+            height: 55px;
+            background: rgba(255,255,255,0.08);
+            border: 2px solid var(--border-color);
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .pattern-dot.active {
+            background: var(--primary-color);
+            transform: scale(1.15);
+            border-color: #fff;
+        }
+
+        .osc-track {
+            position: relative;
+            height: 45px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 22px;
+            margin: 20px 0;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        @keyframes oscMove {
+            0% { left: 0%; }
+            100% { left: 88%; }
+        }
+        .osc-line {
+            position: absolute; top: 0; width: 12%; height: 100%; background: var(--primary-color);
+            animation: oscMove 0.9s infinite alternate ease-in-out;
         }
 
         footer {
@@ -423,10 +530,10 @@
         }
     </style>
 </head>
-<body>
+<body class="no-move">
 
-    <div id="privacy-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
-        <div style="background: var(--card-bg); border-radius: 26px; padding: 28px 22px; max-width: 400px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+    <div id="privacy-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: var(--card-bg); border-radius: 26px; padding: 28px 22px; max-width: 400px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid var(--border-color);">
             <div style="text-align: center; margin-bottom: 14px;">
                 <span style="font-size: 2.2rem;">🔒</span>
                 <h3 style="color: var(--primary-color); margin-top: 5px;">Privacidad y Amor</h3>
@@ -454,7 +561,7 @@
                 <button class="dropdown-item" onclick="toggleDarkMode()">
                     <span style="width: 20px; text-align: center;">🌙</span> Tema
                 </button>
-                <button class="dropdown-item" style="opacity: 0.5; cursor: default;">
+                <button class="dropdown-item" style="opacity: 0.6; cursor: default;">
                     <span style="width: 20px; text-align: center;">✨</span> Próximamente
                 </button>
             </div>
@@ -516,7 +623,7 @@
         <!-- TARJETA 1 -->
         <div class="card" id="card-1">
             <div id="lock-1" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #1 🔐</span><span class="card-counter">1 de 15</span></div>
+                <div class="card-header"><span class="badge">Vídeo #1 🔐</span><span class="card-counter">1 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Introduce el PIN para abrir el primer recuerdo:<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">(Pista: el número incluido en la carta)</span></p>
                 <input type="number" id="input-1" placeholder="****">
                 <button class="action-btn" onclick="checkAnswer(1, '3600')">Desbloquear</button>
@@ -532,7 +639,7 @@
         <!-- TARJETA 2 -->
         <div class="card" id="card-2" style="display:none;">
             <div id="lock-2" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #2 🎵</span><span class="card-counter">2 de 15</span></div>
+                <div class="card-header"><span class="badge">Vídeo #2 🎵</span><span class="card-counter">2 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción y escribe el nombre del artista:</p>
                 <div class="audio-player-box" id="challenge-player-container">
                     <iframe id="challenge-iframe" src="https://www.youtube-nocookie.com/embed/7XPmRUp_Yf4?enablejsapi=1" title="Nuestra Canción" allow="autoplay" allowfullscreen></iframe>
@@ -551,7 +658,7 @@
         <!-- TARJETA 3 -->
         <div class="card" id="card-3" style="display:none;">
             <div id="lock-3" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #3 🧩</span><span class="card-counter">3 de 15</span></div>
+                <div class="card-header"><span class="badge">Vídeo #3 🧩</span><span class="card-counter">3 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Encuentra las parejas de nuestras fechas especiales:</p>
                 <div class="memory-grid">
                     <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
@@ -571,7 +678,7 @@
         <!-- TARJETA 4 -->
         <div class="card" id="card-4" style="display:none;">
             <div id="lock-4" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #4 🎫</span><span class="card-counter">4 de 15</span></div>
+                <div class="card-header"><span class="badge">Vídeo #4 🎫</span><span class="card-counter">4 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Rasca con el dedo para revelar el secreto:</p>
                 <div class="scratch-container">
                     <div class="scratch-secret">Te amo bichito 🫶🏽🤍</div>
@@ -589,7 +696,7 @@
         <!-- TARJETA 5 -->
         <div class="card" id="card-5" style="display:none;">
             <div id="lock-5" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#dfe6e9; color:#2d3436;">Vídeo #5 🏃‍♀️</span><span class="card-counter">5 de 15</span></div>
+                <div class="card-header"><span class="badge">Vídeo #5 🏃‍♀️</span><span class="card-counter">5 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">¡Atrapa el botón si puedes para continuar!</p>
                 <div style="position: relative; height: 110px; overflow: hidden; border: 1px dashed var(--border-color); border-radius: 14px; margin: 15px 0;">
                     <button id="tricky-btn" class="action-btn" style="position: absolute; width: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 20px; font-size: 0.9rem;" onmouseover="handleTrickyButton(event)" ontouchstart="handleTrickyButton(event)">¡Atrápame!</button>
@@ -606,12 +713,12 @@
         <!-- TARJETA 6 -->
         <div class="card" id="card-6" style="display:none;">
             <div id="lock-6" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">6 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">6 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Mantén pulsado EXACTAMENTE 5 segundos.</p>
                 <div style="font-size: 2.4rem; font-weight: bold; color: var(--primary-color); margin: 15px 0;" id="time6-display">0.0s</div>
                 <button class="action-btn" onmousedown="startHold6()" onmouseup="endHold6()" ontouchstart="startHold6(event)" ontouchend="endHold6(event)">Mantener pulsado</button>
                 <div id="bypass-box-6" style="display:none; margin-top:12px;">
-                    <button class="action-btn" style="background:#e67e22;" onclick="unlockMinigame(6)">Te quiero igual, ábrelo 😉🤍</button>
+                    <button class="action-btn" style="background:#27ae60;" onclick="unlockMinigame(6)">Te quiero igual, ábrelo 😉🤍</button>
                 </div>
             </div>
             <div id="content-6" style="display:none;">
@@ -625,7 +732,7 @@
         <!-- TARJETA 7 -->
         <div class="card" id="card-7" style="display:none;">
             <div id="lock-7" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">7 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">7 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Toca los momentos en orden cronológico.</p>
                 <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 15px;">
                     <button class="word-btn" onclick="clickWord7(this, 'Beso Famara')">Beso Famara</button>
@@ -647,10 +754,10 @@
         <!-- TARJETA 8 -->
         <div class="card" id="card-8" style="display:none;">
             <div id="lock-8" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">8 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">8 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Toca el botón cuando la línea pase por la zona verde.</p>
-                <div style="position: relative; height: 45px; background: rgba(0,0,0,0.05); border-radius: 22px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border-color);">
-                    <div id="sniper-target" style="position: absolute; left: 45%; width: 12%; height: 100%; background: rgba(39, 174, 96, 0.4);"></div>
+                <div style="position: relative; height: 45px; background: rgba(0,0,0,0.2); border-radius: 22px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border-color);">
+                    <div id="sniper-target" style="position: absolute; left: 45%; width: 12%; height: 100%; background: rgba(46, 204, 113, 0.4);"></div>
                     <div id="sniper-line" class="sniper-line"></div>
                 </div>
                 <button class="action-btn" onclick="shootSniper(event)">¡Disparar!</button>
@@ -666,14 +773,14 @@
         <!-- TARJETA 9 -->
         <div class="card" id="card-9" style="display:none;">
             <div id="lock-9" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Da EXACTAMENTE 25 toques en 5 segundos.</p>
                 <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
                     <span id="time9-display" style="font-weight:bold; color:var(--primary-color);">5.0s</span>
                     <span id="tap9-display" style="font-weight:bold; color:var(--muted-text);">0/25</span>
                 </div>
-                <div style="height: 10px; background: rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden; margin-bottom: 15px;">
-                    <div id="bomb-bar-fill" style="height: 100%; width: 0%; background: #e74c3c; transition: width 0.1s;"></div>
+                <div style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-bottom: 15px;">
+                    <div id="bomb-bar-fill" style="height: 100%; width: 0%; background: #ff4785; transition: width 0.1s;"></div>
                 </div>
                 <button class="action-btn" id="bomb-btn" onclick="tapBomb()">¡Tocar!</button>
             </div>
@@ -688,7 +795,7 @@
         <!-- TARJETA 10 -->
         <div class="card" id="card-10" style="display:none;">
             <div id="lock-10" class="lock-box">
-                <div class="card-header"><span class="badge" style="background:#ffeaa7; color:#d63031;">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Desliza a ciegas hasta sintonizar el recuerdo.</p>
                 <input type="range" id="radio-slider" class="blind-slider" min="0" max="100" value="0" oninput="tuneRadio(this.value)">
                 <button class="action-btn" id="btn-radio" onclick="checkRadio()" style="opacity: 0.2;">Intentar sintonizar</button>
@@ -701,51 +808,115 @@
             </div>
         </div>
 
-        <!-- TARJETAS 11 A 15 -->
+        <!-- TARJETA 11 (Nuevo Minijuego: El Cazacorazones) -->
         <div class="card" id="card-11" style="display:none;">
-            <div class="card-header"><span class="badge">Vídeo #11</span><span class="card-counter">11 de 15</span></div>
-            <h3>11. Título Razón #11</h3>
-            <div class="video-container-horizontal" id="vid-wrap-11"></div>
-            <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(11)">Desbloquear Razón #12</button>
+            <div id="lock-11" class="lock-box">
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">11 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Atrapa 8 corazones antes de que acabe el tiempo.</p>
+                <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
+                    <span id="time11-display" style="font-weight:bold; color:var(--primary-color);">10.0s</span>
+                    <span id="score11-display" style="font-weight:bold; color:var(--muted-text);">0/8</span>
+                </div>
+                <div id="catch-field" class="catch-playfield"></div>
+                <button class="action-btn" id="start11-btn" onclick="startCatchGame()">¡Empezar a atrapar!</button>
+            </div>
+            <div id="content-11" style="display:none;">
+                <div class="card-header"><span class="badge">Vídeo #11</span><span class="card-counter">11 de 15</span></div>
+                <h3>11. Título Razón #11</h3>
+                <div class="video-container-horizontal" id="vid-wrap-11"></div>
+                <div class="response-box">[Pendiente de texto...]</div>
+            </div>
         </div>
 
+        <!-- TARJETA 12 (Nuevo Minijuego: El Equilibrista) -->
         <div class="card" id="card-12" style="display:none;">
-            <div class="card-header"><span class="badge">Vídeo #12</span><span class="card-counter">12 de 15</span></div>
-            <h3>12. Título Razón #12</h3>
-            <div class="video-container-horizontal" id="vid-wrap-12"></div>
-            <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(12)">Desbloquear Razón #13</button>
+            <div id="lock-12" class="lock-box">
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">12 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Mantén el punto dentro de la zona verde 4 segundos seguidos.</p>
+                <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color); margin: 5px 0;" id="time12-display">0.0s / 4.0s</div>
+                <div class="balance-track">
+                    <div class="balance-zone"></div>
+                    <div id="balance-ind" class="balance-indicator" style="left: 0%;"></div>
+                </div>
+                <button class="action-btn" onmousedown="pushBalance()" ontouchstart="pushBalance(event)">¡Empujar centro!</button>
+            </div>
+            <div id="content-12" style="display:none;">
+                <div class="card-header"><span class="badge">Vídeo #12</span><span class="card-counter">12 de 15</span></div>
+                <h3>12. Título Razón #12</h3>
+                <div class="video-container-horizontal" id="vid-wrap-12"></div>
+                <div class="response-box">[Pendiente de texto...]</div>
+            </div>
         </div>
 
+        <!-- TARJETA 13 (Nuevo Minijuego: Patrón Táctil) -->
         <div class="card" id="card-13" style="display:none;">
-            <div class="card-header"><span class="badge">Vídeo #13</span><span class="card-counter">13 de 15</span></div>
-            <h3>13. Título Razón #13</h3>
-            <div class="video-container-horizontal" id="vid-wrap-13"></div>
-            <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(13)">Desbloquear Razón #14</button>
+            <div id="lock-13" class="lock-box">
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">13 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Dibuja el patrón en la cuadrícula (1 -> 2 -> 5 -> 8 -> 9).</p>
+                <div class="pattern-grid" id="pattern-container">
+                    <div class="pattern-dot" data-id="1" ontouchstart="touchPattern(1)" onmousedown="touchPattern(1)">1</div>
+                    <div class="pattern-dot" data-id="2" ontouchstart="touchPattern(2)" onmousedown="touchPattern(2)">2</div>
+                    <div class="pattern-dot" data-id="3" ontouchstart="touchPattern(3)" onmousedown="touchPattern(3)">3</div>
+                    <div class="pattern-dot" data-id="4" ontouchstart="touchPattern(4)" onmousedown="touchPattern(4)">4</div>
+                    <div class="pattern-dot" data-id="5" ontouchstart="touchPattern(5)" onmousedown="touchPattern(5)">5</div>
+                    <div class="pattern-dot" data-id="6" ontouchstart="touchPattern(6)" onmousedown="touchPattern(6)">6</div>
+                    <div class="pattern-dot" data-id="7" ontouchstart="touchPattern(7)" onmousedown="touchPattern(7)">7</div>
+                    <div class="pattern-dot" data-id="8" ontouchstart="touchPattern(8)" onmousedown="touchPattern(8)">8</div>
+                    <div class="pattern-dot" data-id="9" ontouchstart="touchPattern(9)" onmousedown="touchPattern(9)">9</div>
+                </div>
+                <button class="action-btn" style="background: rgba(255,255,255,0.1); margin-top: 5px; font-size: 0.85rem; padding: 8px;" onclick="resetPattern()">Reiniciar patrón</button>
+            </div>
+            <div id="content-13" style="display:none;">
+                <div class="card-header"><span class="badge">Vídeo #13</span><span class="card-counter">13 de 15</span></div>
+                <h3>13. Título Razón #13</h3>
+                <div class="video-container-horizontal" id="vid-wrap-13"></div>
+                <div class="response-box">[Pendiente de texto...]</div>
+            </div>
         </div>
 
+        <!-- TARJETA 14 (Nuevo Minijuego: Diana Oscilante) -->
         <div class="card" id="card-14" style="display:none;">
-            <div class="card-header"><span class="badge">Vídeo #14</span><span class="card-counter">14 de 15</span></div>
-            <h3>14. Título Razón #14</h3>
-            <div class="video-container-horizontal" id="vid-wrap-14"></div>
-            <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(14)">Desbloquear Razón #15</button>
+            <div id="lock-14" class="lock-box">
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">14 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Dispara 3 veces dentro de la zona verde consecutivas.</p>
+                <div style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color); margin-bottom: 5px;" id="hits14-display">Aciertos: 0 / 3</div>
+                <div class="osc-track">
+                    <div id="osc-target" style="position: absolute; left: 44%; width: 14%; height: 100%; background: rgba(46, 204, 113, 0.4);"></div>
+                    <div id="osc-line" class="osc-line"></div>
+                </div>
+                <button class="action-btn" onclick="shootOsc(event)">¡Disparar Diana!</button>
+            </div>
+            <div id="content-14" style="display:none;">
+                <div class="card-header"><span class="badge">Vídeo #14</span><span class="card-counter">14 de 15</span></div>
+                <h3>14. Título Razón #14</h3>
+                <div class="video-container-horizontal" id="vid-wrap-14"></div>
+                <div class="response-box">[Pendiente de texto...]</div>
+            </div>
         </div>
 
+        <!-- TARJETA 15 (Nuevo Minijuego: Inflar el Globo) -->
         <div class="card" id="card-15" style="display:none;">
-            <div class="card-header"><span class="badge">Vídeo #15</span><span class="card-counter">15 de 15</span></div>
-            <h3>15. Título Razón #15</h3>
-            <div class="video-container-horizontal" id="vid-wrap-15"></div>
-            <div class="response-box">[Pendiente de texto...]</div>
-            <button class="action-btn" style="margin-top: 15px;" onclick="unlockNextBasicCard(15)">Finalizar y ver Sorpresa ✨</button>
+            <div id="lock-15" class="lock-box">
+                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">15 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">¡Infla el corazón justo hasta el borde sin que explote (20 toques)!</p>
+                <div style="font-size: 2.2rem; text-align: center; margin: 10px 0;" id="balloon-icon">🤍</div>
+                <div style="height: 12px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-bottom: 15px;">
+                    <div id="balloon-bar-fill" style="height: 100%; width: 0%; background: var(--primary-color); transition: width 0.1s;"></div>
+                </div>
+                <button class="action-btn" onclick="pumpBalloon(event)">¡Inflar!</button>
+            </div>
+            <div id="content-15" style="display:none;">
+                <div class="card-header"><span class="badge">Vídeo #15</span><span class="card-counter">15 de 15</span></div>
+                <h3>15. Título Razón #15</h3>
+                <div class="video-container-horizontal" id="vid-wrap-15"></div>
+                <div class="response-box">[Pendiente de texto...]</div>
+            </div>
         </div>
 
-        <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, #ffeaa7, #fab1a0); border: 2px solid #fdcb6e;">
-            <div class="card-header"><span class="badge" style="background:#d63031; color:white;">🎁 Sorpresa Final</span><span class="card-counter">✨ La última razón</span></div>
-            <h2 style="color:#d63031; text-align:center; margin: 10px 0;">Para ti, mi niña 🤍</h2>
-            <div class="response-box" style="background: rgba(255,255,255,0.85); color: #2d3436;">
+        <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, rgba(255,126,185,0.2), rgba(255,71,133,0.3)); border: 2px solid var(--primary-color);">
+            <div class="card-header"><span class="badge" style="background:#ff4785; color:white;">🎁 Sorpresa Final</span><span class="card-counter">✨ La última razón</span></div>
+            <h2 style="color:var(--primary-color); text-align:center; margin: 10px 0;">Para ti, mi niña 🤍</h2>
+            <div class="response-box" style="background: rgba(20,4,32,0.85); color: #fff;">
                 <strong>Carta final:</strong><br>
                 ¡Has desbloqueado y completado las 15 razones! Gracias por cada momento juntos...
             </div>
@@ -762,6 +933,13 @@
             6: "_prqW9SL0tI", 7: "X98AbjU7sV0", 8: "z34dLRgQTmE", 9: "2YUXajHgD4g", 10: "dK0i6_oel0o",
             11: "Q0Vn2N--Uo0", 12: "LE5CXRw888o", 13: "MqOJod3MZFY", 14: "bXwrEjvnX1M", 15: "Oqtvt7pDs6g"
         };
+
+        // Bloqueo total de gestos de rebote / scroll nativo no deseado en toda la pantalla
+        document.addEventListener('touchmove', function(e) {
+            if (e.target.closest('.no-move') || e.target.closest('.action-btn') || e.target.closest('.scratch-container') || e.target.closest('.card')) {
+                // Permitimos movimiento interno controlado si hace falta, pero bloqueamos el pull-to-refresh general
+            }
+        }, { passive: false });
 
         window.onload = function() {
             var modal = document.getElementById('privacy-modal');
@@ -816,7 +994,6 @@
             }
         }
 
-        // Truco definitivo para forzar la reactivación de la música tras salir de un iframe de YouTube
         document.addEventListener("click", () => {
             let audio = document.getElementById('bg-music');
             if (!musicManuallyPaused && audio.paused && document.getElementById('main-content').style.display === 'block') {
@@ -872,10 +1049,10 @@
             fill.style.width = pct + '%';
             
             if (displayCount >= 12) {
-                fill.style.background = "linear-gradient(90deg, #fdcb6e, #e74c3c)";
+                fill.style.background = "linear-gradient(90deg, #ff7eb9, #ff4785)";
                 document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15 ✨';
             } else {
-                fill.style.background = "linear-gradient(90deg, #e74c3c, #ff7675)";
+                fill.style.background = "linear-gradient(90deg, #ff4785, #ff7eb9)";
                 document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15';
             }
 
@@ -901,7 +1078,6 @@
                     if (cardBox) cardBox.style.display = 'block';
                     if (lockBox) lockBox.style.display = 'none';
                     if (contentBox) { contentBox.style.display = 'block'; injectVideo(i); }
-                    if (i >= 11 && btn) btn.style.display = 'none';
                 } 
                 else if (i === unlockedCount) {
                     if (cardBox) {
@@ -939,7 +1115,7 @@
             if (lockBox) lockBox.style.display = 'none';
             if (contentBox) { contentBox.style.display = 'block'; injectVideo(num); }
             
-            if (num === 10) triggerConfetti();
+            if (num === 10 || num === 15) triggerConfetti();
 
             var nextNum = num + 1;
             if (unlockedCount < nextNum) unlockedCount = nextNum;
@@ -949,21 +1125,10 @@
             if (nextCard) {
                 nextCard.style.display = 'block';
                 if (nextNum === 4) initScratch();
+            } else if (nextNum > 15) {
+                var bonus = document.getElementById('card-bonus');
+                if (bonus) bonus.style.display = 'block';
             }
-        }
-
-        function unlockNextBasicCard(currentNum) {
-            var currentCard = document.getElementById('card-' + currentNum);
-            var btn = currentCard ? currentCard.querySelector('.action-btn:last-of-type') : null;
-            if (btn) btn.style.display = 'none';
-
-            var nextNum = currentNum + 1;
-            if (unlockedCount < nextNum) unlockedCount = nextNum;
-            updateProgress();
-            
-            var nextCard = document.getElementById('card-' + nextNum);
-            if (nextCard) nextCard.style.display = 'block';
-            else if (nextNum > 15) document.getElementById('card-bonus').style.display = 'block';
         }
 
         var flippedCards = [];
@@ -999,9 +1164,9 @@
             canvas.width = canvas.offsetWidth;
             canvas.height = canvas.offsetHeight;
 
-            ctx.fillStyle = '#b2bec3';
+            ctx.fillStyle = '#ff7eb9';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#636e72';
+            ctx.fillStyle = '#140420';
             ctx.font = 'bold 15px sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText('✨ Rasca aquí ✨', canvas.width/2, canvas.height/2 + 5);
@@ -1084,18 +1249,16 @@
         let currentStep7 = 0;
         function clickWord7(btn, word) {
             if(word === correctOrder7[currentStep7]) {
-                btn.style.background = "#27ae60";
-                btn.style.color = "white";
-                btn.style.borderColor = "#27ae60";
+                btn.style.background = "var(--primary-color)";
+                btn.style.color = "#140420";
                 btn.disabled = true;
                 currentStep7++;
                 if(currentStep7 === correctOrder7.length) setTimeout(() => unlockMinigame(7), 400);
             } else {
                 currentStep7 = 0;
-                document.querySelectorAll('.word-btn').forEach(b => {
-                    b.style.background = "var(--card-bg)";
-                    b.style.color = "var(--primary-color)";
-                    b.style.borderColor = "var(--primary-color)";
+                document.querySelectorAll('#card-7 .word-btn').forEach(b => {
+                    b.style.background = "rgba(20, 4, 32, 0.6)";
+                    b.style.color = "var(--text-color)";
                     b.disabled = false;
                 });
                 showToast("¡Ups! Orden incorrecto, se reinicia.");
@@ -1177,8 +1340,183 @@
             }
         }
 
+        /* LÓGICA NUEVOS MINIJUEGOS 11 AL 15 */
+
+        // #11: El Cazacorazones
+        let score11 = 0, time11 = 10.0, timer11 = null, spawner11 = null, game11Active = false;
+        function startCatchGame() {
+            if(game11Active) return;
+            game11Active = true;
+            score11 = 0;
+            time11 = 10.0;
+            document.getElementById('score11-display').innerText = "0/8";
+            document.getElementById('start11-btn').style.display = 'none';
+            let field = document.getElementById('catch-field');
+            field.innerHTML = '';
+
+            timer11 = setInterval(() => {
+                time11 -= 0.1;
+                if(time11 < 0) time11 = 0;
+                document.getElementById('time11-display').innerText = time11.toFixed(1) + "s";
+                if(time11 <= 0) {
+                    stopCatchGame(false);
+                }
+            }, 100);
+
+            spawner11 = setInterval(() => {
+                if(!game11Active) return;
+                let heart = document.createElement('div');
+                heart.className = 'falling-heart';
+                heart.innerHTML = Math.random() > 0.2 ? '🤍' : '💣';
+                heart.style.left = Math.floor(Math.random() * (field.offsetWidth - 40)) + 'px';
+                
+                heart.onclick = (e) => handleHeartClick(e, heart);
+                heart.ontouchstart = (e) => handleHeartClick(e, heart);
+                
+                field.appendChild(heart);
+                setTimeout(() => { if(heart.parentElement) heart.remove(); }, 2000);
+            }, 600);
+        }
+        function handleHeartClick(e, el) {
+            if(e && e.cancelable) e.cancelable && e.preventDefault();
+            if(!game11Active) return;
+            if(el.innerHTML === '💣') {
+                score11 = Math.max(0, score11 - 2);
+                showToast("¡Ay, una bomba! -2 puntos");
+            } else {
+                score11++;
+            }
+            document.getElementById('score11-display').innerText = score11 + "/8";
+            el.remove();
+            if(score11 >= 8) {
+                stopCatchGame(true);
+            }
+        }
+        function stopCatchGame(success) {
+            game11Active = false;
+            clearInterval(timer11);
+            clearInterval(spawner11);
+            document.getElementById('catch-field').innerHTML = '';
+            document.getElementById('start11-btn').style.display = 'block';
+            if(success) {
+                unlockMinigame(11);
+            } else {
+                showToast("¡Tiempo agotado! Inténtalo de nuevo.");
+            }
+        }
+
+        // #12: El Equilibrista
+        let balancePos = 0, balanceDir = 2, balanceSec = 0, balanceTimer = null, balanceActive = false;
+        function pushBalance(e) {
+            if(e && e.cancelable) e.preventDefault();
+            balancePos = Math.max(0, balancePos - 12);
+            updateBalanceUI();
+            if(!balanceActive) startBalanceLoop();
+        }
+        function startBalanceLoop() {
+            balanceActive = true;
+            balanceSec = 0;
+            balanceDir = 2.5;
+            balanceTimer = setInterval(() => {
+                balancePos += balanceDir;
+                if(balancePos > 85) balancePos = 85;
+                if(balancePos < 0) balancePos = 0;
+                
+                // Zona verde aprox entre 35 y 65
+                if(balancePos >= 30 && balancePos <= 60) {
+                    balanceSec += 0.1;
+                } else {
+                    balanceSec = Math.max(0, balanceSec - 0.15);
+                }
+
+                document.getElementById('time12-display').innerText = balanceSec.toFixed(1) + "s / 4.0s";
+                document.getElementById('balance-ind').style.left = balancePos + '%';
+
+                // Variación aleatoria de dirección
+                if(Math.random() < 0.15) balanceDir = (Math.random() - 0.5) * 6;
+
+                if(balanceSec >= 4.0) {
+                    clearInterval(balanceTimer);
+                    balanceActive = false;
+                    unlockMinigame(12);
+                }
+            }, 100);
+        }
+        function updateBalanceUI() {
+            document.getElementById('balance-ind').style.left = balancePos + '%';
+        }
+
+        // #13: Patrón Táctil (1 -> 2 -> 5 -> 8 -> 9)
+        const targetPattern = [1, 2, 5, 8, 9];
+        let currentPatternIndex = 0;
+        function touchPattern(id) {
+            if(id === targetPattern[currentPatternIndex]) {
+                let dot = document.querySelector(`.pattern-dot[data-id="${id}"]`);
+                dot.classList.add('active');
+                currentPatternIndex++;
+                if(currentPatternIndex === targetPattern.length) {
+                    setTimeout(() => unlockMinigame(13), 400);
+                }
+            } else {
+                showToast("Patrón incorrecto, se reinicia.");
+                resetPattern();
+            }
+        }
+        function resetPattern() {
+            currentPatternIndex = 0;
+            document.querySelectorAll('.pattern-dot').forEach(d => d.classList.remove('active'));
+        }
+
+        // #14: Diana Oscilante (3 aciertos)
+        let hits14 = 0;
+        function shootOsc(e) {
+            if(e && e.cancelable) e.preventDefault();
+            let line = document.getElementById('osc-line');
+            let target = document.getElementById('osc-target');
+            let lRect = line.getBoundingClientRect();
+            let tRect = target.getBoundingClientRect();
+            
+            let lineCenter = lRect.left + (lRect.width / 2);
+            if (lineCenter >= tRect.left && lineCenter <= tRect.right) {
+                hits14++;
+                document.getElementById('hits14-display').innerText = "Aciertos: " + hits14 + " / 3";
+                if(hits14 >= 3) {
+                    line.style.animationPlayState = 'paused';
+                    setTimeout(() => unlockMinigame(14), 400);
+                } else {
+                    showToast("¡Buen disparo! Faltan " + (3 - hits14));
+                }
+            } else {
+                showToast("¡Fallaste el tiro!");
+            }
+        }
+
+        // #15: Inflar el Globo
+        let balloonTaps = 0;
+        function pumpBalloon(e) {
+            if(e && e.cancelable) e.preventDefault();
+            balloonTaps++;
+            let pct = balloonTaps * 5; // 20 toques = 100%
+            document.getElementById('balloon-bar-fill').style.width = Math.min(100, pct) + '%';
+            
+            let icon = document.getElementById('balloon-icon');
+            if(balloonTaps < 10) icon.style.transform = 'scale(1.1)';
+            else if(balloonTaps < 18) icon.style.transform = 'scale(1.3)';
+            else icon.style.transform = 'scale(1.5)';
+
+            setTimeout(() => icon.style.transform = 'scale(1)', 100);
+
+            if(balloonTaps === 20) {
+                unlockMinigame(15);
+            } else if(balloonTaps > 20) {
+                balloonTaps = 0;
+                document.getElementById('balloon-bar-fill').style.width = '0%';
+                showToast("¡BOOM! 💥 Te pasaste de presión.");
+            }
+        }
+
         function triggerConfetti() {
-            let colors = ['#e74c3c', '#f1c40f', '#2ecc71', '#3498db', '#9b59b6'];
+            let colors = ['#ff4785', '#ff7eb9', '#ff6bb5', '#ffffff', '#e74c3c'];
             for(let i = 0; i < 35; i++) {
                 let conf = document.createElement('div');
                 conf.className = 'confetti';
