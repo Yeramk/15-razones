@@ -67,45 +67,22 @@
             z-index: 9999;
         }
 
-        .top-controls {
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 100;
-        }
-
+        .top-controls { position: fixed; top: 15px; right: 15px; z-index: 100; }
         .dropdown { position: relative; }
 
         .icon-btn {
-            background: var(--card-bg);
-            backdrop-filter: blur(10px);
-            color: var(--text-color);
-            border: 1px solid var(--border-color);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background: var(--card-bg); backdrop-filter: blur(10px); color: var(--text-color);
+            border: 1px solid var(--border-color); width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 52px;
-            right: 0;
-            background: rgba(27, 5, 43, 0.95);
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--border-color);
-            border-radius: 18px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            min-width: 170px;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 101;
+            display: none; position: absolute; top: 52px; right: 0;
+            background: rgba(27, 5, 43, 0.95); backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color); border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); min-width: 170px;
+            flex-direction: column; overflow: hidden; z-index: 101;
             animation: fadeIn 0.2s ease-in-out;
         }
 
@@ -117,42 +94,21 @@
         }
 
         .dropdown-header {
-            padding: 10px 16px;
-            text-align: center;
-            font-size: 0.75rem;
-            color: var(--primary-color);
-            background: rgba(255,255,255,0.05);
-            font-weight: bold;
-            border-bottom: 1px solid var(--border-color);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            padding: 10px 16px; text-align: center; font-size: 0.75rem; color: var(--primary-color);
+            background: rgba(255,255,255,0.05); font-weight: bold; border-bottom: 1px solid var(--border-color);
+            letter-spacing: 0.5px; text-transform: uppercase;
         }
 
         .dropdown-item {
-            background: none;
-            border: none;
-            padding: 14px 16px;
-            font-size: 0.95rem;
-            color: var(--text-color);
-            text-align: left;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-weight: 500;
-            width: 100%;
+            background: none; border: none; padding: 14px 16px; font-size: 0.95rem;
+            color: var(--text-color); text-align: left; cursor: pointer; display: flex;
+            align-items: center; gap: 12px; font-weight: 500; width: 100%;
         }
-
         .dropdown-item:active { background: rgba(255,255,255,0.1); }
 
         .floating-emoji {
-            position: fixed;
-            font-size: 24px;
-            user-select: none;
-            pointer-events: none;
-            animation: floatEmojis 10s infinite linear;
-            z-index: 0;
-            opacity: 0.45;
+            position: fixed; font-size: 24px; user-select: none; pointer-events: none;
+            animation: floatEmojis 10s infinite linear; z-index: 0; opacity: 0.45;
         }
 
         @keyframes floatEmojis {
@@ -167,359 +123,117 @@
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
         .confetti {
-            position: fixed;
-            top: -20px;
-            width: 10px;
-            height: 20px;
-            z-index: 9999;
-            animation: confettiFall linear forwards;
-            pointer-events: none;
+            position: fixed; top: -20px; width: 10px; height: 20px; z-index: 9999;
+            animation: confettiFall linear forwards; pointer-events: none;
         }
 
         .toast-notification {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: rgba(20, 4, 32, 0.95);
-            backdrop-filter: blur(12px);
-            color: #fff;
-            padding: 12px 22px;
-            border-radius: 30px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            border: 1px solid var(--border-color);
-            z-index: 99999;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            pointer-events: none;
-            text-align: center;
-            max-width: 90vw;
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: rgba(20, 4, 32, 0.95); backdrop-filter: blur(12px); color: #fff;
+            padding: 12px 22px; border-radius: 30px; font-size: 0.9rem; font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 1px solid var(--border-color);
+            z-index: 99999; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none; text-align: center; max-width: 90vw;
         }
-        .toast-notification.show {
-            transform: translateX(-50%) translateY(0);
-        }
+        .toast-notification.show { transform: translateX(-50%) translateY(0); }
 
         #welcome-wrapper {
-             display: flex; 
-             flex-direction: column; 
-             justify-content: center; 
-             align-items: center; 
-             min-height: 85vh; 
-             width: 100%;
+             display: flex; flex-direction: column; justify-content: center; align-items: center; 
+             min-height: 85vh; width: 100%;
         }
 
         #welcome-screen {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border-radius: 28px;
-            padding: 38px 24px;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-            border: 1px solid var(--border-color);
-            width: 100%;
-            max-width: 420px;
-            z-index: 1;
+            background: var(--card-bg); backdrop-filter: blur(16px); border-radius: 28px;
+            padding: 38px 24px; text-align: center; box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color); width: 100%; max-width: 420px; z-index: 1;
         }
 
-        #welcome-screen h2 {
-            color: var(--primary-color);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            letter-spacing: -0.5px;
-        }
+        #welcome-screen h2 { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 10px; letter-spacing: -0.5px; }
+        #welcome-screen p { color: var(--muted-text); font-size: 0.95rem; margin-bottom: 24px; line-height: 1.4; }
 
-        #welcome-screen p {
-            color: var(--muted-text);
-            font-size: 0.95rem;
-            margin-bottom: 24px;
-            line-height: 1.4;
-        }
+        #main-content { display: none; width: 100%; max-width: 420px; z-index: 1; }
 
-        #main-content {
-            display: none;
-            width: 100%;
-            max-width: 420px;
-            z-index: 1;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-            margin-top: 10px;
-        }
-
-        h1 {
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            margin-bottom: 6px;
-            letter-spacing: -0.5px;
-            text-shadow: 0 2px 10px rgba(255, 107, 181, 0.3);
-        }
-
-        p.subtitle {
-            color: var(--muted-text);
-            font-size: 0.95rem;
-            margin-bottom: 18px;
-        }
+        header { text-align: center; margin-bottom: 20px; margin-top: 10px; }
+        h1 { color: var(--primary-color); font-size: 2.2rem; margin-bottom: 6px; letter-spacing: -0.5px; text-shadow: 0 2px 10px rgba(255, 107, 181, 0.3); }
+        p.subtitle { color: var(--muted-text); font-size: 0.95rem; margin-bottom: 18px; }
 
         .progress-wrapper {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border-radius: 18px;
-            padding: 14px 18px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            border: 1px solid var(--border-color);
-            margin-bottom: 24px;
+            background: var(--card-bg); backdrop-filter: blur(16px); border-radius: 18px;
+            padding: 14px 18px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color); margin-bottom: 24px;
         }
 
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 8px;
-        }
-
-        .progress-bar-bg {
-            background: rgba(255,255,255,0.1);
-            height: 10px;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
+        .progress-info { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: bold; color: var(--primary-color); margin-bottom: 8px; }
+        .progress-bar-bg { background: rgba(255,255,255,0.1); height: 10px; border-radius: 10px; overflow: hidden; }
         .progress-bar-fill {
-            background: linear-gradient(90deg, #ff4785, #ff7eb9);
-            height: 100%;
-            width: 6.66%;
-            border-radius: 10px;
-            transition: width 0.4s ease, background 0.4s ease;
+            background: linear-gradient(90deg, #ff4785, #ff7eb9); height: 100%; width: 6.66%;
+            border-radius: 10px; transition: width 0.4s ease, background 0.4s ease;
         }
 
         .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            border-radius: 24px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            border: 1px solid var(--border-color);
+            background: var(--card-bg); backdrop-filter: blur(16px); border-radius: 24px;
+            padding: 24px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            border: 1px solid var(--border-color); display: none;
         }
+        .card.active { display: block; animation: fadeIn 0.4s ease; }
 
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
         .badge {
-            background: rgba(255, 126, 185, 0.15);
-            color: var(--primary-color);
-            font-weight: bold;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            border: 1px solid var(--border-color);
+            background: rgba(255, 126, 185, 0.15); color: var(--primary-color); font-weight: bold;
+            padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; border: 1px solid var(--border-color);
         }
+        .card-counter { font-size: 0.8rem; color: var(--muted-text); font-weight: 600; }
 
-        .card-counter {
-            font-size: 0.8rem;
-            color: var(--muted-text);
-            font-weight: 600;
+        .video-container {
+            position: relative; width: 100%; border-radius: 18px; overflow: hidden;
+            margin: 14px 0; background: #000; box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            border: 3px solid var(--primary-color); transition: border-color 0.4s ease;
+            padding-bottom: 177.78%; height: 0;
         }
-
-        .video-container, .video-container-horizontal {
-            position: relative;
-            width: 100%;
-            border-radius: 18px;
-            overflow: hidden;
-            margin: 14px 0;
-            background: #000;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-            border: 3px solid var(--primary-color);
-            transition: border-color 0.4s ease;
-        }
-
-        .video-container { padding-bottom: 177.78%; height: 0; }
-        .video-container-horizontal { padding-bottom: 56.25%; height: 0; }
-
-        .video-container iframe, .video-container-horizontal iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; border: 0;
-        }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
         .response-box {
-            background: rgba(255, 71, 133, 0.08);
-            border-left: 4px solid var(--accent-color);
-            padding: 14px 16px;
-            margin-top: 14px;
-            border-radius: 0 12px 12px 0;
-            font-size: 0.95rem;
-            line-height: 1.5;
+            background: rgba(255, 71, 133, 0.08); border-left: 4px solid var(--accent-color);
+            padding: 14px 16px; margin-top: 14px; border-radius: 0 12px 12px 0; font-size: 0.95rem; line-height: 1.5;
         }
 
-        .lock-box { text-align: center; padding: 10px 0; }
-
-        input[type="text"], input[type="password"], input[type="number"], input[type="range"], select {
-            width: 100%;
-            padding: 14px 16px;
-            margin: 12px 0;
-            border: 1px solid var(--border-color);
-            background: rgba(20, 4, 32, 0.6);
-            color: var(--text-color);
-            border-radius: 14px;
-            text-align: center;
-            font-size: 16px; 
-            outline: none;
+        input[type="password"], select {
+            width: 100%; padding: 14px 16px; margin: 12px 0; border: 1px solid var(--border-color);
+            background: rgba(20, 4, 32, 0.6); color: var(--text-color); border-radius: 14px;
+            text-align: center; font-size: 16px; outline: none;
         }
 
         button.action-btn {
-            background: linear-gradient(135deg, #ff4785, #ff6bb5);
-            color: white;
-            border: none;
-            padding: 14px 16px;
-            border-radius: 14px;
-            font-weight: bold;
-            font-size: 1rem;
-            width: 100%;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 71, 133, 0.3);
+            background: linear-gradient(135deg, #ff4785, #ff6bb5); color: white; border: none;
+            padding: 14px 16px; border-radius: 14px; font-weight: bold; font-size: 1rem;
+            width: 100%; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 71, 133, 0.3);
             transition: transform 0.15s ease;
         }
-
         button.action-btn:active { transform: scale(0.97); }
+        button.action-btn:disabled { background: #555; cursor: not-allowed; box-shadow: none; }
 
-        .audio-player-box {
-            background: rgba(0,0,0,0.2);
-            border-radius: 16px;
-            padding: 10px;
-            margin: 12px 0;
-            border: 1px solid var(--border-color);
-        }
-        .audio-player-box iframe { width: 100%; height: 160px; border-radius: 10px; border: none; }
+        /* Estilos minijuegos */
+        .game-canvas { background: rgba(0,0,0,0.3); border-radius: 14px; border: 1px solid var(--border-color); margin: 15px 0; width: 100%; display: block; touch-action: none; }
         
-        .memory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 15px 0; }
-        .memory-card { background: rgba(255, 107, 181, 0.2); color: white; height: 75px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; cursor: pointer; border: 1px solid var(--border-color); }
-        .memory-card.flipped { background: #ff7eb9; color: #140420; }
-
-        .scratch-container { position: relative; width: 100%; height: 110px; margin: 15px 0; border-radius: 14px; overflow: hidden; background: #fff; }
-        .scratch-secret { position: absolute; width: 100%; height: 100%; background: #fff; color: #140420; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; text-align: center; padding: 10px; }
-        canvas.scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; }
-
-        .word-btn { background: rgba(20, 4, 32, 0.6); color: var(--text-color); border: 2px solid var(--primary-color); padding: 10px 14px; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 0.9rem; }
-        
-        @keyframes sniperMove { 0% { left: 0%; } 100% { left: 92%; } }
-        .sniper-line {
-            position: absolute; top: 0; width: 4px; height: 100%; background: var(--primary-color);
-            animation: sniperMove 1.1s infinite alternate ease-in-out;
-        }
-
-        .blind-slider {
-            -webkit-appearance: none; appearance: none; background: rgba(255,255,255,0.1); height: 32px; border-radius: 16px; outline: none; margin: 20px 0;
-        }
-        .blind-slider::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none; width: 32px; height: 32px; border-radius: 50%; background: transparent; cursor: pointer;
-        }
-
-        .no-move { touch-action: none; user-select: none; }
-        
-        .catch-playfield {
-            position: relative;
-            height: 140px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 14px;
-            border: 1px dashed var(--border-color);
-            margin: 15px 0;
-            overflow: hidden;
-        }
-        .falling-heart {
-            position: absolute;
-            font-size: 1.8rem;
-            cursor: pointer;
-            user-select: none;
-            animation: fallItem 2s linear forwards;
-        }
-        @keyframes fallItem {
-            0% { transform: translateY(-30px) scale(0.8); opacity: 0; }
-            20% { opacity: 1; }
-            100% { transform: translateY(140px) scale(1.1); opacity: 0.9; }
-        }
-
-        .balance-track {
-            position: relative;
-            height: 40px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 20px;
-            margin: 15px 0;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-        }
-        .balance-zone {
-            position: absolute;
-            left: 35%;
-            width: 30%;
-            height: 100%;
-            background: rgba(46, 204, 113, 0.3);
-            border-left: 2px dashed #2ecc71;
-            border-right: 2px dashed #2ecc71;
-        }
-        .balance-indicator {
-            position: absolute;
-            top: 4px;
-            width: 32px;
-            height: 32px;
-            background: #ff4785;
-            border-radius: 50%;
-            transition: left 0.05s linear;
-        }
-
-        /* Estilos Slider Puzzle (Juego 14) */
         .slider-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
-            max-width: 240px;
-            margin: 15px auto;
-            background: rgba(0,0,0,0.3);
-            padding: 10px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; max-width: 240px;
+            margin: 15px auto; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 16px; border: 1px solid var(--border-color);
         }
         .slider-tile {
-            height: 65px;
-            background: linear-gradient(135deg, #ff4785, #ff6bb5);
-            color: white;
-            font-size: 1.5rem;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            user-select: none;
-            transition: transform 0.1s;
+            height: 65px; background: linear-gradient(135deg, #ff4785, #ff6bb5); color: white;
+            font-size: 1.5rem; font-weight: bold; display: flex; align-items: center; justify-content: center;
+            border-radius: 12px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); user-select: none; transition: transform 0.1s;
         }
         .slider-tile:active { transform: scale(0.95); }
-        .slider-tile.empty {
-            background: rgba(255,255,255,0.05);
-            box-shadow: none;
-            cursor: default;
-        }
+        .slider-tile.empty { background: rgba(255,255,255,0.05); box-shadow: none; cursor: default; }
 
-        footer {
-            margin-top: 35px;
-            text-align: center;
-            font-size: 0.85rem;
-            color: var(--muted-text);
-        }
+        footer { margin-top: 35px; text-align: center; font-size: 0.85rem; color: var(--muted-text); }
     </style>
 </head>
-<body>
+<body onload="initApp()">
 
-    <div id="privacy-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
+    <!-- MODAL PRIVACIDAD -->
+    <div id="privacy-modal" style="display:flex; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
         <div style="background: var(--card-bg); border-radius: 26px; padding: 28px 22px; max-width: 400px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid var(--border-color);">
             <div style="text-align: center; margin-bottom: 14px;">
                 <span style="font-size: 2.2rem;">🔒</span>
@@ -537,6 +251,7 @@
         </div>
     </div>
 
+    <!-- CONTROLES SUPERIORES -->
     <div class="top-controls">
         <div class="dropdown">
             <button class="icon-btn" onclick="toggleMenu()" title="Ajustes">⚙️</button>
@@ -548,9 +263,6 @@
                 <button class="dropdown-item" onclick="toggleDarkMode()">
                     <span style="width: 20px; text-align: center;">🌙</span> Tema
                 </button>
-                <button class="dropdown-item" style="opacity: 0.6; cursor: default;">
-                    <span style="width: 20px; text-align: center;">✨</span> Próximamente
-                </button>
             </div>
         </div>
     </div>
@@ -561,6 +273,7 @@
 
     <div id="toast" class="toast-notification">Aviso importante</div>
 
+    <!-- EMOJIS FLOTANTES -->
     <div class="floating-emoji" style="left: 8%; animation-delay: 0s;">🤍</div>
     <div class="floating-emoji" style="left: 22%; animation-delay: 2s;">✨</div>
     <div class="floating-emoji" style="left: 40%; animation-delay: 4.5s;">🫶🏽</div>
@@ -568,28 +281,28 @@
     <div class="floating-emoji" style="left: 78%; animation-delay: 6s;">🌹</div>
     <div class="floating-emoji" style="left: 90%; animation-delay: 3.2s;">✨</div>
 
+    <!-- PANTALLA DE INICIO -->
     <div id="welcome-wrapper">
         <div id="welcome-screen">
             <h2>Hola mi amor 🤍</h2>
             <p>Introduce tu contraseña para descubrir las 15 razones.</p>
             
-            <input type="password" id="birthdate-input" placeholder="Contraseña">
-            <button class="action-btn" onclick="checkBirthdate()">Entrar</button>
+            <input type="password" id="password-input" placeholder="Contraseña">
+            <button class="action-btn" onclick="checkPassword()">Entrar</button>
 
             <div style="margin-top: 20px; border-top: 1px solid var(--border-color); padding-top: 15px;">
                 <p style="font-size: 0.8rem; margin-bottom: 8px;">¿Has perdido tu progreso?</p>
                 <select id="restore-select" onchange="restoreManually(this.value)" style="margin: 0; font-size: 0.85rem; padding: 10px;">
                     <option value="">Selecciona tu tarjeta actual...</option>
                     <script>
-                        for(let i=1; i<=15; i++) {
-                            document.write(`<option value="${i}">Tarjeta / Vídeo #${i}</option>`);
-                        }
+                        for(let i=1; i<=15; i++) { document.write(`<option value="${i}">Tarjeta #${i}</option>`); }
                     </script>
                 </select>
             </div>
         </div>
     </div>
 
+    <!-- CONTENIDO PRINCIPAL -->
     <div id="main-content">
         <header>
             <h1>15 Razones 🤍</h1>
@@ -602,1094 +315,373 @@
                 <span id="progress-text">1 de 15</span>
             </div>
             <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progress-fill"></div>
+                <div class="progress-bar-fill" id="progress-fill" style="width: 6.66%;"></div>
             </div>
         </div>
 
-        <div class="card" id="card-1">
-            <div id="lock-1" class="lock-box">
-                <div class="card-header"><span class="badge">Vídeo #1 🔐</span><span class="card-counter">1 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Introduce el PIN para abrir el primer recuerdo:<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">(Pista: el número incluido en la carta)</span></p>
-                <input type="number" id="input-1" placeholder="****">
-                <button class="action-btn" onclick="checkAnswer(1, '3600')">Desbloquear</button>
-            </div>
-            <div id="content-1" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #1</span><span class="card-counter">1 de 15</span></div>
-                <h3>1. Tu fuerza</h3>
-                <div class="video-container" id="vid-wrap-1"></div>
-                <div class="response-box"><strong>Primera razón:</strong><br>[Pendiente de texto...]</div>
-            </div>
+        <!-- CONTENEDOR DE TARJETAS -->
+        <div id="cards-container">
+            <!-- Las 15 tarjetas se generan aquí dinámicamente o estructuradas -->
         </div>
 
-        <div class="card" id="card-2" style="display:none;">
-            <div id="lock-2" class="lock-box">
-                <div class="card-header"><span class="badge">Vídeo #2 🎵</span><span class="card-counter">2 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Escucha nuestra canción y escribe el nombre del artista:</p>
-                <div class="audio-player-box" id="challenge-player-container">
-                    <iframe id="challenge-iframe" src="https://www.youtube-nocookie.com/embed/7XPmRUp_Yf4?enablejsapi=1" title="Nuestra Canción" allow="autoplay" allowfullscreen></iframe>
-                </div>
-                <input type="text" id="input-2" placeholder="Escribe el artista aquí...">
-                <button class="action-btn" onclick="checkAnswer(2, 'melendi')">Desbloquear</button>
-            </div>
-            <div id="content-2" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #2</span><span class="card-counter">2 de 15</span></div>
-                <h3>2. Título Razón #2</h3>
-                <div class="video-container" id="vid-wrap-2"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-3" style="display:none;">
-            <div id="lock-3" class="lock-box">
-                <div class="card-header"><span class="badge">Vídeo #3 🧩</span><span class="card-counter">3 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Encuentra las parejas de nuestras fechas especiales:</p>
-                <div class="memory-grid">
-                    <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
-                    <div class="memory-card" onclick="flipCard(this, '24/05')">❓</div>
-                    <div class="memory-card" onclick="flipCard(this, '24/05')">❓</div>
-                    <div class="memory-card" onclick="flipCard(this, '26/06')">❓</div>
-                </div>
-            </div>
-            <div id="content-3" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #3</span><span class="card-counter">3 de 15</span></div>
-                <h3>3. Título Razón #3</h3>
-                <div class="video-container" id="vid-wrap-3"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-4" style="display:none;">
-            <div id="lock-4" class="lock-box">
-                <div class="card-header"><span class="badge">Vídeo #4 🎫</span><span class="card-counter">4 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Rasca con el dedo para revelar el secreto:</p>
-                <div class="scratch-container no-move">
-                    <div class="scratch-secret">Te amo bichito 🫶🏽🤍</div>
-                    <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
-                </div>
-            </div>
-            <div id="content-4" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #4</span><span class="card-counter">4 de 15</span></div>
-                <h3>4. Título Razón #4</h3>
-                <div class="video-container" id="vid-wrap-4"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-5" style="display:none;">
-            <div id="lock-5" class="lock-box">
-                <div class="card-header"><span class="badge">Vídeo #5 🏃‍♀️</span><span class="card-counter">5 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">¡Atrapa el botón si puedes para continuar!</p>
-                <div id="tricky-container" class="no-move" style="position: relative; height: 130px; overflow: hidden; border: 1px dashed var(--border-color); border-radius: 14px; margin: 15px 0;">
-                    <button id="tricky-btn" class="action-btn" style="position: absolute; width: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 20px; font-size: 0.9rem;" onmouseover="handleTrickyButton(event)" ontouchstart="handleTrickyButton(event)">¡Atrápame!</button>
-                </div>
-            </div>
-            <div id="content-5" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #5</span><span class="card-counter">5 de 15</span></div>
-                <h3>5. Título Razón #5</h3>
-                <div class="video-container" id="vid-wrap-5"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-6" style="display:none;">
-            <div id="lock-6" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">6 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Mantén pulsado EXACTAMENTE 5 segundos.</p>
-                <div style="font-size: 2.4rem; font-weight: bold; color: var(--primary-color); margin: 15px 0;" id="time6-display">0.0s</div>
-                <button class="action-btn no-move" onmousedown="startHold6()" onmouseup="endHold6()" ontouchstart="startHold6(event)" ontouchend="endHold6(event)">Mantener pulsado</button>
-                <div id="bypass-box-6" style="display:none; margin-top:12px;">
-                    <button class="action-btn" style="background:#27ae60;" onclick="unlockMinigame(6)">Te quiero igual, ábrelo 😉🤍</button>
-                </div>
-            </div>
-            <div id="content-6" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #6</span><span class="card-counter">6 de 15</span></div>
-                <h3>6. Título Razón #6</h3>
-                <div class="video-container" id="vid-wrap-6"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-7" style="display:none;">
-            <div id="lock-7" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">7 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Toca los momentos en orden cronológico.</p>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 15px;">
-                    <button class="word-btn" onclick="clickWord7(this, 'Beso Famara')">Beso Famara</button>
-                    <button class="word-btn" onclick="clickWord7(this, 'Viaje GC')">Viaje GC</button>
-                    <button class="word-btn" onclick="clickWord7(this, '7 kilómetros')">7 kilómetros</button>
-                    <button class="word-btn" onclick="clickWord7(this, 'Y lo que nos queda')">Y lo que nos queda</button>
-                    <button class="word-btn" onclick="clickWord7(this, 'Primer finde juntos')">Primer finde juntos</button>
-                    <button class="word-btn" onclick="clickWord7(this, 'RD')">RD</button>
-                </div>
-            </div>
-            <div id="content-7" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #7</span><span class="card-counter">7 de 15</span></div>
-                <h3>7. Título Razón #7</h3>
-                <div class="video-container" id="vid-wrap-7"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-8" style="display:none;">
-            <div id="lock-8" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">8 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Toca el botón cuando la línea pase por la zona verde.</p>
-                <div style="position: relative; height: 45px; background: rgba(0,0,0,0.2); border-radius: 22px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border-color);">
-                    <div id="sniper-target" style="position: absolute; left: 45%; width: 12%; height: 100%; background: rgba(46, 204, 113, 0.4);"></div>
-                    <div id="sniper-line" class="sniper-line"></div>
-                </div>
-                <button class="action-btn" onclick="shootSniper(event)">¡Disparar!</button>
-            </div>
-            <div id="content-8" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #8</span><span class="card-counter">8 de 15</span></div>
-                <h3>8. Título Razón #8</h3>
-                <div class="video-container-horizontal" id="vid-wrap-8"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-9" style="display:none;">
-            <div id="lock-9" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Da EXACTAMENTE 25 toques en 5 segundos.</p>
-                <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
-                    <span id="time9-display" style="font-weight:bold; color:var(--primary-color);">5.0s</span>
-                    <span id="tap9-display" style="font-weight:bold; color:var(--muted-text);">0/25</span>
-                </div>
-                <div style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-bottom: 15px;">
-                    <div id="bomb-bar-fill" style="height: 100%; width: 0%; background: #ff4785; transition: width 0.1s;"></div>
-                </div>
-                <button class="action-btn" id="bomb-btn" onclick="tapBomb()">¡Tocar!</button>
-            </div>
-            <div id="content-9" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #9</span><span class="card-counter">9 de 15</span></div>
-                <h3>9. Título Razón #9</h3>
-                <div class="video-container-horizontal" id="vid-wrap-9"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-10" style="display:none;">
-            <div id="lock-10" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Desliza a ciegas hasta sintonizar el recuerdo.</p>
-                <input type="range" id="radio-slider" class="blind-slider" min="0" max="100" value="0" oninput="tuneRadio(this.value)">
-                <button class="action-btn" id="btn-radio" onclick="checkRadio()" style="opacity: 0.2;">Intentar sintonizar</button>
-            </div>
-            <div id="content-10" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #10</span><span class="card-counter">10 de 15</span></div>
-                <h3>10. Título Razón #10</h3>
-                <div class="video-container" id="vid-wrap-10"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-11" style="display:none;">
-            <div id="lock-11" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">11 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Atrapa 8 corazones antes de que acabe el tiempo.</p>
-                <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
-                    <span id="time11-display" style="font-weight:bold; color:var(--primary-color);">10.0s</span>
-                    <span id="score11-display" style="font-weight:bold; color:var(--muted-text);">0/8</span>
-                </div>
-                <div id="catch-field" class="catch-playfield"></div>
-                <button class="action-btn" id="start11-btn" onclick="startCatchGame()">¡Empezar a atrapar!</button>
-            </div>
-            <div id="content-11" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #11</span><span class="card-counter">11 de 15</span></div>
-                <h3>11. Título Razón #11</h3>
-                <div class="video-container-horizontal" id="vid-wrap-11"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <div class="card" id="card-12" style="display:none;">
-            <div id="lock-12" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">12 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Mantén el punto dentro de la zona verde 4 segundos seguidos.</p>
-                <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color); margin: 5px 0;" id="time12-display">0.0s / 4.0s</div>
-                <div class="balance-track">
-                    <div class="balance-zone"></div>
-                    <div id="balance-ind" class="balance-indicator" style="left: 0%;"></div>
-                </div>
-                <button class="action-btn" onmousedown="pushBalance()" ontouchstart="pushBalance(event)">¡Empujar centro!</button>
-            </div>
-            <div id="content-12" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #12</span><span class="card-counter">12 de 15</span></div>
-                <h3>12. Título Razón #12</h3>
-                <div class="video-container-horizontal" id="vid-wrap-12"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <!-- Tarjeta 13: Brick Breaker Arcade -->
-        <div class="card" id="card-13" style="display:none;">
-            <div id="lock-13" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Arcade 🔥</span><span class="card-counter">13 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Rompe todos los bloques con la pelota:</p>
-                <canvas id="brickCanvas" width="280" height="200" style="background: #111; border-radius: 10px; display: block; margin: 0 auto 10px auto; border: 1px solid var(--border-color);"></canvas>
-                <div style="display: flex; gap: 10px;">
-                    <button class="action-btn" style="padding: 10px;" onclick="movePaddle('left')">⬅️ Izquierda</button>
-                    <button class="action-btn" style="padding: 10px;" onclick="movePaddle('right')">Derecha ➡️</button>
-                </div>
-                <button class="action-btn" id="startBrickBtn" style="margin-top: 10px; background: #27ae60;" onclick="startBrickGame()">¡Lanzar pelota!</button>
-            </div>
-            <div id="content-13" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #13</span><span class="card-counter">13 de 15</span></div>
-                <h3>13. Título Razón #13</h3>
-                <div class="video-container-horizontal" id="vid-wrap-13"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <!-- Tarjeta 14: Slider Puzzle Numérico -->
-        <div class="card" id="card-14" style="display:none;">
-            <div id="lock-14" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Lógica 🔥</span><span class="card-counter">14 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Ordena los números del 1 al 8 deslizando las fichas:</p>
-                <div class="slider-grid" id="sliderGrid"></div>
-                <button class="action-btn" style="background: rgba(255,255,255,0.1); margin-top: 5px; font-size: 0.85rem; padding: 8px;" onclick="shuffleSlider()">Mezclar fichas</button>
-            </div>
-            <div id="content-14" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #14</span><span class="card-counter">14 de 15</span></div>
-                <h3>14. Título Razón #14</h3>
-                <div class="video-container-horizontal" id="vid-wrap-14"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <!-- Tarjeta 15: Laberinto Radioactivo -->
-        <div class="card" id="card-15" style="display:none;">
-            <div id="lock-15" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Definitivo 🔥</span><span class="card-counter">15 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Guía el punto al verde. ¡Cuidado con las paredes radioactivas!</p>
-                <canvas id="labCanvas" width="260" height="260" style="background: #0a0a0a; border-radius: 8px; display: block; margin: 0 auto 12px auto; border: 2px solid #333;"></canvas>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 180px; margin: 0 auto;">
-                    <div></div>
-                    <button class="action-btn" style="padding: 10px;" onclick="movePlayer('ArrowUp')">⬆️</button>
-                    <div></div>
-                    <button class="action-btn" style="padding: 10px;" onclick="movePlayer('ArrowLeft')">⬅️</button>
-                    <button class="action-btn" style="padding: 10px;" onclick="movePlayer('ArrowDown')">⬇️</button>
-                    <button class="action-btn" style="padding: 10px;" onclick="movePlayer('ArrowRight')">➡️</button>
-                </div>
-            </div>
-            <div id="content-15" style="display:none;">
-                <div class="card-header"><span class="badge">Vídeo #15</span><span class="card-counter">15 de 15</span></div>
-                <h3>15. Título Razón #15</h3>
-                <div class="video-container-horizontal" id="vid-wrap-15"></div>
-                <div class="response-box">[Pendiente de texto...]</div>
-            </div>
-        </div>
-
-        <!-- Sorpresa Final con Caja Fuerte -->
-        <div class="card" id="card-bonus" style="display:none; background: linear-gradient(135deg, rgba(255,126,185,0.2), rgba(255,71,133,0.3)); border: 2px solid var(--primary-color);">
-            <div id="safe-lock-container" class="safe-box" style="text-align: center; padding: 10px 0;">
-                <span style="font-size: 2.2rem;">🔐</span>
-                <h3 style="color:var(--primary-color); margin: 10px 0;">Caja Fuerte Secreta</h3>
-                <p style="font-size: 0.9rem; color: var(--muted-text); margin-bottom: 15px;">Introduce la combinación clave de 6 dígitos para abrir la carta final:</p>
-                <input type="password" id="safeCode" maxlength="6" placeholder="******" style="font-size: 20px; text-align: center; letter-spacing: 5px; width: 150px; padding: 8px;">
-                <br><br>
-                <button class="action-btn" onclick="tryUnlock()">Desbloquear</button>
-                <p id="safeMsg" style="margin-top: 10px; font-size: 0.85rem;"></p>
-            </div>
-            <div id="safe-content-container" style="display:none;">
-                <div class="card-header"><span class="badge" style="background:#ff4785; color:white;">🎁 Sorpresa Final</span><span class="card-counter">✨ La última razón</span></div>
-                <h2 style="color:var(--primary-color); text-align:center; margin: 10px 0;">Para ti, mi niña 🤍</h2>
-                <div class="response-box" style="background: rgba(20,4,32,0.85); color: #fff;">
-                    <strong>Carta final:</strong><br>
-                    ¡Has desbloqueado y completado las 15 razones! Gracias por cada momento juntos...
-                </div>
-            </div>
-        </div>
-
-        <footer>Hecho con todo el amor del mundo, Yeray 🤍</footer>
+        <footer>
+            <p>Hecho con amor 🤍</p>
+        </footer>
     </div>
 
     <script>
-        var unlockedCount = 1;
-        let musicManuallyPaused = false; 
+        // CONFIGURACIÓN DE VÍDEOS (Actualizado con los 5 nuevos)
         const videoIDs = {
             1: "Q0Vn2N--Uo0", 2: "LE5CXRw888o", 3: "MqOJod3MZFY", 4: "bXwrEjvnX1M", 5: "Oqtvt7pDs6g",
             6: "_prqW9SL0tI", 7: "X98AbjU7sV0", 8: "z34dLRgQTmE", 9: "2YUXajHgD4g", 10: "dK0i6_oel0o",
-            11: "Q0Vn2N--Uo0", 12: "LE5CXRw888o", 13: "MqOJod3MZFY", 14: "bXwrEjvnX1M", 15: "Oqtvt7pDs6g"
+            11: "o4tNfP6P-04", 12: "qM9i3W81oJc", 13: "kZ7O5k0M3wI", 14: "jH_f2r6K7aL", 15: "mP4vL9gH2wI"
         };
 
-        window.onload = function() {
-            var modal = document.getElementById('privacy-modal');
-            var last = localStorage.getItem('privacyAcceptedDate');
-            var now = new Date().getTime();
-            if(!last || (now - parseInt(last)) > 604800000) { modal.style.display = 'flex'; }
+        const totalCards = 15;
+        let currentCard = 1;
 
-            let localProg = parseInt(localStorage.getItem('unlockedCount')) || 1;
-            let hashVal = window.location.hash.match(/progreso=(\d+)/);
-            if (hashVal && hashVal[1]) {
-                unlockedCount = Math.max(parseInt(hashVal[1]), localProg);
-            } else {
-                unlockedCount = Math.max(1, localProg);
-            }
-            document.body.style.opacity = '1';
-        };
-
-        function showToast(msg) {
-            let t = document.getElementById('toast');
-            t.innerText = msg;
-            t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 2800);
+        // INICIALIZACIÓN
+        function initApp() {
+            document.body.style.opacity = 1;
+            generateCards();
         }
 
         function acceptPrivacy() {
-            localStorage.setItem('privacyAcceptedDate', new Date().getTime().toString());
             document.getElementById('privacy-modal').style.display = 'none';
         }
 
-        function toggleMenu() { document.getElementById('settings-menu').classList.toggle('show'); }
-
-        window.onclick = function(event) {
-            if (!event.target.closest('.dropdown')) {
-                var menu = document.getElementById('settings-menu');
-                if (menu.classList.contains('show')) menu.classList.remove('show');
+        // GENERAR TARJETAS EN EL DOM
+        function generateCards() {
+            const container = document.getElementById('cards-container');
+            let html = '';
+            for(let i = 1; i <= totalCards; i++) {
+                html += `
+                <div class="card" id="card-${i}">
+                    <div class="card-header">
+                        <span class="badge">Razón #${i}</span>
+                        <span class="card-counter">${i}/${totalCards}</span>
+                    </div>
+                    <div id="vid-wrap-${i}" class="video-container"></div>
+                    <div class="response-box">
+                        <p>Esta es mi respuesta a tu razón número ${i}. ¡Espero que te guste mucho mi amor! 🤍</p>
+                    </div>
+                    ${generateMiniGameHTML(i)}
+                    <button class="action-btn" id="btn-next-${i}" onclick="unlockNext(${i})" style="margin-top: 15px; ${i===15 ? 'display:none;' : ''}">Desbloquear siguiente 🤍</button>
+                </div>`;
             }
+            container.innerHTML = html;
+            // Solo preparamos la lógica específica de los minijuegos cuando la tarjeta se active
         }
 
-        function toggleDarkMode() { document.body.classList.toggle('dark-mode'); }
-
-        function toggleBgMusic() {
-            var audio = document.getElementById('bg-music');
-            var icon = document.getElementById('music-icon');
-            if (audio.paused) { 
-                musicManuallyPaused = false;
-                audio.play().catch(e => console.log(e)); 
-                icon.innerText = '🔊'; 
-            } else { 
-                musicManuallyPaused = true;
-                audio.pause(); 
-                icon.innerText = '🎵'; 
+        // HTML ESPECÍFICO DE MINIJUEGOS PARA CIERTAS TARJETAS
+        function generateMiniGameHTML(index) {
+            if (index === 13) {
+                return `
+                <div style="text-align:center; margin-top:15px;">
+                    <p style="font-size:0.85rem; color:var(--muted-text); margin-bottom:10px;">Rompe los bloques para avanzar (Toca la pantalla para mover)</p>
+                    <canvas id="brick-canvas" class="game-canvas" width="280" height="200"></canvas>
+                </div>`;
             }
+            if (index === 14) {
+                return `
+                <div style="text-align:center; margin-top:15px;">
+                    <p style="font-size:0.85rem; color:var(--muted-text); margin-bottom:10px;">Ordena los números del 1 al 8</p>
+                    <div id="slider-grid" class="slider-grid"></div>
+                </div>`;
+            }
+            if (index === 15) {
+                return `
+                <div style="text-align:center; margin-top:15px;">
+                    <p style="font-size:0.85rem; color:var(--muted-text); margin-bottom:10px;">Llega a la meta sin tocar las paredes</p>
+                    <canvas id="maze-canvas" class="game-canvas" width="280" height="240"></canvas>
+                </div>`;
+            }
+            return ''; // Sin minijuego para el resto por defecto
         }
 
-        document.addEventListener("click", () => {
-            let audio = document.getElementById('bg-music');
-            if (!musicManuallyPaused && audio.paused && document.getElementById('main-content').style.display === 'block') {
-                audio.play().catch(e => console.log(e));
-                document.getElementById('music-icon').innerText = '🔊';
-            }
-        });
-
-        document.addEventListener("visibilitychange", () => {
-            let audio = document.getElementById('bg-music');
-            if (document.hidden) {
-                if (!audio.paused) audio.pause();
-            } else {
-                if (!musicManuallyPaused && audio.paused && document.getElementById('main-content').style.display === 'block') {
-                    audio.play().catch(e => console.log(e));
-                    document.getElementById('music-icon').innerText = '🔊';
-                }
-            }
-        });
-
-        function checkBirthdate() {
-            var input = document.getElementById('birthdate-input').value.trim();
-            if (input === '14/10/2008' || input === '14/10/08') {
+        // LÓGICA DE CONTRASEÑA
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            // Aquí puedes cambiar "1234" por la contraseña real que quieras
+            if(input === "1234" || input.toLowerCase() === "te amo") {
                 document.getElementById('welcome-wrapper').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
-                
-                var audio = document.getElementById('bg-music');
-                audio.play().then(() => document.getElementById('music-icon').innerText = '🔊').catch(e => console.log("Autoplay bloqueado"));
-
-                restoreProgress();
+                showCard(1);
+                showToast("¡Bienvenida mi amor! 🤍");
             } else {
-                showToast("Mmm... esa no es tu contraseña 😉");
+                showToast("Contraseña incorrecta 🥺");
             }
         }
 
         function restoreManually(val) {
             if(!val) return;
-            unlockedCount = parseInt(val);
             document.getElementById('welcome-wrapper').style.display = 'none';
             document.getElementById('main-content').style.display = 'block';
-            
-            var audio = document.getElementById('bg-music');
-            audio.play().then(() => document.getElementById('music-icon').innerText = '🔊').catch(e => console.log(e));
-
-            restoreProgress();
-            showToast("¡Progreso restaurado con éxito! 🤍");
+            showCard(parseInt(val));
+            showToast(`Restaurado a la tarjeta #${val}`);
         }
 
-        function updateProgress() {
-            var displayCount = Math.max(1, unlockedCount);
-            let pct = (displayCount / 15) * 100;
-            var fill = document.getElementById('progress-fill');
-            fill.style.width = pct + '%';
-            
-            if (displayCount >= 12) {
-                fill.style.background = "linear-gradient(90deg, #ff7eb9, #ff4785)";
-                document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15 ✨';
-            } else {
-                fill.style.background = "linear-gradient(90deg, #ff4785, #ff7eb9)";
-                document.getElementById('progress-text').innerText = Math.min(displayCount, 15) + ' de 15';
+        // LÓGICA DE TARJETAS Y VÍDEOS
+        function showCard(num) {
+            currentCard = num;
+            // Ocultar todas
+            for(let i=1; i<=totalCards; i++) {
+                let c = document.getElementById('card-'+i);
+                if(c) c.classList.remove('active');
             }
-
-            localStorage.setItem('unlockedCount', unlockedCount);
-            history.replaceState(null, null, "#progreso=" + unlockedCount);
-        }
-
-        function injectVideo(num) {
+            // Mostrar actual
+            let current = document.getElementById('card-'+num);
+            if(current) current.classList.add('active');
+            
+            // Inyectar iframe seguro
             let container = document.getElementById('vid-wrap-' + num);
             if (container && container.innerHTML.trim() === '') {
                 container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoIDs[num]}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
             }
+
+            // Actualizar barra de progreso
+            let progressPercentage = (num / totalCards) * 100;
+            document.getElementById('progress-fill').style.width = progressPercentage + '%';
+            document.getElementById('progress-text').innerText = `${num} de ${totalCards}`;
+
+            // Iniciar minijuegos si corresponde
+            if(num === 13) setTimeout(initBrickGame, 500);
+            if(num === 14) setTimeout(initSliderPuzzle, 500);
+            if(num === 15) setTimeout(initMazeGame, 500);
         }
 
-        function restoreProgress() {
-            for (var i = 1; i <= 15; i++) {
-                var cardBox = document.getElementById('card-' + i);
-                var lockBox = document.getElementById('lock-' + i);
-                var contentBox = document.getElementById('content-' + i);
-
-                if (i < unlockedCount) {
-                    if (cardBox) cardBox.style.display = 'block';
-                    if (lockBox) lockBox.style.display = 'none';
-                    if (contentBox) { contentBox.style.display = 'block'; injectVideo(i); }
-                } 
-                else if (i === unlockedCount) {
-                    if (cardBox) {
-                        cardBox.style.display = 'block';
-                        if(lockBox) { lockBox.style.display = 'block'; if(contentBox) contentBox.style.display = 'none'; }
-                        setTimeout(() => {
-                            if (i === 4) initScratch();
-                            if (i === 13) initBrickGame();
-                            if (i === 14) initSliderGame();
-                            if (i === 15) drawLab();
-                        }, 100);
-                    }
-                } 
-                else {
-                    if (cardBox) cardBox.style.display = 'none';
-                }
-            }
-            if (unlockedCount > 15) {
-                var bonus = document.getElementById('card-bonus');
-                if (bonus) bonus.style.display = 'block';
-            }
-            updateProgress();
-        }
-
-        function checkAnswer(num, secretAnswer) {
-            var val = document.getElementById('input-' + num).value.trim().toLowerCase();
-            if (val === secretAnswer.toLowerCase()) {
-                if (num === 2) {
-                    var container = document.getElementById('challenge-player-container');
-                    if (container) container.innerHTML = ''; 
-                }
-                unlockMinigame(num);
-            } else {
-                showToast("PIN o respuesta incorrecta 😉");
-            }
-        }
-
-        function unlockMinigame(num) {
-            var lockBox = document.getElementById('lock-' + num);
-            var contentBox = document.getElementById('content-' + num);
-            if (lockBox) lockBox.style.display = 'none';
-            if (contentBox) { contentBox.style.display = 'block'; injectVideo(num); }
-            
-            if (num === 10 || num === 13 || num === 14) triggerConfetti();
-
-            var nextNum = num + 1;
-            if (unlockedCount < nextNum) unlockedCount = nextNum;
-            updateProgress();
-
-            var nextCard = document.getElementById('card-' + nextNum);
-            if (nextCard) {
-                nextCard.style.display = 'block';
-                setTimeout(() => {
-                    if (nextNum === 4) initScratch();
-                    if (nextNum === 13) initBrickGame();
-                    if (nextNum === 14) initSliderGame();
-                    if (nextNum === 15) drawLab();
-                }, 100);
-            } else if (nextNum > 15) {
-                var bonus = document.getElementById('card-bonus');
-                if (bonus) bonus.style.display = 'block';
-            }
-        }
-
-        var flippedCards = [];
-        var matchedPairs = 0;
-        function flipCard(card, val) {
-            if (flippedCards.length < 2 && !card.classList.contains('flipped')) {
-                card.classList.add('flipped');
-                card.innerText = val;
-                flippedCards.push({element: card, value: val});
-
-                if (flippedCards.length === 2) {
-                    if (flippedCards[0].value === flippedCards[1].value) {
-                        matchedPairs++;
-                        flippedCards = [];
-                        if (matchedPairs === 2) setTimeout(() => unlockMinigame(3), 500);
-                    } else {
-                        setTimeout(() => {
-                            flippedCards[0].element.classList.remove('flipped');
-                            flippedCards[0].element.innerText = '❓';
-                            flippedCards[1].element.classList.remove('flipped');
-                            flippedCards[1].element.innerText = '❓';
-                            flippedCards = [];
-                        }, 700);
-                    }
-                }
-            }
-        }
-
-        function initScratch() {
-            var canvas = document.getElementById('scratch-canvas');
-            if (!canvas) return;
-            
+        function unlockNext(currentIdx) {
+            // Animación de confeti
+            createConfetti();
             setTimeout(() => {
-                var ctx = canvas.getContext('2d');
-                var rect = canvas.parentElement.getBoundingClientRect();
-                canvas.width = rect.width || 300;
-                canvas.height = rect.height || 110;
-
-                ctx.fillStyle = '#ff4785';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = '#ffffff';
-                ctx.font = 'bold 16px sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('✨ Rasca aquí ✨', canvas.width/2, canvas.height/2 + 5);
-
-                var isDrawing = false, clearedPixels = 0;
-                
-                function getMousePos(evt) {
-                    var rect = canvas.getBoundingClientRect();
-                    var clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
-                    var clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
-                    return { x: clientX - rect.left, y: clientY - rect.top };
-                }
-
-                function scratch(e) {
-                    if (!isDrawing) return;
-                    if (e.cancelable) e.preventDefault();
-                    var pos = getMousePos(e);
-                    ctx.globalCompositeOperation = 'destination-out';
-                    ctx.beginPath();
-                    ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2);
-                    ctx.fill();
-
-                    clearedPixels++;
-                    if (clearedPixels > 40) {
-                        isDrawing = false;
-                        canvas.style.pointerEvents = 'none';
-                        canvas.style.transition = 'opacity 0.6s ease';
-                        canvas.style.opacity = '0';
-                        setTimeout(() => unlockMinigame(4), 700);
-                    }
-                }
-                
-                canvas.addEventListener('mousedown', () => isDrawing = true);
-                canvas.addEventListener('mouseup', () => isDrawing = false);
-                canvas.addEventListener('mouseleave', () => isDrawing = false);
-                canvas.addEventListener('mousemove', scratch);
-                canvas.addEventListener('touchstart', e => { isDrawing = true; scratch(e); }, {passive:false});
-                canvas.addEventListener('touchend', () => isDrawing = false);
-                canvas.addEventListener('touchcancel', () => isDrawing = false);
-                canvas.addEventListener('touchmove', scratch, {passive:false});
-            }, 100);
-        }
-
-        var jumps = 0;
-        function handleTrickyButton(e) {
-            if (e && e.cancelable) e.preventDefault();
-            if (jumps < 8) {
-                var btn = document.getElementById('tricky-btn');
-                var container = btn.parentElement;
-                btn.style.transform = 'none'; 
-                var maxW = container.offsetWidth - btn.offsetWidth - 12;
-                var maxH = container.offsetHeight - btn.offsetHeight - 12;
-                var randomX = Math.floor(Math.random() * Math.max(10, maxW)) + 6;
-                var randomY = Math.floor(Math.random() * Math.max(10, maxH)) + 6;
-                btn.style.left = randomX + 'px';
-                btn.style.top = randomY + 'px';
-                jumps++;
-                if (jumps >= 8) { btn.innerText = "¡Me rindo! Ábrelo 🤍"; btn.style.background = "#27ae60"; }
-            } else { unlockMinigame(5); }
-        }
-
-        let timer6, startTime6, isHolding6 = false, failCount6 = 0;
-        function startHold6(e) {
-            if (e && e.cancelable) e.preventDefault();
-            isHolding6 = true;
-            startTime6 = Date.now();
-            document.getElementById('time6-display').innerText = "0.0s";
-            timer6 = setInterval(() => {
-                let elapsed = (Date.now() - startTime6)/1000;
-                if (elapsed <= 2.0) {
-                    document.getElementById('time6-display').innerText = elapsed.toFixed(1) + "s";
-                } else {
-                    document.getElementById('time6-display').innerText = "???";
-                }
-            }, 100);
-        }
-        function endHold6(e) {
-            if (e && e.cancelable) e.preventDefault();
-            if(!isHolding6) return;
-            isHolding6 = false;
-            clearInterval(timer6);
-            let elapsed = (Date.now() - startTime6)/1000;
-            if(elapsed >= 4.7 && elapsed <= 5.3) {
-                document.getElementById('time6-display').innerText = elapsed.toFixed(2) + "s";
-                setTimeout(() => unlockMinigame(6), 500);
-            } else {
-                failCount6++;
-                showToast(`Casi! Hiciste ${elapsed.toFixed(2)}s`);
-                document.getElementById('time6-display').innerText = "0.0s";
-                if (failCount6 >= 5) document.getElementById('bypass-box-6').style.display = 'block';
-            }
-        }
-
-        const correctOrder7 = ["7 kilómetros", "RD", "Beso Famara", "Primer finde juntos", "Viaje GC", "Y lo que nos queda"];
-        let currentStep7 = 0;
-        function clickWord7(btn, word) {
-            if(word === correctOrder7[currentStep7]) {
-                btn.style.background = "var(--primary-color)";
-                btn.style.color = "#140420";
-                btn.disabled = true;
-                currentStep7++;
-                if(currentStep7 === correctOrder7.length) setTimeout(() => unlockMinigame(7), 400);
-            } else {
-                currentStep7 = 0;
-                document.querySelectorAll('#card-7 .word-btn').forEach(b => {
-                    b.style.background = "rgba(20, 4, 32, 0.6)";
-                    b.style.color = "var(--text-color)";
-                    b.disabled = false;
-                });
-                showToast("¡Ups! Orden incorrecto, se reinicia.");
-            }
-        }
-
-        function shootSniper(e) {
-            if(e && e.cancelable) e.preventDefault();
-            let line = document.getElementById('sniper-line');
-            let target = document.getElementById('sniper-target');
-            let lRect = line.getBoundingClientRect();
-            let tRect = target.getBoundingClientRect();
-            let lineCenter = lRect.left + (lRect.width / 2);
-            if (lineCenter >= tRect.left && lineCenter <= tRect.right) {
-                line.style.animationPlayState = 'paused';
-                setTimeout(() => unlockMinigame(8), 400);
-            } else {
-                showToast("¡Fallaste! Inténtalo de nuevo.");
-            }
-        }
-
-        let taps9 = 0, timer9 = null, timeleft9 = 5.0, game9Active = false;
-        function tapBomb(e) {
-            if(e && e.cancelable) e.preventDefault();
-            if(!game9Active && taps9 === 0) {
-                game9Active = true;
-                timeleft9 = 5.0;
-                timer9 = setInterval(() => {
-                    timeleft9 -= 0.1;
-                    if(timeleft9 < 0) timeleft9 = 0;
-                    document.getElementById('time9-display').innerText = timeleft9.toFixed(1) + "s";
-                    if(timeleft9 <= 0) {
-                        clearInterval(timer9);
-                        game9Active = false;
-                        if(taps9 === 25) { unlockMinigame(9); } 
-                        else { resetBomb("¡Tiempo! Te quedaste en " + taps9); }
-                    }
-                }, 100);
-            }
-            if(game9Active) {
-                taps9++;
-                document.getElementById('tap9-display').innerText = taps9 + "/25";
-                document.getElementById('bomb-bar-fill').style.width = (taps9 * 4) + '%';
-                if(taps9 === 26) {
-                    clearInterval(timer9);
-                    game9Active = false;
-                    resetBomb("¡BOOM! 💥 Te pasaste.");
-                }
-            }
-        }
-        function resetBomb(msg) {
-            taps9 = 0;
-            showToast(msg);
-            document.getElementById('bomb-bar-fill').style.width = '0%';
-            document.getElementById('time9-display').innerText = "5.0s";
-            document.getElementById('tap9-display').innerText = "0/25";
-        }
-
-        function tuneRadio(val) {
-            let num = parseInt(val);
-            let btn = document.getElementById('btn-radio');
-            let dist = Math.abs(num - 78);
-            let op = 1 - (dist / 100); 
-            if (dist < 10) op = 0.8 + (10 - dist) * 0.02; 
-            else op = Math.max(0.2, op - 0.3);
-            btn.style.opacity = op;
-        }
-        function checkRadio() {
-            let val = parseInt(document.getElementById('radio-slider').value);
-            if(val >= 76 && val <= 80) {
-                document.getElementById('btn-radio').style.opacity = "1";
-                unlockMinigame(10);
-            } else {
-                showToast("Aún hay interferencias...");
-            }
-        }
-
-        let score11 = 0, time11 = 10.0, timer11 = null, spawner11 = null, game11Active = false;
-        function startCatchGame() {
-            if(game11Active) return;
-            game11Active = true;
-            score11 = 0;
-            time11 = 10.0;
-            document.getElementById('score11-display').innerText = "0/8";
-            document.getElementById('start11-btn').style.display = 'none';
-            let field = document.getElementById('catch-field');
-            field.innerHTML = '';
-
-            timer11 = setInterval(() => {
-                time11 -= 0.1;
-                if(time11 < 0) time11 = 0;
-                document.getElementById('time11-display').innerText = time11.toFixed(1) + "s";
-                if(time11 <= 0) { stopCatchGame(false); }
-            }, 100);
-
-            spawner11 = setInterval(() => {
-                if(!game11Active) return;
-                let heart = document.createElement('div');
-                heart.className = 'falling-heart';
-                heart.innerHTML = Math.random() > 0.2 ? '🤍' : '💣';
-                heart.style.left = Math.floor(Math.random() * (field.offsetWidth - 40)) + 'px';
-                heart.onclick = (e) => handleHeartClick(e, heart);
-                heart.ontouchstart = (e) => handleHeartClick(e, heart);
-                field.appendChild(heart);
-                setTimeout(() => { if(heart.parentElement) heart.remove(); }, 2000);
+                showCard(currentIdx + 1);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 600);
         }
-        function handleHeartClick(e, el) {
-            if(e && e.cancelable) e.preventDefault();
-            if(!game11Active) return;
-            if(el.innerHTML === '💣') {
-                score11 = Math.max(0, score11 - 2);
-                showToast("¡Ay, una bomba! -2 puntos");
-            } else {
-                score11++;
+
+        // UTILIDADES UI
+        function toggleMenu() {
+            document.getElementById('settings-menu').classList.toggle('show');
+        }
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            toggleMenu();
+        }
+        function toggleBgMusic() {
+            let audio = document.getElementById('bg-music');
+            if (audio.paused) { audio.play(); showToast("Música activada 🎵"); } 
+            else { audio.pause(); showToast("Música pausada 🔇"); }
+            toggleMenu();
+        }
+        function showToast(msg) {
+            let toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+        function createConfetti() {
+            for(let i=0; i<30; i++) {
+                let conf = document.createElement('div');
+                conf.className = 'confetti';
+                conf.style.left = Math.random() * 100 + 'vw';
+                conf.style.backgroundColor = ['#ff4785', '#ff6bb5', '#fff', '#c29bc9'][Math.floor(Math.random()*4)];
+                conf.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                document.body.appendChild(conf);
+                setTimeout(() => conf.remove(), 4000);
             }
-            document.getElementById('score11-display').innerText = score11 + "/8";
-            el.remove();
-            if(score11 >= 8) { stopCatchGame(true); }
-        }
-        function stopCatchGame(success) {
-            game11Active = false;
-            clearInterval(timer11);
-            clearInterval(spawner11);
-            document.getElementById('catch-field').innerHTML = '';
-            document.getElementById('start11-btn').style.display = 'block';
-            if(success) { unlockMinigame(11); } 
-            else { showToast("¡Tiempo agotado! Inténtalo de nuevo."); }
         }
 
-        let balancePos = 0, balanceDir = 2, balanceSec = 0, balanceTimer = null, balanceActive = false;
-        function pushBalance(e) {
-            if(e && e.cancelable) e.preventDefault();
-            balancePos = Math.max(0, balancePos - 12);
-            updateBalanceUI();
-            if(!balanceActive) startBalanceLoop();
-        }
-        function startBalanceLoop() {
-            balanceActive = true;
-            balanceSec = 0;
-            balanceDir = 2.5;
-            balanceTimer = setInterval(() => {
-                balancePos += balanceDir;
-                if(balancePos > 85) balancePos = 85;
-                if(balancePos < 0) balancePos = 0;
-                
-                if(balancePos >= 30 && balancePos <= 60) {
-                    balanceSec += 0.1;
-                } else {
-                    balanceSec = Math.max(0, balanceSec - 0.15);
-                }
+        // --- ARREGLOS Y MINIJUEGOS SOLICITADOS ---
 
-                document.getElementById('time12-display').innerText = balanceSec.toFixed(1) + "s / 4.0s";
-                document.getElementById('balance-ind').style.left = balancePos + '%';
-
-                if(Math.random() < 0.15) balanceDir = (Math.random() - 0.5) * 6;
-
-                if(balanceSec >= 4.0) {
-                    clearInterval(balanceTimer);
-                    balanceActive = false;
-                    unlockMinigame(12);
-                }
-            }, 100);
-        }
-        function updateBalanceUI() {
-            document.getElementById('balance-ind').style.left = balancePos + '%';
-        }
-
-        // --- JUEGO 13: BRICK BREAKER ---
-        const brickCanvas = document.getElementById('brickCanvas');
-        const bCtx = brickCanvas ? brickCanvas.getContext('2d') : null;
-        let bX = 140, bY = 150, bDx = 2, bDy = -2, pX = 100;
-        const pWidth = 75, pHeight = 10, bRadius = 6;
-        let bricks = [];
-        const bRows = 3, bCols = 5, bWidth = 46, bHeight = 14, bPadding = 6, bOffsetTop = 15, bOffsetLeft = 14;
-        let brickGameRunning = false, brickInterval = null;
-
+        // JUEGO 13: BRICK BREAKER (Optimizado para táctil)
+        let bCtx, bX, bY, bDx=2, bDy=-2, pX, pW=60, pH=8;
+        let bricks = [], bCols=4, bRows=3;
+        let reqAnimBrick;
         function initBrickGame() {
-            if(!bCtx) return;
+            let canvas = document.getElementById('brick-canvas');
+            if(!canvas) return;
+            bCtx = canvas.getContext('2d');
+            pX = (canvas.width - pW) / 2;
+            bX = canvas.width/2; bY = canvas.height-20;
             bricks = [];
             for(let c=0; c<bCols; c++) {
                 bricks[c] = [];
-                for(let r=0; r<bRows; r++) {
-                    bricks[c][r] = { x: 0, y: 0, status: 1 };
-                }
+                for(let r=0; r<bRows; r++) { bricks[c][r] = { x:0, y:0, status:1 }; }
             }
-            bX = 140; bY = 150; pX = 100;
+            
+            // Soporte táctil mejorado
+            canvas.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                let rect = canvas.getBoundingClientRect();
+                let touchX = e.touches[0].clientX - rect.left;
+                if(touchX > 0 && touchX < canvas.width) pX = touchX - pW/2;
+            }, {passive: false});
+
             drawBrickScene();
         }
-
         function drawBrickScene() {
-            if(!bCtx) return;
-            bCtx.clearRect(0, 0, brickCanvas.width, brickCanvas.height);
+            let canvas = document.getElementById('brick-canvas');
+            if(!canvas || !bCtx) return;
+            bCtx.clearRect(0, 0, canvas.width, canvas.height);
             
+            // Dibujar pala
+            bCtx.fillStyle = '#ff4785';
+            bCtx.fillRect(pX, canvas.height-pH-5, pW, pH);
+            
+            // Dibujar pelota
+            bCtx.beginPath();
+            bCtx.arc(bX, bY, 5, 0, Math.PI*2);
+            bCtx.fillStyle = '#fff';
+            bCtx.fill(); bCtx.closePath();
+
+            // Dibujar ladrillos y colisiones
+            let w = 55, h = 15, padding = 10, offTop = 20, offLeft = 15;
+            let activeBricks = 0;
             for(let c=0; c<bCols; c++) {
                 for(let r=0; r<bRows; r++) {
-                    if(bricks[c][r].status == 1) {
-                        let brickX = (c*(bWidth+bPadding))+bOffsetLeft;
-                        let brickY = (r*(bHeight+bPadding))+bOffsetTop;
-                        bricks[c][r].x = brickX;
-                        bricks[c][r].y = brickY;
-                        bCtx.fillStyle = '#ff4785';
-                        bCtx.fillRect(brickX, brickY, bWidth, bHeight);
-                    }
-                }
-            }
-            bCtx.fillStyle = '#fff';
-            bCtx.fillRect(pX, brickCanvas.height - 15, pWidth, pHeight);
-            bCtx.beginPath();
-            bCtx.arc(bX, bY, bRadius, 0, Math.PI*2);
-            bCtx.fillStyle = '#ff7eb9';
-            bCtx.fill();
-            bCtx.closePath();
-        }
+                    let b = bricks[c][r];
+                    if(b.status === 1) {
+                        activeBricks++;
+                        let bXPos = (c*(w+padding)) + offLeft;
+                        let bYPos = (r*(h+padding)) + offTop;
+                        b.x = bXPos; b.y = bYPos;
+                        bCtx.fillStyle = '#ff6bb5';
+                        bCtx.fillRect(bXPos, bYPos, w, h);
 
-        function startBrickGame() {
-            if(brickGameRunning) return;
-            brickGameRunning = true;
-            document.getElementById('startBrickBtn').style.display = 'none';
-            
-            brickInterval = setInterval(() => {
-                bX += bDx;
-                bY += bDy;
-
-                if(bX + bDx > brickCanvas.width - bRadius || bX + bDx < bRadius) bDx = -bDx;
-                if(bY + bDy < bRadius) {
-                    bDy = -bDy;
-                } else if(bY + bDy > brickCanvas.height - bRadius - 15) {
-                    if(bX > pX && bX < pX + pWidth) {
-                        bDy = -bDy;
-                    } else if(bY > brickCanvas.height) {
-                        brickGameRunning = false;
-                        clearInterval(brickInterval);
-                        showToast("¡Vaya! Inténtalo de nuevo.");
-                        document.getElementById('startBrickBtn').style.display = 'block';
-                        initBrickGame();
-                        return;
-                    }
-                }
-
-                let won = true;
-                for(let c=0; c<bCols; c++) {
-                    for(let r=0; r<bRows; r++) {
-                        let b = bricks[c][r];
-                        if(b.status == 1) {
-                            won = false;
-                            if(bX > b.x && bX < b.x + bWidth && bY > b.y && bY < b.y + bHeight) {
-                                bDy = -bDy;
-                                b.status = 0;
-                            }
+                        // Colisión
+                        if(bX > b.x && bX < b.x+w && bY > b.y && bY < b.y+h) {
+                            bDy = -bDy; b.status = 0;
                         }
                     }
                 }
-
-                if(won) {
-                    brickGameRunning = false;
-                    clearInterval(brickInterval);
-                    unlockMinigame(13);
-                    return;
-                }
-
-                drawBrickScene();
-            }, 15);
-        }
-
-        function movePaddle(dir) {
-            if(dir === 'left') {
-                pX = Math.max(0, pX - 25);
-            } else {
-                pX = Math.min(brickCanvas.width - pWidth, pX + 25);
             }
-            drawBrickScene();
-        }
 
-
-        // --- JUEGO 14: SLIDER PUZZLE NUMÉRICO ---
-        let sliderTiles = [1, 2, 3, 4, 5, 6, 7, 8, ""];
-        
-        function initSliderGame() {
-            shuffleSlider();
-        }
-
-        function shuffleSlider() {
-            for (let i = sliderTiles.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [sliderTiles[i], sliderTiles[j]] = [sliderTiles[j], sliderTiles[i]];
-            }
-            renderSlider();
-        }
-
-        function renderSlider() {
-            let grid = document.getElementById('sliderGrid');
-            if(!grid) return;
-            grid.innerHTML = '';
-            sliderTiles.forEach((val, idx) => {
-                let tile = document.createElement('div');
-                tile.className = 'slider-tile' + (val === "" ? 'empty' : '');
-                tile.innerText = val;
-                tile.onclick = () => moveSliderTile(idx);
-                grid.appendChild(tile);
-            });
-        }
-
-        function moveSliderTile(idx) {
-            let emptyIdx = sliderTiles.indexOf("");
-            let validMoves = [emptyIdx - 1, emptyIdx + 1, emptyIdx - 3, emptyIdx + 3];
-            
-            if (emptyIdx % 3 === 0 && idx === emptyIdx - 1) validMoves = [];
-            if (emptyIdx % 3 === 2 && idx === emptyIdx + 1) validMoves = [];
-
-            if (validMoves.includes(idx)) {
-                sliderTiles[emptyIdx] = sliderTiles[idx];
-                sliderTiles[idx] = "";
-                renderSlider();
-                checkSliderWin();
-            }
-        }
-
-        function checkSliderWin() {
-            let winningState = [1, 2, 3, 4, 5, 6, 7, 8, ""];
-            let isWon = sliderTiles.every((val, i) => val === winningState[i]);
-            if (isWon) {
-                setTimeout(() => unlockMinigame(14), 400);
-            }
-        }
-
-
-        // --- JUEGO 15: LABERINTO RADIOACTIVO ---
-        const labCanvas = document.getElementById('labCanvas');
-        const lCtx = labCanvas ? labCanvas.getContext('2d') : null;
-
-        let player = { x: 15, y: 15, size: 10, speed: 6 };
-        const goal = { x: 215, y: 215, size: 30 };
-        const walls = [
-            { x: 0, y: 50, w: 200, h: 10 },
-            { x: 60, y: 110, w: 200, h: 10 },
-            { x: 0, y: 170, w: 180, h: 10 },
-            { x: 80, y: 220, w: 120, h: 10 }
-        ];
-
-        function drawLab() {
-            if(!lCtx) return;
-            lCtx.clearRect(0, 0, labCanvas.width, labCanvas.height);
-            
-            lCtx.fillStyle = '#2ecc71';
-            lCtx.fillRect(goal.x, goal.y, goal.size, goal.size);
-
-            lCtx.fillStyle = '#FF0000';
-            lCtx.shadowColor = '#FF0000';
-            lCtx.shadowBlur = 8;
-            walls.forEach(w => lCtx.fillRect(w.x, w.y, w.w, w.h));
-            lCtx.shadowBlur = 0;
-
-            lCtx.fillStyle = '#ff4785';
-            lCtx.fillRect(player.x, player.y, player.size, player.size);
-        }
-
-        function checkCollision(nx, ny) {
-            for (let w of walls) {
-                if (nx < w.x + w.w && nx + player.size > w.x && ny < w.y + w.h && ny + player.size > w.y) {
-                    return true;
-                }
-            }
-            return nx < 0 || nx + player.size > labCanvas.width || ny < 0 || ny + player.size > labCanvas.height;
-        }
-
-        function movePlayer(direction) {
-            let nx = player.x;
-            let ny = player.y;
-            if (direction === 'ArrowUp') ny -= player.speed;
-            if (direction === 'ArrowDown') ny += player.speed;
-            if (direction === 'ArrowLeft') nx -= player.speed;
-            if (direction === 'ArrowRight') nx += player.speed;
-
-            if (checkCollision(nx, ny)) {
-                player.x = 15;
-                player.y = 15;
-                showToast("¡Te has rozado con la radiación! 💥 Vuelves al inicio.");
-                drawLab();
+            if(activeBricks === 0) {
+                bCtx.fillStyle = '#fff'; bCtx.fillText("¡Completado!", 100, 100);
+                document.getElementById('btn-next-13').style.display = 'block'; // Asegurar que puede avanzar
                 return;
             }
 
-            player.x = nx;
-            player.y = ny;
-            drawLab();
-
-            if (player.x < goal.x + goal.size && player.x + player.size > goal.x &&
-                player.y < goal.y + goal.size && player.y + player.size > goal.y) {
-                showToast('¡Laberinto superado!');
-                setTimeout(() => unlockMinigame(15), 600);
+            // Rebotes
+            if(bX + bDx > canvas.width-5 || bX + bDx < 5) bDx = -bDx;
+            if(bY + bDy < 5) bDy = -bDy;
+            else if(bY + bDy > canvas.height-10) {
+                if(bX > pX && bX < pX + pW) { bDy = -bDy; bDx = bDx + (Math.random()-0.5); } 
+                else { bDy = -bDy; } // Sin Game Over, solo rebota para que sea fácil
             }
+
+            bX += bDx; bY += bDy;
+            reqAnimBrick = requestAnimationFrame(drawBrickScene);
         }
 
-        window.addEventListener('keydown', (e) => {
-            if(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key) && unlockedCount === 15) {
-                e.preventDefault();
-                movePlayer(e.key);
+        // JUEGO 14: SLIDER PUZZLE (Garantizado que es soluble)
+        let sliderTiles = [1, 2, 3, 4, 5, 6, 7, 8, ""];
+        function initSliderPuzzle() {
+            shuffleSlider();
+        }
+        function shuffleSlider() {
+            // Mezclado basado en movimientos legales para garantizar solubilidad
+            sliderTiles = [1, 2, 3, 4, 5, 6, 7, 8, ""];
+            let emptyIdx = 8;
+            for(let i=0; i<100; i++) {
+                let moves = [emptyIdx-1, emptyIdx+1, emptyIdx-3, emptyIdx+3].filter(m => m >= 0 && m < 9);
+                if(emptyIdx % 3 === 0) moves = moves.filter(m => m !== emptyIdx-1);
+                if(emptyIdx % 3 === 2) moves = moves.filter(m => m !== emptyIdx+1);
+                
+                let next = moves[Math.floor(Math.random() * moves.length)];
+                [sliderTiles[emptyIdx], sliderTiles[next]] = [sliderTiles[next], sliderTiles[emptyIdx]];
+                emptyIdx = next;
             }
-        });
-
-        function tryUnlock() {
-            const code = document.getElementById('safeCode').value;
-            const msg = document.getElementById('safeMsg');
+            renderSlider();
+        }
+        function renderSlider() {
+            let grid = document.getElementById('slider-grid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            sliderTiles.forEach((val, idx) => {
+                let div = document.createElement('div');
+                div.className = 'slider-tile ' + (val === "" ? "empty" : "");
+                div.innerText = val;
+                if(val !== "") div.onclick = () => moveSlider(idx);
+                grid.appendChild(div);
+            });
+            checkSliderWin();
+        }
+        function moveSlider(idx) {
+            let emptyIdx = sliderTiles.indexOf("");
+            let validMoves = [emptyIdx-1, emptyIdx+1, emptyIdx-3, emptyIdx+3];
+            if(emptyIdx % 3 === 0) validMoves = validMoves.filter(m => m !== emptyIdx-1);
+            if(emptyIdx % 3 === 2) validMoves = validMoves.filter(m => m !== emptyIdx+1);
             
-            if (code === '190826') {
-                msg.style.color = '#2ecc71';
-                msg.innerText = '¡Correcto! Abriendo carta final...';
-                setTimeout(() => {
-                    document.getElementById('safe-lock-container').style.display = 'none';
-                    document.getElementById('safe-content-container').style.display = 'block';
-                    triggerConfetti();
-                }, 800);
-            } else {
-                msg.style.color = '#ff4785';
-                msg.innerText = 'Código incorrecto. Pista: La fecha del reencuentro.';
+            if(validMoves.includes(idx)) {
+                [sliderTiles[emptyIdx], sliderTiles[idx]] = [sliderTiles[idx], sliderTiles[emptyIdx]];
+                renderSlider();
+            }
+        }
+        function checkSliderWin() {
+            if(sliderTiles.slice(0,8).join('') === "12345678") {
+                showToast("¡Puzzle Resuelto! 🎉");
             }
         }
 
-        function triggerConfetti() {
-            let colors = ['#ff4785', '#ff7eb9', '#ff6bb5', '#ffffff', '#e74c3c'];
-            for(let i = 0; i < 35; i++) {
-                let conf = document.createElement('div');
-                conf.className = 'confetti';
-                conf.style.left = (Math.random() * 100) + 'vw';
-                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                conf.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                conf.style.animationDelay = (Math.random() * 0.4) + 's';
-                document.body.appendChild(conf);
-                setTimeout(() => conf.remove(), 4500);
-            }
+        // JUEGO 15: LABERINTO (Nuevo diseño con pasillos estrechos)
+        let mazeCtx, player = {x: 10, y: 10, w: 15, h: 15};
+        const walls = [
+            { x: 0, y: 40, w: 200, h: 10 }, { x: 60, y: 80, w: 220, h: 10 },
+            { x: 0, y: 130, w: 180, h: 10 }, { x: 80, y: 180, w: 200, h: 10 }
+        ];
+        function initMazeGame() {
+            let canvas = document.getElementById('maze-canvas');
+            if(!canvas) return;
+            mazeCtx = canvas.getContext('2d');
+            player.x = 10; player.y = 10;
+            
+            canvas.addEventListener('touchmove', function(e) {
+                e.preventDefault();
+                let rect = canvas.getBoundingClientRect();
+                let touchX = e.touches[0].clientX - rect.left;
+                let touchY = e.touches[0].clientY - rect.top;
+                
+                let oldX = player.x, oldY = player.y;
+                player.x = touchX - player.w/2;
+                player.y = touchY - player.h/2;
+                
+                // Colisión con paredes
+                for(let w of walls) {
+                    if(player.x < w.x+w.w && player.x+player.w > w.x &&
+                       player.y < w.y+w.h && player.y+player.h > w.y) {
+                        player.x = 10; player.y = 10; // Reinicio si toca pared
+                        showToast("¡Cuidado con las paredes!");
+                    }
+                }
+                
+                // Meta
+                if(player.y > 200 && player.x > 220) {
+                    showToast("¡Llegaste a la meta! 🤍");
+                }
+                
+                drawMaze();
+            }, {passive: false});
+            
+            drawMaze();
+        }
+        function drawMaze() {
+            let canvas = document.getElementById('maze-canvas');
+            mazeCtx.clearRect(0,0,canvas.width,canvas.height);
+            // Dibujar Meta
+            mazeCtx.fillStyle = '#2ecc71';
+            mazeCtx.fillRect(230, 200, 40, 30);
+            mazeCtx.fillStyle = '#fff';
+            mazeCtx.font = "10px Arial";
+            mazeCtx.fillText("Meta", 235, 220);
+            
+            // Dibujar Paredes
+            mazeCtx.fillStyle = '#ff6bb5';
+            for(let w of walls) mazeCtx.fillRect(w.x, w.y, w.w, w.h);
+            
+            // Dibujar Jugador
+            mazeCtx.fillStyle = '#fff';
+            mazeCtx.fillRect(player.x, player.y, player.w, player.h);
         }
     </script>
 </body>
