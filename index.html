@@ -475,31 +475,38 @@
             transition: left 0.05s linear;
         }
 
-        .pattern-grid {
+        /* Estilos Slider Puzzle (Juego 14) */
+        .slider-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            max-width: 220px;
+            gap: 8px;
+            max-width: 240px;
             margin: 15px auto;
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
         }
-        .pattern-dot {
-            width: 55px;
-            height: 55px;
-            background: rgba(255,255,255,0.08);
-            border: 2px solid var(--border-color);
-            border-radius: 50%;
-            margin: 0 auto;
+        .slider-tile {
+            height: 65px;
+            background: linear-gradient(135deg, #ff4785, #ff6bb5);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            border-radius: 12px;
             cursor: pointer;
-            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            user-select: none;
+            transition: transform 0.1s;
         }
-        .pattern-dot.active {
-            background: var(--primary-color);
-            transform: scale(1.15);
-            border-color: #fff;
+        .slider-tile:active { transform: scale(0.95); }
+        .slider-tile.empty {
+            background: rgba(255,255,255,0.05);
+            box-shadow: none;
+            cursor: default;
         }
 
         footer {
@@ -815,22 +822,17 @@
             </div>
         </div>
 
+        <!-- Tarjeta 13: Brick Breaker Arcade -->
         <div class="card" id="card-13" style="display:none;">
-            <div id="lock-13" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">13 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Dibuja el patrón en la cuadrícula (1 -> 2 -> 5 -> 8 -> 9).</p>
-                <div class="pattern-grid" id="pattern-container">
-                    <div class="pattern-dot" data-id="1" ontouchstart="touchPattern(1)" onmousedown="touchPattern(1)">1</div>
-                    <div class="pattern-dot" data-id="2" ontouchstart="touchPattern(2)" onmousedown="touchPattern(2)">2</div>
-                    <div class="pattern-dot" data-id="3" ontouchstart="touchPattern(3)" onmousedown="touchPattern(3)">3</div>
-                    <div class="pattern-dot" data-id="4" ontouchstart="touchPattern(4)" onmousedown="touchPattern(4)">4</div>
-                    <div class="pattern-dot" data-id="5" ontouchstart="touchPattern(5)" onmousedown="touchPattern(5)">5</div>
-                    <div class="pattern-dot" data-id="6" ontouchstart="touchPattern(6)" onmousedown="touchPattern(6)">6</div>
-                    <div class="pattern-dot" data-id="7" ontouchstart="touchPattern(7)" onmousedown="touchPattern(7)">7</div>
-                    <div class="pattern-dot" data-id="8" ontouchstart="touchPattern(8)" onmousedown="touchPattern(8)">8</div>
-                    <div class="pattern-dot" data-id="9" ontouchstart="touchPattern(9)" onmousedown="touchPattern(9)">9</div>
+            <div id="lock-13" class="lock-box">
+                <div class="card-header"><span class="badge">Nivel Arcade 🔥</span><span class="card-counter">13 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Rompe todos los bloques con la pelota:</p>
+                <canvas id="brickCanvas" width="280" height="200" style="background: #111; border-radius: 10px; display: block; margin: 0 auto 10px auto; border: 1px solid var(--border-color);"></canvas>
+                <div style="display: flex; gap: 10px;">
+                    <button class="action-btn" style="padding: 10px;" onclick="movePaddle('left')">⬅️ Izquierda</button>
+                    <button class="action-btn" style="padding: 10px;" onclick="movePaddle('right')">Derecha ➡️</button>
                 </div>
-                <button class="action-btn" style="background: rgba(255,255,255,0.1); margin-top: 5px; font-size: 0.85rem; padding: 8px;" onclick="resetPattern()">Reiniciar patrón</button>
+                <button class="action-btn" id="startBrickBtn" style="margin-top: 10px; background: #27ae60;" onclick="startBrickGame()">¡Lanzar pelota!</button>
             </div>
             <div id="content-13" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #13</span><span class="card-counter">13 de 15</span></div>
@@ -840,26 +842,13 @@
             </div>
         </div>
 
-        <!-- Tarjeta 14: Juego de la Constelación -->
+        <!-- Tarjeta 14: Slider Puzzle Numérico -->
         <div class="card" id="card-14" style="display:none;">
             <div id="lock-14" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">14 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Conecta los puntos en orden del 1 al 4 para formar la figura:</p>
-                <svg id="constellationSvg" width="280" height="250" style="background: #111; border-radius: 10px; cursor: pointer; display: block; margin: 0 auto;">
-                    <g id="lines"></g>
-                    <circle cx="50" cy="125" r="12" fill="#fff" data-id="1" class="star" />
-                    <text x="50" y="130" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">1</text>
-                    
-                    <circle cx="140" cy="40" r="12" fill="#fff" data-id="2" class="star" />
-                    <text x="140" y="45" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">2</text>
-                    
-                    <circle cx="230" cy="125" r="12" fill="#fff" data-id="3" class="star" />
-                    <text x="230" y="130" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">3</text>
-                    
-                    <circle cx="140" cy="190" r="12" fill="#fff" data-id="4" class="star" />
-                    <text x="140" y="195" fill="#000" font-size="12" font-weight="bold" text-anchor="middle">4</text>
-                </svg>
-                <p id="constellationMsg" style="color: var(--muted-text); font-size: 0.85rem; margin-top: 8px;"></p>
+                <div class="card-header"><span class="badge">Nivel Lógica 🔥</span><span class="card-counter">14 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Ordena los números del 1 al 8 deslizando las fichas:</p>
+                <div class="slider-grid" id="sliderGrid"></div>
+                <button class="action-btn" style="background: rgba(255,255,255,0.1); margin-top: 5px; font-size: 0.85rem; padding: 8px;" onclick="shuffleSlider()">Mezclar fichas</button>
             </div>
             <div id="content-14" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #14</span><span class="card-counter">14 de 15</span></div>
@@ -869,12 +858,12 @@
             </div>
         </div>
 
-        <!-- Tarjeta 15: Laberinto y Caja Fuerte Final -->
+        <!-- Tarjeta 15: Laberinto Radioactivo -->
         <div class="card" id="card-15" style="display:none;">
             <div id="lock-15" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">15 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Guía el punto rojo hasta la meta verde:</p>
-                <canvas id="labCanvas" width="260" height="260" style="background: #222; border-radius: 8px; display: block; margin: 0 auto 12px auto;"></canvas>
+                <div class="card-header"><span class="badge">Nivel Definitivo 🔥</span><span class="card-counter">15 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Guía el punto al verde. ¡Cuidado con las paredes radioactivas!</p>
+                <canvas id="labCanvas" width="260" height="260" style="background: #0a0a0a; border-radius: 8px; display: block; margin: 0 auto 12px auto; border: 2px solid #333;"></canvas>
                 <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; max-width: 180px; margin: 0 auto;">
                     <div></div>
                     <button class="action-btn" style="padding: 10px;" onclick="movePlayer('ArrowUp')">⬆️</button>
@@ -1067,6 +1056,8 @@
                         cardBox.style.display = 'block';
                         if(lockBox) { lockBox.style.display = 'block'; if(contentBox) contentBox.style.display = 'none'; }
                         if (i === 4) initScratch();
+                        if (i === 13) initBrickGame();
+                        if (i === 14) initSliderGame();
                         if (i === 15) drawLab();
                     }
                 } 
@@ -1100,7 +1091,7 @@
             if (lockBox) lockBox.style.display = 'none';
             if (contentBox) { contentBox.style.display = 'block'; injectVideo(num); }
             
-            if (num === 10 || num === 14) triggerConfetti();
+            if (num === 10 || num === 13 || num === 14) triggerConfetti();
 
             var nextNum = num + 1;
             if (unlockedCount < nextNum) unlockedCount = nextNum;
@@ -1110,6 +1101,8 @@
             if (nextCard) {
                 nextCard.style.display = 'block';
                 if (nextNum === 4) initScratch();
+                if (nextNum === 13) initBrickGame();
+                if (nextNum === 14) initSliderGame();
                 if (nextNum === 15) drawLab();
             } else if (nextNum > 15) {
                 var bonus = document.getElementById('card-bonus');
@@ -1143,7 +1136,6 @@
             }
         }
 
-        // Rasca y gana con contraste corregido
         function initScratch() {
             var canvas = document.getElementById('scratch-canvas');
             if (!canvas) return;
@@ -1154,7 +1146,7 @@
                 canvas.width = rect.width || 300;
                 canvas.height = rect.height || 110;
 
-                ctx.fillStyle = '#ff4785'; // Color de capa superior contrastado
+                ctx.fillStyle = '#ff4785';
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
                 ctx.fillStyle = '#ffffff';
                 ctx.font = 'bold 16px sans-serif';
@@ -1167,18 +1159,13 @@
                     var rect = canvas.getBoundingClientRect();
                     var clientX = evt.touches ? evt.touches[0].clientX : evt.clientX;
                     var clientY = evt.touches ? evt.touches[0].clientY : evt.clientY;
-                    return {
-                        x: clientX - rect.left,
-                        y: clientY - rect.top
-                    };
+                    return { x: clientX - rect.left, y: clientY - rect.top };
                 }
 
                 function scratch(e) {
                     if (!isDrawing) return;
                     if (e.cancelable) e.preventDefault();
-                    
                     var pos = getMousePos(e);
-                    
                     ctx.globalCompositeOperation = 'destination-out';
                     ctx.beginPath();
                     ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2);
@@ -1198,7 +1185,6 @@
                 canvas.addEventListener('mouseup', () => isDrawing = false);
                 canvas.addEventListener('mouseleave', () => isDrawing = false);
                 canvas.addEventListener('mousemove', scratch);
-                
                 canvas.addEventListener('touchstart', e => { isDrawing = true; scratch(e); }, {passive:false});
                 canvas.addEventListener('touchend', () => isDrawing = false);
                 canvas.addEventListener('touchcancel', () => isDrawing = false);
@@ -1213,12 +1199,10 @@
                 var btn = document.getElementById('tricky-btn');
                 var container = btn.parentElement;
                 btn.style.transform = 'none'; 
-                
                 var maxW = container.offsetWidth - btn.offsetWidth - 12;
                 var maxH = container.offsetHeight - btn.offsetHeight - 12;
                 var randomX = Math.floor(Math.random() * Math.max(10, maxW)) + 6;
                 var randomY = Math.floor(Math.random() * Math.max(10, maxH)) + 6;
-
                 btn.style.left = randomX + 'px';
                 btn.style.top = randomY + 'px';
                 jumps++;
@@ -1232,7 +1216,6 @@
             isHolding6 = true;
             startTime6 = Date.now();
             document.getElementById('time6-display').innerText = "0.0s";
-            
             timer6 = setInterval(() => {
                 let elapsed = (Date.now() - startTime6)/1000;
                 if (elapsed <= 2.0) {
@@ -1285,7 +1268,6 @@
             let target = document.getElementById('sniper-target');
             let lRect = line.getBoundingClientRect();
             let tRect = target.getBoundingClientRect();
-            
             let lineCenter = lRect.left + (lRect.width / 2);
             if (lineCenter >= tRect.left && lineCenter <= tRect.right) {
                 line.style.animationPlayState = 'paused';
@@ -1308,11 +1290,8 @@
                     if(timeleft9 <= 0) {
                         clearInterval(timer9);
                         game9Active = false;
-                        if(taps9 === 25) {
-                            unlockMinigame(9);
-                        } else {
-                            resetBomb("¡Tiempo! Te quedaste en " + taps9);
-                        }
+                        if(taps9 === 25) { unlockMinigame(9); } 
+                        else { resetBomb("¡Tiempo! Te quedaste en " + taps9); }
                     }
                 }, 100);
             }
@@ -1369,9 +1348,7 @@
                 time11 -= 0.1;
                 if(time11 < 0) time11 = 0;
                 document.getElementById('time11-display').innerText = time11.toFixed(1) + "s";
-                if(time11 <= 0) {
-                    stopCatchGame(false);
-                }
+                if(time11 <= 0) { stopCatchGame(false); }
             }, 100);
 
             spawner11 = setInterval(() => {
@@ -1380,10 +1357,8 @@
                 heart.className = 'falling-heart';
                 heart.innerHTML = Math.random() > 0.2 ? '🤍' : '💣';
                 heart.style.left = Math.floor(Math.random() * (field.offsetWidth - 40)) + 'px';
-                
                 heart.onclick = (e) => handleHeartClick(e, heart);
                 heart.ontouchstart = (e) => handleHeartClick(e, heart);
-                
                 field.appendChild(heart);
                 setTimeout(() => { if(heart.parentElement) heart.remove(); }, 2000);
             }, 600);
@@ -1399,9 +1374,7 @@
             }
             document.getElementById('score11-display').innerText = score11 + "/8";
             el.remove();
-            if(score11 >= 8) {
-                stopCatchGame(true);
-            }
+            if(score11 >= 8) { stopCatchGame(true); }
         }
         function stopCatchGame(success) {
             game11Active = false;
@@ -1409,11 +1382,8 @@
             clearInterval(spawner11);
             document.getElementById('catch-field').innerHTML = '';
             document.getElementById('start11-btn').style.display = 'block';
-            if(success) {
-                unlockMinigame(11);
-            } else {
-                showToast("¡Tiempo agotado! Inténtalo de nuevo.");
-            }
+            if(success) { unlockMinigame(11); } 
+            else { showToast("¡Tiempo agotado! Inténtalo de nuevo."); }
         }
 
         let balancePos = 0, balanceDir = 2, balanceSec = 0, balanceTimer = null, balanceActive = false;
@@ -1454,83 +1424,202 @@
             document.getElementById('balance-ind').style.left = balancePos + '%';
         }
 
-        const targetPattern = [1, 2, 5, 8, 9];
-        let currentPatternIndex = 0;
-        function touchPattern(id) {
-            if(id === targetPattern[currentPatternIndex]) {
-                let dot = document.querySelector(`.pattern-dot[data-id="${id}"]`);
-                dot.classList.add('active');
-                currentPatternIndex++;
-                if(currentPatternIndex === targetPattern.length) {
-                    setTimeout(() => unlockMinigame(13), 400);
+        // --- JUEGO 13: BRICK BREAKER ---
+        const brickCanvas = document.getElementById('brickCanvas');
+        const bCtx = brickCanvas ? brickCanvas.getContext('2d') : null;
+        let bX = 140, bY = 150, bDx = 2, bDy = -2, pX = 100;
+        const pWidth = 75, pHeight = 10, bRadius = 6;
+        let bricks = [];
+        const bRows = 3, bCols = 5, bWidth = 46, bHeight = 14, bPadding = 6, bOffsetTop = 15, bOffsetLeft = 14;
+        let brickGameRunning = false, brickInterval = null;
+
+        function initBrickGame() {
+            if(!bCtx) return;
+            bricks = [];
+            for(let c=0; c<bCols; c++) {
+                bricks[c] = [];
+                for(let r=0; r<bRows; r++) {
+                    bricks[c][r] = { x: 0, y: 0, status: 1 };
                 }
+            }
+            bX = 140; bY = 150; pX = 100;
+            drawBrickScene();
+        }
+
+        function drawBrickScene() {
+            if(!bCtx) return;
+            bCtx.clearRect(0, 0, brickCanvas.width, brickCanvas.height);
+            
+            // Dibujar bloques
+            for(let c=0; c<bCols; c++) {
+                for(let r=0; r<bRows; r++) {
+                    if(bricks[c][r].status == 1) {
+                        let brickX = (c*(bWidth+bPadding))+bOffsetLeft;
+                        let brickY = (r*(bHeight+bPadding))+bOffsetTop;
+                        bricks[c][r].x = brickX;
+                        bricks[c][r].y = brickY;
+                        bCtx.fillStyle = '#ff4785';
+                        bCtx.fillRect(brickX, brickY, bWidth, bHeight);
+                    }
+                }
+            }
+            // Dibujar paleta
+            bCtx.fillStyle = '#fff';
+            bCtx.fillRect(pX, brickCanvas.height - 15, pWidth, pHeight);
+            // Dibujar bola
+            bCtx.beginPath();
+            bCtx.arc(bX, bY, bRadius, 0, Math.PI*2);
+            bCtx.fillStyle = '#ff7eb9';
+            bCtx.fill();
+            bCtx.closePath();
+        }
+
+        function startBrickGame() {
+            if(brickGameRunning) return;
+            brickGameRunning = true;
+            document.getElementById('startBrickBtn').style.display = 'none';
+            
+            brickInterval = setInterval(() => {
+                bX += bDx;
+                bY += bDy;
+
+                // Rebote paredes
+                if(bX + bDx > brickCanvas.width - bRadius || bX + bDx < bRadius) bDx = -bDx;
+                if(bY + bDy < bRadius) {
+                    bDy = -bDy;
+                } else if(bY + bDy > brickCanvas.height - bRadius - 15) {
+                    if(bX > pX && bX < pX + pWidth) {
+                        bDy = -bDy;
+                    } else if(bY > brickCanvas.height) {
+                        // Pierde
+                        brickGameRunning = false;
+                        clearInterval(brickInterval);
+                        showToast("¡Vaya! Inténtalo de nuevo.");
+                        document.getElementById('startBrickBtn').style.display = 'block';
+                        initBrickGame();
+                        return;
+                    }
+                }
+
+                // Colisión bloques
+                let won = true;
+                for(let c=0; c<bCols; c++) {
+                    for(let r=0; r<bRows; r++) {
+                        let b = bricks[c][r];
+                        if(b.status == 1) {
+                            won = false;
+                            if(bX > b.x && bX < b.x + bWidth && bY > b.y && bY < b.y + bHeight) {
+                                bDy = -bDy;
+                                b.status = 0;
+                            }
+                        }
+                    }
+                }
+
+                if(won) {
+                    brickGameRunning = false;
+                    clearInterval(brickInterval);
+                    unlockMinigame(13);
+                    return;
+                }
+
+                drawBrickScene();
+            }, 15);
+        }
+
+        function movePaddle(dir) {
+            if(dir === 'left') {
+                pX = Math.max(0, pX - 25);
             } else {
-                showToast("Patrón incorrecto, se reinicia.");
-                resetPattern();
+                pX = Math.min(brickCanvas.width - pWidth, pX + 25);
+            }
+            drawBrickScene();
+        }
+
+
+        // --- JUEGO 14: SLIDER PUZZLE NUMÉRICO ---
+        let sliderTiles = [1, 2, 3, 4, 5, 6, 7, 8, ""];
+        
+        function initSliderGame() {
+            shuffleSlider();
+        }
+
+        function shuffleSlider() {
+            // Mezclar asegurando que tenga solución o simplemente barajar aleatorio simple
+            for (let i = sliderTiles.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [sliderTiles[i], sliderTiles[j]] = [sliderTiles[j], sliderTiles[i]];
+            }
+            renderSlider();
+        }
+
+        function renderSlider() {
+            let grid = document.getElementById('sliderGrid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            sliderTiles.forEach((val, idx) => {
+                let tile = document.createElement('div');
+                tile.className = 'slider-tile' + (val === "" ? 'empty' : '');
+                tile.innerText = val;
+                tile.onclick = () => moveSliderTile(idx);
+                grid.appendChild(tile);
+            });
+        }
+
+        function moveSliderTile(idx) {
+            let emptyIdx = sliderTiles.indexOf("");
+            let validMoves = [emptyIdx - 1, emptyIdx + 1, emptyIdx - 3, emptyIdx + 3];
+            
+            // Corrección de saltos de línea laterales en cuadrícula 3x3
+            if (emptyIdx % 3 === 0 && idx === emptyIdx - 1) validMoves = [];
+            if (emptyIdx % 3 === 2 && idx === emptyIdx + 1) validMoves = [];
+
+            if (validMoves.includes(idx)) {
+                sliderTiles[emptyIdx] = sliderTiles[idx];
+                sliderTiles[idx] = "";
+                renderSlider();
+                checkSliderWin();
             }
         }
-        function resetPattern() {
-            currentPatternIndex = 0;
-            document.querySelectorAll('.pattern-dot').forEach(d => d.classList.remove('active'));
+
+        function checkSliderWin() {
+            let winningState = [1, 2, 3, 4, 5, 6, 7, 8, ""];
+            let isWon = sliderTiles.every((val, i) => val === winningState[i]);
+            if (isWon) {
+                setTimeout(() => unlockMinigame(14), 400);
+            }
         }
 
-        // Lógica del juego 14: Constelación
-        let nextExpected = 1;
-        const linesGroup = document.getElementById('lines');
-        let lastCoords = null;
 
-        document.querySelectorAll('.star').forEach(star => {
-            star.addEventListener('click', (e) => {
-                const id = parseInt(star.getAttribute('data-id'));
-                const cx = parseFloat(star.getAttribute('cx'));
-                const cy = parseFloat(star.getAttribute('cy'));
-
-                if (id === nextExpected) {
-                    star.setAttribute('fill', '#ff4785');
-                    if (lastCoords) {
-                        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                        line.setAttribute('x1', lastCoords.x);
-                        line.setAttribute('y1', lastCoords.y);
-                        line.setAttribute('x2', cx);
-                        line.setAttribute('y2', cy);
-                        line.setAttribute('stroke', '#ff4785');
-                        line.setAttribute('stroke-width', '3');
-                        linesGroup.appendChild(line);
-                    }
-                    lastCoords = { x: cx, y: cy };
-                    nextExpected++;
-
-                    if (nextExpected > 4) {
-                        document.getElementById('constellationMsg').innerText = '¡Constelación completada con éxito!';
-                        setTimeout(() => unlockMinigame(14), 600);
-                    }
-                }
-            });
-        });
-
-        // Lógica del juego 15: Laberinto
+        // --- JUEGO 15: LABERINTO RADIOACTIVO ---
         const labCanvas = document.getElementById('labCanvas');
-        const lCtx = labCanvas.getContext('2d');
+        const lCtx = labCanvas ? labCanvas.getContext('2d') : null;
 
-        let player = { x: 20, y: 20, size: 10, speed: 5 };
-        const goal = { x: 210, y: 210, size: 25 };
+        let player = { x: 15, y: 15, size: 10, speed: 6 };
+        const goal = { x: 215, y: 215, size: 30 };
         const walls = [
             { x: 0, y: 50, w: 200, h: 10 },
             { x: 60, y: 110, w: 200, h: 10 },
-            { x: 0, y: 170, w: 200, h: 10 },
-            { x: 60, y: 220, w: 140, h: 10 }
+            { x: 0, y: 170, w: 180, h: 10 },
+            { x: 80, y: 220, w: 120, h: 10 }
         ];
 
         function drawLab() {
             if(!lCtx) return;
             lCtx.clearRect(0, 0, labCanvas.width, labCanvas.height);
             
+            // Meta verde
             lCtx.fillStyle = '#2ecc71';
             lCtx.fillRect(goal.x, goal.y, goal.size, goal.size);
 
-            lCtx.fillStyle = '#34495e';
+            // Paredes Rojo Radioactivo con brillo neón
+            lCtx.fillStyle = '#FF0000';
+            lCtx.shadowColor = '#FF0000';
+            lCtx.shadowBlur = 8;
             walls.forEach(w => lCtx.fillRect(w.x, w.y, w.w, w.h));
+            lCtx.shadowBlur = 0; // Reset sombra
 
+            // Avatar
             lCtx.fillStyle = '#ff4785';
             lCtx.fillRect(player.x, player.y, player.size, player.size);
         }
@@ -1538,7 +1627,7 @@
         function checkCollision(nx, ny) {
             for (let w of walls) {
                 if (nx < w.x + w.w && nx + player.size > w.x && ny < w.y + w.h && ny + player.size > w.y) {
-                    return true;
+                    return true; // Tocó pared
                 }
             }
             return nx < 0 || nx + player.size > labCanvas.width || ny < 0 || ny + player.size > labCanvas.height;
@@ -1552,21 +1641,28 @@
             if (direction === 'ArrowLeft') nx -= player.speed;
             if (direction === 'ArrowRight') nx += player.speed;
 
-            if (!checkCollision(nx, ny)) {
-                player.x = nx;
-                player.y = ny;
+            if (checkCollision(nx, ny)) {
+                // ¡Tocó pared radioactiva! Devuelve al inicio con destello
+                player.x = 15;
+                player.y = 15;
+                showToast("¡Te has rozado con la radiación! 💥 Vuelves al inicio.");
                 drawLab();
+                return;
+            }
 
-                if (player.x < goal.x + goal.size && player.x + player.size > goal.x &&
-                    player.y < goal.y + goal.size && player.y + player.size > goal.y) {
-                    showToast('¡Laberinto superado!');
-                    setTimeout(() => unlockMinigame(15), 600);
-                }
+            player.x = nx;
+            player.y = ny;
+            drawLab();
+
+            if (player.x < goal.x + goal.size && player.x + player.size > goal.x &&
+                player.y < goal.y + goal.size && player.y + player.size > goal.y) {
+                showToast('¡Laberinto superado!');
+                setTimeout(() => unlockMinigame(15), 600);
             }
         }
 
         window.addEventListener('keydown', (e) => {
-            if(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+            if(['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key) && unlockedCount === 15) {
                 e.preventDefault();
                 movePlayer(e.key);
             }
