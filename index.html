@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="noindex, nofollow">
-    <title>15 Razones 🤍</title>
+    <title>15 Razones 🤍 · v1.6</title>
     <style>
         :root {
             --bg-color: #240a38;
@@ -528,6 +528,198 @@
             font-size: 0.85rem;
             color: var(--muted-text);
         }
+
+
+        /* ===============================
+           v1.6 — SOFT PASTEL EXPERIENCE
+           =============================== */
+        :root {
+            --bg-color: #fff7fa;
+            --bg-pattern-1: #ffe8f1;
+            --bg-pattern-2: #eee7ff;
+            --primary-color: #d96f9d;
+            --accent-color: #c85b8e;
+            --card-bg: rgba(255,255,255,0.82);
+            --text-color: #4d3d49;
+            --muted-text: #8b7480;
+            --border-color: rgba(217,111,157,0.18);
+            --soft-lilac: #e9e1ff;
+            --soft-peach: #ffe7dc;
+            --soft-mint: #dff5ed;
+            --soft-blue: #e1efff;
+            --soft-shadow: 0 14px 35px rgba(105, 76, 93, 0.10);
+        }
+
+        body.dark-mode {
+            --bg-color: #211b27;
+            --bg-pattern-1: #3a2938;
+            --bg-pattern-2: #29253b;
+            --primary-color: #f1a8c5;
+            --accent-color: #e98aad;
+            --card-bg: rgba(42,34,47,0.88);
+            --text-color: #f7edf2;
+            --muted-text: #ccb8c3;
+            --border-color: rgba(241,168,197,0.18);
+            --soft-lilac: #403657;
+            --soft-peach: #4b3430;
+            --soft-mint: #29443d;
+            --soft-blue: #2e3d50;
+            --soft-shadow: 0 14px 35px rgba(0,0,0,0.22);
+        }
+
+        body {
+            background-color: var(--bg-color) !important;
+            background-image:
+                radial-gradient(circle at 8% 8%, rgba(255, 205, 224, .75) 0, transparent 27%),
+                radial-gradient(circle at 92% 14%, rgba(224, 216, 255, .75) 0, transparent 25%),
+                radial-gradient(circle at 18% 88%, rgba(221, 246, 237, .62) 0, transparent 26%),
+                radial-gradient(circle at 88% 84%, rgba(255, 231, 220, .62) 0, transparent 28%);
+            color: var(--text-color);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: .24;
+            background-image: radial-gradient(rgba(255,255,255,.8) .7px, transparent .7px);
+            background-size: 13px 13px;
+            mix-blend-mode: soft-light;
+        }
+
+        #main-content, #welcome-wrapper { position: relative; z-index: 1; }
+        #welcome-screen, .card, .progress-wrapper {
+            box-shadow: var(--soft-shadow) !important;
+            border-color: var(--border-color) !important;
+        }
+        #welcome-screen, .card, .progress-wrapper {
+            background: var(--card-bg) !important;
+            backdrop-filter: blur(18px) saturate(115%);
+            -webkit-backdrop-filter: blur(18px) saturate(115%);
+        }
+        h1 { text-shadow: 0 3px 18px rgba(217,111,157,.20) !important; }
+        .action-btn { box-shadow: 0 8px 18px rgba(200,91,142,.15); }
+        .action-btn:active { transform: translateY(1px) scale(.985); }
+        .badge { border: 1px solid rgba(255,255,255,.35); }
+
+        /* Progress + story */
+        .progress-wrapper { overflow: hidden; position: relative; }
+        .progress-wrapper::after {
+            content: '♡';
+            position: absolute;
+            right: 13px;
+            bottom: 7px;
+            font-size: 1.15rem;
+            opacity: .15;
+        }
+        .progress-bar-bg { overflow: hidden; }
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #d99ab8, #e9b5c9, #cfc3f2) !important;
+            transition: width .55s cubic-bezier(.22,.61,.36,1);
+        }
+        #story-note {
+            margin: 10px 2px 16px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(255,255,255,.72), rgba(248,241,255,.78));
+            border: 1px solid var(--border-color);
+            color: var(--muted-text);
+            font-size: .82rem;
+            line-height: 1.45;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(105,76,93,.06);
+        }
+        body.dark-mode #story-note { background: rgba(58,48,64,.65); }
+
+        /* v1.6 score panel */
+        #v16-score-panel {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 7px;
+            margin: 0 0 14px;
+        }
+        .v16-stat {
+            min-width: 0;
+            padding: 9px 7px;
+            border-radius: 15px;
+            text-align: center;
+            background: rgba(255,255,255,.58);
+            border: 1px solid var(--border-color);
+        }
+        body.dark-mode .v16-stat { background: rgba(255,255,255,.05); }
+        .v16-stat strong { display:block; color: var(--primary-color); font-size: 1rem; }
+        .v16-stat span { display:block; color: var(--muted-text); font-size: .68rem; margin-top: 2px; }
+
+        /* Better touch affordances without disabling page scrolling globally. */
+        #scratch-canvas, #brickCanvas, #labCanvas, .memory-card, .slider-tile,
+        #catch-field, #sniper-line, #balance-ind, .action-btn { touch-action: manipulation; }
+        #brickCanvas, #labCanvas { touch-action: none; user-select: none; -webkit-user-select: none; }
+
+        /* Final reveal */
+        #card-bonus {
+            background: linear-gradient(145deg, rgba(255,241,247,.94), rgba(240,235,255,.94)) !important;
+            border: 1px solid rgba(217,111,157,.28) !important;
+            overflow: hidden;
+            position: relative;
+        }
+        body.dark-mode #card-bonus { background: linear-gradient(145deg, rgba(65,45,57,.96), rgba(50,44,72,.96)) !important; }
+        #card-bonus::before, #card-bonus::after {
+            content: '✦'; position:absolute; color:var(--primary-color); opacity:.15; font-size:4rem;
+        }
+        #card-bonus::before { top:-18px; right:10px; }
+        #card-bonus::after { bottom:-30px; left:12px; }
+        .final-letter {
+            margin-top: 14px;
+            padding: 20px 17px;
+            border-radius: 22px;
+            background: rgba(255,255,255,.70);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            line-height: 1.7;
+            text-align: left;
+        }
+        body.dark-mode .final-letter { background: rgba(255,255,255,.06); }
+        .final-letter .final-line {
+            margin-top: 16px;
+            text-align: center;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+        #safe-hints {
+            display:flex; justify-content:center; gap:6px; flex-wrap:wrap; margin: 10px 0 0;
+        }
+        .safe-hint {
+            padding: 5px 9px; border-radius:999px; font-size:.68rem;
+            background: rgba(255,255,255,.55); border:1px solid var(--border-color); color:var(--muted-text);
+        }
+        body.dark-mode .safe-hint { background: rgba(255,255,255,.05); }
+
+        .v16-secret {
+            position: fixed; inset: 0; display:none; align-items:center; justify-content:center;
+            background: rgba(58,42,54,.24); backdrop-filter: blur(10px); z-index: 999998; padding:20px;
+        }
+        .v16-secret.show { display:flex; animation: v16Fade .35s ease; }
+        .v16-secret-box {
+            max-width:330px; width:100%; padding:25px 20px; border-radius:26px; text-align:center;
+            background: var(--card-bg); border:1px solid var(--border-color); box-shadow: var(--soft-shadow);
+        }
+        @keyframes v16Fade { from{opacity:0} to{opacity:1} }
+        .v16-pulse { animation: v16Pulse .6s ease; }
+        @keyframes v16Pulse { 0%{transform:scale(1)} 45%{transform:scale(1.035)} 100%{transform:scale(1)} }
+
+
+        .v16-reveal { animation: v16CardReveal .65s cubic-bezier(.22,.61,.36,1) both; }
+        @keyframes v16CardReveal { from { opacity:0; transform: translateY(14px) scale(.985); } to { opacity:1; transform: translateY(0) scale(1); } }
+
+        @media (max-width: 380px) {
+            #v16-score-panel { gap: 5px; }
+            .v16-stat { padding: 8px 4px; }
+            .v16-stat span { font-size: .62rem; }
+        }
+
     </style>
 </head>
 <body>
@@ -561,8 +753,8 @@
                 <button class="dropdown-item" onclick="toggleDarkMode()">
                     <span style="width: 20px; text-align: center;">🌙</span> Tema
                 </button>
-                <button class="dropdown-item" style="opacity: 0.6; cursor: default;">
-                    <span style="width: 20px; text-align: center;">✨</span> Próximamente
+                <button class="dropdown-item" onclick="toggleNightMode()">
+                    <span id="night-icon" style="width: 20px; text-align: center;">🌙</span> Modo noche suave
                 </button>
             </div>
         </div>
@@ -618,6 +810,13 @@
                 <div class="progress-bar-fill" id="progress-fill"></div>
             </div>
         </div>
+
+        <div id="v16-score-panel" aria-label="Resumen de progreso">
+            <div class="v16-stat"><strong id="v16-score">0</strong><span>Puntos</span></div>
+            <div class="v16-stat"><strong id="v16-streak">0</strong><span>Racha</span></div>
+            <div class="v16-stat"><strong id="v16-secrets">0/3</strong><span>Secretos</span></div>
+        </div>
+        <div id="story-note">Cada prueba desbloquea una parte de la historia. Tómate tu tiempo. 🤍</div>
 
         <div class="card" id="card-1">
             <div id="lock-1" class="lock-box">
@@ -904,14 +1103,31 @@
                 <br><br>
                 <button class="action-btn" onclick="tryUnlock()">Desbloquear</button>
                 <p id="safeMsg" style="margin-top: 10px; font-size: 0.85rem;"></p>
+                <div id="safe-hints" aria-live="polite">
+                    <span class="safe-hint">Pista 1: sigue avanzando</span>
+                    <span class="safe-hint" style="opacity:.45">Pista 2: 🔒</span>
+                    <span class="safe-hint" style="opacity:.25">Pista 3: ✨</span>
+                </div>
             </div>
             <div id="safe-content-container" style="display:none;">
                 <div class="card-header"><span class="badge" style="background:#ff4785; color:white;">🎁 Sorpresa Final</span><span class="card-counter">✨ La última razón</span></div>
                 <h2 style="color:var(--primary-color); text-align:center; margin: 10px 0;">Para ti, mi niña 🤍</h2>
-                <div class="response-box" style="background: rgba(20,4,32,0.85); color: #fff;">
-                    <strong>Carta final:</strong><br>
-                    ¡Has desbloqueado y completado las 15 razones! Gracias por cada momento juntos...
+                <div class="final-letter">
+                    <strong>Carta final:</strong><br><br>
+                    ¡Has desbloqueado y completado las 15 razones! 🤍<br><br>
+                    Gracias por cada momento, por cada recuerdo y por todo lo que todavía nos queda por vivir.
+                    Si has llegado hasta aquí, ya conoces muchas de mis razones… pero probablemente sabes también que podría escribir otras quince.
+                    <div class="final-line">Y si me preguntas cuál es la razón número 16…<br>que todavía nos quedan muchas por vivir. 🤍</div>
                 </div>
+            </div>
+        </div>
+
+        <div id="v16-secret-modal" class="v16-secret" role="dialog" aria-modal="true" aria-label="Secreto encontrado">
+            <div class="v16-secret-box">
+                <div style="font-size:2rem; margin-bottom:8px;">🌷</div>
+                <h3 style="color:var(--primary-color); margin-bottom:8px;">Has encontrado un secreto</h3>
+                <p id="v16-secret-text" style="color:var(--muted-text); line-height:1.5; font-size:.88rem;">No todo lo bonito tiene que estar a simple vista.</p>
+                <button class="action-btn" style="margin-top:14px;" onclick="closeV16Secret()">Seguir descubriendo 🤍</button>
             </div>
         </div>
 
@@ -928,6 +1144,115 @@
             11: "6yEs_6gdjUU", 12: "xFM9FogoQtY", 13: "-jcAgsE_2Hc", 14: "E6DXN53nx54", 15: "rAJdP6-A7eI"
         };
 
+        /* v1.6 experience state — intentionally additive to v1.5 */
+        const V16_POINTS = [0, 100, 150, 180, 220, 240, 280, 300, 330, 360, 400, 430, 480, 520, 600, 800];
+        const V16_STORY = [
+            'Cada prueba desbloquea una parte de la historia. Tómate tu tiempo. 🤍',
+            'La primera puerta ya está abierta. Y esto acaba de empezar. 🌷',
+            'Dos razones descubiertas. Ya empieza a tomar forma… ✨',
+            'Hay recuerdos que solo tienen sentido cuando se comparten. 🫶🏽',
+            'Hasta las pequeñas pruebas tienen su propia historia. 🎟️',
+            'Cinco pasos. Y todavía quedan diez razones por descubrir. 🤍',
+            'No tengas prisa: algunas cosas bonitas merecen unos segundos. 🌙',
+            'Ya conoces más de la mitad del camino. Y aún queda mucho. 💗',
+            'Casi llegamos a la parte difícil. 👀',
+            'Nueve razones. Una pequeña locura de recuerdos. ✨',
+            'Diez. A estas alturas ya deberías sospechar que esto no iba a ser normal. 😌',
+            'Cinco más. Y una última sorpresa escondida al final. 🔐',
+            'La calma antes de la tormenta… mantén el equilibrio. 🌸',
+            'Últimas tres. Ahora sí: toca jugar en serio. 🎮',
+            'Una sola prueba más. Después, la caja fuerte. 🔐',
+            'Has llegado al final. Ahora solo queda abrir lo que estaba esperando. 🤍'
+        ];
+        let v16Score = Number(localStorage.getItem('v16Score')) || 0;
+        let v16Streak = Number(localStorage.getItem('v16Streak')) || 0;
+        let v16Secrets = Number(localStorage.getItem('v16Secrets')) || 0;
+        let v16Night = localStorage.getItem('v16Night') === '1';
+        let v16SecretTapCount = 0;
+        let v16LastTap = 0;
+
+        function v16SaveState() {
+            localStorage.setItem('v16Score', String(v16Score));
+            localStorage.setItem('v16Streak', String(v16Streak));
+            localStorage.setItem('v16Secrets', String(v16Secrets));
+            localStorage.setItem('v16Night', v16Night ? '1' : '0');
+        }
+
+        function v16UpdatePanel() {
+            const score = document.getElementById('v16-score');
+            const streak = document.getElementById('v16-streak');
+            const secrets = document.getElementById('v16-secrets');
+            const note = document.getElementById('story-note');
+            const safeCount = Math.min(TOTAL_CARDS + 1, Math.max(1, Number(unlockedCount) || 1));
+            if (score) score.innerText = v16Score.toLocaleString('es-ES');
+            if (streak) streak.innerText = String(v16Streak);
+            if (secrets) secrets.innerText = Math.min(3, v16Secrets) + '/3';
+            if (note) note.innerText = V16_STORY[Math.min(safeCount, V16_STORY.length - 1)];
+            document.body.classList.toggle('v16-night', v16Night);
+            const ni = document.getElementById('night-icon');
+            if (ni) ni.innerText = v16Night ? '☀️' : '🌙';
+        }
+
+        function v16RecordCompletion(num) {
+            if (!Number.isInteger(num) || num < 1 || num > TOTAL_CARDS) return;
+            const key = 'v16Completed_' + num;
+            if (localStorage.getItem(key) === '1') return;
+            const gained = V16_POINTS[num] || 100;
+            v16Score += gained;
+            v16Streak += 1;
+            localStorage.setItem(key, '1');
+            if ([5, 10, 15].includes(num)) {
+                if (v16Secrets < 3) v16Secrets += 1;
+            }
+            v16SaveState();
+            v16UpdatePanel();
+            const panel = document.getElementById('v16-score-panel');
+            if (panel) { panel.classList.remove('v16-pulse'); void panel.offsetWidth; panel.classList.add('v16-pulse'); }
+        }
+
+        function toggleNightMode() {
+            v16Night = !v16Night;
+            v16SaveState();
+            v16UpdatePanel();
+            showToast(v16Night ? 'Modo noche suave activado 🌙' : 'Modo pastel activado 🌷');
+        }
+
+        function openV16Secret(text) {
+            const modal = document.getElementById('v16-secret-modal');
+            const label = document.getElementById('v16-secret-text');
+            if (!modal) return;
+            if (label && text) label.innerText = text;
+            modal.classList.add('show');
+        }
+        function closeV16Secret() {
+            const modal = document.getElementById('v16-secret-modal');
+            if (modal) modal.classList.remove('show');
+        }
+        function secretTap() {
+            const now = Date.now();
+            if (now - v16LastTap > 1600) v16SecretTapCount = 0;
+            v16LastTap = now;
+            v16SecretTapCount++;
+            if (v16SecretTapCount === 5 && localStorage.getItem('v16SecretTitle') !== '1') {
+                localStorage.setItem('v16SecretTitle', '1');
+                v16Secrets = Math.min(3, v16Secrets + 1);
+                v16SaveState();
+                v16UpdatePanel();
+                openV16Secret('Cinco toques. Sabía que acabarías encontrándolo. 🌷');
+                v16SecretTapCount = 0;
+            }
+        }
+
+        function v16Init() {
+            v16UpdatePanel();
+            const title = document.querySelector('h1');
+            if (title) title.addEventListener('click', secretTap, { passive: true });
+            const safe = document.getElementById('safeCode');
+            if (safe) safe.addEventListener('input', () => { safe.value = safe.value.replace(/\D/g, '').slice(0, 6); });
+            document.addEventListener('keydown', e => { if (e.key === 'Escape') closeV16Secret(); }, { passive: true });
+        }
+
+
         window.onload = function() {
             var modal = document.getElementById('privacy-modal');
             var last = localStorage.getItem('privacyAcceptedDate');
@@ -943,6 +1268,7 @@
                 unlockedCount = Math.max(1, localProg);
             }
             document.body.style.opacity = '1';
+            v16Init();
         };
 
         function showToast(msg) {
@@ -1043,6 +1369,7 @@
 
             localStorage.setItem('unlockedCount', String(unlockedCount));
             history.replaceState(null, null, "#progreso=" + unlockedCount);
+            v16UpdatePanel();
         }
 
         function injectVideo(num) {
@@ -1101,6 +1428,7 @@
         }
 
         function unlockMinigame(num) {
+            v16RecordCompletion(num);
             var lockBox = document.getElementById('lock-' + num);
             var contentBox = document.getElementById('content-' + num);
             if (lockBox) lockBox.style.display = 'none';
@@ -1115,6 +1443,9 @@
             var nextCard = document.getElementById('card-' + nextNum);
             if (nextCard) {
                 nextCard.style.display = 'block';
+                nextCard.classList.remove('v16-reveal');
+                void nextCard.offsetWidth;
+                nextCard.classList.add('v16-reveal');
                 setTimeout(() => {
                     if (nextNum === 3) initMemoryGame();
                     if (nextNum === 4) initScratch();
@@ -1933,8 +2264,8 @@
                     triggerConfetti();
                 }, 800);
             } else {
-                msg.style.color = '#ff4785';
-                msg.innerText = 'Código incorrecto. Pista: La fecha del reencuentro.';
+                msg.style.color = '#c85b8e';
+                msg.innerText = 'Casi… La combinación está relacionada con una fecha que ya forma parte de vuestra historia. 🤍';
             }
         }
 
@@ -1951,6 +2282,14 @@
                 setTimeout(() => conf.remove(), 4500);
             }
         }
+
+        /* v1.6 — safe, local-only polish for the radio slider */
+        (function initV16RadioTouch(){
+            const slider = document.getElementById('radio-slider');
+            if (!slider) return;
+            slider.style.touchAction = 'pan-x';
+        })();
+
     </script>
 </body>
 </html>
