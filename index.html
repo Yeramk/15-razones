@@ -53,7 +53,6 @@
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
-            overscroll-behavior-y: none;
             opacity: 0;
             transition: opacity 0.3s ease-in;
         }
@@ -424,7 +423,7 @@
             -webkit-appearance: none; appearance: none; width: 32px; height: 32px; border-radius: 50%; background: transparent; cursor: pointer;
         }
 
-        /* Estilos específicos para los nuevos minijuegos (11 al 15) */
+        /* Restricción táctil selectiva únicamente para áreas interactivas de minijuegos */
         .no-move { touch-action: none; user-select: none; }
         
         .catch-playfield {
@@ -530,7 +529,7 @@
         }
     </style>
 </head>
-<body class="no-move">
+<body>
 
     <div id="privacy-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 999999; align-items: center; justify-content: center; padding: 20px;">
         <div style="background: var(--card-bg); border-radius: 26px; padding: 28px 22px; max-width: 400px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid var(--border-color);">
@@ -680,7 +679,7 @@
             <div id="lock-4" class="lock-box">
                 <div class="card-header"><span class="badge">Vídeo #4 🎫</span><span class="card-counter">4 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Rasca con el dedo para revelar el secreto:</p>
-                <div class="scratch-container">
+                <div class="scratch-container no-move">
                     <div class="scratch-secret">Te amo bichito 🫶🏽🤍</div>
                     <canvas id="scratch-canvas" class="scratch-canvas"></canvas>
                 </div>
@@ -698,7 +697,7 @@
             <div id="lock-5" class="lock-box">
                 <div class="card-header"><span class="badge">Vídeo #5 🏃‍♀️</span><span class="card-counter">5 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">¡Atrapa el botón si puedes para continuar!</p>
-                <div style="position: relative; height: 110px; overflow: hidden; border: 1px dashed var(--border-color); border-radius: 14px; margin: 15px 0;">
+                <div id="tricky-container" class="no-move" style="position: relative; height: 130px; overflow: hidden; border: 1px dashed var(--border-color); border-radius: 14px; margin: 15px 0;">
                     <button id="tricky-btn" class="action-btn" style="position: absolute; width: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 20px; font-size: 0.9rem;" onmouseover="handleTrickyButton(event)" ontouchstart="handleTrickyButton(event)">¡Atrápame!</button>
                 </div>
             </div>
@@ -716,7 +715,7 @@
                 <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">6 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Mantén pulsado EXACTAMENTE 5 segundos.</p>
                 <div style="font-size: 2.4rem; font-weight: bold; color: var(--primary-color); margin: 15px 0;" id="time6-display">0.0s</div>
-                <button class="action-btn" onmousedown="startHold6()" onmouseup="endHold6()" ontouchstart="startHold6(event)" ontouchend="endHold6(event)">Mantener pulsado</button>
+                <button class="action-btn no-move" onmousedown="startHold6()" onmouseup="endHold6()" ontouchstart="startHold6(event)" ontouchend="endHold6(event)">Mantener pulsado</button>
                 <div id="bypass-box-6" style="display:none; margin-top:12px;">
                     <button class="action-btn" style="background:#27ae60;" onclick="unlockMinigame(6)">Te quiero igual, ábrelo 😉🤍</button>
                 </div>
@@ -772,7 +771,7 @@
 
         <!-- TARJETA 9 -->
         <div class="card" id="card-9" style="display:none;">
-            <div id="lock-9" class="lock-box">
+            <div id="lock-9" class="lock-box no-move">
                 <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Da EXACTAMENTE 25 toques en 5 segundos.</p>
                 <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
@@ -794,7 +793,7 @@
 
         <!-- TARJETA 10 -->
         <div class="card" id="card-10" style="display:none;">
-            <div id="lock-10" class="lock-box">
+            <div id="lock-10" class="lock-box no-move">
                 <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Desliza a ciegas hasta sintonizar el recuerdo.</p>
                 <input type="range" id="radio-slider" class="blind-slider" min="0" max="100" value="0" oninput="tuneRadio(this.value)">
@@ -810,7 +809,7 @@
 
         <!-- TARJETA 11 (Nuevo Minijuego: El Cazacorazones) -->
         <div class="card" id="card-11" style="display:none;">
-            <div id="lock-11" class="lock-box">
+            <div id="lock-11" class="lock-box no-move">
                 <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">11 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Atrapa 8 corazones antes de que acabe el tiempo.</p>
                 <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
@@ -830,7 +829,7 @@
 
         <!-- TARJETA 12 (Nuevo Minijuego: El Equilibrista) -->
         <div class="card" id="card-12" style="display:none;">
-            <div id="lock-12" class="lock-box">
+            <div id="lock-12" class="lock-box no-move">
                 <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">12 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Mantén el punto dentro de la zona verde 4 segundos seguidos.</p>
                 <div style="font-size: 2rem; font-weight: bold; color: var(--primary-color); margin: 5px 0;" id="time12-display">0.0s / 4.0s</div>
@@ -850,7 +849,7 @@
 
         <!-- TARJETA 13 (Nuevo Minijuego: Patrón Táctil) -->
         <div class="card" id="card-13" style="display:none;">
-            <div id="lock-13" class="lock-box">
+            <div id="lock-13" class="lock-box no-move">
                 <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">13 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Dibuja el patrón en la cuadrícula (1 -> 2 -> 5 -> 8 -> 9).</p>
                 <div class="pattern-grid" id="pattern-container">
@@ -896,7 +895,7 @@
 
         <!-- TARJETA 15 (Nuevo Minijuego: Inflar el Globo) -->
         <div class="card" id="card-15" style="display:none;">
-            <div id="lock-15" class="lock-box">
+            <div id="lock-15" class="lock-box no-move">
                 <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">15 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">¡Infla el corazón justo hasta el borde sin que explote (20 toques)!</p>
                 <div style="font-size: 2.2rem; text-align: center; margin: 10px 0;" id="balloon-icon">🤍</div>
@@ -933,13 +932,6 @@
             6: "_prqW9SL0tI", 7: "X98AbjU7sV0", 8: "z34dLRgQTmE", 9: "2YUXajHgD4g", 10: "dK0i6_oel0o",
             11: "Q0Vn2N--Uo0", 12: "LE5CXRw888o", 13: "MqOJod3MZFY", 14: "bXwrEjvnX1M", 15: "Oqtvt7pDs6g"
         };
-
-        // Bloqueo total de gestos de rebote / scroll nativo no deseado en toda la pantalla
-        document.addEventListener('touchmove', function(e) {
-            if (e.target.closest('.no-move') || e.target.closest('.action-btn') || e.target.closest('.scratch-container') || e.target.closest('.card')) {
-                // Permitimos movimiento interno controlado si hace falta, pero bloqueamos el pull-to-refresh general
-            }
-        }, { passive: false });
 
         window.onload = function() {
             var modal = document.getElementById('privacy-modal');
@@ -1201,14 +1193,21 @@
         var jumps = 0;
         function handleTrickyButton(e) {
             if (e && e.cancelable) e.preventDefault();
-            if (jumps < 4) {
+            if (jumps < 8) {
                 var btn = document.getElementById('tricky-btn');
                 var container = btn.parentElement;
-                btn.style.transform = 'translate(0, 0)'; 
-                btn.style.left = Math.floor(Math.random() * (container.offsetWidth - btn.offsetWidth)) + 'px';
-                btn.style.top = Math.floor(Math.random() * (container.offsetHeight - btn.offsetHeight)) + 'px';
+                btn.style.transform = 'none'; 
+                
+                // Cálculo seguro con los márgenes internos para que el botón no se corte jamás en los bordes
+                var maxW = container.offsetWidth - btn.offsetWidth - 12;
+                var maxH = container.offsetHeight - btn.offsetHeight - 12;
+                var randomX = Math.floor(Math.random() * Math.max(10, maxW)) + 6;
+                var randomY = Math.floor(Math.random() * Math.max(10, maxH)) + 6;
+
+                btn.style.left = randomX + 'px';
+                btn.style.top = randomY + 'px';
                 jumps++;
-                if (jumps >= 4) { btn.innerText = "¡Me rindo! Ábrelo 🤍"; btn.style.background = "#27ae60"; }
+                if (jumps >= 8) { btn.innerText = "¡Me rindo! Ábrelo 🤍"; btn.style.background = "#27ae60"; }
             } else { unlockMinigame(5); }
         }
 
@@ -1340,7 +1339,7 @@
             }
         }
 
-        /* LÓGICA NUEVOS MINIJUEGOS 11 AL 15 */
+        /* LÓGICA MINIJUEGOS 11 AL 15 */
 
         // #11: El Cazacorazones
         let score11 = 0, time11 = 10.0, timer11 = null, spawner11 = null, game11Active = false;
@@ -1378,7 +1377,7 @@
             }, 600);
         }
         function handleHeartClick(e, el) {
-            if(e && e.cancelable) e.cancelable && e.preventDefault();
+            if(e && e.cancelable) e.preventDefault();
             if(!game11Active) return;
             if(el.innerHTML === '💣') {
                 score11 = Math.max(0, score11 - 2);
@@ -1422,7 +1421,6 @@
                 if(balancePos > 85) balancePos = 85;
                 if(balancePos < 0) balancePos = 0;
                 
-                // Zona verde aprox entre 35 y 65
                 if(balancePos >= 30 && balancePos <= 60) {
                     balanceSec += 0.1;
                 } else {
@@ -1432,7 +1430,6 @@
                 document.getElementById('time12-display').innerText = balanceSec.toFixed(1) + "s / 4.0s";
                 document.getElementById('balance-ind').style.left = balancePos + '%';
 
-                // Variación aleatoria de dirección
                 if(Math.random() < 0.15) balanceDir = (Math.random() - 0.5) * 6;
 
                 if(balanceSec >= 4.0) {
@@ -1496,7 +1493,7 @@
         function pumpBalloon(e) {
             if(e && e.cancelable) e.preventDefault();
             balloonTaps++;
-            let pct = balloonTaps * 5; // 20 toques = 100%
+            let pct = balloonTaps * 5; 
             document.getElementById('balloon-bar-fill').style.width = Math.min(100, pct) + '%';
             
             let icon = document.getElementById('balloon-icon');
