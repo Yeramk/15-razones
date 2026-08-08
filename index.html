@@ -1161,7 +1161,7 @@
                 <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Da EXACTAMENTE 25 toques en 4 segundos.</p>
                 <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
-                    <span id="time9-display" style="font-weight:bold; color:var(--primary-color);">5.0s</span>
+                    <span id="time9-display" style="font-weight:bold; color:var(--primary-color);">4.0s</span>
                     <span id="tap9-display" style="font-weight:bold; color:var(--muted-text);">0/25</span>
                 </div>
                 <div style="height: 10px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-bottom: 15px;">
@@ -1600,6 +1600,9 @@
             document.body.style.opacity = '1';
             v16Init();
             await savePersistentState();
+            setTimeout(() => {
+                try { bootVisibleGame(); } catch (e) { console.error(e); }
+            }, 180);
         };
 
         function showToast(msg) {
@@ -1701,7 +1704,13 @@
                 var audio = document.getElementById('bg-music');
                 startBackgroundMusic();
 
+
+            try {
                 restoreProgress();
+                setTimeout(bootVisibleGame, 120);
+            } catch (e) {
+                console.error('Error restaurando los juegos:', e);
+            }
             } else {
                 showToast("Mmm... esa no es tu contraseña 😉");
             }
@@ -1984,11 +1993,8 @@
             document.getElementById('time6-display').innerText = "0.0s";
             timer6 = setInterval(() => {
                 let elapsed = (Date.now() - startTime6)/1000;
-                if (elapsed <= 2.0) {
-                    document.getElementById('time6-display').innerText = elapsed.toFixed(1) + "s";
-                } else {
-                    document.getElementById('time6-display').innerText = "???";
-                }
+                document.getElementById('time6-display').innerText =
+                    elapsed.toFixed(1) + "s";
             }, 100);
         }
         function endHold6(e) {
@@ -2317,6 +2323,64 @@
         }
         buildLabWalls();if(!validateLabLayout()) console.error("Laberinto inválido: no existe una ruta hasta la meta.");bindLabTouchControls();
         window.addEventListener('keydown',e=>{if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)&&unlockedCount===15){e.preventDefault();movePlayer(e.key);}});
+
+
+        /* ==========================================================
+           SAFARI / MOBILE BOOT SAFETY
+           ----------------------------------------------------------
+           Explicitly expose functions used by inline HTML handlers.
+           This does not change the game logic; it only makes the
+           handlers unambiguous across Safari/Chrome/GitHub Pages.
+        ========================================================== */
+        const GAME_FUNCTIONS = {
+            acceptPrivacy: typeof acceptPrivacy === 'function' ? acceptPrivacy : null,
+            toggleMenu: typeof toggleMenu === 'function' ? toggleMenu : null,
+            toggleDarkMode: typeof toggleDarkMode === 'function' ? toggleDarkMode : null,
+            toggleRecoveryPanel: typeof toggleRecoveryPanel === 'function' ? toggleRecoveryPanel : null,
+            restoreManually: typeof restoreManually === 'function' ? restoreManually : null,
+            checkBirthdate: typeof checkBirthdate === 'function' ? checkBirthdate : null,
+            checkAnswer: typeof checkAnswer === 'function' ? checkAnswer : null,
+            unlockMinigame: typeof unlockMinigame === 'function' ? unlockMinigame : null,
+            handleTrickyButton: typeof handleTrickyButton === 'function' ? handleTrickyButton : null,
+            startHold6: typeof startHold6 === 'function' ? startHold6 : null,
+            endHold6: typeof endHold6 === 'function' ? endHold6 : null,
+            clickWord7: typeof clickWord7 === 'function' ? clickWord7 : null,
+            shootSniper: typeof shootSniper === 'function' ? shootSniper : null,
+            tapBomb: typeof tapBomb === 'function' ? tapBomb : null,
+            tuneRadio: typeof tuneRadio === 'function' ? tuneRadio : null,
+            checkRadio: typeof checkRadio === 'function' ? checkRadio : null,
+            startCatchGame: typeof startCatchGame === 'function' ? startCatchGame : null,
+            pushBalance: typeof pushBalance === 'function' ? pushBalance : null,
+            movePaddle: typeof movePaddle === 'function' ? movePaddle : null,
+            startBrickGame: typeof startBrickGame === 'function' ? startBrickGame : null,
+            shuffleSlider: typeof shuffleSlider === 'function' ? shuffleSlider : null,
+            tryUnlock: typeof tryUnlock === 'function' ? tryUnlock : null,
+            closeV16Secret: typeof closeV16Secret === 'function' ? closeV16Secret : null,
+            secretStarTap: typeof secretStarTap === 'function' ? secretStarTap : null,
+        };
+        Object.entries(GAME_FUNCTIONS).forEach(([name, fn]) => {
+            if (typeof fn === 'function') window[name] = fn;
+        });
+
+        function bootVisibleGame() {
+            const card = Number(unlockedCount);
+            try {
+                if (card === 2) initSongQuiz();
+                if (card === 3) initMemoryGame();
+                if (card === 4) initScratch();
+                if (card === 7) initOrderGame7();
+                if (card === 8) initSniper();
+                if (card === 13) initBrickGame();
+                if (card === 14) initSliderGame();
+                if (card === 15) {
+                    buildLabWalls();
+                    bindLabTouchControls();
+                    drawLab();
+                }
+            } catch (err) {
+                console.error('Error inicializando el juego visible:', err);
+            }
+        }
 
         function tryUnlock(){
             const code = document.getElementById('safeCode').value;
