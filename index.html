@@ -929,15 +929,15 @@
         <div style="background: var(--card-bg); border-radius: 26px; padding: 28px 22px; max-width: 400px; width: 100%; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid var(--border-color);">
             <div style="text-align: center; margin-bottom: 14px;">
                 <span style="font-size: 2.2rem;">🔒</span>
-                <h3 style="color: var(--primary-color); margin-top: 5px;">Privacidad y Amor</h3>
+                <h3 style="color: var(--primary-color); margin-top: 5px;">Políticas de privacidad y amor</h3>
             </div>
             <p style="font-size: 0.85rem; color: var(--muted-text); margin-bottom: 14px; line-height: 1.4;">
                 Para tu total tranquilidad:
             </p>
             <ul style="font-size: 0.85rem; color: var(--text-color); margin-left: 18px; margin-bottom: 20px; line-height: 1.5;">
-                <li style="margin-bottom: 6px;">Vídeos privados y ocultos de YouTube.</li>
-                <li style="margin-bottom: 6px;">Invisible para buscadores.</li>
-                <li>Acceso exclusivo protegido para ti.</li>
+                <li style="margin-bottom: 6px;">Los vídeos son privados y están ocultos de YouTube.</li>
+                <li style="margin-bottom: 6px;">La web es invisible para buscadores.</li>
+                <li>Acceso exclusivo y protegido para ti.</li>
             </ul>
             <button onclick="acceptPrivacy()" class="action-btn" style="background: #27ae60;">Aceptar y Continuar 🤍</button>
         </div>
@@ -993,7 +993,7 @@
     <div id="welcome-wrapper">
         <div id="welcome-screen">
             <h2>Hola mi amor 🤍</h2>
-            <p>Introduce tu contraseña para descubrir las 15 razones.</p>
+            <p>Introduce tu fecha de nacimiento para desbloquear el contenido de la web.</p>
             
             <input type="password" id="birthdate-input" placeholder="Contraseña">
             <button class="action-btn" onclick="checkBirthdate()">Entrar</button>
@@ -1017,9 +1017,9 @@
         </div>
 
         <div class="journey-meta">
-            <div id="story-note">Cada prueba desbloquea una parte de la historia. Tómate tu tiempo. 🤍</div>
+            <div id="story-note">Cada prueba desbloquea una parte de los videos. Tómate tu tiempo. 🤍</div>
             <div id="v16-score-panel" aria-label="Resumen de progreso">
-                <div class="v16-stat"><strong id="v16-secrets">0/3</strong><span>secretos encontrados</span></div>
+                <div class="v16-stat"><strong id="v16-secrets">0/3</strong><span>Easter eggs encontrados</span></div>
                 <button id="secret-star" class="secret-star" aria-label="Una estrella escondida" onclick="secretStarTap()">✦</button>
             </div>
         </div>
@@ -1027,7 +1027,7 @@
         <div class="card" id="card-1">
             <div id="lock-1" class="lock-box">
                 <div class="card-header"><span class="badge">Vídeo #1 🔐</span><span class="card-counter">1 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Introduce el PIN para abrir el primer recuerdo:<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">(Pista: el número incluido en la carta)</span></p>
+                <p style="margin: 10px 0; font-weight: 600;">Introduce el PIN para abrir la primera parte. :<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">(Pista: el número incluido en la carta)</span></p>
                 <input type="number" id="input-1" placeholder="****">
                 <button class="action-btn" onclick="checkAnswer(1, '3600')">Desbloquear</button>
             </div>
@@ -1042,7 +1042,7 @@
         <div class="card" id="card-2" style="display:none;">
             <div id="lock-2" class="lock-box">
                 <div class="card-header"><span class="badge">Vídeo #2 🎵</span><span class="card-counter">2 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Sigue la canción. No hace falta escucharla: completa las tres rondas eligiendo la continuación correcta.</p>
+                <p style="margin: 10px 0; font-weight: 600;">Sigue la canción y completa las tres rondas eligiendo la continuación correcta.</p>
                 <div id="song-quiz" class="audio-player-box" style="padding:14px;">
                     <div id="song-round-label" style="font-size:.76rem;color:var(--muted-text);margin-bottom:8px;text-transform:uppercase;letter-spacing:.5px;">Ronda 1 de 3</div>
                     <div id="song-fragment" style="font-weight:800;font-size:1.02rem;line-height:1.45;min-height:62px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;">Yo te prometo que yo…</div>
@@ -1061,7 +1061,7 @@
         <div class="card" id="card-3" style="display:none;">
             <div id="lock-3" class="lock-box">
                 <div class="card-header"><span class="badge">Vídeo #3 🧩</span><span class="card-counter">3 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Encuentra todas las parejas de nuestra historia.</p>
+                <p style="margin: 10px 0; font-weight: 600;">Encuentra todas las parejas que nos representan.</p>
                 <div id="memory-grid-3" class="memory-grid"></div>
                 <div id="memory-status-3" class="game-status">Encuentra todas las parejas. 🤍</div>
             </div>
@@ -1340,7 +1340,7 @@
     <script>
         var unlockedCount = 1;
         let musicManuallyPaused = false;
-        const MUSIC_PLAYLIST = ['./musica.mp3', './musica2.mp3', './musica3.mp3'];
+        const MUSIC_PLAYLIST = ['./musica.mp3', './musica2.mp3', './musica3.mp3', './musica4.mp3'];
         let currentMusicTrack = 0;
         const TOTAL_CARDS = 15;
         const videoIDs = {
@@ -1364,11 +1364,11 @@
         const EDITABLE_CONTENT = {
             subtitle: 'Respondiendo a tus 15 vídeos.',
             welcomeTitle: 'Hola mi amor 🤍',
-            welcomeText: 'Introduce tu contraseña para descubrir las 15 razones.',
+            welcomeText: 'Introduce tu fecha de nacimiento para descubrir las 15 razones.',
             footer: 'Hecho con todo el amor del mundo, Yeray 🤍',
             story: [
-                'Cada prueba desbloquea una parte de la historia. Tómate tu tiempo. 🤍',
-                'La primera puerta ya está abierta. Y esto acaba de empezar. 🌷',
+                'Cada prueba desbloquea una parte de los videos. Tómate tu tiempo. 🤍',
+                'La primera parte ya está desbloqueada. Y esto acaba de empezar. 🫶🏽🤍',
                 'Dos razones descubiertas. Ya empieza a tomar forma… ✨',
                 'Hay recuerdos que solo tienen sentido cuando se comparten. 🫶🏽',
                 'Hasta las pequeñas pruebas tienen su propia historia. 🎟️',
@@ -1379,7 +1379,7 @@
                 'Nueve razones. Una pequeña locura de recuerdos. ✨',
                 'Diez. A estas alturas ya deberías sospechar que esto no iba a ser normal. 😌',
                 'Cinco más. Y una última sorpresa escondida al final. 🔐',
-                'La calma antes de la tormenta… mantén el equilibrio. 🌸',
+                'La calma antes de la tormenta… aguanta. 🌸',
                 'Últimas tres. Ahora sí: toca jugar en serio. 🎮',
                 'Una sola prueba más. Después, la caja fuerte. 🔐',
                 'Has llegado al final. Ahora solo queda abrir lo que estaba esperando. 🤍'
@@ -1389,19 +1389,19 @@
                 response: i === 0 ? '<strong>Primera razón:</strong><br>[Pendiente de texto...]' : '[Pendiente de texto...]'
             })),
             memoryPairs: [
-                {id:'pair1', display:'🤍'},
-                {id:'pair2', display:'🫶🏽'},
-                {id:'pair3', display:'💌'},
-                {id:'pair4', display:'🌹'},
-                {id:'pair5', display:'✨'},
-                {id:'pair6', display:'📸'}
+                {id:'pair1', display:'La Concha'},
+                {id:'pair2', display:'Parque temático'},
+                {id:'pair3', display:'Ir a correr'},
+                {id:'pair4', display:'Paseos por el reducto'},
+                {id:'pair5', display:'Partiditos'},
+                {id:'pair6', display:'Los tipos de abrazos y besos'}
             ],
             scratchTarget: 7,
             scratchMessages: [
-                'Una pista que no sirve 😌','Casi… pero no.','Demasiado fácil sería.','Un recuerdo falso 👀','No era esta.',
-                'Sigue buscando.','Te amo bichito 🫶🏽🤍','La séptima tiene algo…','Solo una vale.','Inténtalo de nuevo 🤍'
+                'Soy bobo pero no tanto 😌','Casi… pero no.','Demasiado fácil sería.','Esto porque sí 👀','No era esta.',
+                'Sigue buscando.','Te amo bichito 🫶🏽🤍','Uyy,cerca…','Frio, frio, como agua de río.','Inténtalo de nuevo 🤍'
             ],
-            orderEvents: ['7 kilómetros','RD','Beso Famara','Primer finde juntos','Viaje GC','Y lo que nos queda'],
+            orderEvents: ['7 kilómetros','RD','Beso en Famara','Primer finde juntos','Viaje a GC','Y lo que nos queda'],
             songRounds: [
                 {fragment:'Yo te prometo que yo…',choices:['Seré quien cuide tus sueños','Jamás me iré a la francesa','Yo podría prometerte el mundo'],correct:0},
                 {fragment:'Yo te prometo que yo / jamás te haré una promesa…',choices:['Que no pretenda cumplir','Que no pretenda recordar','Que no pueda hacer realidad'],correct:0},
@@ -1971,7 +1971,7 @@
                 btn.style.left = randomX + 'px';
                 btn.style.top = randomY + 'px';
                 jumps++;
-                if (jumps >= 8) { btn.innerText = "¡Me rindo! Ábrelo 🤍"; btn.style.background = "#27ae60"; }
+                if (jumps >= 8) { btn.innerText = "¡Me has pillado! Ábrelo 🤍"; btn.style.background = "#27ae60"; }
             } else { unlockMinigame(5); }
         }
 
