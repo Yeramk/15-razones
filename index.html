@@ -1301,7 +1301,7 @@
             <div id="safe-lock-container" class="safe-box" style="text-align: center; padding: 10px 0;">
                 <span style="font-size: 2.2rem;">🔐</span>
                 <h3 style="color:var(--primary-color); margin: 10px 0;">Caja Fuerte Secreta</h3>
-                <p style="font-size: 0.9rem; color: var(--muted-text); margin-bottom: 15px;">Introduce la combinación clave de 6 dígitos para abrir la carta final:</p>
+                <p style="font-size: 0.9rem; color: var(--muted-text); margin-bottom: 15px;">Introduce la combinación clave de 6 dígitos para abrir la caja fuerte:</p>
                 <input type="password" id="safeCode" maxlength="6" placeholder="******" style="font-size: 20px; text-align: center; letter-spacing: 5px; width: 150px; padding: 8px;">
                 <br><br>
                 <button class="action-btn" onclick="tryUnlock()">Desbloquear</button>
@@ -1322,7 +1322,7 @@
 
         <div id="v16-secret-modal" class="v16-secret" role="dialog" aria-modal="true" aria-label="Secreto encontrado">
             <div class="v16-secret-box">
-                <div style="font-size:2rem; margin-bottom:8px;">🌷</div>
+                <div style="font-size:2rem; margin-bottom:8px;">✨</div>
                 <h3 style="color:var(--primary-color); margin-bottom:8px;">Has encontrado un secreto</h3>
                 <p id="v16-secret-text" style="color:var(--muted-text); line-height:1.5; font-size:.88rem;">No todo lo bonito tiene que estar a simple vista.</p>
                 <button class="action-btn" style="margin-top:14px;" onclick="closeV16Secret()">Seguir descubriendo 🤍</button>
@@ -1530,7 +1530,7 @@
             v16LastTap = now;
             v16SecretTapCount++;
             if (v16SecretTapCount === 5) {
-                registerSecret('v16SecretTitle', 'Cinco toques. Sabía que acabarías encontrándolo. 🌷');
+                registerSecret('v16SecretTitle', 'Cinco toques. Sabía que acabarías encontrándolo. ✨');
                 v16SecretTapCount = 0;
             }
         }
