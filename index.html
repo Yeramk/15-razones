@@ -1091,7 +1091,7 @@
         <div class="card" id="card-5" style="display:none;">
             <div id="lock-5" class="lock-box">
                 <div class="card-header"><span class="badge">Vídeo #5 🏃‍♀️</span><span class="card-counter">5 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">¡Atrapa el botón si puedes para continuar!</p>
+                <p style="margin: 10px 0; font-weight: 600;">¡Atrapa el botón si puedes para poder continuar!</p>
                 <div id="tricky-container" class="no-move" style="position: relative; height: 130px; overflow: hidden; border: 1px dashed var(--border-color); border-radius: 14px; margin: 15px 0;">
                     <button id="tricky-btn" class="action-btn" style="position: absolute; width: auto; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 10px 20px; font-size: 0.9rem;" onpointerdown="handleTrickyButton(event)">¡Atrápame!</button>
                 </div>
@@ -1124,7 +1124,7 @@
 
         <div class="card" id="card-7" style="display:none;">
             <div id="lock-7" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">7 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel: Easy 😎</span><span class="card-counter">7 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Toca los momentos en orden cronológico.</p>
                 <div id="order-grid-7" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-top:15px;"></div>
             </div>
@@ -1138,7 +1138,7 @@
 
         <div class="card" id="card-8" style="display:none;">
             <div id="lock-8" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Francotirador 🔥</span><span class="card-counter">8 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel: Francotirador 🔥</span><span class="card-counter">8 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Tienes 3 disparos. Cada fallo hace que el objetivo sea más pequeño.</p>
                 <div style="display:flex;justify-content:space-between;font-size:.8rem;color:var(--muted-text);"><span id="sniper-shots">Disparos: 3/3</span><span id="sniper-size">Objetivo: 14%</span></div>
                 <div style="position: relative; height: 45px; background: rgba(0,0,0,0.12); border-radius: 22px; margin: 20px 0; overflow: hidden; border: 1px solid var(--border-color); touch-action:none;">
@@ -1158,7 +1158,7 @@
 
         <div class="card" id="card-9" style="display:none;">
             <div id="lock-9" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel: Difícil 🔥</span><span class="card-counter">9 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Da EXACTAMENTE 25 toques en 4 segundos.</p>
                 <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
                     <span id="time9-display" style="font-weight:bold; color:var(--primary-color);">4.0s</span>
@@ -1179,8 +1179,8 @@
 
         <div class="card" id="card-10" style="display:none;">
             <div id="lock-10" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">10 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Sintoniza el recuerdo con precisión. El margen es de solo ±1.</p>
+                <div class="card-header"><span class="badge">Nivel: Facilito 😇</span><span class="card-counter">10 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Sintoniza la frecuencia con precisión. El margen es de solo ±1.</p>
                 <input type="range" id="radio-slider" class="blind-slider" min="0" max="100" value="0" oninput="tuneRadio(this.value)">
                 <button class="action-btn" id="btn-radio" onclick="checkRadio()" style="opacity: 0.2;">Intentar sintonizar</button>
             </div>
@@ -1194,8 +1194,8 @@
 
         <div class="card" id="card-11" style="display:none;">
             <div id="lock-11" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🔥</span><span class="card-counter">11 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Atrapa 10 corazones antes de que acabe el tiempo. Hay más bombas de las que parece.</p>
+                <div class="card-header"><span class="badge">Nivel: Explosivo 🔥</span><span class="card-counter">11 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Atrapa 10 corazones antes de que acabe el tiempo. Cuidado con las bombas.</p>
                 <div style="display:flex; justify-content:space-between; margin-bottom: 5px;">
                     <span id="time11-display" style="font-weight:bold; color:var(--primary-color);">9.0s</span>
                     <span id="score11-display" style="font-weight:bold; color:var(--muted-text);">0/10</span>
@@ -1213,7 +1213,7 @@
 
         <div class="card" id="card-12" style="display:none;">
             <div id="lock-12" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Difícil 🧭</span><span class="card-counter">12 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel: Facilito 🧭</span><span class="card-counter">12 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">No pierdas el rumbo. Mantén el punto dentro del corredor y corrígelo antes de que se vaya.</p>
                 <div style="display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted-text);"><span id="time12-display">0.0s / 5.0s</span><span id="course12-display">Rumbo: 0°</span></div>
                 <div class="balance-track" id="course-track-12">
@@ -1237,8 +1237,8 @@
         <!-- Tarjeta 13: Brick Breaker Arcade -->
         <div class="card" id="card-13" style="display:none;">
             <div id="lock-13" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Arcade 🔥</span><span class="card-counter">13 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Rompe todos los bloques con la pelota. Cada nivel acelera el juego.</p>
+                <div class="card-header"><span class="badge">Nivel: Arcade 👾</span><span class="card-counter">13 de 15</span></div>
+                <p style="margin: 10px 0; font-weight: 600;">Rompe todos los bloques con la pelota. Puedes mover la barra de manera táctil.</p>
                 <div class="brick-level"><span>Nivel <strong id="brick-level-display">1/5</strong></span><span id="brick-speed-display">Velocidad suave</span></div>
                 <canvas id="brickCanvas" width="280" height="200" style="background: #111; border-radius: 10px; display: block; margin: 0 auto 10px auto; border: 1px solid var(--border-color); touch-action: none;"></canvas>
                 <div class="brick-controls">
@@ -1258,7 +1258,7 @@
         <!-- Tarjeta 14: Slider Puzzle Numérico -->
         <div class="card" id="card-14" style="display:none;">
             <div id="lock-14" class="lock-box">
-                <div class="card-header"><span class="badge">Nivel Lógica 🔥</span><span class="card-counter">14 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel: Lo tuyo (Yo no he podido) 😉</span><span class="card-counter">14 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Ordena los números del 1 al 8 deslizando las fichas:</p>
                 <div id="slider-moves" class="moves-counter">Movimientos: 0</div>
                 <div class="slider-grid" id="sliderGrid"></div>
@@ -1275,7 +1275,7 @@
         <!-- Tarjeta 15: Laberinto Radioactivo -->
         <div class="card" id="card-15" style="display:none;">
             <div id="lock-15" class="lock-box no-move">
-                <div class="card-header"><span class="badge">Nivel Definitivo 🔥</span><span class="card-counter">15 de 15</span></div>
+                <div class="card-header"><span class="badge">Nivel: Se supone que difícil 🤣</span><span class="card-counter">15 de 15</span></div>
                 <p style="margin: 10px 0; font-weight: 600;">Guía el punto al verde. ¡Cuidado con las paredes radioactivas!</p>
                 <canvas id="labCanvas" width="260" height="260" style="background: #0a0a0a; border-radius: 8px; display: block; margin: 0 auto 12px auto; border: 2px solid #333;"></canvas>
                 <div class="direction-grid">
