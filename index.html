@@ -1437,11 +1437,11 @@
     <div id="prologue-modal" class="prologue-modal" role="dialog" aria-modal="true" aria-labelledby="prologue-title">
         <div class="prologue-card" onclick="event.stopPropagation()">
             <div class="prologue-kicker"><span>Antes de empezar</span><span>🤍</span></div>
-            <h2 id="prologue-title">Una pequeña cosa antes de entrar</h2>
+            <h2 id="prologue-title">Una pequeña cosa antes de entrar, mi vida</h2>
             <p>Esto no es una página para abrir, mirar y cerrar. La idea es que vayas descubriendo cada parte poco a poco, a tu ritmo.</p>
-            <p>Hay vídeos, pequeñas pruebas, recuerdos y alguna que otra cosa escondida. No necesitas saber nada antes de empezar: cuando llegue el momento, la propia experiencia te irá indicando qué hacer.</p>
-            <p>Solo una cosa: <strong>no tengas prisa por terminarla.</strong> 🤍</p>
-            <div class="prologue-note">La primera prueba ya está esperándote. Cuando cierres esta carta, empieza el recorrido.</div>
+            <p>Hay vídeos, pequeñas pruebas, recuerdos y alguna que otra cosa escondida. No necesitas saber nada antes de empezar: cuando llegue el momento, la propia dinámica te irá indicando qué hacer.</p>
+            <p>Solo una cosa: <strong>no tengas ninguna prisa por terminarla.</strong> 🤍</p>
+            <div class="prologue-note">La primera prueba ya está esperándote. Cuando cierres esta carta, empieza la experiencia que te debía.</div>
             <button class="action-btn" type="button" onclick="closePrologue()">Empezar a descubrir 🤍</button>
         </div>
     </div>
@@ -1664,9 +1664,9 @@
         <div class="card" id="card-1">
             <div id="lock-1" class="lock-box">
                 <div class="card-header"><span class="badge">Vídeo #1 🔐</span><span class="card-counter">1 de 15</span></div>
-                <p style="margin: 10px 0; font-weight: 600;">Introduce el PIN para abrir la primera parte. :<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">(Pista: el número incluido en la carta)</span></p>
+                <p style="margin: 10px 0; font-weight: 600;">Introduce el PIN para abrir la primera parte. :<br><span style="font-size: 0.8rem; color: var(--muted-text); font-weight: normal;">(Pista: el código oculto en la carta)</span></p>
                 <input type="number" id="input-1" placeholder="****">
-                <button class="action-btn" onclick="checkAnswer(1, '3600')">Desbloquear</button>
+                <button class="action-btn" onclick="checkAnswer(1, '1214')">Desbloquear</button>
             </div>
             <div id="content-1" style="display:none;">
                 <div class="card-header"><span class="badge">Vídeo #1</span><span class="card-counter">1 de 15</span></div>
@@ -2035,9 +2035,9 @@
            • SONG_ROUNDS_2_EDIT: las 3 rondas del juego 2.
            ---------------------------------------------------------- */
         const EDITABLE_CONTENT = {
-            subtitle: 'Respondiendo a tus 15 vídeos.',
+            subtitle: '15 razones (y alguna más) por las que eres el amor de mi vida.',
             welcomeTitle: 'Hola mi vida 🫶🏽 🤍',
-            welcomeText: 'Introduce tu fecha de nacimiento para descubrir las 15 razones.',
+            welcomeText: 'Introduce tu fecha de nacimiento para descubrir las dinámicas.',
             prologueTitle: 'Una pequeña cosa antes de entrar',
             prologueParagraphs: [
                 'Esto no es una página para abrir, mirar y cerrar. La idea es que vayas descubriendo cada parte poco a poco, a tu ritmo.',
@@ -2065,7 +2065,7 @@
                 'Has llegado al final. Ahora solo queda abrir la sorpresa final. 🤍'
             ],
             unlockMessages: [
-                'Una puerta más se abre. 🤍',
+                'Vamosss, esto solo emieza. 🤍',
                 'Bien. Esa ya es tuya. ✨',
                 'Otra razón descubierta. Sigue… 🫶🏽',
                 'Vas avanzando. Y esto se pone interesante. 👀',
