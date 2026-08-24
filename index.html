@@ -2788,22 +2788,126 @@
             ctx.fillStyle = '#d7b8c8'; ctx.fillRect(0,0,canvas.width,canvas.height);
             ctx.fillStyle = '#fff'; ctx.font = 'bold 13px sans-serif'; ctx.textAlign='center';
             ctx.fillText('Rasca aquí', canvas.width/2, canvas.height/2+4);
-            let drawing=false, cleared=0, done=false, lastScratchSound=0;
-            const pos = e => { const r=canvas.getBoundingClientRect(); const t=e.touches?.[0]; return {x:(t?t.clientX:e.clientX)-r.left,y:(t?t.clientY:e.clientY)-r.top}; };
-            const setScratching=active=>{ box.classList.toggle('scratching',active); };
-            const scratch = e => {
-                if(!drawing || done) return; if(e.cancelable) e.preventDefault();
-                setScratching(true); const p=pos(e); ctx.globalCompositeOperation='destination-out'; ctx.beginPath(); ctx.arc(p.x,p.y,18,0,Math.PI*2); ctx.fill(); cleared++;
-                const now=performance.now(); if(now-lastScratchSound>42){playTone('scratch');lastScratchSound=now;}
-                if(cleared>=22){ done=true; setScratching(false); canvas.style.opacity='.15'; canvas.style.pointerEvents='none';
-                    if(index===SCRATCH_TARGET_4){ document.getElementById('scratch-status-4').innerText='¡Era esta! 🤍'; playTone('success'); setTimeout(()=>unlockMinigame(4),500); }
-                    else { document.getElementById('scratch-status-4').innerText='No era esa. Prueba otra casilla.'; playTone('fail'); }
-                }
-            };
-            const stopScratch=()=>{drawing=false;setScratching(false);};
-            canvas.addEventListener('mousedown',()=>{drawing=true;setScratching(true)}); canvas.addEventListener('mouseup',stopScratch); canvas.addEventListener('mouseleave',stopScratch); canvas.addEventListener('mousemove',scratch);
-            canvas.addEventListener('touchstart',e=>{drawing=true;setScratching(true);scratch(e)},{passive:false}); canvas.addEventListener('touchmove',scratch,{passive:false}); canvas.addEventListener('touchend',stopScratch,{passive:false}); canvas.addEventListener('touchcancel',stopScratch,{passive:false});
+            let drawing = false;
+let cleared = 0;
+let done = false;
+let lastScratchSound = 0;
+
+const pos = e => {
+    const r = canvas.getBoundingClientRect();
+    const t = e.touches?.[0];
+
+    return {
+        x: (t ? t.clientX : e.clientX) - r.left,
+        y: (t ? t.clientY : e.clientY) - r.top
+    };
+};
+
+const setScratching = active => {
+    box.classList.toggle('scratching', active);
+};
+
+const scratch = e => {
+
+    if (!drawing || done) return;
+
+    if (e.cancelable) e.preventDefault();
+
+    setScratching(true);
+
+    const p = pos(e);
+
+    ctx.globalCompositeOperation = 'destination-out';
+
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, 18, 0, Math.PI * 2);
+    ctx.fill();
+
+    cleared++;
+
+    /*
+     * No reproducimos un sonido en absolutamente
+     * cada movimiento porque saturaría el AudioContext.
+     * Dejamos una pequeña separación entre sonidos.
+     */
+    const now = performance.now();
+
+    if (now - lastScratchSound > 42) {
+        playTone('scratch');
+        lastScratchSound = now;
+    }
+
+    if (cleared >= 22) {
+
+        done = true;
+        setScratching(false);
+
+        canvas.style.opacity = '.15';
+        canvas.style.pointerEvents = 'none';
+
+        if (index === SCRATCH_TARGET_4) {
+
+            document.getElementById('scratch-status-4').innerText =
+                '¡Era esta! 🤍';
+
+            playTone('success');
+
+            setTimeout(() => unlockMinigame(4), 500);
+
+        } else {
+
+            document.getElementById('scratch-status-4').innerText =
+                'No era esa. Prueba otra casilla.';
+
+            playTone('fail');
         }
+    }
+};
+
+const stopScratch = () => {
+    drawing = false;
+    setScratching(false);
+};
+
+canvas.addEventListener(
+    'mousedown',
+    () => {
+        drawing = true;
+        setScratching(true);
+    }
+);
+
+canvas.addEventListener('mouseup', stopScratch);
+canvas.addEventListener('mouseleave', stopScratch);
+canvas.addEventListener('mousemove', scratch);
+
+canvas.addEventListener(
+    'touchstart',
+    e => {
+        drawing = true;
+        setScratching(true);
+        scratch(e);
+    },
+    { passive: false }
+);
+
+canvas.addEventListener(
+    'touchmove',
+    scratch,
+    { passive: false }
+);
+
+canvas.addEventListener(
+    'touchend',
+    stopScratch,
+    { passive: false }
+);
+
+canvas.addEventListener(
+    'touchcancel',
+    stopScratch,
+    { passive: false }
+);
 
         let jumps = 0;
         function handleTrickyButton(e) {
@@ -3111,10 +3215,26 @@
             [9,6,1,5,3,7,2,8,4],[2,8,7,4,1,9,6,3,5],[3,4,5,2,8,6,1,7,9]
         ];
         let sudokuBoard14 = [], sudokuSelected14 = null, sudokuReady14 = false;
-        function initSudoku14(){
-            if(sudokuReady14) return;
-            sudokuReady14=true; resetSudoku14();
-        }
+        function initSudoku14() {
+
+    if (sudokuReady14) {
+        requestAnimationFrame(() => {
+            renderSudoku14();
+        });
+        return;
+    }
+
+    sudokuReady14 = true;
+
+    /*
+     * Esperamos un frame para asegurarnos de que
+     * la tarjeta 14 ya está visible antes de dibujar
+     * el tablero.
+     */
+    requestAnimationFrame(() => {
+        resetSudoku14();
+    });
+}
         function resetSudoku14(){
             sudokuBoard14=SUDOKU_PUZZLE_14.map(row=>row.slice()); sudokuSelected14=null;
             renderSudoku14();
@@ -3306,55 +3426,124 @@
            Los sonidos son generados directamente por el navegador.
            No necesitas subir ningún archivo de sonido al repositorio.
         ========================================================== */
-        let audioContext = null;
+        /* ==========================================================
+   AUDIO DE INTERACCIÓN — Web Audio API
+   ----------------------------------------------------------
+   Los sonidos se generan directamente por el navegador.
+   No necesitas subir ningún archivo de sonido al repositorio.
+========================================================== */
 
-        function getAudioContext() {
-            try {
-                if (!audioContext) {
-                    const Ctx = window.AudioContext || window.webkitAudioContext;
-                    if (!Ctx) return null;
-                    audioContext = new Ctx();
-                }
-                if (audioContext.state === 'suspended') audioContext.resume().catch(() => {});
-                return audioContext;
-            } catch (e) {
-                return null;
-            }
+let audioContext = null;
+
+function getAudioContext() {
+    try {
+        if (!audioContext) {
+            const Ctx = window.AudioContext || window.webkitAudioContext;
+            if (!Ctx) return null;
+            audioContext = new Ctx();
         }
 
-        function playTone(kind = 'tap') {
-            const ctx = getAudioContext();
-            if (!ctx) return;
-
-            const profiles = {
-                tap:    { notes:[520], duration:.055, type:'sine', volume:.045 },
-                success:{ notes:[659, 784, 988], duration:.12, type:'sine', volume:.050, gap:.055 },
-                fail:   { notes:[220, 165], duration:.09, type:'triangle', volume:.045, gap:.045 },
-                secret: { notes:[659, 784, 1047, 1319], duration:.13, type:'sine', volume:.050, gap:.065 },
-                unlock: { notes:[523, 659, 784, 1047], duration:.11, type:'sine', volume:.045, gap:.055 },
-                scratch:{ notes:[330], duration:.035, type:'triangle', volume:.025 }
-            };
-
-            const p = profiles[kind] || profiles.tap;
-            const now = ctx.currentTime;
-
-            p.notes.forEach((freq, i) => {
-                const when = now + (p.gap || .02) * i;
-                const osc = ctx.createOscillator();
-                const gain = ctx.createGain();
-
-                osc.type = p.type;
-                osc.frequency.setValueAtTime(freq, when);
-                gain.gain.setValueAtTime(.0001, when);
-                gain.gain.exponentialRampToValueAtTime(p.volume, when + .008);
-                gain.gain.exponentialRampToValueAtTime(.0001, when + p.duration);
-
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start(when);
-                osc.stop(when + p.duration + .015);
-            });
+        if (audioContext.state === 'suspended') {
+            audioContext.resume().catch(() => {});
         }
+
+        return audioContext;
+    } catch (e) {
+        return null;
+    }
+}
+
+function playTone(kind = 'tap') {
+    const ctx = getAudioContext();
+    if (!ctx) return;
+
+    const profiles = {
+
+        // Toque normal
+        tap: {
+            notes: [520],
+            duration: .055,
+            type: 'sine',
+            volume: .045
+        },
+
+        // Prueba superada
+        success: {
+            notes: [659, 784, 988],
+            duration: .12,
+            type: 'sine',
+            volume: .050,
+            gap: .055
+        },
+
+        // Error
+        fail: {
+            notes: [220, 165],
+            duration: .09,
+            type: 'triangle',
+            volume: .045,
+            gap: .045
+        },
+
+        // Secreto
+        secret: {
+            notes: [659, 784, 1047, 1319],
+            duration: .13,
+            type: 'sine',
+            volume: .050,
+            gap: .065
+        },
+
+        // Desbloqueo
+        unlock: {
+            notes: [523, 659, 784, 1047],
+            duration: .11,
+            type: 'sine',
+            volume: .045,
+            gap: .055
+        },
+
+        // 🪙 RASCA Y GANA
+        scratch: {
+            notes: [330],
+            duration: .035,
+            type: 'triangle',
+            volume: .025
+        }
+    };
+
+    const p = profiles[kind] || profiles.tap;
+    const now = ctx.currentTime;
+
+    p.notes.forEach((freq, i) => {
+
+        const when = now + (p.gap || .02) * i;
+
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = p.type;
+
+        osc.frequency.setValueAtTime(freq, when);
+
+        gain.gain.setValueAtTime(.0001, when);
+        gain.gain.exponentialRampToValueAtTime(
+            p.volume,
+            when + .008
+        );
+
+        gain.gain.exponentialRampToValueAtTime(
+            .0001,
+            when + p.duration
+        );
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(when);
+        osc.stop(when + p.duration + .015);
+    });
+}
 
         function triggerSoftBurst(type){
             const chars=type==='hearts'?['🤍','💗','🫶🏽']:type==='stars'?['✦','✨','⭐']:type==='secret'?['🌷','✦','🤍']:['🌸','🌷','🤍'];
