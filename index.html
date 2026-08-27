@@ -2978,7 +2978,7 @@
             updateHold6Visual(0, target);
             timer6 = requestAnimationFrame(function tick(now){ if(!isHolding6) return; updateHold6Visual((now-startTime6)/1000, target); timer6=requestAnimationFrame(tick); });
         }
-        function endHold6(e) {
+                function endHold6(e) {
             if (e && e.cancelable) e.preventDefault();
             if(!isHolding6) return;
             isHolding6 = false; cancelAnimationFrame(timer6);
@@ -2995,13 +2995,33 @@
                 } else {
                     showToast('¡Nivel ' + (hold6Level + 1) + ' superado! Va el siguiente…');
                     hold6Level++;
+                    failCount6 = 0; // Reinicia los fallos para el siguiente nivel
                     setTimeout(renderHold6Level, 700);
                 }
             } else {
-                failCount6++; playTone('fail'); showToast(`Casi! Hiciste ${elapsed.toFixed(2)}s (objetivo ${lvl.target.toFixed(1)}s)`); updateHold6Visual(0, lvl.target);
-                if (failCount6 >= 7) document.getElementById('bypass-box-6').style.display = 'block';
+                failCount6++; playTone('fail'); 
+                showToast(`Casi! Hiciste ${elapsed.toFixed(2)}s (objetivo ${lvl.target.toFixed(1)}s)`); 
+                updateHold6Visual(0, lvl.target);
+                
+                if (failCount6 >= 7 && failCount6 < 10) {
+                    document.getElementById('bypass-box-6').style.display = 'block';
+                } else if (failCount6 >= 10) {
+                    // Si llega a 10 fallos, avanza de nivel (o desbloquea si es el último)
+                    failCount6 = 0;
+                    document.getElementById('bypass-box-6').style.display = 'none';
+                    if (hold6Level >= HOLD6_LEVELS.length - 1) {
+                        hold6Finished = true;
+                        showToast('Valoro tu esfuerzo. ¡Prueba superada! 🤍');
+                        setTimeout(() => unlockMinigame(6), 800);
+                    } else {
+                        hold6Level++;
+                        showToast('¡Venga, pasamos al siguiente nivel para evitar frustración! 🤍');
+                        setTimeout(renderHold6Level, 800);
+                    }
+                }
             }
         }
+
 
         document.addEventListener('touchcancel', endHold6, { passive: false });
         document.addEventListener('mouseup', endHold6);
