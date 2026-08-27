@@ -3927,21 +3927,7 @@
             const chars=type==='hearts'?['🤍','💗','🫶🏽']:type==='stars'?['✦','✨','⭐']:type==='secret'?['🌷','✦','🤍']:['🌸','🌷','🤍'];
             for(let i=0;i<18;i++){const el=document.createElement('div');el.className='confetti';el.innerText=chars[i%chars.length];el.style.background='transparent';el.style.fontSize=(12+Math.random()*10)+'px';el.style.left=(Math.random()*100)+'vw';el.style.animationDuration=(1.8+Math.random()*1.4)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),3600);}
         }
-                                function triggerConfetti() {
-            let colors = ['#ff4785', '#ff7eb9', '#ff6bb5', '#ffffff', '#e74c3c'];
-            for(let i = 0; i < 35; i++) {
-                let conf = document.createElement('div');
-                conf.className = 'confetti';
-                conf.style.left = (Math.random() * 100) + 'vw';
-                conf.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                conf.style.animationDuration = (Math.random() * 2 + 2) + 's';
-                conf.style.animationDelay = (Math.random() * 0.4) + 's';
-                document.body.appendChild(conf);
-                setTimeout(() => conf.remove(), 4500);
-            }
-        }
-
-        /* v1.6 — safe, local-only polish for the radio slider */
+                                        /* v1.6 — safe, local-only polish for the radio slider */
         (function initV16RadioTouch(){
             const slider = document.getElementById('radio-slider');
             if (!slider) return;
@@ -3963,7 +3949,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             setInterval(() => {
                 const diaryBtn = document.getElementById('diary-trigger-btn');
-                // Se desbloquea cuando unlockedCount llega a 9 (lo que significa que la prueba 8 está superada)
+                // Se desbloquea cuando unlockedCount llega a 9 (lo que significa que la prueba 8 está superada)[span_2](start_span)[span_2](end_span)
                 if (diaryBtn && typeof unlockedCount !== 'undefined' && unlockedCount >= 9) {
                     if (diaryBtn.style.display !== 'flex') {
                         diaryBtn.style.display = 'flex';
@@ -3993,14 +3979,98 @@
             <div style="text-align: center; margin-bottom: 25px;">
                 <span style="font-size: 2.2rem;">📖</span>
                 <h3 style="color: var(--primary-color); margin-top: 5px;">El Diario de Mara</h3>
-                <p style="font-size: 0.85rem; color: var(--muted-text); font-style: italic;">"Este va a ser mi nuevo chat para hablar contigo...[span_0](start_span)"[span_0](end_span)</p>
+                <p style="font-size: 0.85rem; color: var(--muted-text); font-style: italic;">"Este va a ser mi nuevo chat para hablar contigo hasta nuevo aviso...[span_3](start_span)"[span_3](end_span)</p>
             </div>
 
-            <!-- ENTRADA 1: MIÉRCOLES 15 (21:49) -->
+            <!-- ENTRADA 1: MIÉRCOLES 15 DE ABRIL (21:49) -->
             <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
-                <strong style="color: var(--primary-color); font-size: 0.9rem;">Miércoles 15 de abril (21:49)[span_1](start_span)[span_1](end_span)</strong>
+                <strong style="color: var(--primary-color); font-size: 0.9rem;">Miércoles 15 de abril (21:49)[span_4](start_span)[span_4](end_span)</strong>
                 <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
-                    Hola mi amor. Ya he cenado y la verdad es que no puedo parar de pensar en ti y en todo lo que ha pasado hoy... me ha parecido algo muy pero que muy bonito de tu parte haberle dado like a nuestras historias juntas[span_2](start_span)[span_2](end_span).
+                    Hola mi amor. Ya he cenado y la verdad es que no puedo parar de pensar en ti y en todo lo que ha pasado hoy, tú tampoco es que colabores demasiado porque explícame ¿qué significa que de repente te pongas a darle like a todas nuestras historias juntos? Quiero que me des una respuesta justificada cuando leas esto. Me ha parecido algo muy pero que muy bonito de tu parte haberlo hecho y por eso quería decírtelo[span_5](start_span)[span_5](end_span).
+                </p>
+                <div style="margin-top: 15px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.6); border: 1px dashed var(--primary-color);">
+                    <strong style="font-size: 0.8rem; color: var(--text-color);">Tú respondiste:</strong>
+                    <p style="font-size: 0.85rem; margin-top: 5px; line-height: 1.5; color: var(--muted-text);">
+                        [Escribe aquí tu respuesta para Mara directamente en el código...]
+                    </p>
+                </div>
+            </div>
+
+            <!-- ENTRADA 2: MIÉRCOLES 15 DE ABRIL (22:36) -->
+            <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                <strong style="color: var(--primary-color); font-size: 0.9rem;">Miércoles 15 de abril (22:36)[span_6](start_span)[span_6](end_span)</strong>
+                <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
+                    Hola de nuevo. Al final he decidido que no voy a estudiar ahora, mejor me voy a dormir ya. Este creo que está siendo mi momento más duro por ahora: han pasado 369 días desde que empezamos a hablar (788 buenas noches en WhatsApp) y hoy es el primer día que no. Me recuerda a Crónicas Vampíricas cuando Elena entra en coma y le piden que hagan un diario... Hago esto porque confío en que así será más fácil llevarlo hasta que te tenga a metros de mí[span_7](start_span)[span_7](end_span). Buenas noches mi amor, te amo con toda mi alma[span_8](start_span)[span_8](end_span).
+                </p>
+                <div style="margin-top: 15px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.6); border: 1px dashed var(--primary-color);">
+                    <strong style="font-size: 0.8rem; color: var(--text-color);">Tú respondiste:</strong>
+                    <p style="font-size: 0.85rem; margin-top: 5px; line-height: 1.5; color: var(--muted-text);">
+                        [Escribe aquí tu respuesta para Mara directamente en el código...]
+                    </p>
+                </div>
+            </div>
+
+            <!-- ENTRADA 3: JUEVES 16 DE ABRIL (11:10 - 13:49) -->
+            <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                <strong style="color: var(--primary-color); font-size: 0.9rem;">Jueves 16 de abril (11:10 - 13:49)[span_9](start_span)[span_9](end_span)</strong>
+                <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
+                    Hola mi amor, esto está empezando a doler. Te echo muchísimo de menos y apenas han pasado 15 horas desde que nos despedimos. Examen de inglés terminado, una puta mierda, me tuve que inventar algo... Me encuentro bastante mal pero confío en que esto va a mejorar a lo largo del día[span_10](start_span)[span_10](end_span).
+                </p>
+                <div style="margin-top: 15px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.6); border: 1px dashed var(--primary-color);">
+                    <strong style="font-size: 0.8rem; color: var(--text-color);">Tú respondiste:</strong>
+                    <p style="font-size: 0.85rem; margin-top: 5px; line-height: 1.5; color: var(--muted-text);">
+                        [Escribe aquí tu respuesta para Mara directamente en el código...]
+                    </p>
+                </div>
+            </div>
+
+            <!-- ENTRADA 4: VIERNES 17 DE ABRIL (00:03) -->
+            <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                <strong style="color: var(--primary-color); font-size: 0.9rem;">Viernes 17 de abril (00:03)[span_11](start_span)[span_11](end_span)</strong>
+                <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
+                    Holiiiiii, ya va siendo hora de irme a dormir. Todo esto está siendo muy duro, el plan de las historias funcionó más o menos porque vi que la viste a los treinta segundos. Mañana son las olimpiadas, pase lo que pase estaré muy orgullosa de ti. Cuento los minutos para poder volver a hablar contigo, verte, abrazarte e incluso besarte[span_12](start_span)[span_12](end_span).
+                </p>
+                <div style="margin-top: 15px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.6); border: 1px dashed var(--primary-color);">
+                    <strong style="font-size: 0.8rem; color: var(--text-color);">Tú respondiste:</strong>
+                    <p style="font-size: 0.85rem; margin-top: 5px; line-height: 1.5; color: var(--muted-text);">
+                        [Escribe aquí tu respuesta para Mara directamente en el código...]
+                    </p>
+                </div>
+            </div>
+
+            <!-- ENTRADA 5: VIERNES 17 DE ABRIL (9:33) -->
+            <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                <strong style="color: var(--primary-color); font-size: 0.9rem;">Viernes 17 de abril (09:33)[span_13](start_span)[span_13](end_span)</strong>
+                <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
+                    Hola Yeray, estoy bastante estresada porque sigo sin ser capaz de aprenderme las teóricas. Y ahora mismo me encuentro enfadada contigo. Por qué me abandonas en este momento? Te necesito. Siento que no puedo conseguirlo... Por favor, Yeray, mándame un mensaje o dime algo[span_14](start_span)[span_14](end_span).
+                </p>
+                <div style="margin-top: 15px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.6); border: 1px dashed var(--primary-color);">
+                    <strong style="font-size: 0.8rem; color: var(--text-color);">Tú respondiste:</strong>
+                    <p style="font-size: 0.85rem; margin-top: 5px; line-height: 1.5; color: var(--muted-text);">
+                        [Escribe aquí tu respuesta para Mara directamente en el código...]
+                    </p>
+                </div>
+            </div>
+
+            <!-- ENTRADA 6: SÁBADO 18 DE ABRIL (19:45) -->
+            <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                <strong style="color: var(--primary-color); font-size: 0.9rem;">Sábado 18 de abril (19:45)[span_15](start_span)[span_15](end_span)</strong>
+                <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
+                    Hola mi amor, aquí estoy. La verdad es que no me encuentro muy bien emocionalmente pero mañana podremos hablar al fin. Sobre el partido, fue un poco locura con los jugadores del Costa insultando a los árbitros... Tengo muchas ganas de verte y darte un abrazo[span_16](start_span)[span_16](end_span).
+                </p>
+                <div style="margin-top: 15px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.6); border: 1px dashed var(--primary-color);">
+                    <strong style="font-size: 0.8rem; color: var(--text-color);">Tú respondiste:</strong>
+                    <p style="font-size: 0.85rem; margin-top: 5px; line-height: 1.5; color: var(--muted-text);">
+                        [Escribe aquí tu respuesta para Mara directamente en el código...]
+                    </p>
+                </div>
+            </div>
+
+            <!-- ENTRADA 7: DOMINGO 19 DE ABRIL (9:04) -->
+            <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                <strong style="color: var(--primary-color); font-size: 0.9rem;">Domingo 19 de abril (09:04)[span_17](start_span)[span_17](end_span)</strong>
+                <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
+                    ¡Me has mandado un buenos días!!!!! Me has alegrado la mañana con eso. Hoy tienes todo el trayecto de vuelta, espero que vaya todo muy muy bien. Te amo muchísimo mi niño, muchas gracias por escribirme y ya hablaremos cuando llegues a Lanzarote[span_18](start_span)[span_18](end_span).
                 </p>
                 <div style="margin-top: 15px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.6); border: 1px dashed var(--primary-color);">
                     <strong style="font-size: 0.8rem; color: var(--text-color);">Tú respondiste:</strong>
