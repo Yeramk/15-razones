@@ -3846,6 +3846,73 @@
             if (!slider) return;
             slider.style.touchAction = 'pan-x';
         })();
+<!-- ========================================== -->
+<!-- INICIO: EL DIARIO DE MARA (MÓDULO SEGURO) -->
+<!-- ========================================== -->
+<button onclick="openDiary()" style="position: fixed; bottom: 25px; left: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--primary-color); color: white; font-size: 26px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3); z-index: 1000; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s;">
+    📖
+</button>
+
+<div id="mara-diary-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(20,15,25,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 999999; align-items: center; justify-content: center; padding: 15px; flex-direction: column;">
+    <div style="background: var(--card-bg); border-radius: 26px; padding: 28px 22px; max-width: 420px; width: 100%; max-height: 85vh; overflow-y: auto; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid var(--border-color); position: relative;">
+        
+        <button onclick="closeDiary()" style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 50%; width: 35px; height: 35px; font-size: 16px; cursor: pointer;">✕</button>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <span style="font-size: 2.2rem;">📖</span>
+            <h3 style="color: var(--primary-color); margin-top: 5px;">El Diario de Mara</h3>
+            <p style="font-size: 0.85rem; color: var(--muted-text); font-style: italic;">"Este va a ser mi nuevo chat para hablar contigo..."</p>
+        </div>
+
+        <!-- Entrada 1: Miércoles 15 -->
+        <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 20px;">
+            <strong style="color: var(--primary-color); font-size: 0.9rem;">Miércoles 15 de abril (21:49)</strong>
+            <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
+                Hola mi amor. Ya he cenado y la verdad es que no puedo parar de pensar en ti... me ha parecido algo muy bonito de tu parte haberle dado like a nuestras historias juntas.
+            </p>
+            <textarea placeholder="Tu respuesta a Mara..." style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.5); color: var(--text-color); font-size: 0.85rem; font-family: inherit; resize: vertical; min-height: 70px; outline: none;"></textarea>
+        </div>
+
+        <!-- Entrada 2: Miércoles 15 (Noche) -->
+        <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 20px;">
+            <strong style="color: var(--primary-color); font-size: 0.9rem;">Miércoles 15 de abril (22:36)</strong>
+            <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
+                ...han pasado 369 días desde que empezamos a hablar (788 buenas noches en WhatsApp). En Crónicas Vampíricas Elena pide que hagan un diario, así que básicamente es lo que estoy haciendo yo...
+            </p>
+            <textarea placeholder="Tu respuesta a Mara..." style="width: 100%; margin-top: 12px; padding: 12px; border-radius: 12px; border: 1px solid var(--border-color); background: rgba(255,255,255,0.5); color: var(--text-color); font-size: 0.85rem; font-family: inherit; resize: vertical; min-height: 70px; outline: none;"></textarea>
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+            <button onclick="saveDiaryNotes()" style="background: linear-gradient(135deg, #27ae60, #2ecc71); width: 100%; padding: 14px; border-radius: 14px; border: none; color: white; font-weight: bold; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);">
+                Guardar mis respuestas 🤍
+            </button>
+            <p id="diary-save-msg" style="font-size: 0.8rem; color: #27ae60; margin-top: 10px; font-weight: bold; display: none;">
+                ¡Respuestas guardadas! ✨
+            </p>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // Scripts exclusivos del Diario (No interfieren con el resto)
+    function openDiary() {
+        document.getElementById('mara-diary-modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden'; // Evita scroll de fondo
+    }
+    function closeDiary() {
+        document.getElementById('mara-diary-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    function saveDiaryNotes() {
+        var msg = document.getElementById('diary-save-msg');
+        msg.style.display = 'block';
+        setTimeout(function() { msg.style.display = 'none'; }, 3000);
+    }
+</script>
+<!-- ========================================== -->
+<!-- FIN: EL DIARIO DE MARA -->
+<!-- ========================================== -->
 
     </script>
 </body>
