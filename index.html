@@ -3000,7 +3000,7 @@
             }
         }
 
-                // --- JUEGO 8: SUMA RELÁMPAGO (MATEMÁTICO) ---
+                        // --- JUEGO 8: SUMA RELÁMPAGO (MATEMÁTICO) ---
         let math8Level = 0;
         let math8Target = 15;
         let math8Numbers = [];
@@ -3017,7 +3017,6 @@
             const cfg = MATH8_CONFIGS[Math.min(math8Level, MATH8_CONFIGS.length - 1)];
             math8Target = Math.floor(Math.random() * (cfg.targetRange[1] - cfg.targetRange[0] + 1)) + cfg.targetRange[0];
             
-            // Generar números que garanticen al menos una combinación válida
             let subset = [];
             let sum = 0;
             for(let i=0; i<cfg.count; i++) {
@@ -3025,13 +3024,11 @@
                 subset.push(n);
                 sum += n;
             }
-            // Ajustar el último para clavar el objetivo
             if(sum !== math8Target && subset.length > 0) {
                 subset[0] += (math8Target - sum);
                 if(subset[0] < 1) subset[0] = 1;
             }
 
-            // Rellenar el resto de la cuadrícula con números aleatorios distractores
             math8Numbers = [...subset];
             while(math8Numbers.length < cfg.grid) {
                 math8Numbers.push(Math.floor(Math.random() * 15) + 1);
@@ -3052,8 +3049,8 @@
             gridEl.style.gridTemplateColumns = cfg.grid >= 16 ? 'repeat(4,1fr)' : (cfg.grid >= 12 ? 'repeat(4,1fr)' : 'repeat(3,1fr)');
             gridEl.innerHTML = '';
             
-            targetEl.innerText = math8Target;
-            levelEl.innerText = (math8Level + 1) + '/5';
+            if(targetEl) targetEl.innerText = math8Target;
+            if(levelEl) levelEl.innerText = (math8Level + 1) + '/5';
             
             math8Numbers.forEach((num, idx) => {
                 const btn = document.createElement('button');
