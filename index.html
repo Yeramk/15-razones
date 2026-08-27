@@ -3927,8 +3927,7 @@
             const chars=type==='hearts'?['🤍','💗','🫶🏽']:type==='stars'?['✦','✨','⭐']:type==='secret'?['🌷','✦','🤍']:['🌸','🌷','🤍'];
             for(let i=0;i<18;i++){const el=document.createElement('div');el.className='confetti';el.innerText=chars[i%chars.length];el.style.background='transparent';el.style.fontSize=(12+Math.random()*10)+'px';el.style.left=(Math.random()*100)+'vw';el.style.animationDuration=(1.8+Math.random()*1.4)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),3600);}
         }
-
-        function triggerConfetti() {
+                function triggerConfetti() {
             let colors = ['#ff4785', '#ff7eb9', '#ff6bb5', '#ffffff', '#e74c3c'];
             for(let i = 0; i < 35; i++) {
                 let conf = document.createElement('div');
@@ -3942,6 +3941,83 @@
             }
         }
 
+        /* v1.6 — safe, local-only polish for the radio slider */
+        (function initV16RadioTouch(){
+            const slider = document.getElementById('radio-slider');
+            if (!slider) return;
+            slider.style.touchAction = 'pan-x';
+        })();
+
+        // === FUNCIONES DEL DIARIO DE MARA ===
+        function openDiary() {
+            document.getElementById('mara-diary-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeDiary() {
+            document.getElementById('mara-diary-modal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Lógica para mostrar el botón del diario al llegar al nivel 8 (después de superar el juego 8)
+        let diaryUnlockedNotified = false;
+        document.addEventListener('DOMContentLoaded', () => {
+            setInterval(() => {
+                const diaryBtn = document.getElementById('diary-trigger-btn');
+                // Se desbloquea cuando unlockedCount llega a 9 (lo que significa que la prueba 8 está superada)
+                if (diaryBtn && typeof unlockedCount !== 'undefined' && unlockedCount >= 9) {
+                    if (diaryBtn.style.display !== 'flex') {
+                        diaryBtn.style.display = 'flex';
+                        if (!diaryUnlockedNotified) {
+                            diaryUnlockedNotified = true;
+                            showToast('📖 ¡Se ha desbloqueado El Diario de Mara!');
+                        }
+                    }
+                }
+            }, 1000);
+        });
+
     </script>
+
+    <!-- ========================================== -->
+    <!-- INICIO: EL DIARIO DE MARA (MÓDULO SEGURO) -->
+    <!-- ========================================== -->
+    <button id="diary-trigger-btn" onclick="openDiary()" style="display: none; position: fixed; bottom: 25px; left: 20px; width: 55px; height: 55px; border-radius: 50%; background: var(--primary-color); color: white; font-size: 26px; border: none; box-shadow: 0 8px 20px rgba(0,0,0,0.3); z-index: 1000; cursor: pointer; align-items: center; justify-content: center; transition: transform 0.2s;">
+        📖
+    </button>
+
+    <div id="mara-diary-modal" style="display:none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(20,15,25,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 999999; align-items: center; justify-content: center; padding: 15px; flex-direction: column;">
+        <div style="background: var(--card-bg); border-radius: 26px; padding: 28px 22px; max-width: 420px; width: 100%; max-height: 85vh; overflow-y: auto; text-align: left; box-shadow: 0 15px 35px rgba(0,0,0,0.4); border: 1px solid var(--border-color); position: relative;">
+            
+            <button onclick="closeDiary()" style="position: absolute; top: 15px; right: 15px; background: rgba(255,255,255,0.1); border: 1px solid var(--border-color); color: var(--text-color); border-radius: 50%; width: 35px; height: 35px; font-size: 16px; cursor: pointer;">✕</button>
+
+            <div style="text-align: center; margin-bottom: 25px;">
+                <span style="font-size: 2.2rem;">📖</span>
+                <h3 style="color: var(--primary-color); margin-top: 5px;">El Diario de Mara</h3>
+                <p style="font-size: 0.85rem; color: var(--muted-text); font-style: italic;">"Este va a ser mi nuevo chat para hablar contigo...[span_0](start_span)"[span_0](end_span)</p>
+            </div>
+
+            <!-- ENTRADA 1: MIÉRCOLES 15 (21:49) -->
+            <div style="background: rgba(217,111,157,0.05); border-left: 4px solid var(--accent-color); padding: 15px; border-radius: 0 12px 12px 0; margin-bottom: 25px;">
+                <strong style="color: var(--primary-color); font-size: 0.9rem;">Miércoles 15 de abril (21:49)[span_1](start_span)[span_1](end_span)</strong>
+                <p style="font-size: 0.85rem; margin-top: 8px; line-height: 1.5; color: var(--text-color);">
+                    Hola mi amor. Ya he cenado y la verdad es que no puedo parar de pensar en ti y en todo lo que ha pasado hoy... me ha parecido algo muy pero que muy bonito de tu parte haberle dado like a nuestras historias juntas[span_2](start_span)[span_2](end_span).
+                </p>
+                <div style="margin-top: 15px; padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.6); border: 1px dashed var(--primary-color);">
+                    <strong style="font-size: 0.8rem; color: var(--text-color);">Tú respondiste:</strong>
+                    <p style="font-size: 0.85rem; margin-top: 5px; line-height: 1.5; color: var(--muted-text);">
+                        [Escribe aquí tu respuesta para Mara directamente en el código...]
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- ========================================== -->
+    <!-- FIN: EL DIARIO DE MARA -->
+    <!-- ========================================== -->
+
 </body>
 </html>
+
+
+        
