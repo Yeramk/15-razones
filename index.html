@@ -3927,7 +3927,7 @@
             const chars=type==='hearts'?['🤍','💗','🫶🏽']:type==='stars'?['✦','✨','⭐']:type==='secret'?['🌷','✦','🤍']:['🌸','🌷','🤍'];
             for(let i=0;i<18;i++){const el=document.createElement('div');el.className='confetti';el.innerText=chars[i%chars.length];el.style.background='transparent';el.style.fontSize=(12+Math.random()*10)+'px';el.style.left=(Math.random()*100)+'vw';el.style.animationDuration=(1.8+Math.random()*1.4)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),3600);}
         }
-                function triggerConfetti() {
+                        function triggerConfetti() {
             let colors = ['#ff4785', '#ff7eb9', '#ff6bb5', '#ffffff', '#e74c3c'];
             for(let i = 0; i < 35; i++) {
                 let conf = document.createElement('div');
@@ -4018,6 +4018,3 @@
 
 </body>
 </html>
-
-
-        
