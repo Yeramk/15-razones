@@ -2495,7 +2495,7 @@
             cassiopeia: { name:'Bruno', stars:['s3'], message:'Bruno, tu estrella más orejona de todas, solo queda la mitad!. ✨' },
             ursaMinor: { name:'Lolo', stars:['s4'], message:'Lolo, la estrella más viejita. Sigue mirando con atención. 🐶' },
             draco: { name:'Koalolo', stars:['s5'], message:'Koalolo, nuestra pequeña estrella compartida. Bieen!. 🧸' },
-            pegaso: { name:'Maraland', stars:['s6'], message:'Por último, Maraland, representando el mundo que estás por conocer. 🌏' }
+            pegaso: { name:'Maraland', stars:['s6'], message:'Por último, Maraland, representando el mundo que estás por crear. 🌏' }
         };
         const CONSTELLATION_LOCATIONS = { s1:2, s2:5, s3:8, s4:10, s5:12, s6:15 };
         let constellationStars = {};
@@ -2796,7 +2796,7 @@
                 if (!t || (token !== undefined && token !== unlockToastToken)) return;
                 clearUnlockToastState(t);
                 t.innerText = '';
-            }, 12000);
+            }, 5000);
         }
         function showToast(msg) {
             let t = document.getElementById('toast');
