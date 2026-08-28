@@ -389,28 +389,36 @@
             line-height: 1.5;
         }
         .response-box {
-            text-align: left;
-            overflow-wrap: break-word;
-            word-break: normal;
-            white-space: normal;
-        }
-        .response-box br + br { line-height: .65; }
+    text-align: left;
+    overflow-wrap: break-word;
+    word-break: normal;
+    white-space: normal;
+}
 
-        .lock-box { text-align: center; padding: 10px 0; }
+.response-box > div {
+    margin-bottom: 1.2em;
+}
 
-        input[type="text"], input[type="password"], input[type="number"], input[type="range"], select {
-            width: 100%;
-            padding: 14px 16px;
-            margin: 12px 0;
-            border: 1px solid var(--border-color);
-            background: rgba(20, 4, 32, 0.6);
-            color: var(--text-color);
-            border-radius: 14px;
-            text-align: center;
-            font-size: 16px; 
-            outline: none;
-        }
+.response-box > div:last-child {
+    margin-bottom: 0;
+}
 
+.response-box br + br { line-height: .65; }
+
+.lock-box { text-align: center; padding: 10px 0; }
+
+input[type="text"], input[type="password"], input[type="number"], input[type="range"], select {
+    width: 100%;
+    padding: 14px 16px;
+    margin: 12px 0;
+    border: 1px solid var(--border-color);
+    background: rgba(20, 4, 32, 0.6);
+    color: var(--text-color);
+    border-radius: 14px;
+    text-align: center;
+    font-size: 16px; 
+    outline: none;
+}
         button.action-btn {
             background: linear-gradient(135deg, #ff4785, #ff6bb5);
             color: white;
