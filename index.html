@@ -1805,7 +1805,7 @@
             <div class="prologue-kicker"><span>Antes de empezar</span><span>🤍</span></div>
             <h2 id="prologue-title">Una pequeña cosa antes de entrar</h2>
             <p>Esto no es una página para abrir, mirar y cerrar. La idea es que vayas descubriendo cada parte poco a poco, a tu ritmo.</p>
-            <p>Hay música (escucha las 11), pequeñas pruebas, recuerdos y alguna que otra cosa escondida. No necesitas saber nada antes de empezar: cuando llegue el momento, la propia experiencia te irá indicando qué hacer.</p>
+            <p>Hay música (escucha las 12), pequeñas pruebas, recuerdos y alguna que otra cosa escondida. No necesitas saber nada antes de empezar: cuando llegue el momento, la propia experiencia te irá indicando qué hacer.</p>
             <p>Solo una cosa: <strong>porfis,no tengas prisa por terminarla.</strong> 🤍</p>
             <div class="prologue-note">La primera prueba ya está esperándote. Cuando cierres esta carta, empieza el recorrido. Disfruta cada detalle</div>
             <button class="action-btn" type="button" onclick="closePrologue()">Empezar a descubrir 🤍</button>
@@ -2010,7 +2010,7 @@
     <div id="welcome-wrapper">
         <div id="welcome-screen">
             <h2>Hola mi amor 🤍</h2>
-            <p>Introduce tu fecha de nacimiento para desbloquear el contenido de la web.</p>
+            <p>Introduce la fecha de nuestro aniversario para desbloquear la web.</p>
             
             <input type="password" id="birthdate-input" placeholder="Contraseña">
             <button class="action-btn" onclick="checkBirthdate()">Entrar</button>
@@ -2470,7 +2470,8 @@
             './musica11.mp3',
             './musica5.mp3',
             './musica6.mp3',
-            './musica7.mp3'
+            './musica7.mp3',
+            './musica12.mp3'
         ];
         let currentMusicTrack = 0;
         let musicJourneyHeard = [];
@@ -2496,7 +2497,7 @@
         const EDITABLE_CONTENT = {
             subtitle: '"Por 15 razones", 15 razones (y alguna más) por las que eres el amor de mi vida.',
             welcomeTitle: 'Hola mi vida 🫶🏽 🤍',
-            welcomeText: 'Introduce tu fecha de nacimiento para descubrir las 15 razones (DD/MM/YY).',
+            welcomeText: 'Introduce la fecha de nuestro aniversario para desbloquear la web.',
             prologueTitle: 'Una pequeña cosita antes de entrar',
             prologueParagraphs: [
                 'Esto no es una página para abrir, mirar y cerrar. La idea es que vayas descubriendo cada parte poco a poco, a tu ritmo amor.',
@@ -3107,7 +3108,7 @@
 
         function checkBirthdate() {
             var input = document.getElementById('birthdate-input').value.trim();
-            if (input === '14/10/2008' || input === '14/10/08') {
+            if (input === '14/10/2008' || input === '260626') {
                 document.getElementById('welcome-wrapper').style.display = 'none';
                 document.getElementById('main-content').style.display = 'block';
                 document.getElementById('main-content').classList.remove('v3-enter'); void document.getElementById('main-content').offsetWidth; document.getElementById('main-content').classList.add('v3-enter');
@@ -3127,7 +3128,7 @@
                 console.error('Error restaurando los juegos:', e);
             }
             } else {
-                showToast("Mmm... esa no es tu fecha, fuera intrus@ 😉");
+                showToast("Mmm... esa no es la fecha, fuera intrus@ 😉");
             }
         }
 
